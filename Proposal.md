@@ -1,6 +1,2 @@
-UofRPG
-======
-
-Developers:
-
-Jacob Niebloom
+Proposal
+==========
