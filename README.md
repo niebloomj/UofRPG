@@ -3,5 +3,5 @@ UofRPG
 
 Developers:
 
-Jacob Niebloom
-Aaron McClure
+* Jacob Niebloom
+* Aaron McClure
