@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,108 +9,108 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+
     <style type="text/css">
-	game
-	
-	</style>
-    
+    game
+    </style>
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
     <script>
-        var stage, output, holder;
-		
-		function init() {
-			stage = new createjs.Stage("demoCanvas");
-			
-			// this lets our drag continue to track the mouse even when it leaves the canvas:
-			// play with commenting this out to see the difference.
-			stage.mouseMoveOutside = true; 
-			
-			var circle = new createjs.Shape();
-			circle.graphics.beginFill("red").drawCircle(0, 0, 50);
-			
-			var label = new createjs.Text("Drag it!!", "bold 14px Arial", "#FFFFFF");
-			label.textAlign = "center";
-			label.y = -7;
-			
-			var dragger = new createjs.Container();
-			dragger.x = dragger.y = 100;
-			dragger.addChild(circle, label);
-			stage.addChild(dragger);
-			
-			dragger.on("pressmove",function(evt) {
-				// currentTarget will be the container that the event listener was added to:
-				evt.currentTarget.x = evt.stageX;
-				evt.currentTarget.y = evt.stageY;
-				// make sure to redraw the stage to show the change:
-				stage.update();   
-			});
-			
-			stage.update();
-        }
+    var stage, output, holder;
+
+    function init() {
+        stage = new createjs.Stage("demoCanvas");
+
+        // this lets our drag continue to track the mouse even when it leaves the canvas:
+        // play with commenting this out to see the difference.
+        stage.mouseMoveOutside = true;
+
+        var circle = new createjs.Shape();
+        circle.graphics.beginFill("red").drawCircle(0, 0, 50);
+
+        var label = new createjs.Text("Drag it!!", "bold 14px Arial", "#FFFFFF");
+        label.textAlign = "center";
+        label.y = -7;
+
+        var dragger = new createjs.Container();
+        dragger.x = dragger.y = 100;
+        dragger.addChild(circle, label);
+        stage.addChild(dragger);
+
+        dragger.on("pressmove", function(evt) {
+            // currentTarget will be the container that the event listener was added to:
+            evt.currentTarget.x = evt.stageX;
+            evt.currentTarget.y = evt.stageY;
+            // make sure to redraw the stage to show the change:
+            stage.update();
+        });
+
+        stage.update();
+    }
     </script>
-  </head>
-  <body onLoad="init();">
-  	<div class="page-header">
-    	<h1 class="text-center">University of Rochester Playing Game: Year 1</h1>
+</head>
+
+<body onLoad="init();">
+    <div class="page-header">
+        <h1 class="text-center">University of Rochester Playing Game: Year 1</h1>
     </div>
-    
+
     <div class="container">
-    	<div class="row">
-        	<div class="col-sm-12">
-            	<div class="theGame">
-                	<div class="text-center">
-                    	<canvas id="demoCanvas" width="500" height="300">
-        					alternate content
-    					</canvas>
-                        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="theGame">
+                    <div class="text-center">
+                        <canvas id="demoCanvas" width="500" height="300">
+                            alternate content
+                        </canvas>
+
                     </div>
                 </div>
             </div>
-            
+
         </div>
-        
+
     </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-  </body>
-  <footer id="mastfoot">
-        <section class="container-fluid">
-            <div class="row-fluid">
-                <article class="span6 credits text-left">
-                    <!-- <h3>@twitter</h3>
-					<span class="liner">&nbsp;</span>
-					<article id="ticker" class="query"></article> -->
-                </article>
+</body>
+<footer id="mastfoot">
+    <section class="container-fluid">
+        <div class="row-fluid">
+            <article class="span6 credits text-left">
+                <!-- <h3>@twitter</h3>
+                    <span class="liner">&nbsp;</span>
+                    <article id="ticker" class="query"></article> -->
+            </article>
+
+            <article class="span6 text-left">
+                <font size="5">
+                    <a href="http://www.uofrpg.com/build.html">Play Unity Game</a>
+                </font>
+            </article>
+            <article class="span6 text-right">
+                <font size="5">
+                    <a href="http://www.uofrpg.com/roles.html">Click to View Developer's Roles</a>
+                </font>
+            </article>
 
 
-                <article class="span6 text-right">
-                    <font size = "5">
-                <a href="http://www.uofrpg.com/roles.html">Click to View Developer's Roles</a>
-				</font>
-                </article>
-				
-				<article class="span6 text-left">
-					<font size = "5">
-				<a href="http://www.uofrpg.com/game.html">Play Game</a>
-				</font>
-				</article>
 
 
-            </div>
-            <div class="row-fluid">
+        </div>
+        <div class="row-fluid">
 
-                <article class="span6 copyright text-right">
-                    <p>Copyright &copy; 2014
-                        <br/>All rights reserved</p>
-                </article>
-            </div>
-        </section>
-    </footer>
-  
+            <article class="span6 copyright text-right">
+                <p>Copyright &copy; 2014
+                    <br/>All rights reserved</p>
+            </article>
+        </div>
+    </section>
+</footer>
+
 </html>
