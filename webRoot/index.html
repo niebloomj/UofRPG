@@ -9,6 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
 
     <style type="text/css">
     game
@@ -22,8 +24,31 @@
     <script>
     var stage, output, holder;
 
+
     function init() {
         stage = new createjs.Stage("demoCanvas");
+
+        var background = new createjs.Shape();
+        background.name = "background";
+        background.graphics.beginFill("red").drawRoundRect(0, 0, 150, 60, 10);
+
+        var label = new createjs.Text("Register", "bold 24px Arial", "#FFFFFF");
+        label.name = "label";
+        label.textAlign = "center";
+        label.textBaseline = "middle";
+        label.x = 150 / 2;
+        label.y = 60 / 2;
+
+        var button = new createjs.Container();
+        button.name = "button";
+        button.x = 0;
+        button.y = 0;
+        button.addChild(background, label);
+        stage.addChild(button, output);
+        button.on("click", handleClick, true);
+        stage.update();
+
+
 
         // this lets our drag continue to track the mouse even when it leaves the canvas:
         // play with commenting this out to see the difference.
@@ -32,13 +57,13 @@
         var circle = new createjs.Shape();
         circle.graphics.beginFill("red").drawCircle(0, 0, 50);
 
-        var label = new createjs.Text("Drag it!!", "bold 14px Arial", "#FFFFFF");
-        label.textAlign = "center";
-        label.y = -7;
+        var label2 = new createjs.Text("Drag it!!", "bold 14px Arial", "#FFFFFF");
+        label2.textAlign = "center";
+        label2.y = -7;
 
         var dragger = new createjs.Container();
         dragger.x = dragger.y = 100;
-        dragger.addChild(circle, label);
+        dragger.addChild(circle, label2);
         stage.addChild(dragger);
 
         dragger.on("pressmove", function(evt) {
@@ -48,8 +73,19 @@
             // make sure to redraw the stage to show the change:
             stage.update();
         });
-
         stage.update();
+    }
+
+    function handleClick(event) {
+        Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV", "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
+        var TestObject = Parse.Object.extend("Accounts");
+        var testObject = new TestObject();
+        testObject.save({
+            Username: prompt("Please enter your username"),
+            Password: prompt("Please enter your password")
+        }, {
+
+        });
     }
     </script>
 </head>
@@ -100,10 +136,6 @@
                     <a href="http://www.uofrpg.com/roles.html">Click to View Developer's Roles</a>
                 </font>
             </article>
-
-
-
-
         </div>
         <div class="row-fluid">
 
