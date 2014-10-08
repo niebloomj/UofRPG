@@ -28,25 +28,45 @@
     function init() {
         stage = new createjs.Stage("demoCanvas");
 
-        var background = new createjs.Shape();
-        background.name = "background";
-        background.graphics.beginFill("red").drawRoundRect(0, 0, 150, 60, 10);
+	
+        var loginShapes = new createjs.Shape();
+        loginShapes.name = "background";
+	
+        var loginLabel = new createjs.Text("Login", "bold 14px Arial", "#FFFFFF");
+        loginLabel.name = "loginLabel";
+        loginLabel.textAlign = "center";
+        loginLabel.textBaseline = "middle";
 
-        var label = new createjs.Text("Register", "bold 24px Arial", "#FFFFFF");
-        label.name = "label";
-        label.textAlign = "center";
-        label.textBaseline = "middle";
-        label.x = 150 / 2;
-        label.y = 60 / 2;
+        var login = new createjs.Container();
+        login.name = "login";
+        login.x = 300;
+        login.y = 150;
+        login.addChild(loginShapes, loginLabel);
+        stage.addChild(login, output);
+        login.on("click", doLogin, true);
 
-        var button = new createjs.Container();
-        button.name = "button";
-        button.x = 0;
-        button.y = 0;
-        button.addChild(background, label);
-        stage.addChild(button, output);
-        button.on("click", handleClick, true);
+        loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 50, 20, 10);
+	
+        var regShapes = new createjs.Shape();
+        regShapes.name = "regShapes";
+        
+        var registerLabel = new createjs.Text("Register", "bold 14px Arial", "#FFFFFF");
+        registerLabel.name = "registerLabel";
+        registerLabel.textAlign = "center";
+        registerLabel.textBaseline = "middle";
+
+        var register = new createjs.Container();
+        register.name = "register";
+        register.x = 225;
+        register.y = 150;
+        register.addChild(regShapes, registerLabel);
+        stage.addChild(register, output);
+        register.on("click", doRegister, true);
+
+        regShapes.graphics.beginFill("red").drawRoundRect(-33, -10, 67, 20, 10);
+
         stage.update();
+
 
         // this lets our drag continue to track the mouse even when it leaves the canvas:
         // play with commenting this out to see the difference.
@@ -74,7 +94,7 @@
         stage.update();
     }
 
-    function handleClick(event) {
+    function doRegister(event) {
         Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV", "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
         var TestObject = Parse.Object.extend("Accounts");
         var testObject = new TestObject();
@@ -84,6 +104,10 @@
         }, {
 
         });
+    }
+
+    function doLogin(event) {
+        window.alert("This will do something eventually.");	
     }
     </script>
 </head>
@@ -136,3 +160,4 @@
 </footer>
 
 </html>
+
