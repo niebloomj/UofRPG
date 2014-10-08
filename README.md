@@ -5,7 +5,7 @@ A class project to develop a role-playing game based on the University of Roches
 ## Developers
 
 * [Jacob Niebloom](//github.com/niebloomj)
-* Aaron McClure
+* [Aaron McClure](//github.com/AaronMcClure)
 * Graeme McGuire
 * Naropa Perez
 * Alex Hankin
