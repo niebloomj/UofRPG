@@ -11,3 +11,4 @@ A class project to develop a role-playing game based on the University of Roches
 * Alex Hankin
 * Bradley Beyers
 * Santiago Loane
+* [Hayden Schiff](//github.com/oxguy3)
