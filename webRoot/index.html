@@ -101,7 +101,7 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         loginLabel.textBaseline = "middle";
 
         var login = new createjs.Container();
-        login.name = "loginVutton";
+        login.name = "loginButton";
 		login.x = 400;
 		login.y = 50;
         login.addChild(loginShapes, loginLabel);
@@ -158,14 +158,14 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		/*
 		* Setup register container
 		*/
-		var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#0000FF"); //DC143C
+		var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
         usernameLabel.name = "registerLabel";
 		usernameLabel.x = 225;
 		usernameLabel.y = 55;
         usernameLabel.textAlign = "center";
         usernameLabel.textBaseline = "middle";
 		
-		var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#0000FF"); //DC143C
+		var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
         passwordLabel.name = "registerLabel";
 		passwordLabel.x = 225;
 		passwordLabel.y = 175;
@@ -228,14 +228,14 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 			
 			var usernameField = document.createElement("input");
 			usernameField.setAttribute("id", "username");
-			usernameField.setAttribute("style", "width:200px;");
-			usernameField.setAttribute("style", "margin: 0 auto;");
+			usernameField.style.width = '400px';
+			usernameField.style.height = '3em';
+			usernameField.style.top = "-350px";
 			
 			var passwordField = document.createElement("input");
 			passwordField.setAttribute("id", "password");
-			passwordField.setAttribute("style", "width:200px;");
-			passwordField.setAttribute("style", "position: absolute");
-			passwordField.setAttribute("style", "left: 1000px;");
+			passwordField.style.width = '400px';
+			passwordField.style.height = '3em';
 
 			var gameDom = new createjs.DOMElement("gameDom");
 			gameDom.htmlElement.appendChild(usernameField); 
@@ -252,10 +252,9 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 			 var TestObject = Parse.Object.extend("Accounts");
 			 var testObject = new TestObject();
 			 testObject.save({
-				Username: document.getElementById("username")[0].value,
-				Password: document.getElementById("password")[0].value
+				Username: document.getElementById("username").value,
+				Password: document.getElementById("password").value
 			 });
-			 console.log(document.getElementById("username")[0].value);
 		}
     }
 	
@@ -299,13 +298,7 @@ background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
             <img src="img/header_trans2.png">
             <center>
     </div>
-	<div id = "gameDom">
-		<style type="text/css">
-			input{
-				
-			}
-		</style>
-	</div>
+	
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -321,6 +314,15 @@ background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+	<div id = "gameDom">
+		<style type="text/css">
+			input{
+				position: absolute;
+				left: 525px;
+				top: -465px;
+			}
+		</style>
+	</div>
 </body>
 <footer id="mastfoot">
     <section class="container-fluid">
