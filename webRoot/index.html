@@ -207,14 +207,20 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		});
 		registerContainer.addChild(submitButton);
 		
-		stage.update();
-		// TODO
-		
-		
 		/*
 		* Setup game container (main container holding the game itself)
 		*/
-		// TODO
+		var tempLabel = new createjs.Text("This is the container we should use to hold the game.", "bold 20px Arial", "#000000");
+        tempLabel.name = "registerLabel";
+		tempLabel.x = 275;
+		tempLabel.y = 45;
+        tempLabel.textAlign = "center";
+        tempLabel.textBaseline = "middle";
+		
+		gameContainer.addChild(tempLabel);
+		
+		
+		stage.update();		
     }
 
     function handleClick(event) {
@@ -244,7 +250,7 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 			stage.update();
 		}else if (event.currentTarget.name == "startButton"){
 			stage.removeChild(menuContainer);
-			stage.addChild(gameContainer);
+			//stage.addChild(gameContainer);
 			stage.update();
 		}else if (event.currentTarget.name == "submitButton"){
 			 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV", 
@@ -255,20 +261,10 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 				Username: document.getElementById("username").value,
 				Password: document.getElementById("password").value
 			 });
+			//document.getElementById("gameDom").removeChild();
+			stage.removeChild(registerContainer);
+			stage.addChild(gameContainer);
 		}
-    }
-	
-	function doRegister(event) {
-        Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV", 
-
-"XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
-        var TestObject = Parse.Object.extend("Accounts");
-        var testObject = new TestObject();
-        testObject.save({
-            Username: prompt("Please enter your username"),
-            Password: prompt("Please enter your password")
-        }, {
-        });
     }
 	
 	function doLogin(event) {
