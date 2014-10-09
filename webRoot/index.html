@@ -98,13 +98,13 @@
         loginLabel.textAlign = "center";
         loginLabel.textBaseline = "middle";
 
-        var login = new createjs.Container(); << << << < HEAD
+        var login = new createjs.Container(); // HEAD
         login.name = "loginButton";
         login.x = 400;
-        login.y = 50; === === =
+        login.y = 50;
         login.name = "loginVutton";
         login.x = 400;
-        login.y = 50; >>> >>> > origin / master
+        login.y = 50; // origin / master
         login.addChild(loginShapes, loginLabel);
         menuContainer.addChild(login, output);
         login.on("click", doLogin, true);
@@ -132,7 +132,7 @@
         regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 
         login.on("mouseover", function(evt) {
-            console.log("Hi");
+            console.log("Button Hover");
             loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
             login.addChild(loginShapes, loginLabel);
             stage.update();
@@ -154,30 +154,28 @@
             register.addChild(regShapes, registerLabel);
             stage.update();
         });
-        stage.update(); << << << < HEAD
+        stage.update(); // HEAD
 
         /*
          * Setup register container
          */
         var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
-        === === =
 
         /*
          * Setup register container
          */
         var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#0000FF"); //DC143C
-        >>> >>> > origin / master
+        // origin / master
         usernameLabel.name = "registerLabel";
         usernameLabel.x = 225;
         usernameLabel.y = 55;
         usernameLabel.textAlign = "center";
-        usernameLabel.textBaseline = "middle"; << << << < HEAD
+        usernameLabel.textBaseline = "middle"; // HEAD
 
         var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
-        === === =
 
         var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#0000FF"); //DC143C
-        >>> >>> > origin / master
+        // origin / master
         passwordLabel.name = "registerLabel";
         passwordLabel.x = 225;
         passwordLabel.y = 175;
@@ -222,14 +220,13 @@
         stage.update();
         // TODO
 
-
         /*
          * Setup game container (main container holding the game itself)
          */
         // TODO
     }
 
-    function handleClick(event) { << << << < HEAD
+    function handleClick(event) { // HEAD
         if (event.currentTarget.name == "playButton") {
             stage.removeChild(startContainer);
             stage.addChild(menuContainer);
@@ -267,7 +264,7 @@
                 Username: document.getElementById("username").value,
                 Password: document.getElementById("password").value
             });
-        } === === =
+        }
         if (event.currentTarget.name == "playButton") {
             stage.removeChild(startContainer);
             stage.addChild(menuContainer);
@@ -306,7 +303,7 @@
                 Password: document.getElementById("password")[0].value
             });
             console.log(document.getElementById("username")[0].value);
-        } >>> >>> > origin / master
+        } //origin / master
     }
 
     function doRegister(event) {
@@ -328,18 +325,10 @@
 </head>
 
 <body onLoad="init();" background="img/webmain_background2.png">
-    <!--"img/green dark textures simple 
-
-background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
     <style type="text/css">
     html,
     body {
-        <!-- background: url(img/tempkeep.png) no-repeat center center fixed;
-        -webkit-background-size: contain;
-        -moz-background-size: contain;
-        -o-background-size: contain;
-        background-size: contain;
-        --> background-size: cover;
+        background-size: cover;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -350,36 +339,34 @@ background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
             <img src="img/header_trans2.png">
             <center>
     </div>
-    <<<<<<< HEAD=======< div id="gameDom">
-        <style type="text/css">
-        input {}
-        </style>
-        </div>
-        >>>>>>> origin/master
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="theGame">
-                        <div class="text-center">
-                            <canvas id="demoCanvas" width="1000" height="500">
-                                alternate content
-                            </canvas>
-                        </div>
+    <style type="text/css">
+    input {}
+    </style>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="theGame">
+                    <div class="text-center">
+                        <canvas id="demoCanvas" width="1000" height="500">
+                            alternate content
+                        </canvas>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <div id="gameDom">
-            <style type="text/css">
-            input {
-                position: absolute;
-                left: 525px;
-                top: -465px;
-            }
-            </style>
-        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <div id="gameDom">
+        <style type="text/css">
+        input {
+            position: absolute;
+            left: 525px;
+            top: -465px;
+        }
+        </style>
+    </div>
 </body>
 <footer id="mastfoot">
     <section class="container-fluid">
