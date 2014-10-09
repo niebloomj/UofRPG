@@ -17,15 +17,18 @@
     </style>
 
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
     <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
     <script>
     var stage, output, holder;
     var startContainer, menuContainer, registerContainer, gameContainer;
 
     function init() {
+        /*
+         * Create the stage
+         */
         stage = new createjs.Stage("demoCanvas");
         startContainer = new createjs.Container();
         menuContainer = new createjs.Container();
@@ -83,7 +86,6 @@
         startContainer.addChild(playButton);
         stage.addChild(startContainer);
         stage.update();
-
 
         /*
          * Setup main menu container
@@ -217,7 +219,6 @@
 
         gameContainer.addChild(tempLabel);
 
-
         stage.update();
     }
 
@@ -232,14 +233,20 @@
 
             var usernameField = document.createElement("input");
             usernameField.setAttribute("id", "username");
-            usernameField.style.width = '400px';
+            usernameField.maxLength = 10;
+            usernameField.style.width = '200px';
             usernameField.style.height = '3em';
-            usernameField.style.top = "-350px";
+            usernameField.placeholder = "Username";
+            usernameField.autofocus = true;
 
             var passwordField = document.createElement("input");
             passwordField.setAttribute("id", "password");
-            passwordField.style.width = '400px';
+            passwordField.type = "password";
+            passwordField.maxLength = 10;
+            passwordField.style.width = '200px';
             passwordField.style.height = '3em';
+            passwordField.style.top = "-350px";
+            passwordField.placeholder = "Password";
 
             var gameDom = new createjs.DOMElement("gameDom");
             gameDom.htmlElement.appendChild(usernameField);
@@ -251,17 +258,33 @@
             //stage.addChild(gameContainer);
             stage.update();
         } else if (event.currentTarget.name == "submitButton") {
+
             Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
                 "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
-            var TestObject = Parse.Object.extend("Accounts");
-            var testObject = new TestObject();
-            testObject.save({
-                Username: document.getElementById("username").value,
-                Password: document.getElementById("password").value
+            var AccountsTable = Parse.Object.extend("Accounts");
+            var accountsTable = new AccountsTable();
+            var query = new Parse.Query(AccountsTable);
+            query.equalTo("Username", document.getElementById("username").value);
+            query.find({
+                success: function(results) {
+                    if (results.length == 0) {
+                        accountsTable.save({
+                            Username: document.getElementById("username").value,
+                            Password: document.getElementById("password").value
+                        });
+                        stage.removeChild(registerContainer);
+                        stage.addChild(gameContainer);
+                        alert("Account Created");
+                    } else {
+                        document.getElementById("username").value = ""
+                        document.getElementById("password").value = ""
+                        alert("Account already exists.");
+                    }
+                },
+                error: function(error) {
+                    alert(error.message);
+                }
             });
-            //document.getElementById("gameDom").removeChild();
-            stage.removeChild(registerContainer);
-            stage.addChild(gameContainer);
         }
     }
 
@@ -272,18 +295,16 @@
 </head>
 
 <body onLoad="init();" background="img/webmain_background2.png">
-    <!--"img/green dark textures simple 
-
-background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
     <style type="text/css">
     html,
     body {
-        <!-- background: url(img/tempkeep.png) no-repeat center center fixed;
+        /*background: url(img/tempkeep.png) no-repeat center center fixed;
         -webkit-background-size: contain;
         -moz-background-size: contain;
         -o-background-size: contain;
-        background-size: contain;
-        --> background-size: cover;
+        background-size: contain;*/
+        
+        background-size: cover;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -325,8 +346,8 @@ background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
         <div class="row-fluid">
             <article class="span6 credits text-left">
                 <!-- <h3>@twitter</h3>
-                    <span class="liner">&nbsp;</span>
-                    <article id="ticker" class="query"></article> -->
+					<span class="liner">&nbsp;</span>
+					<article id="ticker" class="query"></article> -->
             </article>
             <article class="span6 text-left">
             </article>
