@@ -98,16 +98,13 @@
         loginLabel.textAlign = "center";
         loginLabel.textBaseline = "middle";
 
-        var login = new createjs.Container();
-<<<<<<< HEAD
+        var login = new createjs.Container(); << << << < HEAD
         login.name = "loginButton";
-		login.x = 400;
-		login.y = 50;
-=======
+        login.x = 400;
+        login.y = 50; === === =
         login.name = "loginVutton";
         login.x = 400;
-        login.y = 50;
->>>>>>> origin/master
+        login.y = 50; >>> >>> > origin / master
         login.addChild(loginShapes, loginLabel);
         menuContainer.addChild(login, output);
         login.on("click", doLogin, true);
@@ -157,32 +154,30 @@
             register.addChild(regShapes, registerLabel);
             stage.update();
         });
-        stage.update();
-<<<<<<< HEAD
-		
-		/*
-		* Setup register container
-		*/
-		var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
-=======
+        stage.update(); << << << < HEAD
+
+        /*
+         * Setup register container
+         */
+        var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
+        === === =
 
         /*
          * Setup register container
          */
         var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#0000FF"); //DC143C
->>>>>>> origin/master
+        >>> >>> > origin / master
         usernameLabel.name = "registerLabel";
         usernameLabel.x = 225;
         usernameLabel.y = 55;
         usernameLabel.textAlign = "center";
-        usernameLabel.textBaseline = "middle";
-<<<<<<< HEAD
-		
-		var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
-=======
+        usernameLabel.textBaseline = "middle"; << << << < HEAD
+
+        var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
+        === === =
 
         var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#0000FF"); //DC143C
->>>>>>> origin/master
+        >>> >>> > origin / master
         passwordLabel.name = "registerLabel";
         passwordLabel.x = 225;
         passwordLabel.y = 175;
@@ -234,47 +229,45 @@
         // TODO
     }
 
-    function handleClick(event) {
-<<<<<<< HEAD
-		if (event.currentTarget.name == "playButton"){
-			stage.removeChild(startContainer);
-			stage.addChild(menuContainer);
-			stage.update();
-		}else if (event.currentTarget.name == "registerButton"){
-			stage.removeChild(menuContainer);
-			stage.addChild(registerContainer);
-			
-			var usernameField = document.createElement("input");
-			usernameField.setAttribute("id", "username");
-			usernameField.style.width = '400px';
-			usernameField.style.height = '3em';
-			usernameField.style.top = "-350px";
-			
-			var passwordField = document.createElement("input");
-			passwordField.setAttribute("id", "password");
-			passwordField.style.width = '400px';
-			passwordField.style.height = '3em';
+    function handleClick(event) { << << << < HEAD
+        if (event.currentTarget.name == "playButton") {
+            stage.removeChild(startContainer);
+            stage.addChild(menuContainer);
+            stage.update();
+        } else if (event.currentTarget.name == "registerButton") {
+            stage.removeChild(menuContainer);
+            stage.addChild(registerContainer);
 
-			var gameDom = new createjs.DOMElement("gameDom");
-			gameDom.htmlElement.appendChild(usernameField); 
-			gameDom.htmlElement.appendChild(passwordField); 
-			
-			stage.update();
-		}else if (event.currentTarget.name == "startButton"){
-			stage.removeChild(menuContainer);
-			stage.addChild(gameContainer);
-			stage.update();
-		}else if (event.currentTarget.name == "submitButton"){
-			 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV", 
-"XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
-			 var TestObject = Parse.Object.extend("Accounts");
-			 var testObject = new TestObject();
-			 testObject.save({
-				Username: document.getElementById("username").value,
-				Password: document.getElementById("password").value
-			 });
-		}
-=======
+            var usernameField = document.createElement("input");
+            usernameField.setAttribute("id", "username");
+            usernameField.style.width = '400px';
+            usernameField.style.height = '3em';
+            usernameField.style.top = "-350px";
+
+            var passwordField = document.createElement("input");
+            passwordField.setAttribute("id", "password");
+            passwordField.style.width = '400px';
+            passwordField.style.height = '3em';
+
+            var gameDom = new createjs.DOMElement("gameDom");
+            gameDom.htmlElement.appendChild(usernameField);
+            gameDom.htmlElement.appendChild(passwordField);
+
+            stage.update();
+        } else if (event.currentTarget.name == "startButton") {
+            stage.removeChild(menuContainer);
+            stage.addChild(gameContainer);
+            stage.update();
+        } else if (event.currentTarget.name == "submitButton") {
+            Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
+                "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
+            var TestObject = Parse.Object.extend("Accounts");
+            var testObject = new TestObject();
+            testObject.save({
+                Username: document.getElementById("username").value,
+                Password: document.getElementById("password").value
+            });
+        } === === =
         if (event.currentTarget.name == "playButton") {
             stage.removeChild(startContainer);
             stage.addChild(menuContainer);
@@ -313,8 +306,7 @@
                 Password: document.getElementById("password")[0].value
             });
             console.log(document.getElementById("username")[0].value);
-        }
->>>>>>> origin/master
+        } >>> >>> > origin / master
     }
 
     function doRegister(event) {
@@ -358,39 +350,36 @@ background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
             <img src="img/header_trans2.png">
             <center>
     </div>
-<<<<<<< HEAD
-	
-=======
-    <div id="gameDom">
+    <<<<<<< HEAD=======< div id="gameDom">
         <style type="text/css">
         input {}
         </style>
-    </div>
->>>>>>> origin/master
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="theGame">
-                    <div class="text-center">
-                        <canvas id="demoCanvas" width="1000" height="500">
-                            alternate content
-                        </canvas>
+        </div>
+        >>>>>>> origin/master
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="theGame">
+                        <div class="text-center">
+                            <canvas id="demoCanvas" width="1000" height="500">
+                                alternate content
+                            </canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	<div id = "gameDom">
-		<style type="text/css">
-			input{
-				position: absolute;
-				left: 525px;
-				top: -465px;
-			}
-		</style>
-	</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <div id="gameDom">
+            <style type="text/css">
+            input {
+                position: absolute;
+                left: 525px;
+                top: -465px;
+            }
+            </style>
+        </div>
 </body>
 <footer id="mastfoot">
     <section class="container-fluid">
