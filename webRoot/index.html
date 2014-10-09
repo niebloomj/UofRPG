@@ -111,6 +111,72 @@
 
         regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 
+<<<<<<< HEAD
+=======
+	
+        var loginShapes = new createjs.Shape();
+        loginShapes.name = "background";
+	
+        var loginLabel = new createjs.Text("Login", "bold 14px Arial", "#FFFFFF");
+        loginLabel.name = "loginLabel";
+        loginLabel.textAlign = "center";
+        loginLabel.textBaseline = "middle";
+
+        var login = new createjs.Container();
+        login.name = "login";
+        login.x = 300;
+        login.y = 150;
+        login.addChild(loginShapes, loginLabel);
+        stage.addChild(login, output);
+        login.on("click", doLogin, true);
+
+        loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 50, 20, 10);
+	
+        var regShapes = new createjs.Shape();
+        regShapes.name = "regShapes";
+        
+        var registerLabel = new createjs.Text("Register", "bold 14px Arial", "#FFFFFF");
+        registerLabel.name = "registerLabel";
+        registerLabel.textAlign = "center";
+        registerLabel.textBaseline = "middle";
+
+        var register = new createjs.Container();
+        register.name = "register";
+        register.x = 225;
+        register.y = 150;
+        register.addChild(regShapes, registerLabel);
+        stage.addChild(register, output);
+        register.on("click", doRegister, true);
+
+        regShapes.graphics.beginFill("red").drawRoundRect(-33, -10, 67, 20, 10);
+
+        stage.update();
+
+
+        // this lets our drag continue to track the mouse even when it leaves the canvas:
+        // play with commenting this out to see the difference.
+        stage.mouseMoveOutside = true;
+
+        var circle = new createjs.Shape();
+        circle.graphics.beginFill("red").drawCircle(0, 0, 50);
+
+        var label2 = new createjs.Text("Drag it!!", "bold 14px Arial", "#FFFFFF");
+        label2.textAlign = "center";
+        label2.y = -7;
+
+        var dragger = new createjs.Container();
+        dragger.x = dragger.y = 100;
+        dragger.addChild(circle, label2);
+        stage.addChild(dragger);
+
+        dragger.on("pressmove", function(evt) {
+            // currentTarget will be the container that the event listener was added to:
+            evt.currentTarget.x = evt.stageX;
+            evt.currentTarget.y = evt.stageY;
+            // make sure to redraw the stage to show the change:
+            stage.update();
+        });
+>>>>>>> origin/master
         stage.update();
 		
 		/*
@@ -125,6 +191,7 @@
 		// TODO
     }
 
+<<<<<<< HEAD
     function handleClick(event) {
 		if (event.currentTarget.name == "playButton"){
 			stage.removeChild(startContainer);
@@ -142,6 +209,9 @@
     }
 	
 	function doRegister(event) {
+=======
+    function doRegister(event) {
+>>>>>>> origin/master
         Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV", "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
         var TestObject = Parse.Object.extend("Accounts");
         var testObject = new TestObject();
@@ -151,9 +221,15 @@
         }, {
         });
     }
+<<<<<<< HEAD
 	
 	function doLogin(event) {
         window.alert("Will animate transition.");	
+=======
+
+    function doLogin(event) {
+        window.alert("This will do something eventually.");	
+>>>>>>> origin/master
     }
     </script>
 </head>
@@ -221,3 +297,4 @@
 </footer>
 
 </html>
+
