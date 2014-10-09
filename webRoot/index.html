@@ -101,7 +101,7 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         loginLabel.textBaseline = "middle";
 
         var login = new createjs.Container();
-        login.name = "login";
+        login.name = "loginVutton";
 		login.x = 400;
 		login.y = 50;
         login.addChild(loginShapes, loginLabel);
@@ -121,12 +121,12 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         registerLabel.textBaseline = "middle";
 
         var register = new createjs.Container();
-        register.name = "register";
+        register.name = "registerButton";
         register.x = 400;
         register.y = 200;
         register.addChild(regShapes, registerLabel);
         menuContainer.addChild(register, output);
-        register.on("click", doRegister, true);
+        register.on("click", handleClick, true);//doRegister, true);
 
         regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 
@@ -158,6 +158,56 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		/*
 		* Setup register container
 		*/
+		var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#0000FF"); //DC143C
+        usernameLabel.name = "registerLabel";
+		usernameLabel.x = 225;
+		usernameLabel.y = 55;
+        usernameLabel.textAlign = "center";
+        usernameLabel.textBaseline = "middle";
+		
+		var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#0000FF"); //DC143C
+        passwordLabel.name = "registerLabel";
+		passwordLabel.x = 225;
+		passwordLabel.y = 175;
+        passwordLabel.textAlign = "center";
+        passwordLabel.textBaseline = "middle";
+		
+		registerContainer.addChild(usernameLabel);
+		registerContainer.addChild(passwordLabel);
+		
+		var submitShape = new createjs.Shape();
+        submitShape.name = "submitShape";
+        
+        var submitLabel = new createjs.Text("Submit", "bold 50px Arial", "#FFFFFF");
+        submitLabel.name = "submitLabel";
+		submitLabel.x = 85;
+		submitLabel.y = 45;
+        submitLabel.textAlign = "center";
+        submitLabel.textBaseline = "middle";
+
+        var submitButton = new createjs.Container();
+        submitButton.name = "submitButton";
+        submitButton.x = 400;
+        submitButton.y = 225;
+        submitButton.addChild(submitShape, submitLabel);
+        menuContainer.addChild(register, output);
+        submitButton.on("click", handleClick, true);//doRegister, true);
+
+        submitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+
+		submitButton.on("mouseover", function(evt){
+			submitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
+			submitButton.addChild(submitShape, submitLabel);
+			stage.update();
+		});
+		submitButton.on("mouseout", function(evt){
+			submitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+			submitButton.addChild(submitShape, submitLabel);
+			stage.update();
+		});
+		registerContainer.addChild(submitButton);
+		
+		stage.update();
 		// TODO
 		
 		
@@ -175,11 +225,37 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		}else if (event.currentTarget.name == "registerButton"){
 			stage.removeChild(menuContainer);
 			stage.addChild(registerContainer);
+			
+			var usernameField = document.createElement("input");
+			usernameField.setAttribute("id", "username");
+			usernameField.setAttribute("style", "width:200px;");
+			usernameField.setAttribute("style", "margin: 0 auto;");
+			
+			var passwordField = document.createElement("input");
+			passwordField.setAttribute("id", "password");
+			passwordField.setAttribute("style", "width:200px;");
+			passwordField.setAttribute("style", "position: absolute");
+			passwordField.setAttribute("style", "left: 1000px;");
+
+			var gameDom = new createjs.DOMElement("gameDom");
+			gameDom.htmlElement.appendChild(usernameField); 
+			gameDom.htmlElement.appendChild(passwordField); 
+			
 			stage.update();
 		}else if (event.currentTarget.name == "startButton"){
 			stage.removeChild(menuContainer);
 			stage.addChild(gameContainer);
 			stage.update();
+		}else if (event.currentTarget.name == "submitButton"){
+			 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV", 
+"XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
+			 var TestObject = Parse.Object.extend("Accounts");
+			 var testObject = new TestObject();
+			 testObject.save({
+				Username: document.getElementById("username")[0].value,
+				Password: document.getElementById("password")[0].value
+			 });
+			 console.log(document.getElementById("username")[0].value);
 		}
     }
 	
@@ -202,7 +278,7 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     </script>
 </head>
 
-<body onLoad="init();" background="img/webmain_background2.png"<!--"img/green dark textures simple 
+<body onLoad="init();" background="img/webmain_background2.png"><!--"img/green dark textures simple 
 
 background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
 	<style type="text/css">
@@ -223,6 +299,13 @@ background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
             <img src="img/header_trans2.png">
             <center>
     </div>
+	<div id = "gameDom">
+		<style type="text/css">
+			input{
+				
+			}
+		</style>
+	</div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
