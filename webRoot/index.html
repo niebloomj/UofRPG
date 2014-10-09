@@ -40,26 +40,43 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		/*
 		* Setup start container
 		*/
-		var img = new Image(1,1);
-		img.src = "img/playbutton.png";
-		var bitmap = new createjs.Bitmap(img);
+		//var img = new Image(1,1);
+		//img.src = "img/playbutton.png";
+		//var bitmap = new createjs.Bitmap(img);
+		
+		var playShape = new createjs.Shape();
+		playShape.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 		
 		var playButton = new createjs.Container();
 		playButton.name = "playButton";
-		playButton.x = 250;
-		playButton.y = 10;
-		playButton.addChild(bitmap);
+		playButton.x = 400;
+		playButton.y = 100;
+		//playButton.addChild(bitmap);
+		
+		var playLabel = new createjs.Text("Play", "bold 50px Arial", "#FFFFFF");
+        playLabel.name = "playLabel";
+		playLabel.x = 100;
+        playLabel.y = 45;
+        playLabel.textAlign = "center";
+        playLabel.textBaseline = "middle";
+		
+		playButton.addChild(playShape, playLabel);
 		
 		playButton.on("mouseover", function(evt){
-			img.src = "img/playbutton_hover.png";
+			console.log("Hi");
+			playShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+			/*img.src = "img/playbutton_hover.png";
 			bitmap = new createjs.Bitmap(img);
-			playButton.addChild(bitmap);
+			playButton.addChild(bitmap);*/
+			playButton.addChild(playShape, playLabel);
 			stage.update();
 		});
 		playButton.on("mouseout", function(evt){
-			img.src = "img/playbutton.png";
+			playShape.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+			/*img.src = "img/playbutton.png";
 			bitmap = new createjs.Bitmap(img);
-			playButton.addChild(bitmap);
+			playButton.addChild(bitmap);*/
+			playButton.addChild(playShape, playLabel);
 			stage.update();
 		});		
 		
@@ -113,6 +130,29 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
         regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 
+		login.on("mouseover", function(evt){
+			console.log("Hi");
+			loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+			login.addChild(loginShapes, loginLabel);
+			stage.update();
+		});
+		login.on("mouseout", function(evt){
+			loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+			login.addChild(loginShapes, loginLabel);
+			stage.update();
+		});		
+		
+		register.on("mouseover", function(evt){
+			console.log("Hi");
+			regShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+			register.addChild(regShapes, registerLabel);
+			stage.update();
+		});
+		register.on("mouseout", function(evt){
+			regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+			register.addChild(regShapes, registerLabel);
+			stage.update();
+		});		
         stage.update();
 		
 		/*
@@ -173,6 +213,9 @@ background 2560x1600 wallpaper_wallpaperswa.com_68.jpg">-->
 		-o-background-size: contain;
 		background-size: contain;-->
 			background-size: cover;
+			background-size: cover;                     
+			background-repeat: no-repeat;
+			background-position: center center;
 		}
 	</style>
     <div >
