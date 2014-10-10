@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="Grass1" tilewidth="32" tileheight="32">
+  <image source="Grass1.png" width="32" height="32"/>
+  <terraintypes>
+   <terrain name="New Terrain" tile="-1"/>
+  </terraintypes>
+ </tileset>
+ <tileset firstgid="2" name="SidewalkPixel2" tilewidth="32" tileheight="32">
+  <image source="SidewalkPixel2.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="SidewalkPixel1" tilewidth="32" tileheight="32">
+  <image source="SidewalkPixel3.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="SnowGrass" tilewidth="32" tileheight="32">
+  <image source="SnowGrass.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="5" name="Santiago" tilewidth="32" tileheight="32">
+  <image source="SantiagoTester.png" trans="ffffff" width="32" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt10EKgCAUBUDT+9+5NoGIGkSa0Qw8CGwRPvRTCAAAAAAAAAAAAAAAAAAAAAAAAADA0+KRrZJ4scYYKbT3vLfGGPpYy537Kr3ypf9Q2/NYRB/zpCxlD2fKd/QxTquH1HjWx1i1mZ2fCffVXL2ZbZ7P539wLfpYiz4AAAAAAAAAAAAAAAAAAPiSHSfuAQg=
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzrENAAAEADAL/59sltgN2gsaAQAAAAAAAAAAAAAAAAAAAAAAAAAAsMvrAENdBwAAAAAAAAAAAAAAAAAAAAAAnmiljQAM
+  </data>
+ </layer>
+</map>
