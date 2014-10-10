@@ -1,11 +1,10 @@
 var stage, output, holder;
 var startContainer, menuContainer, loginContainer, registerContainer, gameContainer;
+//Parse Accounts Table Creation
 var AccountsTable = Parse.Object.extend("Accounts");
 
 function init() {
-	/*
-	 * Create the stage
-	 */
+	//Create the Stage
 	stage = new createjs.Stage("demoCanvas");
 	startContainer = new createjs.Container();
 	menuContainer = new createjs.Container();
