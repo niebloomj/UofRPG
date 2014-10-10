@@ -1,5 +1,6 @@
 var stage, output, holder;
 var startContainer, menuContainer, registerContainer, gameContainer;
+var poopiepie;
 
 function init() {
     /*
