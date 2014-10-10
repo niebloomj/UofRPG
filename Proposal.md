@@ -1,2 +1,46 @@
 Proposal
 ==========
+Animation:
+	Purpose: To elegantly update sprites for gameplay. The animations should be clear to understand, sharp and smooth. Also, animatons should be generic, easily re-used, and adabtable. 
+
+	How it links to other sections: 
+		Game mechanics is esseciently going to dictate how animation works. 
+		Examples: how text screens work, where should they appear
+				 how fast should the character walk across the map
+
+		other section also need to easily interact with Animation.
+		Examples: Cordinate on map where events for should take place
+				  Placement of items/east bunnies
+
+	Requirments inorder for Animation to funtion:
+		Generic map that marks collision areas, and sets a finite cordinate system on the map.
+		a player, reprsented by a rectangle to animate on generic map.
+
+		with these , even if all art assets are lost, animation can keep its functionality. Also, other sections arn't affected as well
+
+	Planning:
+		A. Making player moveable on map.
+		B. Making player unable to move on certain tiles
+		C. Generic text animation that take input and elegantly presents 	it on screen *game mechanics*
+		D. Pause Screen *game mechanics*
+		E. Easily switch map/screens.
+		F. all minigames and alterior generic maps 
+		*changes as game develops and not yet planned at all*
+
+	Art: *because of sheer time comitment, it has been moved to a section of its own*
+		Purpose: Make the game gorgeous, constent, and simple. Can make/break the game, truly key.
+
+	Plannng:
+		1. NPCs/Player creation
+		2. TILE map creation
+			***GENERIC MAPS FIRST, so animation can function.
+			-must be flexible tiles that easily work together to make a really elegent map
+			-a finite definite list of all tiles needed
+			-need to be spaced and carefully planned. There is a massive amount of tiles that need to be created since we chose to make these.
+		3. improve Animations that work with game mechanics, 
+				such as pause/text screen
+		
+
+
+
+

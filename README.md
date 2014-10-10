@@ -1,9 +1,14 @@
-UofRPG
-======
+# UofRPG
 
-Developers:
+A class project to develop a role-playing game based on the University of Rochester
 
-Jacob Niebloom
-Aaron McClure
-Graeme McGuire
-Naropa Perezistener
+## Developers
+
+* [Jacob Niebloom](//github.com/niebloomj)
+* [Aaron McClure](//github.com/AaronMcClure)
+* Graeme McGuire
+* Naropa Perez
+* Alex Hankin
+* Bradley Beyers
+* [Santiago Loane] (//github.com/LoaneShark)
+* [Hayden Schiff](//github.com/oxguy3)
