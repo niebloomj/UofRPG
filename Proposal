@@ -1,20 +1,20 @@
 Proposal
 ==========
 Animation:
-	Purpose: To elegantly update sprites for gameplay. The animations should be clear to understand, sharp and smooth. Also, animatons should be generic, easily re-used, and adabtable. 
+	Purpose: To elegantly update sprites for gameplay. The animations should be clear to understand, sharp and smooth. Also, animations should be generic, easily re-used, and adabtable. 
 
 	How it links to other sections: 
-		Game mechanics is esseciently going to dictate how animation works. 
+		Game mechanics is essentially going to dictate how animation works. 
 		Examples: how text screens work, where should they appear
 				 how fast should the character walk across the map
 
 		other section also need to easily interact with Animation.
-		Examples: Cordinate on map where events for should take place
+		Examples: Coordinate on map where events for should take place
 				  Placement of items/east bunnies
 
-	Requirments inorder for Animation to funtion:
-		Generic map that marks collision areas, and sets a finite cordinate system on the map.
-		a player, reprsented by a rectangle to animate on generic map.
+	Requirements inorder for Animation to function:
+		Generic map that marks collision areas, and sets a finite coordinate system on the map.
+		a player, represented by a rectangle to animate on generic map.
 
 		with these , even if all art assets are lost, animation can keep its functionality. Also, other sections arn't affected as well
 
@@ -27,10 +27,10 @@ Animation:
 		F. all minigames and alterior generic maps 
 		*changes as game develops and not yet planned at all*
 
-	Art: *because of sheer time comitment, it has been moved to a section of its own*
-		Purpose: Make the game gorgeous, constent, and simple. Can make/break the game, truly key.
+	Art: *because of sheer time commitment, it has been moved to a section of its own*
+		Purpose: Make the game gorgeous, consent, and simple. Can make/break the game, truly key.
 
-	Plannng:
+	Planing:
 		1. NPCs/Player creation
 		2. TILE map creation
 			***GENERIC MAPS FIRST, so animation can function.
