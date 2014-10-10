@@ -6,7 +6,11 @@ function init() {
     /*
      * Create the stage
      */
+<<<<<<< HEAD
 	 var test = 4;
+=======
+	 var test = 3;
+>>>>>>> origin/master
     stage = new createjs.Stage("demoCanvas");
     startContainer = new createjs.Container();
     menuContainer = new createjs.Container();
