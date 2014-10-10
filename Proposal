@@ -27,18 +27,45 @@ Animation:
 		F. all minigames and alterior generic maps 
 		*changes as game develops and not yet planned at all*
 
-	Art: *because of sheer time commitment, it has been moved to a section of its own*
+Art: *because of sheer time commitment, it has been moved to a section of its own*
+		
 		Purpose: Make the game gorgeous, consent, and simple. Can make/break the game, truly key.
 
-	Planing:
+	Planning:
 		1. NPCs/Player creation
 		2. TILE map creation
 			***GENERIC MAPS FIRST, so animation can function.
-			-must be flexible tiles that easily work together to make a really elegent map
+			-must be flexible tiles that easily work together to make a really elegant map
 			-a finite definite list of all tiles needed
 			-need to be spaced and carefully planned. There is a massive amount of tiles that need to be created since we chose to make these.
 		3. improve Animations that work with game mechanics, 
 				such as pause/text screen
+				
+Plot:
+	Purpose: Provide a story while going through the game (i.e. events, dialogue). Does not have to be complex, but it should provide incentive for the player to want to continue the game
+	
+	How it links to other sections:
+		Progression and Plot are very entwined and are thus going to be constantly working with one another.
+		Examples: How achievements relate to the story, dialogue for progressing through the game
+		
+		Game Mechanics and Plot are going to need to talk to one another to make sure the story incorporated the usage of the game mechanics
+		Examples:	Acquisition of certain abilities should be plot related, the types of mechanics
+					involved should impact the direction the story
+					
+		Plot will also be influencing certain aspects of art and animation to make sure parts of the story are implemented
+					
+		Requirements in order for plot to function
+			Most of the plot will be written down and executed using art and animation. However, art and framework are going to need to be contacted
+			to make things such as dialogue boxes.
+			
+	Planning:
+		A. Wait for a majority of Game Mechanics to be completed.
+		B. Write a synopsis and summary of a planned story
+		C. Start making drafts of a script that includes dialogue for main quest and side quests
+		D. Write Final draft for story and dialogue
+		E. Work with art and animation to create specific animation and dialogue boxes to fit story
+		F. Implement dialogue into the game
+					
 		
 
 
