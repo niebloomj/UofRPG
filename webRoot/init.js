@@ -1,5 +1,5 @@
 var stage, output, holder;
-var startContainer, menuContainer, registerContainer, gameContainer;
+var startContainer, menuContainer, loginContainer, registerContainer, gameContainer;
 
 function init() {
     /*
@@ -8,6 +8,7 @@ function init() {
     stage = new createjs.Stage("demoCanvas");
     startContainer = new createjs.Container();
     menuContainer = new createjs.Container();
+	loginContainer = new createjs.Container();
     registerContainer = new createjs.Container();
     gameContainer = new createjs.Container();
 
@@ -130,26 +131,77 @@ function init() {
         stage.update();
     });
     stage.update();
+	
+	/*
+	* Setup login container
+	*/
+	var logUsernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
+    logUsernameLabel.name = "logUserLabel";
+    logUsernameLabel.x = 225;
+    logUsernameLabel.y = 55;
+    logUsernameLabel.textAlign = "center";
+    logUsernameLabel.textBaseline = "middle";
 
+    var logPasswordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
+    logPasswordLabel.name = "logPassLabel";
+    logPasswordLabel.x = 225;
+    logPasswordLabel.y = 175;
+    logPasswordLabel.textAlign = "center";
+    logPasswordLabel.textBaseline = "middle";
+
+    loginContainer.addChild(logUsernameLabel);
+    loginContainer.addChild(logPasswordLabel);
+
+    var logSubmitShape = new createjs.Shape();
+    logSubmitShape.name = "logSubmitShape";
+
+    var logSubmitLabel = new createjs.Text("Submit", "bold 50px Arial", "#FFFFFF");
+    logSubmitLabel.name = "logSubmitLabel";
+    logSubmitLabel.x = 85;
+    logSubmitLabel.y = 45;
+    logSubmitLabel.textAlign = "center";
+    logSubmitLabel.textBaseline = "middle";
+
+    var logSubmitButton = new createjs.Container();
+    logSubmitButton.name = "logSubmitButton";
+    logSubmitButton.x = 400;
+    logSubmitButton.y = 225;
+    logSubmitButton.addChild(logSubmitShape, logSubmitLabel);
+    menuContainer.addChild(register, output);
+    logSubmitButton.on("click", handleClick, true); //doRegister, true);
+
+    logSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+
+    submitButton.on("mouseover", function(evt) {
+        logSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
+        submitButton.addChild(logSubmitShape, logSubmitLabel);
+        stage.update();
+    });
+    submitButton.on("mouseout", function(evt) {
+        logSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+        submitButton.addChild(logSubmitShape, logSubmitLabel);
+        stage.update();
+    });
+    registerContainer.addChild(submitButton);
     /*
      * Setup register container
      */
-    var usernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
-    usernameLabel.name = "registerLabel";
-    usernameLabel.x = 225;
-    usernameLabel.y = 55;
-    usernameLabel.textAlign = "center";
-    usernameLabel.textBaseline = "middle";
+    var regUsernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
+    regUsernameLabel.name = "registerLabel";
+    regUsernameLabel.x = 225;
+    regUsernameLabel.y = 55;
+    regUsernameLabel.textAlign = "center";
+    regUsernameLabel.textBaseline = "middle";
 
-    var passwordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
-    passwordLabel.name = "registerLabel";
-    passwordLabel.x = 225;
-    passwordLabel.y = 175;
-    passwordLabel.textAlign = "center";
-    passwordLabel.textBaseline = "middle";
+    var regPasswordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
+    regPasswordLabel.name = "registerLabel";
+    regPasswordLabel.x = 225;
+    regPasswordLabel.y = 175;
+    regPasswordLabel.textAlign = "center";
+    regPasswordLabel.textBaseline = "middle";
 
-    registerContainer.addChild(usernameLabel);
-    registerContainer.addChild(passwordLabel);
+    registerContainer.addChild(regUsernameLabel);
+    registerContainer.addChild(regPasswordLabel);
 
     var submitShape = new createjs.Shape();
     submitShape.name = "submitShape";
