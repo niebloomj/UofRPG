@@ -83,7 +83,7 @@ function init() {
     login.y = 50;
     login.addChild(loginShapes, loginLabel);
     menuContainer.addChild(login, output);
-    login.on("click", doLogin, true);
+    login.on("click", handleClick, true);
 
     loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 
@@ -136,14 +136,14 @@ function init() {
 	* Setup login container
 	*/
 	var logUsernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
-    logUsernameLabel.name = "logUserLabel";
+    logUsernameLabel.name = "logUsernameLabel";
     logUsernameLabel.x = 225;
     logUsernameLabel.y = 55;
     logUsernameLabel.textAlign = "center";
     logUsernameLabel.textBaseline = "middle";
 
     var logPasswordLabel = new createjs.Text("Password:", "bold 40px Arial", "#000000"); //DC143C
-    logPasswordLabel.name = "logPassLabel";
+    logPasswordLabel.name = "logPasswordLabel";
     logPasswordLabel.x = 225;
     logPasswordLabel.y = 175;
     logPasswordLabel.textAlign = "center";
@@ -167,22 +167,22 @@ function init() {
     logSubmitButton.x = 400;
     logSubmitButton.y = 225;
     logSubmitButton.addChild(logSubmitShape, logSubmitLabel);
-    menuContainer.addChild(register, output);
+    loginContainer.addChild(register, output);
     logSubmitButton.on("click", handleClick, true); //doRegister, true);
 
     logSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
 
-    submitButton.on("mouseover", function(evt) {
+    logSubmitButton.on("mouseover", function(evt) {
         logSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
-        submitButton.addChild(logSubmitShape, logSubmitLabel);
+        logSubmitButton.addChild(logSubmitShape, logSubmitLabel);
         stage.update();
     });
-    submitButton.on("mouseout", function(evt) {
+    logSubmitButton.on("mouseout", function(evt) {
         logSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
-        submitButton.addChild(logSubmitShape, logSubmitLabel);
+        logSubmitButton.addChild(logSubmitShape, logSubmitLabel);
         stage.update();
     });
-    registerContainer.addChild(submitButton);
+    loginContainer.addChild(logSubmitButton);
     /*
      * Setup register container
      */
@@ -203,37 +203,37 @@ function init() {
     registerContainer.addChild(regUsernameLabel);
     registerContainer.addChild(regPasswordLabel);
 
-    var submitShape = new createjs.Shape();
-    submitShape.name = "submitShape";
+    var regSubmitShape = new createjs.Shape();
+    regSubmitShape.name = "regSubmitShape";
 
-    var submitLabel = new createjs.Text("Submit", "bold 50px Arial", "#FFFFFF");
-    submitLabel.name = "submitLabel";
-    submitLabel.x = 85;
-    submitLabel.y = 45;
-    submitLabel.textAlign = "center";
-    submitLabel.textBaseline = "middle";
+    var regSubmitLabel = new createjs.Text("Submit", "bold 50px Arial", "#FFFFFF");
+    regSubmitLabel.name = "regSubmitLabel";
+    regSubmitLabel.x = 85;
+    regSubmitLabel.y = 45;
+    regSubmitLabel.textAlign = "center";
+    regSubmitLabel.textBaseline = "middle";
 
-    var submitButton = new createjs.Container();
-    submitButton.name = "submitButton";
-    submitButton.x = 400;
-    submitButton.y = 225;
-    submitButton.addChild(submitShape, submitLabel);
+    var regSubmitButton = new createjs.Container();
+    regSubmitButton.name = "regSubmitButton";
+    regSubmitButton.x = 400;
+    regSubmitButton.y = 225;
+    regSubmitButton.addChild(regSubmitShape, regSubmitLabel);
     menuContainer.addChild(register, output);
-    submitButton.on("click", handleClick, true); //doRegister, true);
+    regSubmitButton.on("click", handleClick, true); //doRegister, true);
 
-    submitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+    regSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
 
-    submitButton.on("mouseover", function(evt) {
-        submitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
-        submitButton.addChild(submitShape, submitLabel);
+    regSubmitButton.on("mouseover", function(evt) {
+        regSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
+        regSubmitButton.addChild(regSubmitShape, regSubmitLabel);
         stage.update();
     });
-    submitButton.on("mouseout", function(evt) {
-        submitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
-        submitButton.addChild(submitShape, submitLabel);
+    regSubmitButton.on("mouseout", function(evt) {
+        regSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+        regSubmitButton.addChild(regSubmitShape, regSubmitLabel);
         stage.update();
     });
-    registerContainer.addChild(submitButton);
+    registerContainer.addChild(regSubmitButton);
 
     /*
      * Setup game container (main container holding the game itself)
@@ -254,7 +254,6 @@ function handleClick(event) {
     if (event.currentTarget.name == "playButton") {
         stage.removeChild(startContainer);
         stage.addChild(menuContainer);
-        stage.update();
     } else if (event.currentTarget.name == "registerButton") {
         stage.removeChild(menuContainer);
         stage.addChild(registerContainer);
@@ -279,14 +278,36 @@ function handleClick(event) {
         var gameDom = new createjs.DOMElement("gameDom");
         gameDom.htmlElement.appendChild(usernameField);
         gameDom.htmlElement.appendChild(passwordField);
+	}else if (event.currentTarget.name == "loginButton"){
+		stage.removeChild(menuContainer);
+		stage.addChild(loginContainer);
+		
+		var usernameField = document.createElement("input");
+        usernameField.setAttribute("id", "username");
+        usernameField.maxLength = 10;
+        usernameField.style.width = '200px';
+        usernameField.style.height = '3em';
+        usernameField.placeholder = "Username";
+        usernameField.autofocus = true;
 
-        stage.update();
+        var passwordField = document.createElement("input");
+        passwordField.setAttribute("id", "password");
+        passwordField.type = "password";
+        passwordField.maxLength = 10;
+        passwordField.style.width = '200px';
+        passwordField.style.height = '3em';
+        passwordField.style.top = "-350px";
+        passwordField.placeholder = "Password";
+
+        var gameDom = new createjs.DOMElement("gameDom");
+        gameDom.htmlElement.appendChild(usernameField);
+        gameDom.htmlElement.appendChild(passwordField);
+	}else if (event.currentTarget.name == "logSubmitButton"){
+		doLogin();
     } else if (event.currentTarget.name == "startButton") {
         stage.removeChild(menuContainer);
         //stage.addChild(gameContainer);
-        stage.update();
     } else if (event.currentTarget.name == "submitButton") {
-
         Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
             "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
         var AccountsTable = Parse.Object.extend("Accounts");
@@ -314,6 +335,7 @@ function handleClick(event) {
             }
         });
     }
+	  stage.update();
 }
 
 function doLogin(event) {
