@@ -20,7 +20,7 @@ function init() {
 	 * Setup start container
 	 */
 	var playShape = new createjs.Shape();
-	playShape.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+	playShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
 
 	var playButton = new createjs.Container();
 	playButton.name = "playButton";
@@ -38,22 +38,17 @@ function init() {
 
 	playButton.on("mouseover", function(evt) {
 		console.log("Play Button Mouseover");
-		playShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
-		/*img.src = "img/playbutton_hover.png";
-		    bitmap = new createjs.Bitmap(img);
-		    playButton.addChild(bitmap);*/
+		playShape.graphics.beginFill("yellow").drawRoundRect(-25, -10, 250, 100, 10);
+		playLabel.color = "#000000"
 		playButton.addChild(playShape, playLabel);
 		stage.update();
 	});
 	playButton.on("mouseout", function(evt) {
-		playShape.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-		/*img.src = "img/playbutton.png";
-		    bitmap = new createjs.Bitmap(img);
-		    playButton.addChild(bitmap);*/
+		playShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+		playLabel.color = "#FFFFFF";
 		playButton.addChild(playShape, playLabel);
 		stage.update();
 	});
-
 	playButton.on("click", handleClick, true);
 
 	startContainer.addChild(playButton);
@@ -80,16 +75,18 @@ function init() {
 	login.y = 50;
 	login.addChild(loginShapes, loginLabel);
 	login.on("click", handleClick, true);
-	loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+	loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
 
 	login.on("mouseover", function(evt) {
 		console.log("Login Button Mouseover");
-		loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+		loginShapes.graphics.beginFill("yellow").drawRoundRect(-25, -10, 250, 100, 10);
+		loginLabel.color = "#000000";
 		login.addChild(loginShapes, loginLabel);
 		stage.update();
 	});
 	login.on("mouseout", function(evt) {
-		loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+		loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+		loginLabel.color = "#FFFFFF";
 		login.addChild(loginShapes, loginLabel);
 		stage.update();
 	});
@@ -112,16 +109,18 @@ function init() {
 	register.addChild(regShapes, registerLabel);
 	menuContainer.addChild(register, output);
 	register.on("click", handleClick, true);
-	regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+	regShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
 
 	register.on("mouseover", function(evt) {
 		console.log("Register Button Mouseover");
-		regShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+		regShapes.graphics.beginFill("yellow").drawRoundRect(-25, -10, 250, 100, 10);
+		registerLabel.color = "#000000";
 		register.addChild(regShapes, registerLabel);
 		stage.update();
 	});
 	register.on("mouseout", function(evt) {
-		regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+		regShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+		registerLabel.color = "#FFFFFF";
 		register.addChild(regShapes, registerLabel);
 		stage.update();
 	});
@@ -166,15 +165,17 @@ function init() {
 	loginContainer.addChild(register, output);
 	logSubmitButton.on("click", handleClick, true); //doRegister, true);
 
-	logSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+	logSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
 
 	logSubmitButton.on("mouseover", function(evt) {
-		logSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
+		logSubmitShape.graphics.beginFill("yellow").drawRoundRect(-25, -10, 225, 100, 10);
+		logSubmitLabel.color = "#000000";
 		logSubmitButton.addChild(logSubmitShape, logSubmitLabel);
 		stage.update();
 	});
 	logSubmitButton.on("mouseout", function(evt) {
-		logSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+		logSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
+		logSubmitLabel.color = "#FFFFFF";
 		logSubmitButton.addChild(logSubmitShape, logSubmitLabel);
 		stage.update();
 	});
@@ -218,20 +219,22 @@ function init() {
 	menuContainer.addChild(register, output);
 	regSubmitButton.on("click", handleClick, true); //doRegister, true);
 
-	regSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+	regSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
 
 	regSubmitButton.on("mouseover", function(evt) {
-		regSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
+		regSubmitShape.graphics.beginFill("yellow").drawRoundRect(-25, -10, 225, 100, 10);
+		regSubmitLabel.color = "#000000";
 		regSubmitButton.addChild(regSubmitShape, regSubmitLabel);
 		stage.update();
 	});
 	regSubmitButton.on("mouseout", function(evt) {
-		regSubmitShape.graphics.beginFill("red").drawRoundRect(-25, -10, 225, 100, 10);
+		regSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
+		regSubmitLabel.color = "#FFFFFF";
 		regSubmitButton.addChild(regSubmitShape, regSubmitLabel);
 		stage.update();
 	});
 	registerContainer.addChild(regSubmitButton);
-	
+
 	stage.update();
 }
 
