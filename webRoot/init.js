@@ -12,7 +12,6 @@ function init() {
 	menuContainer = new createjs.Container();
 	loginContainer = new createjs.Container();
 	registerContainer = new createjs.Container();
-	gameContainer = new createjs.Container();
 
 	//createjs.Touch.enabled(stage); // just for fun to see what happens
 	stage.enableMouseOver();
@@ -127,7 +126,6 @@ function init() {
 	stage.update();
 
 	registerContainer = new createjs.Container();
-	gameContainer = new createjs.Container();
 
 	//createjs.Touch.enabled(stage); // just for fun to see what happens
 	stage.enableMouseOver();
@@ -351,19 +349,6 @@ function init() {
 		stage.update();
 	});
 	registerContainer.addChild(regSubmitButton);
-
-	/*
-	 * Setup game container (main container holding the game itself)
-	 */
-
-	var tempLabel = new createjs.Text("This is the container we should use to hold the game.", "bold 45px Arial", "#000000");
-	tempLabel.name = "registerLabel";
-	tempLabel.y = 45;
-	tempLabel.textAlign = "middle";
-	tempLabel.textBaseline = "middle";
-
-	gameContainer.addChild(tempLabel);
-
 	stage.update();
 }
 
@@ -489,7 +474,29 @@ function loginSuccessful() {
 	document.getElementById("username").remove();
 	document.getElementById("password").remove();
 	stage.removeChild(loginContainer);
+	stage.update();
+
+	gameContainer = new createjs.Container();
+	gameContainer.mouseMoveOutside = true;
+
+	var circle = new createjs.Shape();
+	circle.graphics.beginFill("red").drawCircle(0, 0, 50);
+
+	var label = new createjs.Text("Drag it!!", "bold 14px Arial", "#FFFFFF");
+	label.textAlign = "center";
+	label.y = -7;
+
+	var dragger = new createjs.Container();
+	dragger.x = dragger.y = 100;
+	dragger.addChild(circle, label);
+	gameContainer.addChild(dragger);
+
+	dragger.on("pressmove", function(evt) {
+		evt.currentTarget.x = evt.stageX;
+		evt.currentTarget.y = evt.stageY;
+		stage.update();
+	});
+
 	stage.addChild(gameContainer);
 	stage.update();
-	alert("Successful Login");
 }
