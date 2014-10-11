@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-Names: Jacob Niebloom, Naropa Perez
-=======
-Names: Jacob Niebloom, Bradley Beyers
->>>>>>> FETCH_HEAD
-=======================
+Names: Jacob Niebloom, Naropa Perez, Bradley Beyers
 Proposal
 =======================
 AI / Enemy:
