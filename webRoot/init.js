@@ -16,7 +16,9 @@ function init() {
 	//createjs.Touch.enabled(stage); // just for fun to see what happens
 	stage.enableMouseOver();
 
-	//Setup start container
+	/*
+	 * Setup start container
+	 */
 	var playShape = new createjs.Shape();
 	playShape.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 
@@ -58,8 +60,10 @@ function init() {
 	stage.addChild(startContainer);
 	stage.update();
 
-	// * Setup main menu container
-
+	/*
+	 * Setup Main Menu container
+	 */
+	// * Setup Login Button
 	var loginShapes = new createjs.Shape();
 	loginShapes.name = "background";
 
@@ -75,11 +79,22 @@ function init() {
 	login.x = 400;
 	login.y = 50;
 	login.addChild(loginShapes, loginLabel);
-	menuContainer.addChild(login, output);
 	login.on("click", handleClick, true);
-
 	loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
 
+	login.on("mouseover", function(evt) {
+		console.log("Login Button Mouseover");
+		loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
+		login.addChild(loginShapes, loginLabel);
+		stage.update();
+	});
+	login.on("mouseout", function(evt) {
+		loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
+		login.addChild(loginShapes, loginLabel);
+		stage.update();
+	});
+	menuContainer.addChild(login, output);
+	// * Setup Register Button
 	var regShapes = new createjs.Shape();
 	regShapes.name = "regShapes";
 
@@ -97,20 +112,7 @@ function init() {
 	register.addChild(regShapes, registerLabel);
 	menuContainer.addChild(register, output);
 	register.on("click", handleClick, true);
-
 	regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-
-	login.on("mouseover", function(evt) {
-		console.log("Login Button Mouseover");
-		loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
-		login.addChild(loginShapes, loginLabel);
-		stage.update();
-	});
-	login.on("mouseout", function(evt) {
-		loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-		login.addChild(loginShapes, loginLabel);
-		stage.update();
-	});
 
 	register.on("mouseover", function(evt) {
 		console.log("Register Button Mouseover");
@@ -123,128 +125,7 @@ function init() {
 		register.addChild(regShapes, registerLabel);
 		stage.update();
 	});
-	stage.update();
-
-	registerContainer = new createjs.Container();
-
-	//createjs.Touch.enabled(stage); // just for fun to see what happens
-	stage.enableMouseOver();
-
-	/*
-	 * Setup start container
-	 */
-	//var img = new Image(1,1);
-	//img.src = "img/playbutton.png";
-	//var bitmap = new createjs.Bitmap(img);
-
-	var playShape = new createjs.Shape();
-	playShape.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-
-	var playButton = new createjs.Container();
-	playButton.name = "playButton";
-	playButton.x = 400;
-	playButton.y = 100;
-	//playButton.addChild(bitmap);
-
-	var playLabel = new createjs.Text("Play", "bold 50px Arial", "#FFFFFF");
-	playLabel.name = "playLabel";
-	playLabel.x = 100;
-	playLabel.y = 45;
-	playLabel.textAlign = "center";
-	playLabel.textBaseline = "middle";
-
-	playButton.addChild(playShape, playLabel);
-
-	playButton.on("mouseover", function(evt) {
-		console.log("Play Button Mouseover");
-		playShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
-		/*img.src = "img/playbutton_hover.png";
-		    bitmap = new createjs.Bitmap(img);
-		    playButton.addChild(bitmap);*/
-		playButton.addChild(playShape, playLabel);
-		stage.update();
-	});
-	playButton.on("mouseout", function(evt) {
-		playShape.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-		/*img.src = "img/playbutton.png";
-		    bitmap = new createjs.Bitmap(img);
-		    playButton.addChild(bitmap);*/
-		playButton.addChild(playShape, playLabel);
-		stage.update();
-	});
-
-	playButton.on("click", handleClick, true);
-
-	startContainer.addChild(playButton);
-	stage.addChild(startContainer);
-	stage.update();
-
-	/*
-	 * Setup main menu container
-	 */
-	var loginShapes = new createjs.Shape();
-	loginShapes.name = "background";
-
-	var loginLabel = new createjs.Text("Login", "bold 50px Arial", "#FFFFFF");
-	loginLabel.name = "loginLabel";
-	loginLabel.x = 100;
-	loginLabel.y = 45;
-	loginLabel.textAlign = "center";
-	loginLabel.textBaseline = "middle";
-
-	var login = new createjs.Container();
-	login.name = "loginButton";
-	login.x = 400;
-	login.y = 50;
-	login.addChild(loginShapes, loginLabel);
-	menuContainer.addChild(login, output);
-	login.on("click", handleClick, true);
-
-	loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-
-	var regShapes = new createjs.Shape();
-	regShapes.name = "regShapes";
-
-	var registerLabel = new createjs.Text("Register", "bold 50px Arial", "#FFFFFF");
-	registerLabel.name = "registerLabel";
-	registerLabel.x = 100;
-	registerLabel.y = 45;
-	registerLabel.textAlign = "center";
-	registerLabel.textBaseline = "middle";
-
-	var register = new createjs.Container();
-	register.name = "registerButton";
-	register.x = 400;
-	register.y = 200;
-	register.addChild(regShapes, registerLabel);
 	menuContainer.addChild(register, output);
-	register.on("click", handleClick, true); //doRegister, true);
-
-	regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-
-	login.on("mouseover", function(evt) {
-		console.log("Login Button Mouseover");
-		loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
-		login.addChild(loginShapes, loginLabel);
-		stage.update();
-	});
-	login.on("mouseout", function(evt) {
-		loginShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-		login.addChild(loginShapes, loginLabel);
-		stage.update();
-	});
-
-	register.on("mouseover", function(evt) {
-		console.log("Register Button Mouseover");
-		regShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
-		register.addChild(regShapes, registerLabel);
-		stage.update();
-	});
-	register.on("mouseout", function(evt) {
-		regShapes.graphics.beginFill("red").drawRoundRect(-25, -10, 250, 100, 10);
-		register.addChild(regShapes, registerLabel);
-		stage.update();
-	});
 	stage.update();
 
 	/*
@@ -298,6 +179,7 @@ function init() {
 		stage.update();
 	});
 	loginContainer.addChild(logSubmitButton);
+
 	/*
 	 * Setup register container
 	 */
@@ -349,6 +231,7 @@ function init() {
 		stage.update();
 	});
 	registerContainer.addChild(regSubmitButton);
+	
 	stage.update();
 }
 
