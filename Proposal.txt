@@ -1,7 +1,39 @@
+<<<<<<< HEAD
 Names: Jacob Niebloom, Naropa Perez
+=======
+Names: Jacob Niebloom, Bradley Beyers
+>>>>>>> FETCH_HEAD
 =======================
 Proposal
 =======================
+AI / Enemy:
+	Purpose: To make the game more interesting by making enemies behave dynamically based on the situation.
+	
+	How it links to other sections:
+		Game mechanics will decide what behaviors each enemy should have, and then backend will use the routines we create to make enemies behave the way we want.
+		
+	Resources Required:
+		Basic framework from backend so we can easily create many different enemy types to create their behavior.
+		Details from game mechanics about what kinds of behavior we should be creating.
+		
+	Planning:
+		A. Wait on game mechanics to give us the descriptions of what each enemy should do.
+		B. Work through each description and translate the prose to code.
+		C. Apply these routines to the actual game code to make enemies behave like we envisioned.
+		
+	AI / Enemy could go down without the group being totally lost, since enemies could just be programmed to behave randomly. It would just be a lot less fun that way.
+	
+Framework:
+	Purpose: To bind together the frontend and backend elements to form a cohesive game experience.
+	
+	How it links to other sections:
+		All other sections will eventually be brought together by framework in order to create the final product.
+		
+	Resources Required:
+		More or less all the things that come in from other groups will eventually go through framework to be assembled.
+		
+	Planning:
+		Take the elements as they come in and put them together. Tough to define a timeline independent of the other groups since it's so closely tied to them.
 Animation:
 	Purpose: To elegantly update sprites for gameplay. The animations should be clear to understand, sharp and smooth. Also, animations should be generic, easily re-used, and adaptable. 
 
