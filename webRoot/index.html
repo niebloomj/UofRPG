@@ -16,16 +16,16 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <style type="text/css">
   body {
-    background-image: img/webmain_background2.jpg;
+    background-image: url(img/webmain_background2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
   }
-  input {
+  /*input {
     position: absolute;
     left: 525px;
     top: -465px;
-  }
+  }*/
   </style>
 
   <!--[if lt IE 9]>
@@ -37,11 +37,22 @@
 
 <body onLoad="init();">
 
-  <div class="text-center">
-    <img src="img/header_trans2.png">
-  </div>
-
   <div class="container">
+
+    <header class="text-center">
+      <img src="img/header_trans2.png">
+      <span class="sr-only">UofRPG: Year 1</span>
+    </header>
+    
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="text-center">
+          <button class="btn btn-primary btn-lg">Login</button>
+          <button class="btn btn-primary btn-lg">Register</button>
+        </div>
+      </div>
+    </div>
+    
     <div class="row">
       <div class="col-sm-12">
         <div class="theGame text-center">
@@ -51,6 +62,7 @@
         </div>
       </div>
     </div>
+    
   </div>
   
   <div id="gameDom">
