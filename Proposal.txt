@@ -6,9 +6,17 @@ V. 1.0
 
 
 
-Alex Hankin – Author and Co-Head of ArtGraeme McGuire – Head of Game MechanicsSantiago Loane – Head of ArtHayden Shiff - Head of WebBradley Beyers - Head of AI Aaron McClure - Head of UI Jacob Niebloom - Head of  Backend 
-Naropa Perez - Head of Animation 
-
+Alex Hankin √ê Author and Co-Head of Art
+Graeme McGuire √ê Head of Game Mechanics
+Santiago Loane √ê Head of Art
+Hayden Schiff √ê Head of Web
+Bradley Beyers √ê Head of AI 
+Aaron McClure √ê Head of UI 
+Jacob Niebloom √ê- Head of  Backend 
+
+Naropa Perez - Head of Animation 
+
+
 BY
 
 
@@ -26,7 +34,7 @@ BY
 
 Introduction
 
-An RPG really? Is there something about role playing games that makes you cringe? Why is making and rpg the go to project for 8 young programmers to tackle? The answer is simple; role-playing games allow players to escape reality and become something more. What’s more, we have the opportunity to turn our own lives here at the University of Rochester into an online game, and have the community we live in play this game aswell. This us a unique opportunity, which explains why when someone said “hey guys lets make an rpg game,” a light lit in our hearts. The purpose of U of RPG is to create a virtual reality of the University of Rochester, and make it gorgeous, entertaining and iconic. We want perspective students who are exploring Rochester to stumble across this game and know that first semester freshman made this as a class project. Indeed, why we chose Rochester because not many other schools would allow a group a freshman walk in, throw money at them, allow them to make a semester long project and give them credits for it. Ultimately this game is a gift to the institution that gave us this privilege.
+An RPG really? Is there something about role playing games that makes you cringe? Why is making and rpg the go to project for 8 young programmers to tackle? The answer is simple; role-playing games allow players to escape reality and become something more. What√ïs more, we have the opportunity to turn our own lives here at the University of Rochester into an online game, and have the community we live in play this game aswell. This us a unique opportunity, which explains why when someone said √íhey guys lets make an rpg game,√ì a light lit in our hearts. The purpose of U of RPG is to create a virtual reality of the University of Rochester, and make it gorgeous, entertaining and iconic. We want perspective students who are exploring Rochester to stumble across this game and know that first semester freshman made this as a class project. Indeed, why we chose Rochester because not many other schools would allow a group a freshman walk in, throw money at them, allow them to make a semester long project and give them credits for it. Ultimately this game is a gift to the institution that gave us this privilege.
 
 Game Design
 
@@ -69,7 +77,7 @@ Planning:
 
 Style
 
-We decided to make the game 2D and orthogonal. The map layout will be similar to that of Pokémon. In order to keep the art consistent and to achieve our ideal product, we chose to create the tiles ourselves. The main map of Rochester will be a square where most of the game will take place. This is an example art asset of our potential main character.
+We decided to make the game 2D and orthogonal. The map layout will be similar to that of Pok≈Ωmon. In order to keep the art consistent and to achieve our ideal product, we chose to create the tiles ourselves. The main map of Rochester will be a square where most of the game will take place. This is an example art asset of our potential main character.
 
 
 
@@ -112,8 +120,8 @@ Examples: Coordinate on map where events for should take place. Placement of ite
 Requirements in order for Animation to function:
 Generic map that marks collision areas, and sets a finite coordinate system on the map, and a player, represented by a rectangle to animate on generic map
 
-With these , even if all art assets are lost, animation can keep its functionality. Also, other sections aren’t affected as well
-If Animation didn’t exist, then the game should be able to run complete text based.
+With these , even if all art assets are lost, animation can keep its functionality. Also, other sections aren√ït affected as well
+If Animation didn√ït exist, then the game should be able to run complete text based.
 
 	Planning:
 		A. Making player moveable on map.
@@ -166,7 +174,7 @@ To provide a fluid gameplay, a structured database, keep the server running, upd
 How it links to other sections:
 * It is the backbone of every section. Without a backend, there is no way to display a front end. 
 * Each section must rely on the backend to elegantly connect each and every section of the project together.
-* The backend will also deal with the database that stores all the information about the game and each individual player‚Äôs stats.
+* The backend will also deal with the database that stores all the information about the game and each individual player√¢‚Ç¨‚Ñ¢s stats.
 * This section is simply the structural integrity for the rest of the project.
 
 	Requirements:
@@ -193,12 +201,12 @@ Dec 6-hand in
 
 Prospective Problems
 
-The number one prospective problem is the fact there are eight of us. As one of us said, “I’m worried that too many cooks ruin the brew.”
+The number one prospective problem is the fact there are eight of us. As one of us said, √íI√ïm worried that too many cooks ruin the brew.√ì
 
 * The beauty of the rpg project is that as a work of art it is never finished. The eight of us have more than enough work to do, and can work on the project straight up through the due date. 
 * Organization is key. Hopefully this proposal gives a sense at how much emphasis we are putting into organization. I believe we successfully split this project up into multiple parts. Together these parts will create the ideal product, but even if one section malfunctions, the whole will still exist. We stressed how to make each major section generic for this purpose.
-* Having eight of us can be seen as a problem, but we also see it as our greatest strength. We are never short of imagination and ideas. What’s more is the diversity within our group. At one corner we have a person who enjoy sitting down working on website, and at the other we have another member that exclaims, “I WANT TO MAKE ALL THE TILES.” We are all equally passionate for the separate parts of the project, that together, I believe we will create an amazing product that would surprise everyone.
-* Our framework section’s purpose is to prevent any problems specifically due to this issue.
+* Having eight of us can be seen as a problem, but we also see it as our greatest strength. We are never short of imagination and ideas. What√ïs more is the diversity within our group. At one corner we have a person who enjoy sitting down working on website, and at the other we have another member that exclaims, √íI WANT TO MAKE ALL THE TILES.√ì We are all equally passionate for the separate parts of the project, that together, I believe we will create an amazing product that would surprise everyone.
+* Our framework section√ïs purpose is to prevent any problems specifically due to this issue.
 
 Is the project changing enough? Is there anything that would be too difficult that it would affect our product? Essential have we found a balance between pushing our limits and not attempting the impossible?
 * There a lot of dark spots that we still do not know how to make; however, we are sure that with time and effort we can pull through and solve these problems. I believe these are the characteristics of having a sufficiently challenging project. I believe that this project meets this requirement to the fullest.
