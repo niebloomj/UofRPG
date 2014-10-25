@@ -14,16 +14,16 @@ function createGame() {
 	label.textAlign = "center";
 	label.y = -7;
 
-	var dragger = new createjs.Container();
-	dragger.x = dragger.y = 100;
-	dragger.addChild(circle, label);
-	gameContainer.addChild(dragger);
-
-	dragger.on("pressmove", function(evt) {
-		evt.currentTarget.x = evt.stageX;
-		evt.currentTarget.y = evt.stageY;
-		stage.update();
-	});
+//	var dragger = new createjs.Container();
+//	dragger.x = dragger.y = 100;
+//	dragger.addChild(circle, label);
+//	gameContainer.addChild(dragger);
+//
+//	dragger.on("pressmove", function(evt) {
+//		evt.currentTarget.x = evt.stageX;
+//		evt.currentTarget.y = evt.stageY;
+//		stage.update();
+//	});
 
 	stage.addChild(gameContainer);
 	stage.update();
@@ -32,16 +32,21 @@ function createGame() {
 		switch (event.keyCode) {
 			case KEYCODE_UP:
 				circle.y -= 5;
+				label.y -= 5;
 				break;
 			case KEYCODE_DOWN:
 				circle.y += 5;
+				label.y += 5;
 				break;
 			case KEYCODE_LEFT:
 				circle.x -= 5;
+				label.x -= 5;
 				break;
 			case KEYCODE_RIGHT:
 				circle.x += 5;
+				label.x += 5;
 				break;
-  		}
+		}
+		stage.update();
 	});
 }
