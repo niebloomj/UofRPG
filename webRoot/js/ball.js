@@ -8,7 +8,7 @@ function createGame() {
 	gameContainer = new createjs.Container();
 	gameContainer.mouseMoveOutside = true;
 
-	// createMap();
+	createMap();
 
 	var circle = new createjs.Shape();
 	circle.graphics.beginFill("red").drawCircle(0, 0, 50);

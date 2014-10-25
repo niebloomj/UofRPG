@@ -1,9 +1,65 @@
+var tilesetA,tilesetB;
+var mapData;
 function createMap(){
-	var text = new createjs.Text("Swag","36px Arial","#666");
+	var text = new createjs.Text("Swag","36px Arial","#000");
 	text.x=100;
 	text.y=100;
 
 	gameContainer.addChild(text);
+	stage.update();
+
+	// json map data at the end of this file for ease of understanding (created on Tiled map editor)
+	mapData = mapDataJson;
+	// create EaselJS image for tileset
+	tilesetA = new Image();
+	tilesetB = new Image();
+
+	tilesetA.src = mapData.tilesets[0].image;
+	tilesetB.src = mapData.tilesets[1].image;
+
+	var d = mapData.tilesets[0].tilewidth;
+
+	var imageDataA = {
+		images : [ tilesetA ],
+		frames : {
+			width : d,
+			height : d
+		}
+	};
+	var imageDataB = {
+		images : [ tilesetB ],
+		frames : {
+			width : d,
+			height : d
+		}
+	};
+
+	var layerData = mapData.layers[0];
+
+	var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
+	var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
+
+	for ( var y = 0; y < layerData.height; y++) {
+		for ( var x = 0; x < layerData.width; x++) {
+			// create a new Bitmap for each cell
+			var cellBitmap;
+			// layer data has single dimension array
+			var idx = x + y * layerData.width;
+			// tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
+			if(layerData.data[idx]==1)
+				cellBitmap = new createjs.Sprite(tilesetSheetA);
+			else
+				cellBitmap = new createjs.Sprite(tilesetSheetB);
+
+			//cellBitmap.gotoAndStop(layerData.data[idx] - 1);
+			// isometrix tile positioning based on X Y order from Tiled
+			cellBitmap.x = x*d;
+			cellBitmap.y = y*d;
+			// add bitmap to stage
+			//stage.addChild(cellBitmap);
+			gameContainer.addChild(cellBitmap);
+		}
+	}
 	stage.update();
  } 
 
