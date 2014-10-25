@@ -30,51 +30,51 @@ function createGame() {
 	stage.addChild(gameContainer);
 	stage.update();
 
-	document.addEventListener("keydown", keypress());
+	document.addEventListener("keydown", keypress(event));
 }
 
-function keypress() {
+function keypress(event) {
 	var i;
 	switch (event.keyCode) {
 		case KEYCODE_UP:
 			console.log("up pressed");
-			// for (i = 0; i < 100; i++) {
-			// 	setTimeout(function() {
-			// 		circle.y -= 1;
-			// 		label.y -= 1;
-			// 		stage.update();
-			// 	}, 10);
-			// }
+			for (i = 0; i < 100; i++) {
+				setTimeout(function() {
+					circle.y -= 1;
+					label.y -= 1;
+					stage.update();
+				}, 10);
+			}
 			break;
 		case KEYCODE_DOWN:
 			console.log("down pressed");
-			// for (i = 0; i < 100; i++) {
-			// 	setTimeout(function() {
-			// 		circle.y += 1;
-			// 		label.y += 1;
-			// 		stage.update();
-			// 	}, 10);
-			// }
+			for (i = 0; i < 100; i++) {
+				setTimeout(function() {
+					circle.y += 1;
+					label.y += 1;
+					stage.update();
+				}, 10);
+			}
 			break;
 		case KEYCODE_LEFT:
 			console.log("left pressed");
-			// for (i = 0; i < 100; i++) {
-			// 	setTimeout(function() {
-			// 		circle.x -= 1;
-			// 		label.x -= 1;
-			// 		stage.update();
-			// 	}, 10);
-			// }
+			for (i = 0; i < 100; i++) {
+				setTimeout(function() {
+					circle.x -= 1;
+					label.x -= 1;
+					stage.update();
+				}, 10);
+			}
 			break;
 		case KEYCODE_RIGHT:
 			console.log("right pressed");
-			// for (i = 0; i < 100; i++) {
-			// 	setTimeout(function() {
-			// 		circle.x += 1;
-			// 		label.x += 1;
-			// 		stage.update();
-			// 	}, 10);
-			// }
+			for (i = 0; i < 100; i++) {
+				setTimeout(function() {
+					circle.x += 1;
+					label.x += 1;
+					stage.update();
+				}, 10);
+			}
 			break;
 	}
 	stage.update();
