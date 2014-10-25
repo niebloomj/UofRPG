@@ -28,46 +28,53 @@ function createGame() {
 	stage.addChild(gameContainer);
 	stage.update();
 	
-	document.addEventListener("keydown", function(event) {
-		var i;
-		switch (event.keyCode) {
-			case KEYCODE_UP:
-				for (i = 0; i < 100; i++) {
-					setTimeout(function() {
-						circle.y -= 1;
-						label.y -= 1;
-					}, 100);
-					stage.update();
-				}
-				break;
-			case KEYCODE_DOWN:
-				for (i = 0; i < 100; i++) {
-					setTimeout(function() {
-						circle.y += 1;
-						label.y += 1;
-					}, 100);
-					stage.update();
-				}
-				break;
-			case KEYCODE_LEFT:
-				for (i = 0; i < 100; i++) {
-					setTimeout(function() {
-						circle.x -= 1;
-						label.x -= 1;
-					}, 100);
-					stage.update();
-				}
-				break;
-			case KEYCODE_RIGHT:
-				for (i = 0; i < 100; i++) {
-					setTimeout(function() {
-						circle.x += 1;
-						label.x += 1;
-					}, 100);
-					stage.update();
-				}
-				break;
+	document.addEventListener("keydown", keypress());
+}
+
+function keypress() {
+	var i;
+	switch (event.keyCode) {
+		case KEYCODE_UP:
+			for (i = 0; i < 100; i++) {
+				circle.y -= 1;
+				label.y -= 1;
+				stage.update();
+				sleep(10);
+			}
+			break;
+		case KEYCODE_DOWN:
+			for (i = 0; i < 100; i++) {
+				circle.y += 1;
+				label.y += 1;
+				stage.update();
+				sleep(10);
+			}
+			break;
+		case KEYCODE_LEFT:
+			for (i = 0; i < 100; i++) {
+				circle.x -= 1;
+				label.x -= 1;
+				stage.update();
+				sleep(10);
+			}
+			break;
+		case KEYCODE_RIGHT:
+			for (i = 0; i < 100; i++) {
+				circle.x += 1;
+				label.x += 1;
+				stage.update();
+				sleep(10);
+			}
+			break;
+	}
+	stage.update();
+}
+
+function sleep(milli) {
+	var start = new Date().getTime();
+	for (var i = 0; i < 1e7; i++) {
+		if ((new Date().getTime() - start) > milli){
+			break;
 		}
-		stage.update();
-	});
+	}
 }
