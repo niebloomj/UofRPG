@@ -18,7 +18,6 @@ function init() {
 	stage.enableMouseOver();
 
 	$("#btnLogin").click(function() {
-		console.log("IS THIS RUNNING AT ALL");
 		$(".paneButtons").addClass("hidden");
 		$(".paneLogin").removeClass("hidden");
 	});
