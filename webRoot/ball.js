@@ -12,7 +12,7 @@ function createGame() {
 	var circle = new createjs.Shape();
 	circle.graphics.beginFill("red").drawCircle(0, 0, 50);
 
-	var label = new createjs.Text("Drag it!!", "bold 14px Arial", "#FFFFFF");
+	var label = new createjs.Text("Arrow Keys", "bold 14px Arial", "#FFFFFF");
 	label.textAlign = "center";
 	label.y = -7;
 
@@ -32,12 +32,12 @@ function createGame() {
 
 	document.addEventListener("keydown", function(event) {
 		var i,
-			distance = 20,
+			dist = 20,
 			timeToMove = 200;
 		switch (event.keyCode) {
 			case KEYCODE_UP:
 				console.log("up pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / distance) {
+				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
 						circle.y -= 1;
 						label.y -= 1;
@@ -47,7 +47,7 @@ function createGame() {
 				break;
 			case KEYCODE_DOWN:
 				console.log("down pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / distance) {
+				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
 						circle.y += 1;
 						label.y += 1;
@@ -57,7 +57,7 @@ function createGame() {
 				break;
 			case KEYCODE_LEFT:
 				console.log("left pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / distance) {
+				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
 						circle.x -= 1;
 						label.x -= 1;
@@ -67,7 +67,7 @@ function createGame() {
 				break;
 			case KEYCODE_RIGHT:
 				console.log("right pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / distance) {
+				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
 						circle.x += 1;
 						label.x += 1;
