@@ -1,4 +1,4 @@
-function init() {
+function createGame() {
 	gameContainer = new createjs.Container();
 	gameContainer.mouseMoveOutside = true;
 

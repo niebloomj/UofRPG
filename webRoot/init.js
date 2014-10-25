@@ -360,5 +360,9 @@ function loginSuccessful() {
 	document.getElementById("username").remove();
 	document.getElementById("password").remove();
 	stage.removeChild(loginContainer);
-	stage.update();
+	createGame();
 }
+
+
+
+
