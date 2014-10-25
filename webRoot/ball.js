@@ -31,16 +31,16 @@ function createGame() {
 	document.addEventListener("keydown", function(event) {
 		switch (event.keyCode) {
 			case KEYCODE_UP:
-				alert("up");
+				circle.y -= 5;
 				break;
 			case KEYCODE_DOWN:
-				alert("down");
+				circle.y += 5;
 				break;
 			case KEYCODE_LEFT:
-				alert("left");
+				circle.x -= 5;
 				break;
 			case KEYCODE_RIGHT:
-				alert("right");
+				circle.x += 5;
 				break;
   		}
 	});
