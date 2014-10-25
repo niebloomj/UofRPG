@@ -31,20 +31,32 @@ function createGame() {
 	document.addEventListener("keydown", function(event) {
 		switch (event.keyCode) {
 			case KEYCODE_UP:
-				circle.y -= 5;
-				label.y -= 5;
+				for (int i = 0; i < 5; i++) {
+					circle.y -= 1;
+					label.y -= 1;
+					stage.update();
+				}
 				break;
 			case KEYCODE_DOWN:
-				circle.y += 5;
-				label.y += 5;
+				for (int i = 0; i < 5; i++) {
+					circle.y += 1;
+					label.y += 1;
+					stage.update();
+				}
 				break;
 			case KEYCODE_LEFT:
-				circle.x -= 5;
-				label.x -= 5;
+				for (int i = 0; i < 5; i++) {
+					circle.x -= 1;
+					label.x -= 1;
+					stage.update();
+				}
 				break;
 			case KEYCODE_RIGHT:
-				circle.x += 5;
-				label.x += 5;
+				for (int i = 0; i < 5; i++) {
+					circle.x += 1;
+					label.x += 1;
+					stage.update();
+				}
 				break;
 		}
 		stage.update();
