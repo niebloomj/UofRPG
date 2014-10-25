@@ -74,7 +74,7 @@ function init() {
 	login.x = 400;
 	login.y = 50;
 	login.addChild(loginShapes, loginLabel);
-	login.on("click", handleClick, true);
+	login.on("click", loginClick, true);
 	loginShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
 
 	login.on("mouseover", function(evt) {
@@ -163,7 +163,7 @@ function init() {
 	logSubmitButton.y = 225;
 	logSubmitButton.addChild(logSubmitShape, logSubmitLabel);
 	loginContainer.addChild(register, output);
-	logSubmitButton.on("click", handleClick, true); //doRegister, true);
+	logSubmitButton.on("click", loginSubmitClick, true); //doRegister, true);
 
 	logSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
 
@@ -325,42 +325,39 @@ function regSubmitClick(event) {
 			}
 		});
 }
-	} else if (event.currentTarget.name == "logSubmitButton") {
-		var query = new Parse.Query(AccountsTable);
-		query.equalTo("Username", document.getElementById("username").value);
-		query.find({
-			success: function(results) {
-				if (results.length == 1) {
-					query.equalTo("Password", document.getElementById("password").value);
-					query.find({
-						success: function(results) {
-							if (results.length == 1) {
-								document.getElementById("username").value = "";
-								document.getElementById("password").value = "";
-								loginSuccessful();
-							} else {
-								document.getElementById("password").value = "";
-								alert("That password does not match.");
-							}
-						},
-						error: function(error) {
-							alert(error.message);
+
+function loginSubmitClick(event) {
+	var query = new Parse.Query(AccountsTable);
+	query.equalTo("Username", document.getElementById("username").value);
+	query.find({
+		success: function(results) {
+			if (results.length == 1) {
+				query.equalTo("Password", document.getElementById("password").value);
+				query.find({
+					success: function(results) {
+						if (results.length == 1) {
+							document.getElementById("username").value = "";
+							document.getElementById("password").value = "";
+							loginSuccessful();
+						} else {
+							document.getElementById("password").value = "";
+							alert("That password does not match.");
 						}
-					});
-				} else {
-					document.getElementById("username").value = "";
-					document.getElementById("password").value = "";
-					alert("That Username does not exists.");
-				}
-			},
-			error: function(error) {
-				alert(error.message);
+					},
+					error: function(error) {
+						alert(error.message);
+					}
+				});
+			} else {
+				document.getElementById("username").value = "";
+				document.getElementById("password").value = "";
+				alert("That Username does not exists.");
 			}
-		});
-	} else if (event.currentTarget.name == "startButton") {
-		stage.removeChild(menuContainer);
-		stage.update();
-	}
+		},
+		error: function(error) {
+			alert(error.message);
+		}
+	});
 }
 
 function loginSuccessful() {
