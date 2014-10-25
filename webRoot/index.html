@@ -6,16 +6,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>University of Rochester Playing Game: Year 1</title>
-
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/jvfloat.min.js"></script>
   <script src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
   <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
   <script src="init.js"></script>
   <script src="ball.js"></script>
   <script src="createMap.js"></script>
-
+  
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="css/jvfloat.css" rel="stylesheet">
   <style type="text/css">
   body {
     background-image: url(img/webmain_background2.gif);
@@ -23,10 +26,25 @@
     background-repeat: no-repeat;
     background-position: center center;
   }
-  input {
+  /*input {
     position: absolute;
     left: 525px;
     top: -465px;
+  }*/
+  #loginContainer {
+    height: 500px;
+  }
+  #loginContainer .paneButtons button {
+    font-size: 42px;
+    margin-bottom: 24px;
+  }
+  #loginContainer .form-group .placeHolder {
+    font-size: 18px;
+    top:-5px;
+    color: #222;
+  }
+  #loginContainer .form-group {
+    margin-bottom: 26px;
   }
   </style>
 
@@ -48,7 +66,7 @@
     
     <div class="row">
       <div class="col-sm-12">
-        <div class="theGame text-center">
+        <div class="theGame text-center hidden">
           <canvas id="demoCanvas" width="1000" height="500">
             alternate content
           </canvas>
@@ -56,32 +74,77 @@
       </div>
     </div>
     
-  </div>
-  
-  <div id="gameDom">
-  </div>
-  
-  <footer id="mastfoot">
-    <section class="container-fluid">
-      <div class="row-fluid">
-        <article class="span6 credits text-left">
-        </article>
-        <article class="span6 text-left">
-        </article>
-        <article class="span6 text-right">
-          <font size="10">
-            <a href="http://www.uofrpg.com/roles.html">Developer's Roles</a>
-          </font>
-        </article>
+    
+    
+    <div class="row">
+      <div id="loginContainer" class="col-sm-offset-4 col-sm-4">
+        <div id="loginContainerAlert" class="alert hidden" role="alert">
+          <button type="button" class="close" id="loginContainerAlertCloseBtn"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <span id="loginContainerAlertContent"></span>
+        </div>
+      
+        <div class="paneButtons">
+          <button id="btnLogin" class="btn btn-lg btn-block btn-primary">Login</button>
+          <button id="btnRegister" class="btn btn-lg btn-block btn-primary">Register</button>
+        </div>
+        
+        <div class="paneLogin hidden">
+          <div class="form-group">
+            <!--<label for="formLoginUsername">Username</label>-->
+            <input type="text" class="form-control input-lg" id="formLoginUsername" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <!--<label for="formLoginPassword">Password</label>-->
+            <input type="password" class="form-control input-lg" id="formLoginPassword" placeholder="Password">
+          </div>
+          <button type="button" id="formLoginSubmit" data-loading-text="Loading..." class="btn btn-lg btn-primary">
+            Submit
+          </button>
+        </div>
+        
+        <div class="paneRegister hidden">
+          <div class="form-group">
+            <!--<label for="formRegisterUsername">Username</label>-->
+            <input type="text" class="form-control input-lg" id="formRegisterUsername" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <!--<label for="formRegisterPassword">Password</label>-->
+            <input type="password" class="form-control input-lg" id="formRegisterPassword" placeholder="Password">
+          </div>
+          <button type="button" id="formRegisterSubmit" data-loading-text="Loading..." class="btn btn-lg btn-primary">
+            Submit
+          </button>
+        </div>
+        
       </div>
-      <div class="row-fluid">
-        <article class="span6 copyright text-right">
-          <p>Copyright &copy; 2014
-            <br/>All rights reserved</p>
-        </article>
-      </div>
-    </section>
-  </footer>
+    </div>
+    
+    <div id="gameDom">
+    </div>
+    
+    <footer id="mastfoot">
+      <section class="container-fluid">
+        <div class="row-fluid">
+          <article class="span6 credits text-left">
+          </article>
+          <article class="span6 text-left">
+          </article>
+          <article class="span6 text-right">
+            <font size="10">
+              <a href="roles.html">Developer's Roles</a>
+            </font>
+          </article>
+        </div>
+        <div class="row-fluid">
+          <article class="span6 copyright text-right">
+            <p>Copyright &copy; 2014
+              <br/>All rights reserved</p>
+          </article>
+        </div>
+      </section>
+    </footer>
+    
+  </div>
 </body>
 
 </html>

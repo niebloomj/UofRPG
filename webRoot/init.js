@@ -1,6 +1,6 @@
 var stage, output, holder;
-// var tileset;
-// var mapData;
+var tileset;
+var mapData;
 var startContainer, menuContainer, loginContainer, registerContainer, gameContainer;
 var AccountsTable = Parse.Object.extend("Accounts");
 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
@@ -21,7 +21,7 @@ function init() {
 	/*
 	 * Setup start container
 	 */
-	var playShape = new createjs.Shape();
+	/*var playShape = new createjs.Shape();
 	playShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
 
 	var playButton = new createjs.Container();
@@ -55,13 +55,111 @@ function init() {
 
 	startContainer.addChild(playButton);
 	stage.addChild(startContainer);
-	stage.update();
+	stage.update();*/
+  $("#btnLogin").click(function() {
+    console.log("IS THIS RUNNING AT ALL");
+    $(".paneButtons").addClass("hidden");
+    $(".paneLogin").removeClass("hidden");
+  });
+
+  $("#btnRegister").click(function() {
+    $(".paneButtons").addClass("hidden");
+    $(".paneRegister").removeClass("hidden");
+  });
+
+  $("#formLoginSubmit").click(function() {
+    var query = new Parse.Query(AccountsTable);
+    query.equalTo("Username", $("#formLoginUsername").val());
+    query.find({
+      success: function(results) {
+        if (results.length == 1) {
+          query.equalTo("Password", $("#formLoginPassword").val());
+          query.find({
+            success: function(results) {
+              if (results.length == 1) {
+                $("#formLoginUsername").val("");
+                $("#formLoginPassword").val("");
+                loginSuccessful();
+              } else {
+                $("#formLoginPassword").val("");
+                showLoginMessage("That password does not match.", "danger");
+              }
+            },
+            error: function(error) {
+              showLoginMessage(error.message, "danger");
+            }
+          });
+        } else {
+          $("#formLoginUsername").val("");
+          $("#formLoginPassword").val("");
+          showLoginMessage("That username does not exist.", "warning");
+        }
+      },
+      error: function(error) {
+        showLoginMessage(error.message, "danger");
+      }
+    });
+  });
+
+  $("#formRegisterSubmit").click(function() {
+    var query = new Parse.Query(AccountsTable);
+    query.equalTo("Username", $("#formRegisterUsername").val());
+    query.find({
+      success: function(results) {
+        if (results.length == 0) {
+          accountsTable.save({
+            Username: $("#formRegisterUsername").val(),
+            Password: $("#formRegisterPassword").val()
+          });
+          stage.removeChild(registerContainer);
+          showLoginMessage("Account created!", "success");
+          loginSuccessful();
+        } else {
+          $("#formRegisterUsername").val("");
+          $("#formRegisterPassword").val("");
+          showLoginMessage("Username already exists.", "danger");
+        }
+      },
+      error: function(error) {
+        showLoginMessage(error.message, "danger");
+      }
+    });
+  });
+  
+  $("#loginContainerAlertCloseBtn").click(function() {
+    $("#loginContainerAlert").addClass("hidden");
+  });
+  
+  $('#formLoginUsername').jvFloat();
+  $('#formLoginPassword').jvFloat();
+  $('#formRegisterUsername').jvFloat();
+  $('#formRegisterPassword').jvFloat();
+}
+init();
+
+
+function loginSuccessful() {
+  $("#loginContainer").addClass("hidden");
+  $(".theGame").removeClass("hidden");
+  createGame();
+}
+
+function showLoginMessage(message, level) {
+  $("#loginContainerAlert").removeClass("hidden");
+  $("#loginContainerAlert").removeClass("alert-success");
+  $("#loginContainerAlert").removeClass("alert-danger");
+  $("#loginContainerAlert").removeClass("alert-warning");
+  $("#loginContainerAlert").removeClass("alert-info");
+  $("#loginContainerAlert").addClass("alert-"+level);
+  $("#loginContainerAlertContent").html(message);
+}
+  
 
 	/*
 	 * Setup Main Menu container
 	 */
 	// * Setup Login Button
-	var loginShapes = new createjs.Shape();
+/*	var loginShapes = new createjs.Shape();
 	loginShapes.name = "background";
 
 	var loginLabel = new createjs.Text("Login", "bold 50px Arial", "#FFFFFF");
@@ -128,10 +226,8 @@ function init() {
 	});
 	menuContainer.addChild(register, output);
 	stage.update();
-
-	/*
-	 * Setup login container
-	 */
+  
+  
 	var logUsernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
 	logUsernameLabel.name = "logUsernameLabel";
 	logUsernameLabel.x = 225;
@@ -182,10 +278,8 @@ function init() {
 		stage.update();
 	});
 	loginContainer.addChild(logSubmitButton);
-
-	/*
-	 * Setup register container
-	 */
+  
+  
 	var regUsernameLabel = new createjs.Text("Username:", "bold 40px Arial", "#000000"); //DC143C
 	regUsernameLabel.name = "registerLabel";
 	regUsernameLabel.x = 225;
@@ -321,7 +415,7 @@ function regSubmitClick(event) {
 				document.getElementById("password").value = ""
 				alert("Username already exists.");
 			}
-		},
+		},a
 		error: function(error) {
 			alert(error.message);
 		}
@@ -368,4 +462,4 @@ function loginSuccessful() {
 	stage.removeChild(loginContainer);
 	stage.update();
 	createGame();
-}
+}*/
