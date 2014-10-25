@@ -36,7 +36,7 @@ function createGame() {
 					setTimeout(function() {
 						circle.y -= 1;
 						label.y -= 1;
-					}, 10);
+					}, 100);
 					stage.update();
 				}
 				break;
@@ -45,7 +45,7 @@ function createGame() {
 					setTimeout(function() {
 						circle.y += 1;
 						label.y += 1;
-					}, 10);
+					}, 100);
 					stage.update();
 				}
 				break;
@@ -54,7 +54,7 @@ function createGame() {
 					setTimeout(function() {
 						circle.x -= 1;
 						label.x -= 1;
-					}, 10);
+					}, 100);
 					stage.update();
 				}
 				break;
@@ -63,10 +63,11 @@ function createGame() {
 					setTimeout(function() {
 						circle.x += 1;
 						label.x += 1;
-					}, 10);
+					}, 100);
 					stage.update();
 				}
 				break;
 		}
+		stage.update();
 	});
 }
