@@ -37,44 +37,44 @@ function keypress() {
 	var i;
 	switch (event.keyCode) {
 		case KEYCODE_UP:
-			for (i = 0; i < 100; i++) {
-				setTimeout(function() {
-					circle.y -= 1;
-					label.y -= 1;
-					stage.update();
-				}, 10);
-				console.log("up pressed");
-			}
+			console.log("up pressed");
+			// for (i = 0; i < 100; i++) {
+			// 	setTimeout(function() {
+			// 		circle.y -= 1;
+			// 		label.y -= 1;
+			// 		stage.update();
+			// 	}, 10);
+			// }
 			break;
 		case KEYCODE_DOWN:
-			for (i = 0; i < 100; i++) {
-				setTimeout(function() {
-					circle.y += 1;
-					label.y += 1;
-					stage.update();
-				}, 10);
-				console.log("down pressed");
-			}
+			console.log("down pressed");
+			// for (i = 0; i < 100; i++) {
+			// 	setTimeout(function() {
+			// 		circle.y += 1;
+			// 		label.y += 1;
+			// 		stage.update();
+			// 	}, 10);
+			// }
 			break;
 		case KEYCODE_LEFT:
-			for (i = 0; i < 100; i++) {
-				setTimeout(function() {
-					circle.x -= 1;
-					label.x -= 1;
-					stage.update();
-				}, 10);
-				console.log("left pressed");
-			}
+			console.log("left pressed");
+			// for (i = 0; i < 100; i++) {
+			// 	setTimeout(function() {
+			// 		circle.x -= 1;
+			// 		label.x -= 1;
+			// 		stage.update();
+			// 	}, 10);
+			// }
 			break;
 		case KEYCODE_RIGHT:
-			for (i = 0; i < 100; i++) {
-				setTimeout(function() {
-					circle.x += 1;
-					label.x += 1;
-					stage.update();
-				}, 10);
-				console.log("right pressed");
-			}
+			console.log("right pressed");
+			// for (i = 0; i < 100; i++) {
+			// 	setTimeout(function() {
+			// 		circle.x += 1;
+			// 		label.x += 1;
+			// 		stage.update();
+			// 	}, 10);
+			// }
 			break;
 	}
 	stage.update();
