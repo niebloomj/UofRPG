@@ -4,8 +4,6 @@ var KEYCODE_LEFT = 37,
 	KEYCODE_DOWN = 40;
 
 function createGame() {
-	createMap();
-	
 	gameContainer = new createjs.Container();
 	gameContainer.mouseMoveOutside = true;
 
@@ -21,16 +19,18 @@ function createGame() {
 	dragger.addChild(circle, label);
 	gameContainer.addChild(dragger);
 
-	//	dragger.on("pressmove", function(evt) {
-	//		evt.currentTarget.x = evt.stageX;
-	//		evt.currentTarget.y = evt.stageY;
-	//		stage.update();
-	//	});
+	dragger.on("pressmove", function(evt) {
+		evt.currentTarget.x = evt.stageX;
+		evt.currentTarget.y = evt.stageY;
+		stage.update();
+	});
 
 	stage.addChild(gameContainer);
 	stage.update();
 
 	document.addEventListener("keydown", keypress(event));
+
+	// createMap();
 }
 
 function keypress(event) {
