@@ -33,7 +33,7 @@ function createGame() {
 	document.addEventListener("keydown", function(event) {
 		var i,
 			dist = 20,
-			timeToMove = 200;
+			timeToMove = 200,
 			inMotion = false;
 		if (!inMotion) {
 			switch (event.keyCode) {
