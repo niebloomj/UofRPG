@@ -31,7 +31,7 @@ function createGame() {
 	stage.addChild(gameContainer);
 	stage.update();
 
-	document.addEventListener("keypress", function(event) {
+	document.addEventListener("keydown", function(event) {
 		var i,
 			dist = 20,
 			timeToMove = 200;
