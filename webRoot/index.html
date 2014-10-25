@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>University of Rochester Playing Game: Year 1</title>
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
   <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
-  
+
   <script src="js/init.js"></script>
   <script src="js/ball.js"></script>
   <script src="createMap.js"></script>
-  
+
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
   <style type="text/css">
@@ -30,6 +30,7 @@
     left: 525px;
     top: -465px;
   }*/
+  
   #loginContainer {
     height: 500px;
   }
@@ -39,7 +40,7 @@
   }
   #loginContainer .form-group .placeHolder {
     font-size: 18px;
-    top:-5px;
+    top: -5px;
     color: #222;
   }
   #loginContainer .form-group {
@@ -62,7 +63,7 @@
       <img src="img/header_trans2.png">
       <span class="sr-only">UofRPG: Year 1</span>
     </header>
-    
+
     <div class="row">
       <div class="col-sm-12">
         <div class="theGame text-center hidden">
@@ -72,21 +73,23 @@
         </div>
       </div>
     </div>
-    
-    
-    
+
+
     <div class="row">
       <div id="loginContainer" class="col-sm-offset-4 col-sm-4">
         <div id="loginContainerAlert" class="alert hidden" role="alert">
-          <button type="button" class="close" id="loginContainerAlertCloseBtn"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <button type="button" class="close" id="loginContainerAlertCloseBtn">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
           <span id="loginContainerAlertContent"></span>
         </div>
-      
+
         <div class="paneButtons">
           <button id="btnLogin" class="btn btn-lg btn-block btn-primary">Login</button>
           <button id="btnRegister" class="btn btn-lg btn-block btn-primary">Register</button>
         </div>
-        
+
         <div class="paneLogin hidden">
           <div class="form-group">
             <label for="formLoginUsername">Username</label>
@@ -100,7 +103,7 @@
             Submit
           </button>
         </div>
-        
+
         <div class="paneRegister hidden">
           <div class="form-group">
             <label for="formRegisterUsername">Username</label>
@@ -114,13 +117,13 @@
             Submit
           </button>
         </div>
-        
+
       </div>
     </div>
-    
+
     <div id="gameDom">
     </div>
-    
+
     <footer id="mastfoot">
       <section class="container-fluid">
         <div class="row-fluid">
@@ -142,7 +145,7 @@
         </div>
       </section>
     </footer>
-    
+
   </div>
 </body>
 
