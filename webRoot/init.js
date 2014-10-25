@@ -302,28 +302,28 @@ function loginClick(event) {
 }
 
 function regSubmitClick(event) {
-		var query = new Parse.Query(AccountsTable);
-		query.equalTo("Username", document.getElementById("username").value);
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {
-					accountsTable.save({
-						Username: document.getElementById("username").value,
-						Password: document.getElementById("password").value
-					});
-					stage.removeChild(registerContainer);
-					alert("Account Created");
-					loginSuccessful();
-				} else {
-					document.getElementById("username").value = ""
-					document.getElementById("password").value = ""
-					alert("Username already exists.");
-				}
-			},
-			error: function(error) {
-				alert(error.message);
+	var query = new Parse.Query(AccountsTable);
+	query.equalTo("Username", document.getElementById("username").value);
+	query.find({
+		success: function(results) {
+			if (results.length == 0) {
+				accountsTable.save({
+					Username: document.getElementById("username").value,
+					Password: document.getElementById("password").value
+				});
+				stage.removeChild(registerContainer);
+				alert("Account Created");
+				loginSuccessful();
+			} else {
+				document.getElementById("username").value = ""
+				document.getElementById("password").value = ""
+				alert("Username already exists.");
 			}
-		});
+		},
+		error: function(error) {
+			alert(error.message);
+		}
+	});
 }
 
 function loginSubmitClick(event) {
