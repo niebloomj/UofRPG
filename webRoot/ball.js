@@ -29,7 +29,7 @@ function createGame() {
 	stage.update();
 	
 	document.addEventListener("keydown", function(event) {
-		switch event.keyCode {
+		switch (event.keyCode) {
 			case KEYCODE_UP:
 				alert("up");
 				break;
@@ -42,6 +42,6 @@ function createGame() {
 			case KEYCODE_RIGHT:
 				alert("right");
 				break;
-    		}
+  		}
 	});
 }
