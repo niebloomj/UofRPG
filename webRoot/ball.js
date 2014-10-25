@@ -43,6 +43,7 @@ function keypress() {
 					label.y -= 1;
 					stage.update();
 				}, 10);
+				Console.log("up pressed");
 			}
 			break;
 		case KEYCODE_DOWN:
@@ -52,6 +53,7 @@ function keypress() {
 					label.y += 1;
 					stage.update();
 				}, 10);
+				Console.log("down pressed");
 			}
 			break;
 		case KEYCODE_LEFT:
@@ -61,6 +63,7 @@ function keypress() {
 					label.x -= 1;
 					stage.update();
 				}, 10);
+				Console.log("left pressed");
 			}
 			break;
 		case KEYCODE_RIGHT:
@@ -70,6 +73,7 @@ function keypress() {
 					label.x += 1;
 					stage.update();
 				}, 10);
+				Console.log("right pressed");
 			}
 			break;
 	}
