@@ -36,8 +36,8 @@ function createGame() {
 					setTimeout(function() {
 						circle.y -= 1;
 						label.y -= 1;
-						stage.update();
 					}, 10);
+					stage.update();
 				}
 				break;
 			case KEYCODE_DOWN:
@@ -45,8 +45,8 @@ function createGame() {
 					setTimeout(function() {
 						circle.y += 1;
 						label.y += 1;
-						stage.update();
 					}, 10);
+					stage.update();
 				}
 				break;
 			case KEYCODE_LEFT:
@@ -54,8 +54,8 @@ function createGame() {
 					setTimeout(function() {
 						circle.x -= 1;
 						label.x -= 1;
-						stage.update();
 					}, 10);
+					stage.update();
 				}
 				break;
 			case KEYCODE_RIGHT:
@@ -63,8 +63,8 @@ function createGame() {
 					setTimeout(function() {
 						circle.x += 1;
 						label.x += 1;
-						stage.update();
 					}, 10);
+					stage.update();
 				}
 				break;
 		}
