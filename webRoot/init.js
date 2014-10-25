@@ -89,11 +89,6 @@ function init() {
 	$("#loginContainerAlertCloseBtn").click(function() {
 		$("#loginContainerAlert").addClass("hidden");
 	});
-
-	$('#formLoginUsername').jvFloat();
-	$('#formLoginPassword').jvFloat();
-	$('#formRegisterUsername').jvFloat();
-	$('#formRegisterPassword').jvFloat();
 }
 init();
 
