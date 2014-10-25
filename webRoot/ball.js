@@ -46,11 +46,11 @@ function createGame() {
 							label.y -= 1;
 							stage.update();
 						}, i);
-						
-						setTimeout(function() {
-							inMotion = false;
-						}, timeToMove)
 					}
+					
+					setTimeout(function() {
+						inMotion = false;
+					}, timeToMove)
 					break;
 				case KEYCODE_DOWN:
 					inMotion = true;
@@ -60,11 +60,11 @@ function createGame() {
 							label.y += 1;
 							stage.update();
 						}, i);
-						
-						setTimeout(function() {
-							inMotion = false;
-						}, timeToMove)
 					}
+					
+					setTimeout(function() {
+						inMotion = false;
+					}, timeToMove)
 					break;
 				case KEYCODE_LEFT:
 					inMotion = true;
@@ -74,11 +74,11 @@ function createGame() {
 							label.x -= 1;
 							stage.update();
 						}, i);
-						
-						setTimeout(function() {
-							inMotion = false;
-						}, timeToMove)
 					}
+					
+					setTimeout(function() {
+						inMotion = false;
+					}, timeToMove)
 					break;
 				case KEYCODE_RIGHT:
 					inMotion = true;
@@ -88,11 +88,11 @@ function createGame() {
 							label.x += 1;
 							stage.update();
 						}, i);
-						
-						setTimeout(function() {
-							inMotion = false;
-						}, timeToMove)
 					}
+					
+					setTimeout(function() {
+						inMotion = false;
+					}, timeToMove)
 					break;
 				}
 			}
