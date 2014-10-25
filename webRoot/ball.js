@@ -33,18 +33,17 @@ function createGame() {
 
 function keyPress(event) {
 	switch (event.keycode) {
-		case KEYCODE_UP {
+		case KEYCODE_UP:
 			circle.y -= 5;
 			break;
-		} case KEYCODE_DOWN {
+		case KEYCODE_DOWN:
 			circle.y += 5;
 			break;
-		} case KEYCODE_LEFT {
+		case KEYCODE_LEFT:
 			circle.x -= 5;
 			break;
-		} case KEYCODE_RIGHT {
+		case KEYCODE_RIGHT:
 			circle.x += 5;
 			break;
-		}
 	}
 }
