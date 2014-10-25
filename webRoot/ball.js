@@ -14,11 +14,11 @@ function createGame() {
 	label.textAlign = "center";
 	label.y = -7;
 
-//	var dragger = new createjs.Container();
-//	dragger.x = dragger.y = 100;
-//	dragger.addChild(circle, label);
-//	gameContainer.addChild(dragger);
-//
+	var dragger = new createjs.Container();
+	dragger.x = dragger.y = 100;
+	dragger.addChild(circle, label);
+	gameContainer.addChild(dragger);
+
 //	dragger.on("pressmove", function(evt) {
 //		evt.currentTarget.x = evt.stageX;
 //		evt.currentTarget.y = evt.stageY;
