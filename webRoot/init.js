@@ -1,6 +1,6 @@
 var stage, output, holder;
-var tileset;
-var mapData;
+// var tileset;
+// var mapData;
 var startContainer, menuContainer, loginContainer, registerContainer, gameContainer;
 var AccountsTable = Parse.Object.extend("Accounts");
 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",

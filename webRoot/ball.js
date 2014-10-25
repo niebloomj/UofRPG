@@ -1,11 +1,13 @@
+var KEYCODE_LEFT = 37,
+	KEYCODE_RIGHT = 39,
+	KEYCODE_UP = 38,
+	KEYCODE_DOWN = 40;
+
 function createGame() {
+	createMap();
+	
 	gameContainer = new createjs.Container();
 	gameContainer.mouseMoveOutside = true;
-
-	var 	KEYCODE_LEFT = 37, 
-		KEYCODE_RIGHT = 39,
-		KEYCODE_UP = 38, 
-		KEYCODE_DOWN = 40;
 
 	var circle = new createjs.Shape();
 	circle.graphics.beginFill("red").drawCircle(0, 0, 50);
@@ -19,15 +21,15 @@ function createGame() {
 	dragger.addChild(circle, label);
 	gameContainer.addChild(dragger);
 
-//	dragger.on("pressmove", function(evt) {
-//		evt.currentTarget.x = evt.stageX;
-//		evt.currentTarget.y = evt.stageY;
-//		stage.update();
-//	});
+	//	dragger.on("pressmove", function(evt) {
+	//		evt.currentTarget.x = evt.stageX;
+	//		evt.currentTarget.y = evt.stageY;
+	//		stage.update();
+	//	});
 
 	stage.addChild(gameContainer);
 	stage.update();
-	
+
 	document.addEventListener("keydown", keypress());
 }
 
@@ -73,7 +75,7 @@ function keypress() {
 function sleep(milli) {
 	var start = new Date().getTime();
 	for (var i = 0; i < 1e7; i++) {
-		if ((new Date().getTime() - start) > milli){
+		if ((new Date().getTime() - start) > milli) {
 			break;
 		}
 	}
