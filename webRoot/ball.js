@@ -35,8 +35,7 @@ function createGame() {
 			dist = 20,
 			timeToMove = 200,
 			inMotion = false;
-			
-		if (!inMotion) {	
+		if (!inMotion) {
 			switch (event.keyCode) {
 				case KEYCODE_UP:
 					inMotion = true;
@@ -47,10 +46,7 @@ function createGame() {
 							stage.update();
 						}, i);
 					}
-					
-					setTimeout(function() {
-						inMotion = false;
-					}, timeToMove)
+					inMotion = false;
 					break;
 				case KEYCODE_DOWN:
 					inMotion = true;
@@ -61,10 +57,7 @@ function createGame() {
 							stage.update();
 						}, i);
 					}
-					
-					setTimeout(function() {
-						inMotion = false;
-					}, timeToMove)
+					inMotion = false;
 					break;
 				case KEYCODE_LEFT:
 					inMotion = true;
@@ -75,10 +68,7 @@ function createGame() {
 							stage.update();
 						}, i);
 					}
-					
-					setTimeout(function() {
-						inMotion = false;
-					}, timeToMove)
+					inMotion = false;
 					break;
 				case KEYCODE_RIGHT:
 					inMotion = true;
@@ -89,14 +79,10 @@ function createGame() {
 							stage.update();
 						}, i);
 					}
-					
-					setTimeout(function() {
-						inMotion = false;
-					}, timeToMove)
+					inMotion = false;
 					break;
-				}
 			}
 		}
-	stage.update();
+		stage.update();
 	});
 }
