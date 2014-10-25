@@ -49,7 +49,7 @@ function init() {
 		playButton.addChild(playShape, playLabel);
 		stage.update();
 	});
-	playButton.on("click", handleClick, true);
+	playButton.on("click", playClick, true);
 
 	startContainer.addChild(playButton);
 	stage.addChild(startContainer);
@@ -108,7 +108,7 @@ function init() {
 	register.y = 200;
 	register.addChild(regShapes, registerLabel);
 	menuContainer.addChild(register, output);
-	register.on("click", handleClick, true);
+	register.on("click", regClick, true);
 	regShapes.graphics.beginFill("blue").drawRoundRect(-25, -10, 250, 100, 10);
 
 	register.on("mouseover", function(evt) {
@@ -217,7 +217,7 @@ function init() {
 	regSubmitButton.y = 225;
 	regSubmitButton.addChild(regSubmitShape, regSubmitLabel);
 	menuContainer.addChild(register, output);
-	regSubmitButton.on("click", handleClick, true); //doRegister, true);
+	regSubmitButton.on("click", regSubmitClick, true); //doRegister, true);
 
 	regSubmitShape.graphics.beginFill("blue").drawRoundRect(-25, -10, 225, 100, 10);
 
@@ -238,64 +238,70 @@ function init() {
 	stage.update();
 }
 
-function handleClick(event) {
-	if (event.currentTarget.name == "playButton") {
-		stage.removeChild(startContainer);
-		stage.addChild(menuContainer);
-		stage.update();
-	} else if (event.currentTarget.name == "registerButton") {
-		stage.removeChild(menuContainer);
-		stage.addChild(registerContainer);
+// function handleClick(event) {
+function playClick(event) {
+	stage.removeChild(startContainer);
+	stage.addChild(menuContainer);
+	stage.update();
+}
 
-		var usernameField = document.createElement("input");
-		usernameField.setAttribute("id", "username");
-		usernameField.maxLength = 12;
-		usernameField.style.width = '200px';
-		usernameField.style.height = '3em';
-		usernameField.placeholder = "Username";
-		usernameField.autofocus = true;
+function regClick(event) {	
+	stage.removeChild(menuContainer);
+	stage.addChild(registerContainer);
 
-		var passwordField = document.createElement("input");
-		passwordField.setAttribute("id", "password");
-		passwordField.type = "password";
-		passwordField.maxLength = 12;
-		passwordField.style.width = '200px';
-		passwordField.style.height = '3em';
-		passwordField.style.top = "-350px";
-		passwordField.placeholder = "Password";
+	var usernameField = document.createElement("input");
+	usernameField.setAttribute("id", "username");
+	usernameField.maxLength = 12;
+	usernameField.style.width = '200px';
+	usernameField.style.height = '3em';
+	usernameField.placeholder = "Username";
+	usernameField.autofocus = true;
 
-		var gameDom = new createjs.DOMElement("gameDom");
-		gameDom.htmlElement.appendChild(usernameField);
-		gameDom.htmlElement.appendChild(passwordField);
+	var passwordField = document.createElement("input");
+	passwordField.setAttribute("id", "password");
+	passwordField.type = "password";
+	passwordField.maxLength = 12;
+	passwordField.style.width = '200px';
+	passwordField.style.height = '3em';
+	passwordField.style.top = "-350px";
+	passwordField.placeholder = "Password";
 
-		stage.update();
-	} else if (event.currentTarget.name == "loginButton") {
-		stage.removeChild(menuContainer);
-		stage.addChild(loginContainer);
+	var gameDom = new createjs.DOMElement("gameDom");
+	gameDom.htmlElement.appendChild(usernameField);
+	gameDom.htmlElement.appendChild(passwordField);
 
-		var usernameField = document.createElement("input");
-		usernameField.setAttribute("id", "username");
-		usernameField.maxLength = 12;
-		usernameField.style.width = '200px';
-		usernameField.style.height = '3em';
-		usernameField.placeholder = "Username";
-		usernameField.autofocus = true;
+	stage.update();
+}
 
-		var passwordField = document.createElement("input");
-		passwordField.setAttribute("id", "password");
-		passwordField.type = "password";
-		passwordField.maxLength = 12;
-		passwordField.style.width = '200px';
-		passwordField.style.height = '3em';
-		passwordField.style.top = "-350px";
-		passwordField.placeholder = "Password";
+function loginClick(event) {
+	stage.removeChild(menuContainer);
+	stage.addChild(loginContainer);
 
-		var gameDom = new createjs.DOMElement("gameDom");
-		gameDom.htmlElement.appendChild(usernameField);
-		gameDom.htmlElement.appendChild(passwordField);
+	var usernameField = document.createElement("input");
+	usernameField.setAttribute("id", "username");
+	usernameField.maxLength = 12;
+	usernameField.style.width = '200px';
+	usernameField.style.height = '3em';
+	usernameField.placeholder = "Username";
+	usernameField.autofocus = true;
 
-		stage.update();
-	} else if (event.currentTarget.name == "regSubmitButton") {
+	var passwordField = document.createElement("input");
+	passwordField.setAttribute("id", "password");
+	passwordField.type = "password";
+	passwordField.maxLength = 12;
+	passwordField.style.width = '200px';
+	passwordField.style.height = '3em';
+	passwordField.style.top = "-350px";
+	passwordField.placeholder = "Password";
+
+	var gameDom = new createjs.DOMElement("gameDom");
+	gameDom.htmlElement.appendChild(usernameField);
+	gameDom.htmlElement.appendChild(passwordField);
+
+	stage.update();
+}
+
+function regSubmitClick(event) {
 		var query = new Parse.Query(AccountsTable);
 		query.equalTo("Username", document.getElementById("username").value);
 		query.find({
@@ -318,6 +324,7 @@ function handleClick(event) {
 				alert(error.message);
 			}
 		});
+}
 	} else if (event.currentTarget.name == "logSubmitButton") {
 		var query = new Parse.Query(AccountsTable);
 		query.equalTo("Username", document.getElementById("username").value);
@@ -360,9 +367,5 @@ function loginSuccessful() {
 	document.getElementById("username").remove();
 	document.getElementById("password").remove();
 	stage.removeChild(loginContainer);
-	createGame();
+	stage.update();
 }
-
-
-
-
