@@ -86,7 +86,7 @@ var mapDataJson ={ "height":218,
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/webRoot\/tmx\/1375641.original.png",
+         "image":"..\/tmx\/1375641.original.png",
          "imageheight":32,
          "imagewidth":32,
          "margin":0,
@@ -101,7 +101,7 @@ var mapDataJson ={ "height":218,
         }, 
         {
          "firstgid":2,
-         "image":"..\/webRoot\/tmx\/1375644.original.png",
+         "image":"..\/tmx\/1375644.original.png",
          "imageheight":32,
          "imagewidth":32,
          "margin":0,
