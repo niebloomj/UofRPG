@@ -7,6 +7,8 @@ function createGame() {
 	gameContainer = new createjs.Container();
 	gameContainer.mouseMoveOutside = true;
 
+	// createMap();
+	
 	var circle = new createjs.Shape();
 	circle.graphics.beginFill("red").drawCircle(0, 0, 50);
 
@@ -74,8 +76,6 @@ function createGame() {
 		}
 		stage.update();
 	});
-
-	// createMap();
 }
 
 // function keypress(event) {
