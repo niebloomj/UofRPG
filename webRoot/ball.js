@@ -32,31 +32,39 @@ function createGame() {
 		var i;
 		switch (event.keyCode) {
 			case KEYCODE_UP:
-				for (i = 0; i < 5; i++) {
-					circle.y -= 1;
-					label.y -= 1;
-					stage.update();
+				for (i = 0; i < 100; i++) {
+					setTimeout(function() {
+						circle.y -= 1;
+						label.y -= 1;
+						stage.update();
+					}, 10);
 				}
 				break;
 			case KEYCODE_DOWN:
-				for (i = 0; i < 5; i++) {
-					circle.y += 1;
-					label.y += 1;
-					stage.update();
+				for (i = 0; i < 100; i++) {
+					setTimeout(function() {
+						circle.y += 1;
+						label.y += 1;
+						stage.update();
+					}, 10);
 				}
 				break;
 			case KEYCODE_LEFT:
-				for (i = 0; i < 5; i++) {
-					circle.x -= 1;
-					label.x -= 1;
-					stage.update();
+				for (i = 0; i < 100; i++) {
+					setTimeout(function() {
+						circle.x -= 1;
+						label.x -= 1;
+						stage.update();
+					}, 10);
 				}
 				break;
 			case KEYCODE_RIGHT:
-				for (i = 0; i < 5; i++) {
-					circle.x += 1;
-					label.x += 1;
-					stage.update();
+				for (i = 0; i < 100; i++) {
+					setTimeout(function() {
+						circle.x += 1;
+						label.x += 1;
+						stage.update();
+					}, 10);
 				}
 				break;
 		}
