@@ -34,47 +34,54 @@ function createGame() {
 		var i,
 			dist = 20,
 			timeToMove = 200;
-		switch (event.keyCode) {
-			case KEYCODE_UP:
-				console.log("up pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						circle.y -= 1;
-						label.y -= 1;
-						stage.update();
-					}, i);
-				}
-				break;
-			case KEYCODE_DOWN:
-				console.log("down pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						circle.y += 1;
-						label.y += 1;
-						stage.update();
-					}, i);
-				}
-				break;
-			case KEYCODE_LEFT:
-				console.log("left pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						circle.x -= 1;
-						label.x -= 1;
-						stage.update();
-					}, i);
-				}
-				break;
-			case KEYCODE_RIGHT:
-				console.log("right pressed");
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						circle.x += 1;
-						label.x += 1;
-						stage.update();
-					}, i);
-				}
-				break;
+			inMotion = false;
+		if (!inMotion) {
+			switch (event.keyCode) {
+				case KEYCODE_UP:
+					inMotion = true;
+					for (i = 0; i < timeToMove; i += timeToMove / dist) {
+						setTimeout(function() {
+							circle.y -= 1;
+							label.y -= 1;
+							stage.update();
+						}, i);
+					}
+					inMotion = false;
+					break;
+				case KEYCODE_DOWN:
+					inMotion = true;
+					for (i = 0; i < timeToMove; i += timeToMove / dist) {
+						setTimeout(function() {
+							circle.y += 1;
+							label.y += 1;
+							stage.update();
+						}, i);
+					}
+					inMotion = false;
+					break;
+				case KEYCODE_LEFT:
+					inMotion = true;
+					for (i = 0; i < timeToMove; i += timeToMove / dist) {
+						setTimeout(function() {
+							circle.x -= 1;
+							label.x -= 1;
+							stage.update();
+						}, i);
+					}
+					inMotion = false;
+					break;
+				case KEYCODE_RIGHT:
+					inMotion = true;
+					for (i = 0; i < timeToMove; i += timeToMove / dist) {
+						setTimeout(function() {
+							circle.x += 1;
+							label.x += 1;
+							stage.update();
+						}, i);
+					}
+					inMotion = false;
+					break;
+			}
 		}
 		stage.update();
 	});
