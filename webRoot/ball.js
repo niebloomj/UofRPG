@@ -8,7 +8,7 @@ function createGame() {
 	gameContainer.mouseMoveOutside = true;
 
 	// createMap();
-	
+
 	var circle = new createjs.Shape();
 	circle.graphics.beginFill("red").drawCircle(0, 0, 50);
 
@@ -21,56 +21,58 @@ function createGame() {
 	dragger.addChild(circle, label);
 	gameContainer.addChild(dragger);
 
-	dragger.on("pressmove", function(evt) {
-		evt.currentTarget.x = evt.stageX;
-		evt.currentTarget.y = evt.stageY;
-		stage.update();
-	});
+	// dragger.on("pressmove", function(evt) {
+	// 	evt.currentTarget.x = evt.stageX;
+	// 	evt.currentTarget.y = evt.stageY;
+	// 	stage.update();
+	// });
 
 	stage.addChild(gameContainer);
 	stage.update();
 
 	document.addEventListener("keydown", function(event) {
-		var i;
+		var i,
+			distance = 20,
+			timeToMove = 200;
 		switch (event.keyCode) {
 			case KEYCODE_UP:
 				console.log("up pressed");
-				for (i = 0; i < 100; i++) {
+				for (i = 0; i < timeToMove; i += timeToMove / distance) {
 					setTimeout(function() {
 						circle.y -= 1;
 						label.y -= 1;
 						stage.update();
-					}, 100);
+					}, i);
 				}
 				break;
 			case KEYCODE_DOWN:
 				console.log("down pressed");
-				for (i = 0; i < 100; i++) {
+				for (i = 0; i < timeToMove; i += timeToMove / distance) {
 					setTimeout(function() {
 						circle.y += 1;
 						label.y += 1;
 						stage.update();
-					}, 100);
+					}, i);
 				}
 				break;
 			case KEYCODE_LEFT:
 				console.log("left pressed");
-				for (i = 0; i < 100; i++) {
+				for (i = 0; i < timeToMove; i += timeToMove / distance) {
 					setTimeout(function() {
 						circle.x -= 1;
 						label.x -= 1;
 						stage.update();
-					}, 100);
+					}, i);
 				}
 				break;
 			case KEYCODE_RIGHT:
 				console.log("right pressed");
-				for (i = 0; i < 100; i++) {
+				for (i = 0; i < timeToMove; i += timeToMove / distance) {
 					setTimeout(function() {
 						circle.x += 1;
 						label.x += 1;
 						stage.update();
-					}, 100);
+					}, i);
 				}
 				break;
 		}
