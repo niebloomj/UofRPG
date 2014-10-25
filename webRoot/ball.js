@@ -1,7 +1,8 @@
 var KEYCODE_LEFT = 37,
 	KEYCODE_RIGHT = 39,
 	KEYCODE_UP = 38,
-	KEYCODE_DOWN = 40;
+	KEYCODE_DOWN = 40,
+	inMotion = false;
 
 function createGame() {
 	gameContainer = new createjs.Container();
@@ -33,8 +34,7 @@ function createGame() {
 	document.addEventListener("keydown", function(event) {
 		var i,
 			dist = 20,
-			timeToMove = 200,
-			inMotion = false;
+			timeToMove = 200;
 
 		if (!inMotion) {
 			switch (event.keyCode) {
