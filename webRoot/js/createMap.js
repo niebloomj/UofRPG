@@ -6,7 +6,7 @@ function createMap(playerX,playerY,setX,setY){
 	// json map data at the end of this file for ease of understanding (created on Tiled map editor)
 	mapData = mapDataJson;
 	// create EaselJS image for tileset
-	tilesetA = newd Image();
+	tilesetA = new Image();
 	tilesetB = new Image();
 
 	tilesetA.src = mapData.tilesets[0].image;
