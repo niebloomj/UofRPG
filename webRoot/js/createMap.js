@@ -2,7 +2,7 @@ var tilesetA, tilesetB;
 var mapData;
 
 function createMap(playerX, playerY, setX, setY) {
-	//stage.removeAllChildren();
+	gameContainer.removeAllChildren();
 	var extra = 1,
 		screenWidth = 15,
 		screenHeight = 7;

@@ -24,8 +24,8 @@ function keydown(event) {
 				setTimeout(function() {
 					inMotion = false;
 				}, timeToMove);
-
 				playerY--;
+				createMap(playerX, playerY, 0, 0);
 				break;
 			case KEYCODE_DOWN:
 				inMotion = true;
@@ -40,6 +40,7 @@ function keydown(event) {
 					inMotion = false;
 				}, timeToMove);
 				playerY++;
+				createMap(playerX, playerY, 0, 0);
 				break;
 			case KEYCODE_LEFT:
 				inMotion = true;
@@ -54,6 +55,7 @@ function keydown(event) {
 					inMotion = false;
 				}, timeToMove);
 				playerX--;
+				createMap(playerX, playerY, 0, 0);
 				break;
 			case KEYCODE_RIGHT:
 				inMotion = true;
@@ -68,6 +70,7 @@ function keydown(event) {
 					inMotion = false;
 				}, timeToMove);
 				playerX++;
+				createMap(playerX, playerY, 0, 0);
 				break;
 		}
 	}
