@@ -16,7 +16,7 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, 0, i);
+						createMap(playerX, playerY, 0, i / dist);
 						playerY--;
 						stage.update();
 					}, i);
@@ -30,7 +30,7 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, 0, -i);
+						createMap(playerX, playerY, 0, -i / dist);
 						playerY++;
 						stage.update();
 					}, i);
@@ -44,7 +44,7 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, i, 0);
+						createMap(playerX, playerY, i / dist, 0);
 						playerX--;
 						stage.update();
 					}, i);
@@ -58,7 +58,7 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, -i, 0);
+						createMap(playerX, playerY, -i / dist, 0);
 						playerX++;
 						stage.update();
 					}, i);
