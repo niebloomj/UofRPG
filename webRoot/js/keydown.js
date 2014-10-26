@@ -35,7 +35,6 @@ function keydown(event) {
 						stage.update();
 					}, i);
 				}
-
 				setTimeout(function() {
 					inMotion = false;
 				}, timeToMove);
