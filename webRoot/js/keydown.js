@@ -16,8 +16,7 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, 0, i / dist);
-						playerY--;
+						createMap(playerX, playerY, 0, (timeToMove / dist));
 						stage.update();
 					}, i);
 				}
@@ -25,13 +24,14 @@ function keydown(event) {
 				setTimeout(function() {
 					inMotion = false;
 				}, timeToMove);
+
+				playerY--;
 				break;
 			case KEYCODE_DOWN:
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, 0, -i / dist);
-						playerY++;
+						createMap(playerX, playerY, 0, -(timeToMove / dist));
 						stage.update();
 					}, i);
 				}
@@ -39,13 +39,13 @@ function keydown(event) {
 				setTimeout(function() {
 					inMotion = false;
 				}, timeToMove);
+				playerY++;
 				break;
 			case KEYCODE_LEFT:
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, i / dist, 0);
-						playerX--;
+						createMap(playerX, playerY, (timeToMove / dist), 0);
 						stage.update();
 					}, i);
 				}
@@ -53,13 +53,13 @@ function keydown(event) {
 				setTimeout(function() {
 					inMotion = false;
 				}, timeToMove);
+				playerX--;
 				break;
 			case KEYCODE_RIGHT:
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						createMap(playerX, playerY, -i / dist, 0);
-						playerX++;
+						createMap(playerX, playerY, -(timeToMove / dist), 0);
 						stage.update();
 					}, i);
 				}
@@ -67,6 +67,7 @@ function keydown(event) {
 				setTimeout(function() {
 					inMotion = false;
 				}, timeToMove);
+				playerX++;
 				break;
 		}
 	}
