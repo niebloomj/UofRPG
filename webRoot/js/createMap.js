@@ -2,6 +2,7 @@ var tilesetA, tilesetB;
 var mapData;
 
 function createMap(playerX, playerY, setX, setY) {
+	stage.update();
 	gameContainer.removeAllChildren();
 	var extra = 1,
 		screenWidth = 15,
