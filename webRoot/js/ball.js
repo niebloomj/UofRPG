@@ -45,7 +45,8 @@ function createGame() {
 					inMotion = true;
 					for (i = 0; i < timeToMove; i += timeToMove / dist) {
 						setTimeout(function() {
-							
+							circle.y -= 1;
+							label.y -= 1;
 							stage.update();
 						}, i);
 					}

@@ -1,7 +1,7 @@
 var tilesetA,tilesetB;
 var mapData;
 function createMap(playerX,playerY,setX,setY){
-	stage.removeAllChildren();
+	//stage.removeAllChildren();
 	var extra = 1;
 	// json map data at the end of this file for ease of understanding (created on Tiled map editor)
 	mapData = mapDataJson;
