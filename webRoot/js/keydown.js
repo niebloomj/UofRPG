@@ -16,7 +16,8 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						circle.y -= 1;
+						createMap(playerX, playerY, 0, i);
+						playerY--;
 						stage.update();
 					}, i);
 				}
@@ -29,7 +30,8 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						circle.y += 1;
+						createMap(playerX, playerY, 0, -i);
+						playerY++;
 						stage.update();
 					}, i);
 				}
@@ -42,7 +44,8 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						circle.x -= 1;
+						createMap(playerX, playerY, i, 0);
+						playerX--;
 						stage.update();
 					}, i);
 				}
@@ -55,8 +58,8 @@ function keydown(event) {
 				inMotion = true;
 				for (i = 0; i < timeToMove; i += timeToMove / dist) {
 					setTimeout(function() {
-						circle.x += 1;
-
+						createMap(playerX, playerY, -i, 0);
+						playerX++;
 						stage.update();
 					}, i);
 				}

@@ -49,7 +49,7 @@ function createMap(playerX,playerY,setX,setY){
 			//cellBitmap.gotoAndStop(layerData.data[idx] - 1);
 			// isometrix tile positioning based on X Y order from Tiled
 			cellBitmap.x = x*d-32+setX-(playerX-extra-screenWidth)*d ;
-			cellBitmap.y = y*d-32+setY-(playerY-extra-screenHeight)*d ;
+			cellBitmap.y = y*d+32+setY-(playerY-extra-screenHeight)*d ;
 			// add bitmap to stage
 			//stage.addChild(cellBitmap);
 			gameContainer.addChild(cellBitmap);
