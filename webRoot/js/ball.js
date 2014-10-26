@@ -1,14 +1,17 @@
+
 var KEYCODE_LEFT = 37,
 	KEYCODE_RIGHT = 39,
 	KEYCODE_UP = 38,
 	KEYCODE_DOWN = 40,
-	inMotion = false;
+	inMotion = false,
+	playerX = 100,
+	playerY = 100;
 
 function createGame() {
 	gameContainer = new createjs.Container();
 	gameContainer.mouseMoveOutside = true;
 
-	createMap();
+	createMap(playerX, playerY, 0, 0);
 
 	var circle = new createjs.Shape();
 	circle.graphics.beginFill("red").drawCircle(0, 0, 50);
@@ -42,8 +45,7 @@ function createGame() {
 					inMotion = true;
 					for (i = 0; i < timeToMove; i += timeToMove / dist) {
 						setTimeout(function() {
-							circle.y -= 1;
-							label.y -= 1;
+							
 							stage.update();
 						}, i);
 					}
