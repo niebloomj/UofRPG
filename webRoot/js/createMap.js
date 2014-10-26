@@ -2,7 +2,7 @@ var tilesetA,tilesetB;
 var mapData;
 function createMap(playerX,playerY,setX,setY){
 	//stage.removeAllChildren();
-	var extra = 1;
+	var extra = 1,screenWidth=15,screenHeight=7;
 	// json map data at the end of this file for ease of understanding (created on Tiled map editor)
 	mapData = mapDataJson;
 	// create EaselJS image for tileset
@@ -34,8 +34,8 @@ function createMap(playerX,playerY,setX,setY){
 	var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
 	var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
 
-	for ( var y = playerY - extra; y < playerY + extra; y++) {
-		for ( var x = playerX - extra; x < playerX + extra; x++) {
+	for ( var y = playerY - extra-screenHeight; y < playerY + extra+screenHeight; y++) {
+		for ( var x = playerX - extra-screenWidth; x < playerX + extra+screenWidth; x++) {
 			// create a new Bitmap for each cell
 			var cellBitmap;
 			// layer data has single dimension array
@@ -48,8 +48,8 @@ function createMap(playerX,playerY,setX,setY){
 
 			//cellBitmap.gotoAndStop(layerData.data[idx] - 1);
 			// isometrix tile positioning based on X Y order from Tiled
-			cellBitmap.x = x*d-32+setX;
-			cellBitmap.y = y*d-32+setY;
+			cellBitmap.x = x*d-32+setX-(playerX-extra-screenWidth)*d ;
+			cellBitmap.y = y*d-32+setY-(playerY-extra-screenHeight)*d ;
 			// add bitmap to stage
 			//stage.addChild(cellBitmap);
 			gameContainer.addChild(cellBitmap);
