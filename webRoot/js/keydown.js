@@ -1,4 +1,4 @@
-var inMotion = false,
+var n = false,
 	playerX = 100,
 	playerY = 100,
 	KEYCODE_LEFT = 37,
@@ -7,71 +7,51 @@ var inMotion = false,
 	KEYCODE_DOWN = 40;
 
 function keydown(event) {
+		console.log("my bae");
 	var i,
 		dist = 32,
 		timeToMove = 192;
+
 	if (!inMotion) {
 		switch (event.keyCode) {
 			case KEYCODE_UP:
-				inMotion = true;
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						createMap(playerX, playerY, 0, (timeToMove / dist));
-						stage.update();
-					}, i);
-				}
-
-				setTimeout(function() {
-					inMotion = false;
-					playerY--;
-					createMap(playerX, playerY, 0, 0);
-				}, timeToMove);
+			inMotion=true;
+			deltaY+=5;
 				break;
 			case KEYCODE_DOWN:
-				inMotion = true;
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						createMap(playerX, playerY, 0, -(timeToMove / dist));
-						stage.update();
-					}, i);
-				}
-				setTimeout(function() {
-					inMotion = false;
-					playerY++;
-					createMap(playerX, playerY, 0, 0);
-				}, timeToMove);
+			inMotion=true;
+			deltaY-=5;
 				break;
 			case KEYCODE_LEFT:
-				inMotion = true;
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						createMap(playerX, playerY, (timeToMove / dist), 0);
-						stage.update();
-					}, i);
-				}
-
-				setTimeout(function() {
-					inMotion = false;
-					playerX--;
-					createMap(playerX, playerY, 0, 0);
-				}, timeToMove);
+			inMotion=true;
+			deltaX-=5;
 				break;
 			case KEYCODE_RIGHT:
-				inMotion = true;
-				for (i = 0; i < timeToMove; i += timeToMove / dist) {
-					setTimeout(function() {
-						createMap(playerX, playerY, -(timeToMove / dist), 0);
-						stage.update();
-					}, i);
-				}
-
-				setTimeout(function() {
-					inMotion = false;
-					playerX++;
-					createMap(playerX, playerY, 0, 0);
-				}, timeToMove);
+			inMotion=true;
+			deltaX+=5;
 				break;
 		}
 	}
 	stage.update();
+}
+
+function keyup(event){
+		console.log("KEY UP");
+		switch (event.keyCode) {
+			case KEYCODE_UP:
+			inMotion=false;
+			deltaY-=5;
+				break;
+			case KEYCODE_DOWN:
+			inMotion=false;
+			deltaY+=5;
+				break;
+			case KEYCODE_LEFT:
+			inMotion=false;
+			deltaX+=5;
+				break;
+			case KEYCODE_RIGHT:
+			inMotion=false;
+			deltaX-=5;
+				break;
 }
