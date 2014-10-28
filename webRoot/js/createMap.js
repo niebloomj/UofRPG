@@ -97,8 +97,8 @@ function createMap(playerX, playerY) {
     }
 
     if (isCollision) {
-        this.playerX -= deltaX;
-        this.playerY -= deltaY;
+        this.playerX -= calcDeltaX();
+        this.playerY -= calcDeltaY();
         cordX = ((playerX / 32) | 0),
             cordY = ((playerY / 32) | 0),
             modX = 32 - (playerX % 32),

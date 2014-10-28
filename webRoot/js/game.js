@@ -12,6 +12,16 @@ var inMotion = false,
     WALK_SPEED = 5,
     SPRINT_MULTIPLIER = 1.5;
 
+// calculates correct deltaX
+function calcDeltaX() {
+  return deltaX * (isSprinting ? SPRINT_MULTIPLIER : 1);
+}
+
+// calculates correct deltaY
+function calcDeltaY() {
+  return deltaY * (isSprinting ? SPRINT_MULTIPLIER : 1);
+}
+
 function createGame() {
     //Create Game Container
     gameContainer = new createjs.Container();
@@ -32,7 +42,7 @@ function createGame() {
 }
 
 function tick(event) {
-    playerX += deltaX * (isSprinting ? SPRINT_MULTIPLIER : 1);
-    playerY += deltaY * (isSprinting ? SPRINT_MULTIPLIER : 1);
+    playerX += calcDeltaX();
+    playerY += calcDeltaY();
     createMap(playerX, playerY);
 }
