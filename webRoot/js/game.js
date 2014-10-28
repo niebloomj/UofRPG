@@ -1,6 +1,6 @@
 var inMotion = false,
-	playerX = 3500,
-	playerY = 3000,
+	playerX = 3200,
+	playerY = 3200,
 	deltaX = 0,
 	deltaY = 0,
 	circle,
@@ -16,7 +16,7 @@ function createGame() {
 
 	stage.addChild(gameContainer);
 	//Create Player Container
-	playerContainer = new createjs.Container();
+	/*playerContainer = new createjs.Container();
 	playerContainer.mouseMoveOutside = true;
 	//Create red circle- this will be the character
 	circle = new createjs.Shape();
@@ -24,7 +24,7 @@ function createGame() {
 	//Add the red circle to the player container
 	playerContainer.addChild(circle);
 	stage.addChild(playerContainer);
-	stage.update();
+	stage.update();*/
 
 	/*
 	//Create Map
@@ -47,7 +47,7 @@ function createGame() {
 	*/
 			
 	document.addEventListener("keydown", function(event) {
-		console.log("down");
+		//console.log("down");
 		//event.preventDefault();
 			
 			switch (event.keyCode) {
@@ -71,7 +71,7 @@ function createGame() {
 	});
 
 	document.addEventListener("keyup", function(event) {
-		console.log("up");
+		//console.log("up");
 		//event.preventDefault();
 			switch (event.keyCode) {
 			case KEYCODE_UP:

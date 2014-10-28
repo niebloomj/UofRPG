@@ -4,12 +4,19 @@ var mapData;
 function createMap(playerX, playerY) {
 	//PLAYERX AND PLAYERY ARE PIXELS
 	//CORDX, CORDY are tile #s
+	// mapData.tileset[1].image.properties == "SOLID"
 	gameContainer.removeAllChildren();
+	
+	//playerX-(playerX - extra*d-screenWidth*d)-16, playerY-(playerY - extra*d - screenHeight*d)-16
+	
+	
+	
+	
 	var extra = 1,
 		screenWidth = 15,
 		screenHeight = 8
-		cordX=((playerX/32) | 0)+1,
-		cordY=((playerY/32) | 0)+1,
+		cordX=((playerX/32) | 0),
+		cordY=((playerY/32) | 0),
 		modX=32-(playerX%32),
 		modY=32-(playerY%32);
 
@@ -18,7 +25,7 @@ function createMap(playerX, playerY) {
 	// create EaselJS image for tileset
 	tilesetA = new Image();
 	tilesetB = new Image();
-
+	
 	tilesetA.src = mapData.tilesets[0].image;
 	tilesetB.src = mapData.tilesets[1].image;
 
@@ -44,6 +51,49 @@ function createMap(playerX, playerY) {
 	var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
 	var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
 
+	
+	var topXLeft = cordX, topYLeft = cordY, botXLeft = cordX, botYLeft = cordY+32, topXRight=cordX+32, topYRight=cordY, botXRight=cordX+32,botYRight = cordY+32;
+	
+	/*
+	* Mental note flip later
+	*/
+	var topLeftIndex = topXLeft + topYLeft * layerData.width;
+	var botLeftIndex = botXLeft + botYLeft * layerData.width;
+	var topRightIndex = topXRight + topYRight * layerData.width;
+	var botRightIndex = botXRight + botYRight * layerData.width;
+	
+	var isCollision = false;
+	try{
+		//console.log(mapData.tilesets[layerData.data[topLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]);
+	}catch (err){
+	
+	}
+	try{
+		if (mapData.tilesets[layerData.data[topLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
+			isCollision = true;
+		}
+		if (mapData.tilesets[layerData.data[botLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
+			isCollision = true;
+		}
+		if (mapData.tilesets[layerData.data[topRightIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
+			isCollision = true;
+		}
+		if (mapData.tilesets[layerData.data[botRightIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
+			isCollision = true;
+		}
+	}catch (err){
+	
+	}
+	
+	if (isCollision){
+		this.playerX -= deltaX; 
+		this.playerY -= deltaY; 
+		cordX=((playerX/32) | 0),
+		cordY=((playerY/32) | 0),
+		modX=32-(playerX%32),
+		modY=32-(playerY%32);
+	}
+	
 	for (var y = cordY - extra - screenHeight; y < cordY + extra + screenHeight; y++) {
 		for (var x = cordX - extra - screenWidth; x < cordX + extra + screenWidth; x++) {
 			// create a new Bitmap for each cell
@@ -65,6 +115,13 @@ function createMap(playerX, playerY) {
 			gameContainer.addChild(cellBitmap);
 		}
 	}
+
+	//Create red circle- this will be the character
+	circle = new createjs.Shape();
+	circle.graphics.beginFill("red").drawCircle(playerX-(playerX - extra*d-screenWidth*d)-16, playerY-(playerY - extra*d - screenHeight*d)-16, 16);
+	//Add the red circle to the player container
+	gameContainer.addChild(circle);
+	
 	stage.update();
 }
 
