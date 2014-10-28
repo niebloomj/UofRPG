@@ -1,27 +1,57 @@
-var inMotion = false,
-    playerX = 3200,
-    playerY = 3200,
-    deltaX = 0,
-    deltaY = 0,
-    isSprinting = false,
-    circle,
-    isNoCollide = false,
-    KEYCODE_DEBUG = 192,
-    KEYCODE_LEFT = 37,
-    KEYCODE_RIGHT = 39,
-    KEYCODE_UP = 38,
-    KEYCODE_DOWN = 40,
-    WALK_SPEED = 5,
-    SPRINT_MULTIPLIER = 1.5;
+// player coordinates
+var playerX = 3200;
+var playerY = 3200;
+
+// player status
+var isMoveU = false;
+var isMoveD = false;
+var isMoveL = false;
+var isMoveR = false;
+var isSprinting = false;
+var isNoCollide = false;
+
+var circle;
+
+// key bindings
+var KEYCODE_DEBUG = 192;
+var KEYCODE_LEFT = 37;
+var KEYCODE_RIGHT = 39;
+var KEYCODE_UP = 38;
+var KEYCODE_DOWN = 40;
+
+// constants for movement speed
+var WALK_SPEED = 5;
+var SPRINT_MULTIPLIER = 1.5;
+
+// determines if the player is currently moving
+function isInMotion() {
+    return isMoveU || isMoveD || isMoveL || isMoveR;
+}
 
 // calculates correct deltaX
-function calcDeltaX() {
-  return deltaX * (isSprinting ? SPRINT_MULTIPLIER : 1);
+function deltaX() {
+    var deltaX = 0;
+    if (isMoveL) {
+        deltaX -= WALK_SPEED;
+    }
+    if (isMoveR) {
+        deltaX += WALK_SPEED;
+    }
+    deltaX *= (isSprinting ? SPRINT_MULTIPLIER : 1)
+    return deltaX;
 }
 
 // calculates correct deltaY
-function calcDeltaY() {
-  return deltaY * (isSprinting ? SPRINT_MULTIPLIER : 1);
+function deltaY() {
+    var deltaY = 0;
+    if (isMoveU) {
+        deltaY -= WALK_SPEED;
+    }
+    if (isMoveD) {
+        deltaY += WALK_SPEED;
+    }
+    deltaY *= (isSprinting ? SPRINT_MULTIPLIER : 1)
+    return deltaY;
 }
 
 function createGame() {
@@ -44,7 +74,7 @@ function createGame() {
 }
 
 function tick(event) {
-    playerX += calcDeltaX();
-    playerY += calcDeltaY();
+    playerX += deltaX();
+    playerY += deltaY();
     createMap(playerX, playerY);
 }

@@ -3,20 +3,16 @@ function keydown(event) {
     isNoCollide = event.ctrlKey;
     switch (event.keyCode) {
         case KEYCODE_UP:
-            inMotion = true;
-            deltaY = -1*WALK_SPEED;
+            isMoveU = true;
             break;
         case KEYCODE_DOWN:
-            inMotion = true;
-            deltaY = WALK_SPEED;
+            isMoveD = true;
             break;
         case KEYCODE_LEFT:
-            inMotion = true;
-            deltaX = -1*WALK_SPEED;
+            isMoveL = true;
             break;
         case KEYCODE_RIGHT:
-            inMotion = true;
-            deltaX = WALK_SPEED;
+            isMoveR = true;
             break;
         case KEYCODE_DEBUG:
             debugMode = !debugMode;
@@ -29,20 +25,16 @@ function keyup(event) {
     isNoCollide = event.ctrlKey;
     switch (event.keyCode) {
         case KEYCODE_UP:
-            inMotion = false;
-            deltaY = 0;
+            isMoveU = false;
             break;
         case KEYCODE_DOWN:
-            inMotion = false;
-            deltaY = 0;
+            isMoveD = false;
             break;
         case KEYCODE_LEFT:
-            inMotion = false;
-            deltaX = 0;
+            isMoveL = false;
             break;
         case KEYCODE_RIGHT:
-            inMotion = false;
-            deltaX = 0;
+            isMoveR = false;
             break;
     }
 }
