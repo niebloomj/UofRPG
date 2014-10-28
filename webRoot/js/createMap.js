@@ -2,15 +2,12 @@ var tilesetA, tilesetB;
 var mapData;
 
 function createMap(playerX, playerY) {
-	//PLAYERX AND PLAYERY ARE PIXELS
-	//CORDX, CORDY are tile #s
-	// mapData.tileset[1].image.properties == "SOLID"
+   /*
+	* playerX and playerY are in pixels
+	* cordX and cordY are in tile #s
+	*/
+
 	gameContainer.removeAllChildren();
-	
-	//playerX-(playerX - extra*d-screenWidth*d)-16, playerY-(playerY - extra*d - screenHeight*d)-16
-	
-	
-	
 	
 	var extra = 1,
 		screenWidth = 15,
@@ -22,6 +19,7 @@ function createMap(playerX, playerY) {
 
 	// json map data at the end of this file for ease of understanding (created on Tiled map editor)
 	mapData = mapDataJson;
+	
 	// create EaselJS image for tileset
 	tilesetA = new Image();
 	tilesetB = new Image();
@@ -51,27 +49,19 @@ function createMap(playerX, playerY) {
 	var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
 	var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
 
-	
 	var topXLeft = cordX, topYLeft = cordY, botXLeft = cordX, botYLeft = cordY-1, topXRight=cordX-1, topYRight=cordY, botXRight=cordX-1,botYRight = cordY-1;
-	/*
-	* Mental note flip later
-	*/
+
 	var topLeftIndex = topXLeft + topYLeft * layerData.width;
 	var botLeftIndex = botXLeft + botYLeft * layerData.width;
 	var topRightIndex = topXRight + topYRight * layerData.width;
 	var botRightIndex = botXRight + botYRight * layerData.width;
 	
 	var isCollision = false;
-	try{
-		//console.log(mapData.tilesets[layerData.data[topLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]);
-	}catch (err){
 	
-	}
-	
+	// Note each statement MUST be in a separate try-catch. This was done intentionally.
 	try{
 		if (mapData.tilesets[layerData.data[botLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
 			isCollision = true;
-			console.log("a");
 		}
 	}catch (err){
 		
@@ -80,15 +70,14 @@ function createMap(playerX, playerY) {
 		if (mapData.tilesets[layerData.data[topLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
 			isCollision = true;
 		}
-		}catch (err){
+	}catch (err){
 		
 	}
-	
 	try{
 		if (mapData.tilesets[layerData.data[topRightIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
 			isCollision = true;
 		}
-		}catch (err){
+	}catch (err){
 		
 	}
 	try{
@@ -117,17 +106,17 @@ function createMap(playerX, playerY) {
 			// layer data has single dimension array
 			var idx = x + y * layerData.width;
 			// tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
-			if (layerData.data[idx] == 1)
+			if (layerData.data[idx] == 1){
 				cellBitmap = new createjs.Sprite(tilesetSheetA);
-			else
+			}else{
 				cellBitmap = new createjs.Sprite(tilesetSheetB);
+			}
 
 			//cellBitmap.gotoAndStop(layerData.data[idx] - 1);
 			// isometrix tile positioning based on X Y order from Tiled
 			cellBitmap.x = x * d - 32 + modX - (cordX - extra - screenWidth) * d;
 			cellBitmap.y = y * d -32 + modY - (cordY - extra - screenHeight) * d;
-			// add bitmap to stage
-			//stage.addChild(cellBitmap);
+			
 			gameContainer.addChild(cellBitmap);
 		}
 	}
@@ -135,6 +124,7 @@ function createMap(playerX, playerY) {
 	//Create red circle- this will be the character
 	circle = new createjs.Shape();
 	circle.graphics.beginFill("red").drawCircle(playerX-(playerX - extra*d-screenWidth*d)-16, playerY-(playerY - extra*d - screenHeight*d)-16, 16);
+	
 	//Add the red circle to the player container
 	gameContainer.addChild(circle);
 	
