@@ -16,7 +16,7 @@ function createMap(playerX, playerY) {
         cordY = ((playerY / 32) | 0),
         modX = 32 - (playerX % 32),
         modY = 32 - (playerY % 32);
-
+    
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     mapData = mapDataJson;
 
@@ -95,6 +95,10 @@ function createMap(playerX, playerY) {
     } catch (err) {
 
     }
+    
+    if (debugMode && isNoCollide) {
+        isCollision = false;
+    }
 
     if (isCollision) {
         this.playerX -= calcDeltaX();
@@ -134,6 +138,32 @@ function createMap(playerX, playerY) {
 
     //Add the red circle to the player container
     gameContainer.addChild(circle);
+    
+    if (debugMode) {
+        var LINE_X = 2;
+        var LINE_HEIGHT = 18;
+        var nextLineY = 0;
+        
+        var coordText = new createjs.Text("coords: "+cordX+","+cordY, "bold 16px monospace", "#ff0000");
+        coordText.x = LINE_X;
+        coordText.y = nextLineY;
+        gameContainer.addChild(coordText);
+        nextLineY += LINE_HEIGHT;
+        
+        var pixelTest = new createjs.Text("exact: "+playerX+","+playerY, "bold 16px monospace", "#ff0000");
+        pixelTest.x = LINE_X;
+        pixelTest.y = nextLineY;
+        gameContainer.addChild(pixelTest);
+        nextLineY += LINE_HEIGHT;
+        
+        if (isNoCollide) {
+            var noCollideText = new createjs.Text("NoCollide", "bold 16px monospace", "#ff0000");
+            noCollideText.x = LINE_X;
+            noCollideText.y = nextLineY;
+            gameContainer.addChild(noCollideText);
+            nextLineY += LINE_HEIGHT;
+        }
+    }
 
     stage.update();
 }

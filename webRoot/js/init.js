@@ -7,6 +7,14 @@ Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
     "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
 var accountsTable = new AccountsTable();
 
+var debugMode = false;
+if (window.location.hash) {
+    var hash = window.location.hash.substring(1);
+    if (hash == "debug") {
+        debugMode = true;
+    }
+}
+
 function init() {
     //Create the Stage
     stage = new createjs.Stage("demoCanvas");
@@ -91,6 +99,23 @@ function init() {
     });
 }
 init();
+
+/*$.ajaxSetup({
+  cache: true
+});*/
+
+// loads up all the scripts
+$.getScript("js/keydown.js", function(){
+    $.getScript("js/game.js", function(){
+        $.getScript("js/createMap.js", function(){
+            
+            if (debugMode) {
+              loginSuccessful();
+            }
+            
+        });
+    });
+});
 
 function loginSuccessful() {
     $("#loginContainer").addClass("hidden");

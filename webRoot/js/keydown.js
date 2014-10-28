@@ -1,5 +1,6 @@
 function keydown(event) {
     isSprinting = event.shiftKey;
+    isNoCollide = event.ctrlKey;
     switch (event.keyCode) {
         case KEYCODE_UP:
             inMotion = true;
@@ -17,11 +18,15 @@ function keydown(event) {
             inMotion = true;
             deltaX = WALK_SPEED;
             break;
+        case KEYCODE_DEBUG:
+            debugMode = !debugMode;
+            break;
     }
 }
 
 function keyup(event) {
     isSprinting = event.shiftKey;
+    isNoCollide = event.ctrlKey;
     switch (event.keyCode) {
         case KEYCODE_UP:
             inMotion = false;
