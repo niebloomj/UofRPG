@@ -3,11 +3,14 @@ var inMotion = false,
     playerY = 3200,
     deltaX = 0,
     deltaY = 0,
+    isSprinting = false,
     circle,
     KEYCODE_LEFT = 37,
     KEYCODE_RIGHT = 39,
     KEYCODE_UP = 38,
-    KEYCODE_DOWN = 40;
+    KEYCODE_DOWN = 40,
+    WALK_SPEED = 5,
+    SPRINT_MULTIPLIER = 1.5;
 
 function createGame() {
     //Create Game Container
@@ -29,7 +32,7 @@ function createGame() {
 }
 
 function tick(event) {
-    playerX += deltaX;
-    playerY += deltaY;
+    playerX += deltaX * (isSprinting ? SPRINT_MULTIPLIER : 1);
+    playerY += deltaY * (isSprinting ? SPRINT_MULTIPLIER : 1);
     createMap(playerX, playerY);
 }
