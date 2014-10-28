@@ -7,7 +7,6 @@ var n = false,
 	KEYCODE_DOWN = 40;
 
 function keydown(event) {
-		console.log("my bae");
 	var i,
 		dist = 32,
 		timeToMove = 192;
@@ -36,7 +35,6 @@ function keydown(event) {
 }
 
 function keyup(event){
-		console.log("KEY UP");
 		switch (event.keyCode) {
 			case KEYCODE_UP:
 			inMotion=false;

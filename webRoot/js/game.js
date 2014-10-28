@@ -96,13 +96,10 @@ function createGame() {
 	createjs.Ticker.on("tick", tick);
 	createjs.Ticker.setFPS(30);
 }
-function tick(event) {
-			//console.log("naropa has");
-				//console.log("SWAG");
-				playerX+=deltaX;
-				playerY+=deltaY;
-				//createMap(playerX,playerY,0,0);
-				createMap(playerX,playerY);
-			
+		function tick(event) {
+			playerX+=deltaX;
+			playerY+=deltaY;
+			//createMap(playerX,playerY,0,0);
+			createMap(playerX,playerY);
 		}
 

@@ -52,8 +52,7 @@ function createMap(playerX, playerY) {
 	var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
 
 	
-	var topXLeft = cordX, topYLeft = cordY, botXLeft = cordX, botYLeft = cordY+32, topXRight=cordX+32, topYRight=cordY, botXRight=cordX+32,botYRight = cordY+32;
-	
+	var topXLeft = cordX, topYLeft = cordY, botXLeft = cordX, botYLeft = cordY-1, topXRight=cordX-1, topYRight=cordY, botXRight=cordX-1,botYRight = cordY-1;
 	/*
 	* Mental note flip later
 	*/
@@ -68,21 +67,37 @@ function createMap(playerX, playerY) {
 	}catch (err){
 	
 	}
+	
+	try{
+		if (mapData.tilesets[layerData.data[botLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
+			isCollision = true;
+			console.log("a");
+		}
+	}catch (err){
+		
+	}
 	try{
 		if (mapData.tilesets[layerData.data[topLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
 			isCollision = true;
 		}
-		if (mapData.tilesets[layerData.data[botLeftIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
-			isCollision = true;
-		}
+		}catch (err){
+		
+	}
+	
+	try{
 		if (mapData.tilesets[layerData.data[topRightIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
 			isCollision = true;
 		}
+		}catch (err){
+		
+	}
+	try{
 		if (mapData.tilesets[layerData.data[botRightIndex]-1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]){
 			isCollision = true;
+			console.log("d")
 		}
 	}catch (err){
-	
+		
 	}
 	
 	if (isCollision){
@@ -92,6 +107,7 @@ function createMap(playerX, playerY) {
 		cordY=((playerY/32) | 0),
 		modX=32-(playerX%32),
 		modY=32-(playerY%32);
+		isCollision = false;
 	}
 	
 	for (var y = cordY - extra - screenHeight; y < cordY + extra + screenHeight; y++) {
