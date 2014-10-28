@@ -148,8 +148,7 @@ function createMap(playerX, playerY, delta) {
         var nextLineY = 0;
         
         var measuredFpsStr = createjs.Ticker.getMeasuredFPS().toFixed(2);
-        var targetFpsStr = createjs.Ticker.getFPS().toFixed(2);
-        var fpsText = new createjs.Text("fps: "+measuredFpsStr+"/"+targetFpsStr, OVERLAY_STYLE, OVERLAY_COLOR);
+        var fpsText = new createjs.Text("fps: "+measuredFpsStr, OVERLAY_STYLE, OVERLAY_COLOR);
         fpsText.x = LINE_X;
         fpsText.y = nextLineY;
         gameContainer.addChild(fpsText);
