@@ -23,13 +23,14 @@ var KEYCODE_DOWN = 40;
 var WALK_SPEED = 5;
 var SPRINT_MULTIPLIER = 1.5;
 
+
 // determines if the player is currently moving
 function isInMotion() {
     return isMoveU || isMoveD || isMoveL || isMoveR;
 }
 
 // calculates correct deltaX
-function deltaX() {
+function deltaX(elapsedTime) {
     var deltaX = 0;
     if (isMoveL) {
         deltaX -= WALK_SPEED;
@@ -38,11 +39,12 @@ function deltaX() {
         deltaX += WALK_SPEED;
     }
     deltaX *= (isSprinting ? SPRINT_MULTIPLIER : 1)
-    return deltaX;
+    deltaX *= elapsedTime / 33;
+    return Math.floor(deltaX);
 }
 
 // calculates correct deltaY
-function deltaY() {
+function deltaY(elapsedTime) {
     var deltaY = 0;
     if (isMoveU) {
         deltaY -= WALK_SPEED;
@@ -51,7 +53,8 @@ function deltaY() {
         deltaY += WALK_SPEED;
     }
     deltaY *= (isSprinting ? SPRINT_MULTIPLIER : 1)
-    return deltaY;
+    deltaY *= elapsedTime / 33;
+    return Math.floor(deltaY);
 }
 
 function createGame() {
@@ -74,7 +77,7 @@ function createGame() {
 }
 
 function tick(event) {
-    playerX += deltaX();
-    playerY += deltaY();
-    createMap(playerX, playerY);
+    playerX += deltaX(event.delta);
+    playerY += deltaY(event.delta);
+    createMap(playerX, playerY, event.delta);
 }

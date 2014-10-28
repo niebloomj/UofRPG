@@ -1,7 +1,7 @@
 var tilesetA, tilesetB;
 var mapData;
 
-function createMap(playerX, playerY) {
+function createMap(playerX, playerY, delta) {
     /*
      * playerX and playerY are in pixels
      * cordX and cordY are in tile #s
@@ -101,8 +101,8 @@ function createMap(playerX, playerY) {
     }
 
     if (isCollision) {
-        this.playerX -= deltaX();
-        this.playerY -= deltaY();
+        this.playerX -= deltaX(delta);
+        this.playerY -= deltaY(delta);
         cordX = ((playerX / 32) | 0),
             cordY = ((playerY / 32) | 0),
             modX = 32 - (playerX % 32),
