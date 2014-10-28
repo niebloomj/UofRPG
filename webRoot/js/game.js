@@ -20,6 +20,7 @@ var KEYCODE_UP = 38;
 var KEYCODE_DOWN = 40;
 
 // constants for movement speed
+var TARGET_FPS = 30;
 var WALK_SPEED = 5;
 var SPRINT_MULTIPLIER = 1.5;
 
@@ -39,7 +40,7 @@ function deltaX(elapsedTime) {
         deltaX += WALK_SPEED;
     }
     deltaX *= (isSprinting ? SPRINT_MULTIPLIER : 1)
-    deltaX *= elapsedTime / 33;
+    deltaX *= elapsedTime / TARGET_FPS;
     return Math.floor(deltaX);
 }
 
@@ -53,7 +54,7 @@ function deltaY(elapsedTime) {
         deltaY += WALK_SPEED;
     }
     deltaY *= (isSprinting ? SPRINT_MULTIPLIER : 1)
-    deltaY *= elapsedTime / 33;
+    deltaY *= elapsedTime / TARGET_FPS;
     return Math.floor(deltaY);
 }
 
@@ -73,7 +74,8 @@ function createGame() {
     });
 
     createjs.Ticker.on("tick", tick);
-    createjs.Ticker.setFPS(30);
+    createjs.Ticker.setInterval(1000/TARGET_FPS);
+    //createjs.Ticker.setFPS(60); //for the glory of GabeN!
 }
 
 function tick(event) {

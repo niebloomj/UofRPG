@@ -139,25 +139,36 @@ function createMap(playerX, playerY, delta) {
     //Add the red circle to the player container
     gameContainer.addChild(circle);
     
+    // overlay for debug mode
     if (debugMode) {
+        var OVERLAY_STYLE = "bold 16px monospace";
+        var OVERLAY_COLOR = "#ff0000";
         var LINE_X = 2;
         var LINE_HEIGHT = 18;
         var nextLineY = 0;
         
-        var coordText = new createjs.Text("coords: "+cordX+","+cordY, "bold 16px monospace", "#ff0000");
+        var measuredFpsStr = createjs.Ticker.getMeasuredFPS().toFixed(2);
+        var targetFpsStr = createjs.Ticker.getFPS().toFixed(2);
+        var fpsText = new createjs.Text("fps: "+measuredFpsStr+"/"+targetFpsStr, OVERLAY_STYLE, OVERLAY_COLOR);
+        fpsText.x = LINE_X;
+        fpsText.y = nextLineY;
+        gameContainer.addChild(fpsText);
+        nextLineY += LINE_HEIGHT;
+        
+        var coordText = new createjs.Text("coords: "+cordX+","+cordY, OVERLAY_STYLE, OVERLAY_COLOR);
         coordText.x = LINE_X;
         coordText.y = nextLineY;
         gameContainer.addChild(coordText);
         nextLineY += LINE_HEIGHT;
         
-        var pixelTest = new createjs.Text("exact: "+playerX+","+playerY, "bold 16px monospace", "#ff0000");
+        var pixelTest = new createjs.Text("exact: "+playerX+","+playerY, OVERLAY_STYLE, OVERLAY_COLOR);
         pixelTest.x = LINE_X;
         pixelTest.y = nextLineY;
         gameContainer.addChild(pixelTest);
         nextLineY += LINE_HEIGHT;
         
         if (isNoCollide) {
-            var noCollideText = new createjs.Text("NoCollide", "bold 16px monospace", "#ff0000");
+            var noCollideText = new createjs.Text("nocollide", OVERLAY_STYLE, OVERLAY_COLOR);
             noCollideText.x = LINE_X;
             noCollideText.y = nextLineY;
             gameContainer.addChild(noCollideText);
