@@ -10,5 +10,5 @@ A class project to develop a role-playing game based on the University of Roches
 * Naropa Perez
 * [Alex Hankin](//github.com/AlexHankin)
 * Bradley Beyers
-* [Santiago Loane] (//github.com/LoaneShark)
+* [Santiago Loane](//github.com/LoaneShark)
 * [Hayden Schiff](//github.com/oxguy3)
