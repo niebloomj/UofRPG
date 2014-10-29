@@ -14,9 +14,6 @@ function keydown(event) {
         case KEYCODE_RIGHT:
             player.isMoveR = true;
             break;
-        case KEYCODE_DEBUG:
-            debugMode = !debugMode;
-            break;
     }
 }
 
@@ -35,6 +32,9 @@ function keyup(event) {
             break;
         case KEYCODE_RIGHT:
             player.isMoveR = false;
+            break;
+        case KEYCODE_DEBUG:
+            debugMode = !debugMode;
             break;
     }
 }
