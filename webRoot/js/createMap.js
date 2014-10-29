@@ -49,14 +49,14 @@ function createMap(player, delta) {
     var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
     var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
 
-    var topXLeft = cordX,
-        topYLeft = cordY,
-        botXLeft = cordX,
-        botYLeft = cordY - 1,
-        topXRight = cordX - 1,
-        topYRight = cordY,
-        botXRight = cordX - 1,
-        botYRight = cordY - 1;
+    var botXRight = cordX,
+        botYRight = cordY,
+        topXRight = cordX,
+        topYRight = cordY - 1,
+        botXLeft = cordX - 1,
+        botYLeft = cordY,
+        topXLeft = cordX - 1,
+        topYLeft = cordY - 1;
 
     var topLeftIndex = topXLeft + topYLeft * layerData.width;
     var botLeftIndex = botXLeft + botYLeft * layerData.width;
@@ -86,17 +86,30 @@ function createMap(player, delta) {
         botRightCollision = mapData.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
     } catch (err) {}
     
-    var topCollision = topLeftCollision && topRightCollision;
-    var botCollision = botLeftCollision && botRightCollision;
-    var leftCollision = topLeftCollision && botLeftCollision;
-    var rightCollision = topRightCollision && botRightCollision;
+    var topCollision = topLeftCollision || topRightCollision;
+    var botCollision = botLeftCollision || botRightCollision;
+    var leftCollision = topLeftCollision || botLeftCollision;
+    var rightCollision = topRightCollision || botRightCollision;
+    
+    //var isCollision = topCollision || botCollision || leftCollision || rightCollision;
     
     if (debugMode && player.isNoCollide) {
+        //isCollision = false;
         topCollision = false;
         botCollision = false;
         leftCollision = false;
         rightCollision = false;
     }
+    
+    /*if (isCollision) {
+        player.x -= player.deltaX();
+        player.y -= player.deltaY();
+        cordX = ((player.x / 32) | 0),
+            cordY = ((player.y / 32) | 0),
+            modX = 32 - (player.x % 32),
+            modY = 32 - (player.y % 32);
+        isCollision = false;
+    }*/
     
     if (topCollision || botCollision) {
         player.y -= player.deltaY(delta);
