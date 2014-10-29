@@ -1,20 +1,20 @@
 function Player(name) {
     this.name = name;
-    
+
     this.isMoveU = false;
     this.isMoveD = false;
     this.isMoveL = false;
     this.isMoveR = false;
-    
+
     this.isSprinting = false;
     this.isNoCollide = false;
-    
+
     this.walkSpeed = 5;
     this.sprintMultiplier = 1.5;
 }
 
 // defines a human-controlled entity
-Player.prototype = new Entity(3200,3200);
+Player.prototype = new Entity(3200, 3200);
 
 
 Player.prototype.deltaX = function(elapsedTime) {
@@ -42,7 +42,7 @@ Player.prototype.deltaY = function(elapsedTime) {
     deltaY *= elapsedTime / TARGET_FPS;
     return Math.floor(deltaY);
 };
- 
+
 Player.prototype.move = function(delta) {
     this.x += this.deltaX(delta);
     this.y += this.deltaY(delta);
@@ -53,7 +53,7 @@ Player.prototype.getDisplay = function() {
     circle.graphics.beginFill("blue").drawCircle(0, 0, 16);
     return circle;
 };
-    
+
 Player.prototype.width = function() {
     return 32;
 }
