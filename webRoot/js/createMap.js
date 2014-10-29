@@ -206,7 +206,7 @@ var mapDataJson = {
     "tileheight": 32,
     "tilesets": [{
         "firstgid": 1,
-        "image": "..\/tmx\/1375641.original.png",
+        "image": "..\/img\/grass1.png",
         "imageheight": 32,
         "imagewidth": 32,
         "margin": 0,
@@ -219,7 +219,7 @@ var mapDataJson = {
         "tilewidth": 32
     }, {
         "firstgid": 2,
-        "image": "..\/tmx\/1375644.original.png",
+        "image": "..\/img\/bricks1.png",
         "imageheight": 32,
         "imagewidth": 32,
         "margin": 0,
