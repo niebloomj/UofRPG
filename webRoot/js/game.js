@@ -26,7 +26,7 @@ function createGame() {
     });
 
     createjs.Ticker.on("tick", tick);
-    createjs.Ticker.setInterval(1000/TARGET_FPS);
+    createjs.Ticker.setInterval(1000 / TARGET_FPS);
     //createjs.Ticker.setFPS(60); //for the glory of GabeN!
 }
 

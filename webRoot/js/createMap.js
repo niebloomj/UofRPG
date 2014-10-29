@@ -16,7 +16,7 @@ function createMap(player, delta) {
         cordY = ((player.y / 32) | 0),
         modX = 32 - (player.x % 32),
         modY = 32 - (player.y % 32);
-    
+
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     mapData = mapDataJson;
 
@@ -62,40 +62,40 @@ function createMap(player, delta) {
     var botLeftIndex = botXLeft + botYLeft * layerData.width;
     var topRightIndex = topXRight + topYRight * layerData.width;
     var botRightIndex = botXRight + botYRight * layerData.width;
-    
-    
+
+
     var topLeftCollision = false;
     var topRightCollision = false;
     var botLeftCollision = false;
     var botRightCollision = false;
-    
+
     // Note each statement MUST be in a separate try-catch. This was done intentionally.
     try {
         botLeftCollision = mapData.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
     } catch (err) {}
-    
+
     try {
         topLeftCollision = mapData.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
     } catch (err) {}
-    
+
     try {
         topRightCollision = mapData.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
     } catch (err) {}
-    
+
     try {
         botRightCollision = mapData.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
     } catch (err) {}
-    
+
     var topCollisionHard = topLeftCollision && topRightCollision;
     var botCollisionHard = botLeftCollision && botRightCollision;
     var leftCollisionHard = topLeftCollision && botLeftCollision;
     var rightCollisionHard = topRightCollision && botRightCollision;
-    
+
     var topCollision = topCollisionHard || (topLeftCollision && !leftCollisionHard) || (topRightCollision && !rightCollisionHard);
     var botCollision = botCollisionHard || (botLeftCollision && !leftCollisionHard) || (botRightCollision && !rightCollisionHard);
     var leftCollision = leftCollisionHard || (topLeftCollision && !topCollisionHard) || (botLeftCollision && !botCollisionHard);
     var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
-    
+
     if (debugMode && player.isNoCollide) {
         //isCollision = false;
         topCollision = false;
@@ -103,7 +103,7 @@ function createMap(player, delta) {
         leftCollision = false;
         rightCollision = false;
     }
-    
+
     if (topCollision || botCollision) {
         player.y -= player.deltaY(delta);
         cordY = ((player.y / 32) | 0);
@@ -141,37 +141,37 @@ function createMap(player, delta) {
             gameContainer.addChild(cellBitmap);
         }
     }
-    
-    
+
+
     var entities = [player];
-    
+
     // loop to reposition all entities and then draw them
     for (var i = 0; i < entities.length; i++) {
         var entity = entities[i];
         var display = entity.getDisplay();
         display.setTransform(
-            entity.x - (entity.x - entity.width()/2 - screenWidth * d),
-            entity.y - (entity.y - entity.height()/2 - screenHeight * d)
+            entity.x - (entity.x - entity.width() / 2 - screenWidth * d),
+            entity.y - (entity.y - entity.height() / 2 - screenHeight * d)
         );
         gameContainer.addChild(display);
     }
-    
 
-    
+
+
     // overlay for debug mode
     if (debugMode) {
         var overlayStr = "";
         var LBREAK = "<br>";
-        
+
         var measuredFpsStr = createjs.Ticker.getMeasuredFPS().toFixed(2);
-        overlayStr += "fps: "+measuredFpsStr;
-        
+        overlayStr += "fps: " + measuredFpsStr;
+
         overlayStr += LBREAK;
-        overlayStr += "coords: "+cordX+","+cordY;
-        
+        overlayStr += "coords: " + cordX + "," + cordY;
+
         overlayStr += LBREAK;
-        overlayStr += "exact: "+player.x+","+player.y;
-        
+        overlayStr += "exact: " + player.x + "," + player.y;
+
         if (player.isNoCollide) {
             overlayStr += LBREAK;
             overlayStr += "no collision"
