@@ -105,16 +105,16 @@ init();
 });*/
 
 // loads up all the scripts
-$.getScript("js/keydown.js", function(){
-    $.getScript("js/game.js", function(){
-        $.getScript("js/createMap.js", function(){
-            $.getScript("js/entity.class.js", function(){
-                $.getScript("js/player.class.js", function(){
-                    
-                    if (debugMode) {
-                      loginSuccessful();
-                    }
-                    
+$.getScript("js/keydown.js", function() {
+    $.getScript("js/keyup.js", function() {
+        $.getScript("js/game.js", function() {
+            $.getScript("js/createMap.js", function() {
+                $.getScript("js/entity.class.js", function() {
+                    $.getScript("js/player.class.js", function() {
+                        if (debugMode) {
+                            loginSuccessful();
+                        }
+                    });
                 });
             });
         });
