@@ -50,7 +50,7 @@ Player.prototype.move = function(delta) {
 
 Player.prototype.getDisplay = function() {
     circle = new createjs.Shape();
-    circle.graphics.beginFill("red").drawCircle(0, 0, 16);
+    circle.graphics.beginFill("blue").drawCircle(0, 0, 16);
     return circle;
 };
     
