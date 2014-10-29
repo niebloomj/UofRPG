@@ -1,7 +1,7 @@
 var tilesetA, tilesetB;
 var mapData;
 
-function createMap(playerX, playerY, delta) {
+function createMap(player, delta) {
     /*
      * playerX and playerY are in pixels
      * cordX and cordY are in tile #s
@@ -12,10 +12,10 @@ function createMap(playerX, playerY, delta) {
     var extra = 1,
         screenWidth = 15,
         screenHeight = 8,
-        cordX = ((playerX / 32) | 0),
-        cordY = ((playerY / 32) | 0),
-        modX = 32 - (playerX % 32),
-        modY = 32 - (playerY % 32);
+        cordX = ((player.x / 32) | 0),
+        cordY = ((player.y / 32) | 0),
+        modX = 32 - (player.x % 32),
+        modY = 32 - (player.y % 32);
     
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     mapData = mapDataJson;
@@ -91,25 +91,25 @@ function createMap(playerX, playerY, delta) {
     var leftCollision = topLeftCollision && botLeftCollision;
     var rightCollision = topRightCollision && botRightCollision;
     
-    if (debugMode && isNoCollide) {
+    if (debugMode && player.isNoCollide) {
         topCollision = false;
         botCollision = false;
         leftCollision = false;
         rightCollision = false;
     }
-
+    
     if (topCollision || botCollision) {
-        this.playerY -= deltaY(delta);
-        cordY = ((playerY / 32) | 0);
-        modY = 32 - (playerY % 32);
+        player.y -= player.deltaY(delta);
+        cordY = ((player.y / 32) | 0);
+        modY = 32 - (player.y % 32);
         topCollision = false;
         botCollision = false;
     }
 
     if (leftCollision || rightCollision) {
-        this.playerX -= deltaX(delta);
-        cordX = ((playerX / 32) | 0);
-        modX = 32 - (playerX % 32);
+        player.x -= player.deltaX(delta);
+        cordX = ((player.x / 32) | 0);
+        modX = 32 - (player.x % 32);
         leftCollision = false;
         rightCollision = false;
     }
@@ -135,13 +135,30 @@ function createMap(playerX, playerY, delta) {
             gameContainer.addChild(cellBitmap);
         }
     }
-
+    
+    /*
     //Create red circle- this will be the character
     circle = new createjs.Shape();
     circle.graphics.beginFill("red").drawCircle(playerX - (playerX - extra * d - screenWidth * d) - 16, playerY - (playerY - extra * d - screenHeight * d) - 16, 16);
 
     //Add the red circle to the player container
     gameContainer.addChild(circle);
+    */
+    
+    var entities = [player];
+    
+    
+    for (var i = 0; i < entities.length; i++) {
+        var entity = entities[i];
+        var display = entity.getDisplay();
+        display.setTransform(
+            entity.x - (entity.x - entity.width() - screenWidth * d),
+            entity.y - (entity.y - entity.height() - screenHeight * d)
+        );
+        gameContainer.addChild(display);
+    }
+    
+
     
     // overlay for debug mode
     if (debugMode) {
@@ -164,13 +181,13 @@ function createMap(playerX, playerY, delta) {
         gameContainer.addChild(coordText);
         nextLineY += LINE_HEIGHT;
         
-        var pixelTest = new createjs.Text("exact: "+playerX+","+playerY, OVERLAY_STYLE, OVERLAY_COLOR);
+        var pixelTest = new createjs.Text("exact: "+player.x+","+player.y, OVERLAY_STYLE, OVERLAY_COLOR);
         pixelTest.x = LINE_X;
         pixelTest.y = nextLineY;
         gameContainer.addChild(pixelTest);
         nextLineY += LINE_HEIGHT;
         
-        if (isNoCollide) {
+        if (player.isNoCollide) {
             var noCollideText = new createjs.Text("no collision", OVERLAY_STYLE, OVERLAY_COLOR);
             noCollideText.x = LINE_X;
             noCollideText.y = nextLineY;

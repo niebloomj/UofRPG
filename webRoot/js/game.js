@@ -1,16 +1,4 @@
-// player coordinates
-var playerX = 3200;
-var playerY = 3200;
-
-// player status
-var isMoveU = false;
-var isMoveD = false;
-var isMoveL = false;
-var isMoveR = false;
-var isSprinting = false;
-var isNoCollide = false;
-
-var circle;
+//var circle;
 
 // key bindings
 var KEYCODE_DEBUG = 192;
@@ -21,10 +9,8 @@ var KEYCODE_DOWN = 40;
 
 // constants for movement speed
 var TARGET_FPS = 30;
-var WALK_SPEED = 5;
-var SPRINT_MULTIPLIER = 1.5;
 
-
+/*
 // determines if the player is currently moving
 function isInMotion() {
     return isMoveU || isMoveD || isMoveL || isMoveR;
@@ -56,7 +42,7 @@ function deltaY(elapsedTime) {
     deltaY *= (isSprinting ? SPRINT_MULTIPLIER : 1)
     deltaY *= elapsedTime / TARGET_FPS;
     return Math.floor(deltaY);
-}
+}*/
 
 function createGame() {
     //Create Game Container
@@ -64,6 +50,8 @@ function createGame() {
     gameContainer.mouseMoveOutside = true;
 
     stage.addChild(gameContainer);
+    player = new Player("xXx1337SN1PERxXx");
+    console.log(player);
 
     document.addEventListener("keydown", function(event) {
         keydown(event);
@@ -79,7 +67,8 @@ function createGame() {
 }
 
 function tick(event) {
-    playerX += deltaX(event.delta);
-    playerY += deltaY(event.delta);
-    createMap(playerX, playerY, event.delta);
+    //playerX += deltaX(event.delta);
+    //playerY += deltaY(event.delta);
+    player.move(event.delta);
+    createMap(player, event.delta);
 }

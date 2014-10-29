@@ -108,11 +108,15 @@ init();
 $.getScript("js/keydown.js", function(){
     $.getScript("js/game.js", function(){
         $.getScript("js/createMap.js", function(){
-            
-            if (debugMode) {
-              loginSuccessful();
-            }
-            
+            $.getScript("js/entity.class.js", function(){
+                $.getScript("js/player.class.js", function(){
+                    
+                    if (debugMode) {
+                      loginSuccessful();
+                    }
+                    
+                });
+            });
         });
     });
 });

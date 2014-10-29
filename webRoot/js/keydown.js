@@ -1,18 +1,18 @@
 function keydown(event) {
-    isSprinting = event.shiftKey;
-    isNoCollide = event.ctrlKey;
+    player.isSprinting = event.shiftKey;
+    player.isNoCollide = event.ctrlKey;
     switch (event.keyCode) {
         case KEYCODE_UP:
-            isMoveU = true;
+            player.isMoveU = true;
             break;
         case KEYCODE_DOWN:
-            isMoveD = true;
+            player.isMoveD = true;
             break;
         case KEYCODE_LEFT:
-            isMoveL = true;
+            player.isMoveL = true;
             break;
         case KEYCODE_RIGHT:
-            isMoveR = true;
+            player.isMoveR = true;
             break;
         case KEYCODE_DEBUG:
             debugMode = !debugMode;
@@ -21,20 +21,20 @@ function keydown(event) {
 }
 
 function keyup(event) {
-    isSprinting = event.shiftKey;
-    isNoCollide = event.ctrlKey;
+    player.isSprinting = event.shiftKey;
+    player.isNoCollide = event.ctrlKey;
     switch (event.keyCode) {
         case KEYCODE_UP:
-            isMoveU = false;
+            player.isMoveU = false;
             break;
         case KEYCODE_DOWN:
-            isMoveD = false;
+            player.isMoveD = false;
             break;
         case KEYCODE_LEFT:
-            isMoveL = false;
+            player.isMoveL = false;
             break;
         case KEYCODE_RIGHT:
-            isMoveR = false;
+            player.isMoveR = false;
             break;
     }
 }
