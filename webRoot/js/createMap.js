@@ -62,52 +62,56 @@ function createMap(playerX, playerY, delta) {
     var botLeftIndex = botXLeft + botYLeft * layerData.width;
     var topRightIndex = topXRight + topYRight * layerData.width;
     var botRightIndex = botXRight + botYRight * layerData.width;
-
-    var isCollision = false;
-
+    
+    
+    var topLeftCollision = false;
+    var topRightCollision = false;
+    var botLeftCollision = false;
+    var botRightCollision = false;
+    
     // Note each statement MUST be in a separate try-catch. This was done intentionally.
     try {
-        if (mapData.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]) {
-            isCollision = true;
-        }
-    } catch (err) {
-
-    }
+        botLeftCollision = mapData.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
+    } catch (err) {}
+    
     try {
-        if (mapData.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]) {
-            isCollision = true;
-        }
-    } catch (err) {
-
-    }
+        topLeftCollision = mapData.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
+    } catch (err) {}
+    
     try {
-        if (mapData.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]) {
-            isCollision = true;
-        }
-    } catch (err) {
-
-    }
+        topRightCollision = mapData.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
+    } catch (err) {}
+    
     try {
-        if (mapData.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0]) {
-            isCollision = true;
-            console.log("d")
-        }
-    } catch (err) {
-
-    }
+        botRightCollision = mapData.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
+    } catch (err) {}
+    
+    var topCollision = topLeftCollision && topRightCollision;
+    var botCollision = botLeftCollision && botRightCollision;
+    var leftCollision = topLeftCollision && botLeftCollision;
+    var rightCollision = topRightCollision && botRightCollision;
     
     if (debugMode && isNoCollide) {
-        isCollision = false;
+        topCollision = false;
+        botCollision = false;
+        leftCollision = false;
+        rightCollision = false;
     }
 
-    if (isCollision) {
-        this.playerX -= deltaX(delta);
+    if (topCollision || botCollision) {
         this.playerY -= deltaY(delta);
-        cordX = ((playerX / 32) | 0),
-            cordY = ((playerY / 32) | 0),
-            modX = 32 - (playerX % 32),
-            modY = 32 - (playerY % 32);
-        isCollision = false;
+        cordY = ((playerY / 32) | 0);
+        modY = 32 - (playerY % 32);
+        topCollision = false;
+        botCollision = false;
+    }
+
+    if (leftCollision || rightCollision) {
+        this.playerX -= deltaX(delta);
+        cordX = ((playerX / 32) | 0);
+        modX = 32 - (playerX % 32);
+        leftCollision = false;
+        rightCollision = false;
     }
 
     for (var y = cordY - extra - screenHeight; y < cordY + extra + screenHeight; y++) {
@@ -167,7 +171,7 @@ function createMap(playerX, playerY, delta) {
         nextLineY += LINE_HEIGHT;
         
         if (isNoCollide) {
-            var noCollideText = new createjs.Text("nocollide", OVERLAY_STYLE, OVERLAY_COLOR);
+            var noCollideText = new createjs.Text("no collision", OVERLAY_STYLE, OVERLAY_COLOR);
             noCollideText.x = LINE_X;
             noCollideText.y = nextLineY;
             gameContainer.addChild(noCollideText);
