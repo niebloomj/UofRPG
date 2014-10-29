@@ -86,10 +86,15 @@ function createMap(player, delta) {
         botRightCollision = mapData.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
     } catch (err) {}
     
-    var topCollision = topLeftCollision || topRightCollision;
-    var botCollision = botLeftCollision || botRightCollision;
-    var leftCollision = topLeftCollision || botLeftCollision;
-    var rightCollision = topRightCollision || botRightCollision;
+    var topCollisionHard = topLeftCollision && topRightCollision;
+    var botCollisionHard = botLeftCollision && botRightCollision;
+    var leftCollisionHard = topLeftCollision && botLeftCollision;
+    var rightCollisionHard = topRightCollision && botRightCollision;
+    
+    var topCollision = topCollisionHard || (topLeftCollision && !leftCollisionHard) || (topRightCollision && !rightCollisionHard);
+    var botCollision = botCollisionHard || (botLeftCollision && !leftCollisionHard) || (botRightCollision && !rightCollisionHard);
+    var leftCollision = leftCollisionHard || (topLeftCollision && !topCollisionHard) || (botLeftCollision && !botCollisionHard);
+    var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
     
     //var isCollision = topCollision || botCollision || leftCollision || rightCollision;
     
