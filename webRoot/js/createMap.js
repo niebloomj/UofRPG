@@ -96,8 +96,6 @@ function createMap(player, delta) {
     var leftCollision = leftCollisionHard || (topLeftCollision && !topCollisionHard) || (botLeftCollision && !botCollisionHard);
     var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
     
-    //var isCollision = topCollision || botCollision || leftCollision || rightCollision;
-    
     if (debugMode && player.isNoCollide) {
         //isCollision = false;
         topCollision = false;
@@ -105,16 +103,6 @@ function createMap(player, delta) {
         leftCollision = false;
         rightCollision = false;
     }
-    
-    /*if (isCollision) {
-        player.x -= player.deltaX();
-        player.y -= player.deltaY();
-        cordX = ((player.x / 32) | 0),
-            cordY = ((player.y / 32) | 0),
-            modX = 32 - (player.x % 32),
-            modY = 32 - (player.y % 32);
-        isCollision = false;
-    }*/
     
     if (topCollision || botCollision) {
         player.y -= player.deltaY(delta);
@@ -172,38 +160,26 @@ function createMap(player, delta) {
     
     // overlay for debug mode
     if (debugMode) {
-        var OVERLAY_STYLE = "bold 16px monospace";
-        var OVERLAY_COLOR = "#ff0000";
-        var LINE_X = 2;
-        var LINE_HEIGHT = 18;
-        var nextLineY = 0;
+        var overlayStr = "";
+        var LBREAK = "<br>";
         
         var measuredFpsStr = createjs.Ticker.getMeasuredFPS().toFixed(2);
-        var fpsText = new createjs.Text("fps: "+measuredFpsStr, OVERLAY_STYLE, OVERLAY_COLOR);
-        fpsText.x = LINE_X;
-        fpsText.y = nextLineY;
-        gameContainer.addChild(fpsText);
-        nextLineY += LINE_HEIGHT;
+        overlayStr += "fps: "+measuredFpsStr;
         
-        var coordText = new createjs.Text("coords: "+cordX+","+cordY, OVERLAY_STYLE, OVERLAY_COLOR);
-        coordText.x = LINE_X;
-        coordText.y = nextLineY;
-        gameContainer.addChild(coordText);
-        nextLineY += LINE_HEIGHT;
+        overlayStr += LBREAK;
+        overlayStr += "coords: "+cordX+","+cordY;
         
-        var pixelTest = new createjs.Text("exact: "+player.x+","+player.y, OVERLAY_STYLE, OVERLAY_COLOR);
-        pixelTest.x = LINE_X;
-        pixelTest.y = nextLineY;
-        gameContainer.addChild(pixelTest);
-        nextLineY += LINE_HEIGHT;
+        overlayStr += LBREAK;
+        overlayStr += "exact: "+player.x+","+player.y;
         
         if (player.isNoCollide) {
-            var noCollideText = new createjs.Text("no collision", OVERLAY_STYLE, OVERLAY_COLOR);
-            noCollideText.x = LINE_X;
-            noCollideText.y = nextLineY;
-            gameContainer.addChild(noCollideText);
-            nextLineY += LINE_HEIGHT;
+            overlayStr += LBREAK;
+            overlayStr += "no collision"
         }
+        $("#debugBox").html(overlayStr);
+        $("#debugBox").removeClass("hidden");
+    } else {
+        $("#debugBox").addClass("hidden");
     }
 
     stage.update();

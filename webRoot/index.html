@@ -46,6 +46,18 @@
   #loginContainer .form-group {
     margin-bottom: 40px;
   }
+  
+  #debugBox {
+    position: fixed;
+    top: 4px;
+    left: 4px;
+    background-color: black;
+    border: 2px solid red;
+    color: red;
+    font-size: 18px;
+    font-family: monospace;
+    padding: 5px;
+  }
   </style>
 
   <!--[if lt IE 9]>
@@ -56,6 +68,8 @@
 </head>
 
 <body onLoad="init();">
+  
+  <div class="hidden" id="debugBox"></div>
 
   <div class="container">
 
