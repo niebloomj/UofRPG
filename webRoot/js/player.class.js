@@ -5,6 +5,7 @@ function Player(name) {
     this.isMoveD = false;
     this.isMoveL = false;
     this.isMoveR = false;
+    
     this.isSprinting = false;
     this.isNoCollide = false;
     
@@ -54,11 +55,11 @@ Player.prototype.getDisplay = function() {
 };
     
 Player.prototype.width = function() {
-    return 16;
+    return 32;
 }
 
 Player.prototype.height = function() {
-    return 16;
+    return 32;
 }
 
 Player.prototype.isInMotion = function() {

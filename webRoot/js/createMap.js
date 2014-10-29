@@ -136,24 +136,16 @@ function createMap(player, delta) {
         }
     }
     
-    /*
-    //Create red circle- this will be the character
-    circle = new createjs.Shape();
-    circle.graphics.beginFill("red").drawCircle(playerX - (playerX - extra * d - screenWidth * d) - 16, playerY - (playerY - extra * d - screenHeight * d) - 16, 16);
-
-    //Add the red circle to the player container
-    gameContainer.addChild(circle);
-    */
     
     var entities = [player];
     
-    
+    // loop to reposition all entities and then draw them
     for (var i = 0; i < entities.length; i++) {
         var entity = entities[i];
         var display = entity.getDisplay();
         display.setTransform(
-            entity.x - (entity.x - entity.width() - screenWidth * d),
-            entity.y - (entity.y - entity.height() - screenHeight * d)
+            entity.x - (entity.x - entity.width()/2 - screenWidth * d),
+            entity.y - (entity.y - entity.height()/2 - screenHeight * d)
         );
         gameContainer.addChild(display);
     }
