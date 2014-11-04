@@ -7,182 +7,182 @@
   <image source="1375644.original.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="3" name="SidewalkPixel2" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkPixel2.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkPixel2.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="4" name="Grass1" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/Grass1.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/Grass1.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="5" name="SidewalkPixel3" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkPixel3.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkPixel3.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="6" name="SG2" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SG2.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SG2.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="7" name="SG3" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SG3.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SG3.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="8" name="SG4" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SG4.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SG4.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="9" name="SidewalkBrickBottom" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkBrickBottom.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkBrickBottom.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="10" name="SidewalkBrickSide" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkBrickSide.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkBrickSide.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="11" name="SidewalkBrickTop" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkBrickTop.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkBrickTop.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="12" name="Sidewalk" tilewidth="1024" tileheight="512">
   <tile id="0">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkFence.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkFence.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkPixel.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkPixel.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkPixel2.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkPixel2.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkPixel3.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkPixel3.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkStair.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkStair.png"/>
   </tile>
   <tile id="5">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkStairDown.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkStairDown.png"/>
   </tile>
   <tile id="6">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkStairLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkStairLeft.png"/>
   </tile>
   <tile id="7">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkStairRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkStairRight.png"/>
   </tile>
   <tile id="8">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/Clay.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/Clay.png"/>
   </tile>
   <tile id="9">
-   <image width="1024" height="512" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/TrackEndBottom.png"/>
+   <image width="1024" height="512" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/TrackEndBottom.png"/>
   </tile>
   <tile id="10">
-   <image width="1024" height="512" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/TrackEndTop.png"/>
+   <image width="1024" height="512" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/TrackEndTop.png"/>
   </tile>
  </tileset>
  <tileset firstgid="23" name="Pavement" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/Pavement.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/Pavement.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="24" name="Water" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/WaterTiles/Water.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/WaterTiles/Water.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="25" name="GrassBrick" tilewidth="128" tileheight="160">
   <tile id="0">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickBottomLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickBottomLeft.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickBottomRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickBottomRight.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickDown.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickDown.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickLeft.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickRight.png"/>
   </tile>
   <tile id="5">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickTopLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickTopLeft.png"/>
   </tile>
   <tile id="6">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickTopRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickTopRight.png"/>
   </tile>
   <tile id="7">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickUp.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickUp.png"/>
   </tile>
   <tile id="8">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickCornerLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickCornerLeft.png"/>
   </tile>
   <tile id="9">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickRight.png"/>
   </tile>
   <tile id="10">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickCornerRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickCornerRight.png"/>
   </tile>
   <tile id="11">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/LineHalf.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/LineHalf.png"/>
   </tile>
   <tile id="12">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/LineFull.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/LineFull.png"/>
   </tile>
   <tile id="13">
-   <image width="128" height="160" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/CenterField.png"/>
+   <image width="128" height="160" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/CenterField.png"/>
   </tile>
   <tile id="14">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/GrassTiles/GrassBrickCornerBottomRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/GrassTiles/GrassBrickCornerBottomRight.png"/>
   </tile>
  </tileset>
  <tileset firstgid="40" name="PavementLines" tilewidth="128" tileheight="128">
   <tile id="0">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementLineLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementLineLeft.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementLineRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementLineRight.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementYellow.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementYellow.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementLineDown.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementLineDown.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementLineUp.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementLineUp.png"/>
   </tile>
   <tile id="5">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementYellowX.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementYellowX.png"/>
   </tile>
   <tile id="6">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementCurveBottomLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementCurveBottomLeft.png"/>
   </tile>
   <tile id="7">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementCurveBottomRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementCurveBottomRight.png"/>
   </tile>
   <tile id="8">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementCurveTopLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementCurveTopLeft.png"/>
   </tile>
   <tile id="9">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementCurveTopRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementCurveTopRight.png"/>
   </tile>
   <tile id="10">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/Pavement.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/Pavement.png"/>
   </tile>
   <tile id="11">
-   <image width="128" height="128" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/PavementCurve.png"/>
+   <image width="128" height="128" source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/PavementCurve.png"/>
   </tile>
  </tileset>
  <tileset firstgid="52" name="SidewalkTiles" tilewidth="32" tileheight="32">
   <image source="../../Art Assets/Tiles/GrassTiles/TileSet2.png" trans="ffffff" width="128" height="224"/>
  </tileset>
  <tileset firstgid="80" name="Pavement" tilewidth="32" tileheight="32">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/Pavement.png" trans="ffffff" width="32" height="32"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/Pavement.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="81" name="MegaCurve" tilewidth="676" tileheight="676">
-  <image source="../../../../GitHub/UofRPG/ArtAssets/Tiles/PavementTiles/MegaCurve.png" trans="ffffff" width="676" height="676"/>
+  <image source="../../../../GitHub/UofRPG/Art Assets/Tiles/PavementTiles/MegaCurve.png" trans="ffffff" width="676" height="676"/>
  </tileset>
  <tileset firstgid="82" name="Sidewalk2" tilewidth="32" tileheight="32">
   <tile id="0">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkFenceCenter.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkFenceCenter.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkFenceLeft.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkFenceLeft.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkFenceRight.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkFenceRight.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkStairLeftBarrier.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkStairLeftBarrier.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../../../../GitHub/UofRPG/ArtAssets/Tiles/SidewalkTiles/SidewalkStairRightBarrier.png"/>
+   <image width="32" height="32" source="../../../../GitHub/UofRPG/Art Assets/Tiles/SidewalkTiles/SidewalkStairRightBarrier.png"/>
   </tile>
  </tileset>
  <layer name="Tile Layer 1" width="251" height="218">
