@@ -105,7 +105,13 @@ function createMap(player, delta) {
     }
 
     if (topCollision || botCollision) {
-        player.y -= player.deltaY(delta);
+        while (player.y % 32 > 0) {
+            if (topCollision) {
+                player.y++;
+            } else {
+                player.y--;
+            }
+        }
         cordY = ((player.y / 32) | 0);
         modY = 32 - (player.y % 32);
         topCollision = false;
@@ -113,7 +119,13 @@ function createMap(player, delta) {
     }
 
     if (leftCollision || rightCollision) {
-        player.x -= player.deltaX(delta);
+        while (player.x % 32 > 0) {
+            if (leftCollision) {
+                player.x++;
+            } else {
+                player.x--;
+            }
+        }
         cordX = ((player.x / 32) | 0);
         modX = 32 - (player.x % 32);
         leftCollision = false;
