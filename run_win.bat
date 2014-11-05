@@ -1,2 +1,3 @@
 cd %~dp0
-java -jar Misc/jlhttp.jar webRoot 8123
+java -jar Misc/jlhttp.jar webRoot 3333
+pause
