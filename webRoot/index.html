@@ -57,27 +57,21 @@
     padding: 5px;
   }
   </style>
-
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
 </head>
 
 <body onLoad="init();">
-
   <div class="hidden" id="debugBox"></div>
-
   <div class="container">
-
     <header class="text-center">
       <img src="img/headerFinal.png">
       <span class="sr-only">UofRPG: Year 1</span>
-	  <br>
-	  <b>Note: To control character, use the arrow keys.<b>
+      <br>
+      <b>Note: To control character, use the arrow keys.<b>
     </header>
-
     <div class="row">
       <div class="col-sm-12">
         <div class="theGame text-center hidden">
@@ -87,7 +81,6 @@
         </div>
       </div>
     </div>
-
     <div class="row">
       <div id="loginContainer" class="col-sm-offset-4 col-sm-4">
         <div id="loginContainerAlert" class="alert hidden" role="alert">
@@ -97,12 +90,10 @@
           </button>
           <span id="loginContainerAlertContent"></span>
         </div>
-
         <div class="paneButtons">
           <button id="btnLogin" class="btn btn-lg btn-block btn-primary">Login</button>
           <button id="btnRegister" class="btn btn-lg btn-block btn-primary">Register</button>
         </div>
-
         <div class="paneLogin hidden">
           <div class="form-group">
             <label for="formLoginUsername">Username</label>
@@ -116,7 +107,6 @@
             Submit
           </button>
         </div>
-
         <div class="paneRegister hidden">
           <div class="form-group">
             <label for="formRegisterUsername">Username</label>
@@ -130,19 +120,17 @@
             Submit
           </button>
         </div>
-
       </div>
     </div>
-
     <div id="gameDom">
     </div>
-
     <footer id="mastfoot">
       <section class="container-fluid">
         <div class="row-fluid">
-          <article class="span6 credits text-left">
-          </article>
           <article class="span6 text-left">
+          <font size = "8">
+          	 <a href="proposal.pdf">Proposal</a>
+          </font>
           </article>
           <article class="span6 text-right">
             <font size="8">
@@ -155,13 +143,10 @@
             <font color="white">
               <p>Copyright &copy; 2014</p>
             </font>
-
           </article>
         </div>
       </section>
     </footer>
-
   </div>
 </body>
-
 </html>
