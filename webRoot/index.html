@@ -52,9 +52,17 @@
     background-color: black;
     border: 2px solid red;
     color: red;
-    font-size: 18px;
+    font-size: 14px;
     font-family: monospace;
     padding: 5px;
+    z-index: 1000;
+  }
+
+  #gameHeaderNav {
+    margin-top: 10px;
+    max-width: 992px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   #mastfoot, #mastfoot a {
@@ -70,12 +78,48 @@
 <body onLoad="init();">
   <div class="hidden" id="debugBox"></div>
   <div class="container">
-    <header class="text-center">
+
+    <header id="loginHeader" class="text-center">
       <img src="img/headerFinal.png">
       <span class="sr-only">UofRPG: Year 1</span>
-      <br>
-      <b>Note: To control character, use the arrow keys.<b>
     </header>
+
+    <div id="gameHeader" class="hidden">
+      <nav id="gameHeaderNav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+              <img src="img/headerFinal.png" height="24">
+            </a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> PlaceholderUsername <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">Log out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+      <div class="text-center">
+        <strong>Controls: arrow keys to move, shift to sprint</strong>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-sm-12">
         <div class="theGame text-center hidden">

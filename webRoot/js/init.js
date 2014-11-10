@@ -121,7 +121,9 @@ $.getScript("js/keyevents.js", function() {
 
 function loginSuccessful() {
     $("#loginContainer").addClass("hidden");
+    $("#loginHeader").addClass("hidden");
     $(".theGame").removeClass("hidden");
+    $("#gameHeader").removeClass("hidden");
     stage.update();
     createGame();
 }
