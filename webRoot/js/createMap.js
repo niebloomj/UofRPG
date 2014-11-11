@@ -83,7 +83,6 @@ function tickMap(delta) {
 }
 
 
-
 // minimap colors [r, g, b]
 // note: the indices of this array should correspond to tile IDs
 // any color that isn't for a tile doesn't belong in here
@@ -96,7 +95,7 @@ var minimapColors = [
 var minimapCrosshairColor = [0, 0, 128];
 
 // how visible should the minimap be? (0-255)
-var minimapOpacity = 191;
+var minimapOpacity = 0.7 * 256 - 1;
 
 // dimensions of minimap (in tiles)
 var minimapHeight = 31;
@@ -153,13 +152,13 @@ function getMinimapGraphics() {
 
 
 // dimensions of a HUD bar
-var hudBarWidth = 100;
-var hudBarHeight = 16;
+var hudBarWidth = 192;
+var hudBarHeight = 32;
 
-// how many pixels of border around a HUD bar
-var hudBarBorder = 1;
+// how many pixels of border around a HUD bar?
+var hudBarBorder = 2;
 
-// how many pixels between an icon and its HUD bar
+// how many pixels between an icon and its HUD bar?
 var hudBarIconPadding = 4;
 
 // health bar colors
@@ -173,22 +172,34 @@ function getHudBarGraphics() {
     var hudBar = new createjs.Container();
 
     var healthBar = new createjs.Shape();
-    var healthBarIcon = new createjs.Bitmap("img/heart.png"); // image must be a square of size hudBarHeight
+    var healthBarIcon = new createjs.Bitmap("img/heart32.png"); // image must be a square of size hudBarHeight
 
     // fraction representing player health
     var healthPct = player.health / player.maxHealth;
 
     // draw border of health bar
-    healthBar.graphics.beginFill(healthBarColorBorder);
-    healthBar.graphics.rect(0, 0, hudBarWidth + 2 * hudBarBorder, hudBarHeight + 2 * hudBarBorder);
+    healthBar.graphics.f(healthBarColorBorder);
+    healthBar.graphics.r(
+        0, 0, 
+        hudBarWidth + 2 * hudBarBorder, 
+        hudBarHeight + 2 * hudBarBorder
+    );
 
     // draw background of health bar
-    healthBar.graphics.beginFill(healthBarColorEmpty);
-    healthBar.graphics.rect(hudBarBorder, hudBarBorder, hudBarWidth, hudBarHeight);
+    healthBar.graphics.f(healthBarColorEmpty);
+    healthBar.graphics.r(
+        hudBarBorder, hudBarBorder, 
+        hudBarWidth, 
+        hudBarHeight
+    );
 
     // draw filled section of health bar
-    healthBar.graphics.beginFill(healthBarColorFill);
-    healthBar.graphics.rect(hudBarBorder, hudBarBorder, hudBarWidth * healthPct, hudBarHeight);
+    healthBar.graphics.f(healthBarColorFill);
+    healthBar.graphics.r(
+        hudBarBorder, hudBarBorder, 
+        Math.floor(hudBarWidth * healthPct), 
+        hudBarHeight
+    );
 
     // add health bar icon to HUD bar
     hudBar.addChild(healthBarIcon);
