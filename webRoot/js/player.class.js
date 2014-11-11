@@ -153,7 +153,7 @@ Player.prototype.handleCollision = function() {
 Player.prototype.getDisplay = function() {
 
     var currentCharacter = 0;
-    var characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png"];
+    var characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png","img/Aaron.png"];
 
     var sprite = new createjs.Bitmap(characters[currentCharacter]);
     return sprite;
