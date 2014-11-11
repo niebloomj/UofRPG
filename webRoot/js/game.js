@@ -16,32 +16,36 @@ function createGame() {
 
     stage.addChild(gameContainer);
 
+    // listen to key events
     document.addEventListener("keydown", function(event) {
         keydown(event);
     });
-
     document.addEventListener("keyup", function(event) {
         keyup(event);
     });
 
+
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     mapData = mapDataJson;
 
-    var d = mapData.tilewidth;
+    var d = TILE_D;
 
-    tilesheet = new createjs.Bitmap("img/tiles.png");
-    dims = [
-        [1,0,d,d], // grass
-        [0,0,d,d] // dirt
+
+    // prep the tiles to be drawn
+    var tilesheet = new createjs.Bitmap("img/tiles.png");
+    var dims = [
+        [1,0], // grass
+        [0,0] // dirt
     ];
     bitmaps = [];
     for (var i = 0; i < dims.length; i++) {
-        //bitmaps[i] = new createjs.Bitmap(mapData.tilesets[i].image);
         bitmaps[i] = tilesheet.clone();
-        bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0]*d, dims[i][1]*d, dims[i][2], dims[i][3]);
+        bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0]*d, dims[i][1]*d, d, d);
     }
 
+    // create the player
     player = new Player("PlaceholderUsername", mapData);
+    $("#gameHeaderNavUsername").html(username);
 
     entities = [player];
 
@@ -52,14 +56,12 @@ function createGame() {
 
 function tick(event) {
 
-    //player.move(event.delta);
-    //createMap(player, event.delta);
-
     // tick all the entities
     for (var i = 0; i < entities.length; i++) {
         var entity = entities[i];
         entity.tick(event.delta);
     }
 
+    // tick the map
     tickMap();
 }

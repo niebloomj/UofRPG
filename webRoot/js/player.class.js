@@ -57,7 +57,7 @@ Player.prototype.tick = function(delta) {
 
 Player.prototype.handleCollision = function() {
 
-    var d = this.map.tilewidth;
+    var d = TILE_D;
     var layerData = this.map.layers[0];
 
     var cordX = ((this.x / d) | 0);

@@ -1,17 +1,16 @@
-//var tilesetA, tilesetB;
 var mapData;
 var screenWidth = 15;
 var screenHeight = 8;
-var tileSize;
-var tilesheet, dims, bitmaps;
+var TILE_D = 32;
+var bitmaps;
 var entities;
 
 
 function tickMap() {
     gameContainer.removeAllChildren();
 
-    var d = mapData.tilewidth;
     var layerData = mapData.layers[0];
+    var d = TILE_D;
 
     var cordX = ((player.x / d) | 0);
     var cordY = ((player.y / d) | 0);
@@ -20,25 +19,17 @@ function tickMap() {
 
     for (var iy = cordY - 1 - screenHeight; iy < cordY + 1 + screenHeight; iy++) {
         for (var ix = cordX - 1 - screenWidth; ix < cordX + 1 + screenWidth; ix++) {
-            //console.log(ix + " " +iy);
             // create a new Bitmap for each cell
             var cellBitmap;
             // layer data has single dimension array
             var idx = ix + iy * layerData.width;
             // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
-            //console.log(idx);
             cellBitmap = bitmaps[layerData.data[idx]-1].clone();
-
-            // if (layerData.data[idx] == 1) {
-            //     cellBitmap = new createjs.Sprite(tilesetSheetA);
-            // } else {
-            //     cellBitmap = new createjs.Sprite(tilesetSheetB);
-            // }
 
             //cellBitmap.gotoAndStop(layerData.data[idx] - 1);
             // isometrix tile positioning based on X Y order from Tiled
-            cellBitmap.x = ix * d - 32 + modX - (cordX - 1 - screenWidth) * d;
-            cellBitmap.y = iy * d - 32 + modY - (cordY - 1 - screenHeight) * d;
+            cellBitmap.x = ix * d - d + modX - (cordX - 1 - screenWidth) * d;
+            cellBitmap.y = iy * d - d + modY - (cordY - 1 - screenHeight) * d;
 
             gameContainer.addChild(cellBitmap);
         }

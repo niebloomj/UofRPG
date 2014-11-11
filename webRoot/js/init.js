@@ -6,6 +6,7 @@ var AccountsTable = Parse.Object.extend("Accounts");
 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
     "XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
 var accountsTable = new AccountsTable();
+var username = null;
 
 var debugMode = false;
 if (window.location.hash) {
@@ -45,9 +46,9 @@ function init() {
                     query.find({
                         success: function(results) {
                             if (results.length == 1) {
+                                loginSuccessful($("#formLoginUsername").val());
                                 $("#formLoginUsername").val("");
                                 $("#formLoginPassword").val("");
-                                loginSuccessful();
                             } else {
                                 $("#formLoginPassword").val("");
                                 showLoginMessage("That password does not match.", "danger");
@@ -81,7 +82,7 @@ function init() {
                     });
                     stage.removeChild(registerContainer);
                     showLoginMessage("Account created!", "success");
-                    loginSuccessful();
+                    loginSuccessful($("#formRegisterUsername").val());
                 } else {
                     $("#formRegisterUsername").val("");
                     $("#formRegisterPassword").val("");
@@ -111,7 +112,7 @@ $.getScript("js/keyevents.js", function() {
             $.getScript("js/entity.class.js", function() {
                 $.getScript("js/player.class.js", function() {
                     if (debugMode) {
-                        loginSuccessful();
+                        loginSuccessful("DEBUG USER");
                     }
                 });
             });
@@ -119,7 +120,8 @@ $.getScript("js/keyevents.js", function() {
     });
 });
 
-function loginSuccessful() {
+function loginSuccessful(name) {
+    username = name;
     $("#loginContainer").addClass("hidden");
     $("#loginHeader").addClass("hidden");
     $(".theGame").removeClass("hidden");
