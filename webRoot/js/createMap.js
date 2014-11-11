@@ -85,6 +85,7 @@ function tickMap(delta) {
 
 // MINIMAP SETTINGS
 // minimap colors for tiles [r, g, b, a]
+// note: array shouldn't be accessed directly, use getMinimapColor() instead
 var minimapColors = [
     [63, 191, 63, 255], // grass
     [191, 63, 63, 255] // brick
@@ -115,11 +116,18 @@ function getMinimapDisplay() {
     var id = ctx.createImageData(miniD, miniD);
     var data = id.data;
 
+    // var layersSeen = [];
+
     for (var iy = miniCordY - 1 - minimapHeight; iy < miniCordY + 1 + minimapHeight; iy++) {
         for (var ix = miniCordX - 1 - minimapWidth; ix < miniCordX + 1 + minimapWidth; ix++) {
 
             var idx = ix + iy * layerData.width;
-            var color = minimapColors[layerData.data[idx] - 1];
+            var tid = layerData.data[idx] - 1;
+            var color = getMinimapColor(tid);
+
+            // if (layersSeen.indexOf(tid) == -1) {
+            //     layersSeen.push(tid);
+            // }
 
             //TODO someone smarter than me sould simplify this math
             var pixelX = (ix * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD) - ((miniCordX - 1 - minimapWidth) * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD);
@@ -143,7 +151,20 @@ function getMinimapDisplay() {
             ctx.putImageData(id, pixelX, pixelY);
         }
     }
+    //console.log(layersSeen.toString());
+
     return new createjs.Bitmap(canvas);
+}
+
+/**
+ * Gets the color for a particular tile, or black if tile doesn't exist
+ * Color given as an array [r, g, b, a]
+ */
+function getMinimapColor(tid) {
+    if (tid >= 0 && tid < minimapColors.length) {
+        return minimapColors[tid];
+    }
+    return [0, 0, 0, 255];
 }
 
 
