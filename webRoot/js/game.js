@@ -99,7 +99,15 @@ function benchmarkTick() {
         benchmarkStr += "<br>" + benchmarks[i].label + ":<span class='pull-right'>" + benchmarks[i].elapsed +"</span>";
         totalElapsed += benchmarks[i].elapsed;
     }
-    benchmarkStr+="<br>TOTAL:<span class='pull-right'>" + totalElapsed +"</span>";
+
+    var totalStyle = "";
+    if (totalElapsed < 1000/TARGET_FPS) {
+        totalStyle = "color: green";
+    } else {
+        totalStyle = "color: yellow";
+    }
+
+    benchmarkStr+="<br>TOTAL:<span class='pull-right' style='"+ totalStyle +"'>" + totalElapsed +"</span>";
 
     $("#debugBox").html($("#debugBox").html() + benchmarkStr);
 
