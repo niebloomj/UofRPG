@@ -13,6 +13,9 @@ function Player(name, map) {
     this.walkSpeed = 5;
     this.sprintMultiplier = 1.5;
 
+    this.currentCharacter = 0;
+    this.characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png","img/Aaron.png"];
+
 }
 
 // defines a human-controlled entity
