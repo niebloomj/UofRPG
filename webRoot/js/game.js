@@ -39,7 +39,7 @@ function createGame() {
         [32, 0, 32, 32], // grass
         [0, 0, 32, 32] // brick
     ];
-    
+
     bitmaps = [];
     for (var i = 0; i < dims.length; i++) {
         bitmaps[i] = tilesheet.clone();
