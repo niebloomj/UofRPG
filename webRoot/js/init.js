@@ -108,12 +108,14 @@ init();
 // loads up all the scripts
 $.getScript("js/keyevents.js", function() {
     $.getScript("js/game.js", function() {
-        $.getScript("js/createMap.js", function() {
-            $.getScript("js/entity.class.js", function() {
-                $.getScript("js/player.class.js", function() {
-                    if (debugMode) {
-                        loginSuccessful("DEBUG USER");
-                    }
+        $.getScript("js/main.map.js", function() {
+            $.getScript("js/createMap.js", function() {
+                $.getScript("js/entity.class.js", function() {
+                    $.getScript("js/player.class.js", function() {
+                        if (debugMode) {
+                            loginSuccessful("DEBUG USER");
+                        }
+                    });
                 });
             });
         });

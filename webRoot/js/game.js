@@ -46,6 +46,11 @@ function createGame() {
         bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0], dims[i][1], dims[i][2], dims[i][3]);
     }
 
+    colors = [
+        "#111111", // grass
+        "#eeeeee" // brick
+    ]
+
     // create the player
     player = new Player("PlaceholderUsername", mapData);
     $("#gameHeaderNavUsername").html(username);
