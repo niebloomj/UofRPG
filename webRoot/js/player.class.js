@@ -14,6 +14,10 @@ function Player(name, map) {
 
     this.walkSpeed = 5;
     this.sprintMultiplier = 1.5;
+
+    this.currentCharacter = 0;
+    this.characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png","img/Aaron.png"];
+
 }
 
 // defines a human-controlled entity
@@ -159,11 +163,11 @@ Player.prototype.handleCollision = function() {
 };
 
 Player.prototype.getDisplay = function() {
-    //circle = new createjs.Shape();
-    //circle.graphics.beginFill("purple").drawRect(0, 0, 16, 48);
-    //return circle;
+    
+    var currentCharacter = 0;
+    var characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png","img/Aaron.png"];
 
-    var sprite = new createjs.Bitmap("img/Santiago.png");
+    var sprite = new createjs.Bitmap(characters[currentCharacter]);
     sprite.setTransform(0, -42);
     if (!(this.isMovingLeft)) {
         sprite.x = this.width();

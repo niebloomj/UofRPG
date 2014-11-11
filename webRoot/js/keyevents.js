@@ -36,5 +36,9 @@ function keyup(event) {
         case KEYCODE_DEBUG:
             debugMode = !debugMode;
             break;
+        case KEYCODE_TOGGLE_PLAYER:
+            player.currentCharacter = (player.currentCharacter + 1); //% player.characters.length;
+            tick();
+            break;
     }
 }

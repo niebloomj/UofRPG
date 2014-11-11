@@ -4,6 +4,7 @@ var KEYCODE_LEFT = 37;
 var KEYCODE_RIGHT = 39;
 var KEYCODE_UP = 38;
 var KEYCODE_DOWN = 40;
+var KEYCODE_TOGGLE_PLAYER = 80;
 
 // constant for movement speed
 var TARGET_FPS = 30;
