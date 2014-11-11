@@ -54,11 +54,11 @@ function tickMap(delta) {
         gameContainer.addChild(minimap);
     });
 
-    // benchmark("hudbar", function(){
-    //     var hudbar = getHudbarDisplay();
-    //     hudbar.setTransform(10, 10);
-    //     gameContainer.addChild(hudbar);
-    // });
+    benchmark("hudbar", function(){
+        var hudbar = getHudbarDisplay();
+        hudbar.setTransform(10, 10);
+        gameContainer.addChild(hudbar);
+    });
 
 
     benchmark("stage.update", function(){
