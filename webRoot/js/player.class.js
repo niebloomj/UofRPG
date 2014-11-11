@@ -2,6 +2,9 @@ function Player(name, map) {
     this.name = name;
     this.map = map;
 
+    this.health = 16;
+    this.maxHealth = 20;
+
     this.isMoveU = false;
     this.isMoveD = false;
     this.isMoveL = false;

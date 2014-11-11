@@ -50,6 +50,10 @@ function tickMap(delta) {
     minimap.setTransform(27 * TILE_D - 11, 10); //There's probably a better way to calculate the X coordinate
     gameContainer.addChild(minimap);
 
+    var hudbar = getHudBarGraphics();
+    hudbar.setTransform(10, 10);
+    gameContainer.addChild(hudbar);
+
 
     // overlay for debug mode
     if (debugMode) {
@@ -145,4 +149,53 @@ function getMinimapGraphics() {
         }
     }
     return new createjs.Bitmap(canvas);
+}
+
+
+// dimensions of a HUD bar
+var hudBarWidth = 100;
+var hudBarHeight = 16;
+
+// how many pixels of border around a HUD bar
+var hudBarBorder = 1;
+
+// how many pixels between an icon and its HUD bar
+var hudBarIconPadding = 4;
+
+// health bar colors
+var healthBarColorFill = "#e00";
+var healthBarColorEmpty = "#aaa";
+var healthBarColorBorder = "#222";
+
+// gets a DisplayObject representing the HUD bar(s) like health and stuff
+function getHudBarGraphics() {
+
+    var hudBar = new createjs.Container();
+
+    var healthBar = new createjs.Shape();
+    var healthBarIcon = new createjs.Bitmap("img/heart.png"); // image must be a square of size hudBarHeight
+
+    // fraction representing player health
+    var healthPct = player.health / player.maxHealth;
+
+    // draw border of health bar
+    healthBar.graphics.beginFill(healthBarColorBorder);
+    healthBar.graphics.rect(0, 0, hudBarWidth + 2 * hudBarBorder, hudBarHeight + 2 * hudBarBorder);
+
+    // draw background of health bar
+    healthBar.graphics.beginFill(healthBarColorEmpty);
+    healthBar.graphics.rect(hudBarBorder, hudBarBorder, hudBarWidth, hudBarHeight);
+
+    // draw filled section of health bar
+    healthBar.graphics.beginFill(healthBarColorFill);
+    healthBar.graphics.rect(hudBarBorder, hudBarBorder, hudBarWidth * healthPct, hudBarHeight);
+
+    // add health bar icon to HUD bar
+    hudBar.addChild(healthBarIcon);
+
+    // add health bar to HUD bar
+    healthBar.setTransform(hudBarHeight + hudBarIconPadding, 0);
+    hudBar.addChild(healthBar);
+
+    return hudBar;
 }
