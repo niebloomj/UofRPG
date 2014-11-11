@@ -64,8 +64,7 @@ function keyup(event) {
             benchmarkingMode = !benchmarkingMode;
             break;
         case KEYCODE_TOGGLE_PLAYER:
-            player.currentCharacter = (player.currentCharacter + 1); //% player.characters.length;
-            tick();
+            player.iterateCharacter();
             break;
     }
 }

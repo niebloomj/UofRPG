@@ -70,6 +70,8 @@ function tick(event) {
     benchmark("benchmark", function(){
         benchmarkTick();
     });
+
+    //player.iterateCharacter(); //uncomment for fun times! :)
 }
 
 function benchmark(label, func) {

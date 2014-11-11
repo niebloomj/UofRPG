@@ -71,6 +71,10 @@ Player.prototype.tick = function(delta) {
     }
 };
 
+Player.prototype.iterateCharacter = function() {
+    this.currentCharacter = (this.currentCharacter + 1) % this.characters.length;
+}
+
 Player.prototype.handleCollision = function() {
 
     var d = TILE_D;
