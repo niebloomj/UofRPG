@@ -48,7 +48,7 @@ function tickMap(delta) {
     }
 
     var minimap = getMinimapGraphics();
-    minimap.setTransform(27 * TILE_D - 15, 10); //There's probably a better way to calculate the X coordinate
+    minimap.setTransform(27 * TILE_D - 11, 10); //There's probably a better way to calculate the X coordinate
     gameContainer.addChild(minimap);
 
 
@@ -80,8 +80,8 @@ function tickMap(delta) {
 }
 
 var colors;
-var minimapHeight = 32;
-var minimapWidth = 32;
+var minimapHeight = 31;
+var minimapWidth = 31;
 var minimapTileSize = 2;
 
 function getMinimapGraphics() {
@@ -111,14 +111,19 @@ function getMinimapGraphics() {
             //TODO someone smarter than me sould simplify this math
             var pixelX = (ix * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD) - (( miniCordX - 1 - minimapWidth) * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD);
             var pixelY = (iy * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD) - ((miniCordY - 1 - minimapHeight) * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD);
-
-            for (var i=0; i < data.length; i+=4) {
+			
+			// This runs if we're coloring the center tile of the minimap
+            if (ix == ((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2 && iy == ((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2) {
+				color = colors[2];
+			}
+			
+			for (var i=0; i < data.length; i+=4) {
                 data[i+0] = color[0];
                 data[i+1] = color[1];
                 data[i+2] = color[2];
                 data[i+3] = color[3];
             }
-
+			
             ctx.putImageData(id, pixelX, pixelY);
         }
     }

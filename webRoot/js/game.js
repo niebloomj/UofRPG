@@ -48,7 +48,8 @@ function createGame() {
     // minimap colors (r,g,b,a)
     colors = [
         [63, 191, 63, 255], // grass
-        [191, 63, 63, 255] // brick
+        [191, 63, 63, 255], // brick
+		[0, 0, 128, 255] // player
     ]
 
     // create the player
