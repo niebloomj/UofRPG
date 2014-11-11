@@ -28,8 +28,6 @@ function createGame() {
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     mapData = mapDataJson;
 
-    var d = TILE_D;
-
     // prep the tiles to be drawn
     var tilesheet = new createjs.Bitmap("img/tiles.png");
 
@@ -46,9 +44,10 @@ function createGame() {
         bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0], dims[i][1], dims[i][2], dims[i][3]);
     }
 
+    // minimap colors (r,g,b,a)
     colors = [
-        "#111111", // grass
-        "#eeeeee" // brick
+        [63, 191, 63, 255], // grass
+        [191, 63, 63, 255] // brick
     ]
 
     // create the player
@@ -71,5 +70,5 @@ function tick(event) {
     }
 
     // tick the map
-    tickMap();
+    tickMap(event.delta);
 }
