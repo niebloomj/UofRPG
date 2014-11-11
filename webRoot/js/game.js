@@ -53,9 +53,8 @@ function createGame() {
 
 var benchmarks = [];
 
+// NOT TO BE EXPLICITLY CALLED!!
 function tick(event) {
-
-
     // tick all the entities
     benchmark("entities", function(){
         for (var i = 0; i < entities.length; i++) {
