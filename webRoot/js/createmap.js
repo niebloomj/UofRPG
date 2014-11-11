@@ -17,23 +17,25 @@ function tickMap(delta) {
     var modX = d - (player.x % d);
     var modY = d - (player.y % d);
 
-    for (var iy = cordY - 1 - screenHeight; iy < cordY + 1 + screenHeight; iy++) {
-        for (var ix = cordX - 1 - screenWidth; ix < cordX + 1 + screenWidth; ix++) {
-            // create a new Bitmap for each cell
-            var cellBitmap;
-            // layer data has single dimension array
-            var idx = ix + iy * layerData.width;
-            // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
+    benchmark("tiles", function(){
+        for (var iy = cordY - 1 - screenHeight; iy < cordY + 1 + screenHeight; iy++) {
+            for (var ix = cordX - 1 - screenWidth; ix < cordX + 1 + screenWidth; ix++) {
+                // create a new Bitmap for each cell
+                var cellBitmap;
+                // layer data has single dimension array
+                var idx = ix + iy * layerData.width;
+                // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
 
-            cellBitmap = bitmaps[layerData.data[idx] - 1].clone();
+                cellBitmap = bitmaps[layerData.data[idx] - 1].clone();
 
-            // isometrix tile positioning based on X Y order from Tiled
-            cellBitmap.x = ix * d - d + modX - (cordX - 1 - screenWidth) * d;
-            cellBitmap.y = iy * d - d + modY - (cordY - 1 - screenHeight) * d;
+                // isometrix tile positioning based on X Y order from Tiled
+                cellBitmap.x = ix * d - d + modX - (cordX - 1 - screenWidth) * d;
+                cellBitmap.y = iy * d - d + modY - (cordY - 1 - screenHeight) * d;
 
-            gameContainer.addChild(cellBitmap);
+                gameContainer.addChild(cellBitmap);
+            }
         }
-    }
+    });
 
     // loop to reposition all entities and then draw them
     for (var i = 0; i < entities.length; i++) {
@@ -46,40 +48,48 @@ function tickMap(delta) {
         gameContainer.addChild(display);
     }
 
-    var minimap = getMinimapDisplay();
-    minimap.setTransform(27 * TILE_D - 11, 10); //There's probably a better way to calculate the X coordinate
-    gameContainer.addChild(minimap);
+    benchmark("minimap", function(){
+        var minimap = getMinimapDisplay();
+        minimap.setTransform(27 * TILE_D - 11, 10); //There's probably a better way to calculate the X coordinate
+        gameContainer.addChild(minimap);
+    });
 
-    var hudbar = getHudbarDisplay();
-    hudbar.setTransform(10, 10);
-    gameContainer.addChild(hudbar);
+    benchmark("hudbar", function(){
+        var hudbar = getHudbarDisplay();
+        hudbar.setTransform(10, 10);
+        gameContainer.addChild(hudbar);
+    });
 
 
-    // overlay for debug mode
-    if (debugMode) {
-        var overlayStr = "";
-        var LBREAK = "<br>";
+    benchmark("stage.update", function(){
+        stage.update();
+    });
 
-        var measuredFpsStr = createjs.Ticker.getMeasuredFPS().toFixed(2);
-        overlayStr += "fps: " + measuredFpsStr;
+    benchmark("debug overlay", function(){
+        // overlay for debug mode
+        if (debugMode) {
+            var overlayStr = "";
+            var LBREAK = "<br>";
 
-        overlayStr += LBREAK;
-        overlayStr += "coords: " + cordX + "," + cordY;
+            var measuredFpsStr = createjs.Ticker.getMeasuredFPS().toFixed(2);
+            overlayStr += "fps: " + measuredFpsStr;
 
-        overlayStr += LBREAK;
-        overlayStr += "exact: " + player.x + "," + player.y;
-
-        if (player.isNoCollide) {
             overlayStr += LBREAK;
-            overlayStr += "no collision"
-        }
-        $("#debugBox").html(overlayStr);
-        $("#debugBox").removeClass("hidden");
-    } else {
-        $("#debugBox").addClass("hidden");
-    }
+            overlayStr += "coords: " + cordX + "," + cordY;
 
-    stage.update();
+            overlayStr += LBREAK;
+            overlayStr += "exact: " + player.x + "," + player.y;
+
+            if (player.isNoCollide) {
+                overlayStr += LBREAK;
+                overlayStr += "no collision"
+            }
+            $("#debugBox").html(overlayStr);
+            $("#debugBox").removeClass("hidden");
+        } else {
+            $("#debugBox").addClass("hidden");
+        }
+    });
 }
 
 

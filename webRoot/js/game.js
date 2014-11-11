@@ -59,14 +59,56 @@ function createGame() {
     //createjs.Ticker.setFPS(60); //for the glory of GabeN!
 }
 
+var benchmarks = [];
+
 function tick(event) {
 
+
     // tick all the entities
-    for (var i = 0; i < entities.length; i++) {
-        var entity = entities[i];
-        entity.tick(event.delta);
-    }
+    benchmark("entities", function(){
+        for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];
+            entity.tick(event.delta);
+        }
+    });
 
     // tick the map
     tickMap(event.delta);
+
+    benchmark("benchmark", function(){
+        benchmarkTick();
+    });
+}
+
+function benchmark(label, func) {
+    if (!debugMode || !benchmarkingMode) {
+        func();
+        return;
+    }
+    var before = Date.now();
+    func();
+    var after = Date.now();
+    var elapsed = after - before;
+    var mark = {
+        label: label,
+        elapsed: elapsed
+    };
+    benchmarks.push(mark);
+}
+
+function benchmarkTick() {
+    if (!debugMode || !benchmarkingMode) {
+        return;
+    }
+    var benchmarkStr = "<br><br><strong>BENCHMARKS</strong>";
+    var totalElapsed = 0;
+    for (var i = 0; i < benchmarks.length; i++) {
+        benchmarkStr += "<br>" + benchmarks[i].label + ":<span class='pull-right'>" + benchmarks[i].elapsed +"</span>";
+        totalElapsed += benchmarks[i].elapsed;
+    }
+    benchmarkStr+="<br>TOTAL:<span class='pull-right'>" + totalElapsed +"</span>";
+
+    $("#debugBox").html($("#debugBox").html() + benchmarkStr);
+
+    benchmarks=[];
 }
