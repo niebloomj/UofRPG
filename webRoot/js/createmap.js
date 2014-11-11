@@ -94,15 +94,15 @@ function tickMap(delta) {
 
 
 // MINIMAP SETTINGS
-// minimap colors for tiles [r, g, b, a]
+// minimap colors for tiles [r, g, b]
 // note: array shouldn't be accessed directly, use getMinimapColor() instead
 var minimapColors = [
-    [63, 191, 63, 255], // grass
-    [191, 63, 63, 255] // brick
+    [63, 191, 63], // grass
+    [191, 63, 63] // brick
 ]
 
-var minimapCrosshairColor = [0, 0, 128, 255]; // color for crosshair [r, g, b, a]
-var minimapOpacity = 0.7; // how visible is minimap? (0-1)
+var minimapCrosshairColor = [0, 0, 128]; // color for crosshair [r, g, b]
+var minimapOpacity = 0.7 * 256 - 1; // how visible is minimap? (0-255)
 
 var minimapWidth = 31; // width of minimap (in tiles)
 var minimapHeight = 31; // height of minimap (in tiles)
@@ -121,12 +121,22 @@ function getMinimapDisplay() {
     var miniModX = miniD - (player.x % miniD);
     var miniModY = miniD - (player.y % miniD);
 
+    var posX = (miniCordX - 1 - minimapWidth);
+    var posY = (miniCordY - 1 - minimapHeight);
+
+    var midX = (posX + (miniCordX + 1 + minimapWidth)) / 2;
+    var midY = (posY + (miniCordY + 1 + minimapHeight)) / 2;
+    var offsetX = miniD - (miniCordX - 1 - minimapWidth) * miniD;
+    var offsetY = miniD - (miniCordX - 1 - minimapHeight) * miniD;
+
+
     var canvas = document.createElement("canvas");
     var ctx = canvas.getContext("2d");
     var id = ctx.createImageData(miniD, miniD);
     var data = id.data;
 
-    // var layersSeen = [];
+    var firstX = posX * miniD - offsetX;
+    var firstY = posY * miniD - offsetY;
 
     for (var iy = miniCordY - 1 - minimapHeight; iy < miniCordY + 1 + minimapHeight; iy++) {
         for (var ix = miniCordX - 1 - minimapWidth; ix < miniCordX + 1 + minimapWidth; ix++) {
@@ -135,33 +145,27 @@ function getMinimapDisplay() {
             var tid = layerData.data[idx] - 1;
             var color = getMinimapColor(tid);
 
-            // if (layersSeen.indexOf(tid) == -1) {
-            //     layersSeen.push(tid);
-            // }
+            var pixelX = (ix * miniD - offsetX) - firstX;
+            var pixelY = (iy * miniD - offsetY) - firstY;
 
-            //TODO someone smarter than me sould simplify this math
-            var pixelX = (ix * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD) - ((miniCordX - 1 - minimapWidth) * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD);
-            var pixelY = (iy * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD) - ((miniCordY - 1 - minimapHeight) * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD);
-
-            var midX = ix - (((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2);
-            var midY = iy - (((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2);
+            var localMidX = ix - midX;
+            var localMidY = iy - midY;
 
             // This runs if we're coloring a cross around the player (just, uh, trust me).
-            if (((midX + 1 == 0) || (midY + 1 == 0)) && ((midX + 1 < 2) && (midX + 1 > -2)) && ((midY + 1 < 2) && (midY + 1 > -2))) {
+            if (((localMidX + 1 == 0) || (localMidY + 1 == 0)) && ((localMidX + 1 < 2) && (localMidX + 1 > -2)) && ((localMidY + 1 < 2) && (localMidY + 1 > -2))) {
                 color = minimapCrosshairColor;
             }
 
             for (var i = 0; i < data.length; i += 4) {
-                data[i + 0] = color[0];
+                data[i] = color[0];
                 data[i + 1] = color[1];
                 data[i + 2] = color[2];
-                data[i + 3] = color[3] * minimapOpacity;
+                data[i + 3] = minimapOpacity;
             }
 
             ctx.putImageData(id, pixelX, pixelY);
         }
     }
-    //console.log(layersSeen.toString());
 
     return new createjs.Bitmap(canvas);
 }
