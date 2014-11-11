@@ -46,11 +46,11 @@ function tickMap(delta) {
         gameContainer.addChild(display);
     }
 
-    var minimap = getMinimapGraphics();
+    var minimap = getMinimapDisplay();
     minimap.setTransform(27 * TILE_D - 11, 10); //There's probably a better way to calculate the X coordinate
     gameContainer.addChild(minimap);
 
-    var hudbar = getHudBarGraphics();
+    var hudbar = getHudbarDisplay();
     hudbar.setTransform(10, 10);
     gameContainer.addChild(hudbar);
 
@@ -83,29 +83,25 @@ function tickMap(delta) {
 }
 
 
-// minimap colors [r, g, b]
-// note: the indices of this array should correspond to tile IDs
-// any color that isn't for a tile doesn't belong in here
+// MINIMAP SETTINGS
+// minimap colors for tiles [r, g, b, a]
 var minimapColors = [
-    [63, 191, 63], // grass
-    [191, 63, 63] // brick
+    [63, 191, 63, 255], // grass
+    [191, 63, 63, 255] // brick
 ]
 
-// color for crosshair [r, g, b]
-var minimapCrosshairColor = [0, 0, 128];
+var minimapCrosshairColor = [0, 0, 128, 255]; // color for crosshair [r, g, b, a]
+var minimapOpacity = 0.7; // how visible is minimap? (0-1)
 
-// how visible should the minimap be? (0-255)
-var minimapOpacity = 0.7 * 256 - 1;
+var minimapWidth = 31; // width of minimap (in tiles)
+var minimapHeight = 31; // height of minimap (in tiles)
+var minimapTileSize = 2; // size of tiles on minimap (in px)
 
-// dimensions of minimap (in tiles)
-var minimapHeight = 31;
-var minimapWidth = 31;
-
-// size of tiles on minimap (in pixels)
-var minimapTileSize = 2;
-
-// gets a DisplayObject representing the minimap
-function getMinimapGraphics() {
+/**
+ * Gets a DisplayObject representing the minimap
+ * pixel drawing technique based on http://community.createjs.com/discussions/easeljs/1291-bitmap-pixel-manipulation
+ */
+function getMinimapDisplay() {
     var layerData = mapData.layers[0];
     var miniD = minimapTileSize;
 
@@ -141,7 +137,7 @@ function getMinimapGraphics() {
                 data[i + 0] = color[0];
                 data[i + 1] = color[1];
                 data[i + 2] = color[2];
-                data[i + 3] = minimapOpacity;
+                data[i + 3] = color[3] * minimapOpacity;
             }
 
             ctx.putImageData(id, pixelX, pixelY);
@@ -151,62 +147,82 @@ function getMinimapGraphics() {
 }
 
 
-// dimensions of a HUD bar
-var hudBarWidth = 192;
-var hudBarHeight = 32;
 
-// how many pixels of border around a HUD bar?
-var hudBarBorder = 2;
 
-// how many pixels between an icon and its HUD bar?
-var hudBarIconPadding = 4;
 
-// health bar colors
-var healthBarColorFill = "#e00";
-var healthBarColorEmpty = "#aaa";
-var healthBarColorBorder = "#222";
+// HUDBAR SETTINGS
+var hudbarWidth = 192; // hudbar width (in px)
+var hudbarHeight = 24; // hudbar height (in px)
 
-// gets a DisplayObject representing the HUD bar(s) like health and stuff
-function getHudBarGraphics() {
+var hudbarBorder = 3; // border inside the hudbar (in px)
+  
+// dimensions of inner hudbar (e.g. excluding border)
+var hudbarInnerWidth = hudbarWidth - hudbarBorder * 2;
+var hudbarInnerHeight = hudbarHeight - hudbarBorder * 2;
 
-    var hudBar = new createjs.Container();
+var hudbarIconSize = 24; // width of hudbar icon (in px)
+var hudbarIconPadding = 4; // separation width between icon and hudbar (in px)
 
-    var healthBar = new createjs.Shape();
-    var healthBarIcon = new createjs.Bitmap("img/heart32.png"); // image must be a square of size hudBarHeight
+// HEALTHBAR SETTINGS
+var healthbarColorFill = "#e00"; // color of available health
+var healthbarColorEmpty = "#aaa"; // color of missing health
+var healthbarColorBorder = "#222"; // color of hudbar border
+var healthbarIconPath = "img/sprites/heart8_24.png"; // square of size hudbarIconSize
 
-    // fraction representing player health
-    var healthPct = player.health / player.maxHealth;
+var healthbarGraphics, healthbarIcon;
+
+
+/**
+ * Gets a DisplayObject representing the hudbars like health and stuff
+ */
+function getHudbarDisplay() {
+
+    // create images;
+    var hudbar = new createjs.Container();
+    var healthbar = new createjs.Shape(healthbarGraphics.clone());
+
+    var healthPct = player.health / player.maxHealth; // fraction representing player health
+
+
+    // draw filled section of healthbar
+    healthbar.graphics.f(healthbarColorFill);
+    healthbar.graphics.r(
+        hudbarBorder, hudbarBorder, 
+        Math.floor(hudbarInnerWidth * healthPct), 
+        hudbarInnerHeight
+    );
+
+    // add health bar icon to hudbar
+    hudbar.addChild(healthbarIcon);
+
+    // add health bar to hudbar
+    healthbar.setTransform(hudbarIconSize + hudbarIconPadding, 0);
+    hudbar.addChild(healthbar);
+
+    return hudbar;
+}
+
+/**
+ * Prepares hudbars for first draw
+ */
+function initializeHudbars() {
+    healthbarGraphics = new createjs.Graphics();
 
     // draw border of health bar
-    healthBar.graphics.f(healthBarColorBorder);
-    healthBar.graphics.r(
+    healthbarGraphics.f(healthbarColorBorder);
+    healthbarGraphics.r(
         0, 0, 
-        hudBarWidth + 2 * hudBarBorder, 
-        hudBarHeight + 2 * hudBarBorder
+        hudbarWidth, 
+        hudbarHeight
     );
 
     // draw background of health bar
-    healthBar.graphics.f(healthBarColorEmpty);
-    healthBar.graphics.r(
-        hudBarBorder, hudBarBorder, 
-        hudBarWidth, 
-        hudBarHeight
+    healthbarGraphics.f(healthbarColorEmpty);
+    healthbarGraphics.r(
+        hudbarBorder, hudbarBorder, 
+        hudbarInnerWidth, 
+        hudbarInnerHeight
     );
 
-    // draw filled section of health bar
-    healthBar.graphics.f(healthBarColorFill);
-    healthBar.graphics.r(
-        hudBarBorder, hudBarBorder, 
-        Math.floor(hudBarWidth * healthPct), 
-        hudBarHeight
-    );
-
-    // add health bar icon to HUD bar
-    hudBar.addChild(healthBarIcon);
-
-    // add health bar to HUD bar
-    healthBar.setTransform(hudBarHeight + hudBarIconPadding, 0);
-    hudBar.addChild(healthBar);
-
-    return hudBar;
+    healthbarIcon = new createjs.Bitmap(healthbarIconPath);
 }
