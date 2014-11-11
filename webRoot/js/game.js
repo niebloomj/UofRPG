@@ -31,14 +31,14 @@ function createGame() {
 
     tilesheet = new createjs.Bitmap("img/tiles.png");
     dims = [
-        [1,0,d,d], // grass
-        [0,0,d,d] // dirt
+        [1, 0, d, d], // grass
+        [0, 0, d, d] // dirt
     ];
     bitmaps = [];
     for (var i = 0; i < dims.length; i++) {
         //bitmaps[i] = new createjs.Bitmap(mapData.tilesets[i].image);
         bitmaps[i] = tilesheet.clone();
-        bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0]*d, dims[i][1]*d, dims[i][2], dims[i][3]);
+        bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0] * d, dims[i][1] * d, dims[i][2], dims[i][3]);
     }
 
     player = new Player("PlaceholderUsername", mapData);

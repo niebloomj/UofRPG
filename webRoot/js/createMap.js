@@ -27,7 +27,7 @@ function tickMap() {
             var idx = ix + iy * layerData.width;
             // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
             //console.log(idx);
-            cellBitmap = bitmaps[layerData.data[idx]-1].clone();
+            cellBitmap = bitmaps[layerData.data[idx] - 1].clone();
 
             // if (layerData.data[idx] == 1) {
             //     cellBitmap = new createjs.Sprite(tilesetSheetA);
