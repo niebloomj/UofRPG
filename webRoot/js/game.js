@@ -45,14 +45,6 @@ function createGame() {
         bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0], dims[i][1], dims[i][2], dims[i][3]);
     }
 
-    // minimap colors (r,g,b,a)
-    // note: the indices of this array should correspond to tile IDs
-    // any color that isn't for a tile doesn't belong in here
-    colors = [
-        [63, 191, 63, 255], // grass
-        [191, 63, 63, 255] // brick
-    ]
-
     // create the player
     player = new Player("PlaceholderUsername", mapData);
     $("#gameHeaderNavUsername").html(username);

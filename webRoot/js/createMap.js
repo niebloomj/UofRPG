@@ -27,7 +27,6 @@ function tickMap(delta) {
 
             cellBitmap = bitmaps[layerData.data[idx] - 1].clone();
 
-            //cellBitmap.gotoAndStop(layerData.data[idx] - 1);
             // isometrix tile positioning based on X Y order from Tiled
             cellBitmap.x = ix * d - d + modX - (cordX - 1 - screenWidth) * d;
             cellBitmap.y = iy * d - d + modY - (cordY - 1 - screenHeight) * d;
@@ -79,12 +78,30 @@ function tickMap(delta) {
     stage.update();
 }
 
-var colors;
-var minimapCrosshairColor = [0, 0, 128, 255];
+
+
+// minimap colors [r, g, b]
+// note: the indices of this array should correspond to tile IDs
+// any color that isn't for a tile doesn't belong in here
+var minimapColors = [
+    [63, 191, 63], // grass
+    [191, 63, 63] // brick
+]
+
+// color for crosshair [r, g, b]
+var minimapCrosshairColor = [0, 0, 128];
+
+// how visible should the minimap be? (0-255)
+var minimapOpacity = 191;
+
+// dimensions of minimap (in tiles)
 var minimapHeight = 31;
 var minimapWidth = 31;
+
+// size of tiles on minimap (in pixels)
 var minimapTileSize = 2;
 
+// gets a DisplayObject representing the minimap
 function getMinimapGraphics() {
     var layerData = mapData.layers[0];
     var miniD = minimapTileSize;
@@ -93,10 +110,6 @@ function getMinimapGraphics() {
     var miniCordY = ((player.y / TILE_D) | 0);
     var miniModX = miniD - (player.x % miniD);
     var miniModY = miniD - (player.y % miniD);
-
-    var minimap = new createjs.Graphics();
-
-    minimap.beginFill("red");
 
     var canvas = document.createElement("canvas");
     var ctx = canvas.getContext("2d");
@@ -107,12 +120,12 @@ function getMinimapGraphics() {
         for (var ix = miniCordX - 1 - minimapWidth; ix < miniCordX + 1 + minimapWidth; ix++) {
 
             var idx = ix + iy * layerData.width;
-            var color = colors[layerData.data[idx] - 1];
+            var color = minimapColors[layerData.data[idx] - 1];
 
             //TODO someone smarter than me sould simplify this math
             var pixelX = (ix * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD) - ((miniCordX - 1 - minimapWidth) * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD);
             var pixelY = (iy * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD) - ((miniCordY - 1 - minimapHeight) * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD);
-            
+
             var midX = ix - (((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2);
             var midY = iy - (((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2);
 
@@ -125,7 +138,7 @@ function getMinimapGraphics() {
                 data[i + 0] = color[0];
                 data[i + 1] = color[1];
                 data[i + 2] = color[2];
-                data[i + 3] = color[3];
+                data[i + 3] = minimapOpacity;
             }
 
             ctx.putImageData(id, pixelX, pixelY);
