@@ -150,17 +150,22 @@ Player.prototype.handleCollision = function() {
 }
 
 Player.prototype.getDisplay = function() {
-    circle = new createjs.Shape();
-    circle.graphics.beginFill("blue").drawCircle(0, 0, 16);
-    return circle;
+    //circle = new createjs.Shape();
+    //circle.graphics.beginFill("purple").drawRect(0, 0, 16, 48);
+    //return circle;
+
+    var sprite = new createjs.Bitmap("img/Santiago.png");
+
+    return sprite;
+
 };
 
 Player.prototype.width = function() {
-    return 32;
+    return 16;
 }
 
 Player.prototype.height = function() {
-    return 32;
+    return 48;
 }
 
 Player.prototype.isInMotion = function() {
