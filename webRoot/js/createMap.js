@@ -113,7 +113,7 @@ function getMinimapGraphics() {
             var pixelY = (iy * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD) - ((miniCordY - 1 - minimapHeight) * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD);
 			
 			// This runs if we're coloring the center tile of the minimap
-            if (ix == ((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2 && iy == ((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2) {
+            if (ix == (((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2) - 1 && iy == (((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2) - 1) {
 				color = colors[2];
 			}
 			
