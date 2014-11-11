@@ -80,6 +80,7 @@ function tickMap(delta) {
 }
 
 var colors;
+var minimapCrosshairColor = [0, 0, 128, 255];
 var minimapHeight = 31;
 var minimapWidth = 31;
 var minimapTileSize = 2;
@@ -111,12 +112,13 @@ function getMinimapGraphics() {
             //TODO someone smarter than me sould simplify this math
             var pixelX = (ix * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD) - ((miniCordX - 1 - minimapWidth) * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD);
             var pixelY = (iy * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD) - ((miniCordY - 1 - minimapHeight) * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD);
+            
             var midX = ix - (((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2);
             var midY = iy - (((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2);
 
             // This runs if we're coloring a cross around the player (just, uh, trust me).
             if (((midX + 1 == 0) || (midY + 1 == 0)) && ((midX + 1 < 2) && (midX + 1 > -2)) && ((midY + 1 < 2) && (midY + 1 > -2))) {
-                color = colors[2];
+                color = minimapCrosshairColor;
             }
 
             for (var i = 0; i < data.length; i += 4) {

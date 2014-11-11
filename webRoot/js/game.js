@@ -46,10 +46,11 @@ function createGame() {
     }
 
     // minimap colors (r,g,b,a)
+    // note: the indices of this array should correspond to tile IDs
+    // any color that isn't for a tile doesn't belong in here
     colors = [
         [63, 191, 63, 255], // grass
-        [191, 63, 63, 255], // brick
-        [0, 0, 128, 255] // player
+        [191, 63, 63, 255] // brick
     ]
 
     // create the player
