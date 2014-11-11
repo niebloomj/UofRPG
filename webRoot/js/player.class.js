@@ -10,6 +10,8 @@ function Player(name, map) {
     this.isSprinting = false;
     this.isNoCollide = false;
 
+    this.isMovingLeft = true;
+
     this.walkSpeed = 5;
     this.sprintMultiplier = 1.5;
 }
@@ -48,12 +50,19 @@ Player.prototype.deltaY = function(elapsedTime) {
 Player.prototype.move = function(delta) {
     this.x += this.deltaX(delta);
     this.y += this.deltaY(delta);
-}
+};
 
 Player.prototype.tick = function(delta) {
     this.move(delta);
     this.handleCollision();
-}
+    
+    if (this.isMoveR && !(this.isMoveL)) {
+        this.isMovingLeft = false;
+    }
+    if (this.isMoveL && !(this.isMoveR)) {
+        this.isMovingLeft = true;
+    }
+};
 
 Player.prototype.handleCollision = function() {
 
@@ -147,7 +156,7 @@ Player.prototype.handleCollision = function() {
         leftCollision = false;
         rightCollision = false;
     }
-}
+};
 
 Player.prototype.getDisplay = function() {
     //circle = new createjs.Shape();
@@ -155,19 +164,22 @@ Player.prototype.getDisplay = function() {
     //return circle;
 
     var sprite = new createjs.Bitmap("img/Santiago.png");
+    sprite.setTransform(0, -42);
+    if (!(this.isMovingLeft)) {
+        sprite.x = this.width();
+        sprite.scaleX = -1;
+    }
 
-    return sprite;
+    var parent = new createjs.Container();
+    parent.addChild(sprite)
+    return parent;
 
 };
 
 Player.prototype.width = function() {
     return 16;
-}
+};
 
 Player.prototype.height = function() {
     return 48;
-}
-
-Player.prototype.isInMotion = function() {
-    return isMoveU || isMoveD || isMoveL || isMoveR;
 };

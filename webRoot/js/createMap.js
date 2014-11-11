@@ -80,8 +80,8 @@ function tickMap(delta) {
 }
 
 var colors;
-var minimapHeight = 24;
-var minimapWidth = 24;
+var minimapHeight = 32;
+var minimapWidth = 32;
 var minimapTileSize = 2;
 
 function getMinimapGraphics() {
