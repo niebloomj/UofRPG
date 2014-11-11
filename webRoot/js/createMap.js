@@ -20,34 +20,53 @@ function createMap(player, delta) {
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     mapData = mapDataJson;
 
+
+
+    // var tilesets = [];
+    // var images = [];
+    // var imageDatas = [];
+
+    // for (var i = 0; i < mapData.tilesets.length; i++) {
+    //     images[i] = new Image();
+    //     images[i].src = mapData.tilesets.image;
+    //     imageData[i] = {
+    //         images: []
+    //     }
+    // }
+
+
+    // OLD OVERLY COMPLEX CODE FOR MAKING IMAGES
     // create EaselJS image for tileset
-    tilesetA = new Image();
-    tilesetB = new Image();
+    // tilesetA = new Image();
+    // tilesetB = new Image();
 
-    tilesetA.src = mapData.tilesets[0].image;
-    tilesetB.src = mapData.tilesets[1].image;
+    // tilesetA.src = mapData.tilesets[0].image;
+    // tilesetB.src = mapData.tilesets[1].image;
 
-    var d = mapData.tilesets[0].tilewidth;
+    // var d = mapData.tilesets[0].tilewidth;
 
-    var imageDataA = {
-        images: [tilesetA],
-        frames: {
-            width: d,
-            height: d
-        }
-    };
-    var imageDataB = {
-        images: [tilesetB],
-        frames: {
-            width: d,
-            height: d
-        }
-    };
+    // var imageDataA = {
+    //     images: [tilesetA],
+    //     frames: {
+    //         width: d,
+    //         height: d
+    //     }
+    // };
+    // var imageDataB = {
+    //     images: [tilesetB],
+    //     frames: {
+    //         width: d,
+    //         height: d
+    //     }
+    // };
 
+    // var layerData = mapData.layers[0];
+
+    // var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
+    // var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
+
+    var d = mapData.tilewidth;
     var layerData = mapData.layers[0];
-
-    var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
-    var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
 
     var botXRight = cordX,
         botYRight = cordY,
@@ -132,6 +151,11 @@ function createMap(player, delta) {
         rightCollision = false;
     }
 
+    var bitmaps = [];
+    for (var i = 0; i < mapData.tilesets.length; i++) {
+        bitmaps[i] = new createjs.Bitmap(mapData.tilesets[i].image);
+    }
+
     for (var y = cordY - extra - screenHeight; y < cordY + extra + screenHeight; y++) {
         for (var x = cordX - extra - screenWidth; x < cordX + extra + screenWidth; x++) {
             // create a new Bitmap for each cell
@@ -139,11 +163,13 @@ function createMap(player, delta) {
             // layer data has single dimension array
             var idx = x + y * layerData.width;
             // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
-            if (layerData.data[idx] == 1) {
+            //console.log(layerData.data[idx]);
+            cellBitmap = bitmaps[layerData.data[idx]-1].clone();//new createjs.Bitmap(mapData.tilesets[layerData.data[idx]-1].image);
+            /*if (layerData.data[idx] == 1) {
                 cellBitmap = new createjs.Sprite(tilesetSheetA);
             } else {
                 cellBitmap = new createjs.Sprite(tilesetSheetB);
-            }
+            }*/
 
             //cellBitmap.gotoAndStop(layerData.data[idx] - 1);
             // isometrix tile positioning based on X Y order from Tiled
