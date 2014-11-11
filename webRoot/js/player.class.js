@@ -19,7 +19,7 @@ function Player(name, map) {
     this.sprintMultiplier = 1.5;
 
     this.currentCharacter = 0;
-    this.characters = ["img/Santiago.png", "img/Alex.png", "img/Brad.png", "img/Hayden.png", "img.Naropa.png", "img/Aaron.png"];
+    this.characters = ["img/sprites/player_santiago.png", "img/sprites/player_alex.png", "img/sprites/player_brad.png", "img/sprites/player_naropa.png", "img/sprites/player_aaron.png"];
 
 }
 
@@ -167,10 +167,7 @@ Player.prototype.handleCollision = function() {
 
 Player.prototype.getDisplay = function() {
 
-    var currentCharacter = 0;
-    var characters = ["img/Santiago.png", "img/Alex.png", "img/Brad.png", "img/Hayden.png", "img.Naropa.png", "img/Aaron.png"];
-
-    var sprite = new createjs.Bitmap(characters[currentCharacter]);
+    var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
     sprite.setTransform(0, -1 * this.height());
     if (!(this.isMovingLeft)) {
         sprite.x = this.width();
