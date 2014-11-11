@@ -109,23 +109,23 @@ function getMinimapGraphics() {
             var color = colors[layerData.data[idx] - 1];
 
             //TODO someone smarter than me sould simplify this math
-            var pixelX = (ix * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD) - (( miniCordX - 1 - minimapWidth) * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD);
+            var pixelX = (ix * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD) - ((miniCordX - 1 - minimapWidth) * miniD - miniD - (miniCordX - 1 - minimapWidth) * miniD);
             var pixelY = (iy * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD) - ((miniCordY - 1 - minimapHeight) * miniD - miniD - (miniCordX - 1 - minimapHeight) * miniD);
-			var midX = ix - (((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2);
-			var midY = iy - (((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2);
-			
-			// This runs if we're coloring a cross around the player (just, uh, trust me).
+            var midX = ix - (((miniCordX - 1 - minimapWidth) + (miniCordX + 1 + minimapWidth)) / 2);
+            var midY = iy - (((miniCordY - 1 - minimapHeight) + (miniCordY + 1 + minimapHeight)) / 2);
+
+            // This runs if we're coloring a cross around the player (just, uh, trust me).
             if (((midX + 1 == 0) || (midY + 1 == 0)) && ((midX + 1 < 2) && (midX + 1 > -2)) && ((midY + 1 < 2) && (midY + 1 > -2))) {
-				color = colors[2];
-			}
-			
-			for (var i=0; i < data.length; i+=4) {
-                data[i+0] = color[0];
-                data[i+1] = color[1];
-                data[i+2] = color[2];
-                data[i+3] = color[3];
+                color = colors[2];
             }
-			
+
+            for (var i = 0; i < data.length; i += 4) {
+                data[i + 0] = color[0];
+                data[i + 1] = color[1];
+                data[i + 2] = color[2];
+                data[i + 3] = color[3];
+            }
+
             ctx.putImageData(id, pixelX, pixelY);
         }
     }

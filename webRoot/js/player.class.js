@@ -16,7 +16,7 @@ function Player(name, map) {
     this.sprintMultiplier = 1.5;
 
     this.currentCharacter = 0;
-    this.characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png","img/Aaron.png"];
+    this.characters = ["img/Santiago.png", "img/Alex.png", "img/Brad.png", "img/Hayden.png", "img.Naropa.png", "img/Aaron.png"];
 
 }
 
@@ -59,7 +59,7 @@ Player.prototype.move = function(delta) {
 Player.prototype.tick = function(delta) {
     this.move(delta);
     this.handleCollision();
-    
+
     if (this.isMoveR && !(this.isMoveL)) {
         this.isMovingLeft = false;
     }
@@ -165,7 +165,7 @@ Player.prototype.handleCollision = function() {
 Player.prototype.getDisplay = function() {
 
     var currentCharacter = 0;
-    var characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png","img/Aaron.png"];
+    var characters = ["img/Santiago.png", "img/Alex.png", "img/Brad.png", "img/Hayden.png", "img.Naropa.png", "img/Aaron.png"];
 
     var sprite = new createjs.Bitmap(characters[currentCharacter]);
     sprite.setTransform(0, -1 * this.height());
