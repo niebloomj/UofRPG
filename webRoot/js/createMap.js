@@ -24,7 +24,8 @@ function tickMap() {
             // layer data has single dimension array
             var idx = ix + iy * layerData.width;
             // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
-            cellBitmap = bitmaps[layerData.data[idx]-1].clone();
+
+            cellBitmap = bitmaps[layerData.data[idx] - 1].clone();
 
             //cellBitmap.gotoAndStop(layerData.data[idx] - 1);
             // isometrix tile positioning based on X Y order from Tiled
