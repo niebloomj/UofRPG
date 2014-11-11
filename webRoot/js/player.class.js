@@ -163,12 +163,12 @@ Player.prototype.handleCollision = function() {
 };
 
 Player.prototype.getDisplay = function() {
-    
+
     var currentCharacter = 0;
     var characters = ["img/Santiago.png","img/Alex.png","img/Brad.png","img/Hayden.png","img.Naropa.png","img/Aaron.png"];
 
     var sprite = new createjs.Bitmap(characters[currentCharacter]);
-    sprite.setTransform(0, -42);
+    sprite.setTransform(0, -1 * this.height());
     if (!(this.isMovingLeft)) {
         sprite.x = this.width();
         sprite.scaleX = -1;
