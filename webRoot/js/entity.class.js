@@ -43,4 +43,9 @@ function Entity() {
     this.height = function() {
         return 32;
     }
+
+    // tells this entity to react to a tick
+    this.tick = function(delta) {
+        this.move(delta);
+    }
 }

@@ -1,187 +1,48 @@
-var tilesetA, tilesetB;
+//var tilesetA, tilesetB;
 var mapData;
+var screenWidth = 15;
+var screenHeight = 8;
+var tileSize;
+var tilesheet, dims, bitmaps;
+var entities;
 
-function createMap(player, delta) {
-    /*
-     * playerX and playerY are in pixels
-     * cordX and cordY are in tile #s
-     */
 
+function tickMap() {
     gameContainer.removeAllChildren();
-
-    var extra = 1,
-        screenWidth = 15,
-        screenHeight = 8,
-        cordX = ((player.x / 32) | 0),
-        cordY = ((player.y / 32) | 0),
-        modX = 32 - (player.x % 32),
-        modY = 32 - (player.y % 32);
-
-    // json map data at the end of this file for ease of understanding (created on Tiled map editor)
-    mapData = mapDataJson;
-
-
-
-    // var tilesets = [];
-    // var images = [];
-    // var imageDatas = [];
-
-    // for (var i = 0; i < mapData.tilesets.length; i++) {
-    //     images[i] = new Image();
-    //     images[i].src = mapData.tilesets.image;
-    //     imageData[i] = {
-    //         images: []
-    //     }
-    // }
-
-
-    // OLD OVERLY COMPLEX CODE FOR MAKING IMAGES
-    // create EaselJS image for tileset
-    // tilesetA = new Image();
-    // tilesetB = new Image();
-
-    // tilesetA.src = mapData.tilesets[0].image;
-    // tilesetB.src = mapData.tilesets[1].image;
-
-    // var d = mapData.tilesets[0].tilewidth;
-
-    // var imageDataA = {
-    //     images: [tilesetA],
-    //     frames: {
-    //         width: d,
-    //         height: d
-    //     }
-    // };
-    // var imageDataB = {
-    //     images: [tilesetB],
-    //     frames: {
-    //         width: d,
-    //         height: d
-    //     }
-    // };
-
-    // var layerData = mapData.layers[0];
-
-    // var tilesetSheetA = new createjs.SpriteSheet(imageDataA);
-    // var tilesetSheetB = new createjs.SpriteSheet(imageDataB);
 
     var d = mapData.tilewidth;
     var layerData = mapData.layers[0];
 
-    var botXRight = cordX,
-        botYRight = cordY,
-        topXRight = cordX,
-        topYRight = cordY - 1,
-        botXLeft = cordX - 1,
-        botYLeft = cordY,
-        topXLeft = cordX - 1,
-        topYLeft = cordY - 1;
+    var cordX = ((player.x / d) | 0);
+    var cordY = ((player.y / d) | 0);
+    var modX = d - (player.x % d);
+    var modY = d - (player.y % d);
 
-    var topLeftIndex = topXLeft + topYLeft * layerData.width;
-    var botLeftIndex = botXLeft + botYLeft * layerData.width;
-    var topRightIndex = topXRight + topYRight * layerData.width;
-    var botRightIndex = botXRight + botYRight * layerData.width;
-
-
-    var topLeftCollision = false;
-    var topRightCollision = false;
-    var botLeftCollision = false;
-    var botRightCollision = false;
-
-    // Note each statement MUST be in a separate try-catch. This was done intentionally.
-    try {
-        botLeftCollision = mapData.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
-    } catch (err) {}
-
-    try {
-        topLeftCollision = mapData.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
-    } catch (err) {}
-
-    try {
-        topRightCollision = mapData.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
-    } catch (err) {}
-
-    try {
-        botRightCollision = mapData.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == mapData.tilesets[1].tileproperties[0];
-    } catch (err) {}
-
-    var topCollisionHard = topLeftCollision && topRightCollision;
-    var botCollisionHard = botLeftCollision && botRightCollision;
-    var leftCollisionHard = topLeftCollision && botLeftCollision;
-    var rightCollisionHard = topRightCollision && botRightCollision;
-
-    var topCollision = topCollisionHard || (topLeftCollision && !leftCollisionHard) || (topRightCollision && !rightCollisionHard);
-    var botCollision = botCollisionHard || (botLeftCollision && !leftCollisionHard) || (botRightCollision && !rightCollisionHard);
-    var leftCollision = leftCollisionHard || (topLeftCollision && !topCollisionHard) || (botLeftCollision && !botCollisionHard);
-    var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
-
-    if (debugMode && player.isNoCollide) {
-        //isCollision = false;
-        topCollision = false;
-        botCollision = false;
-        leftCollision = false;
-        rightCollision = false;
-    }
-
-    if (topCollision || botCollision) {
-        while (player.y % 32 > 0) {
-            if (topCollision) {
-                player.y++;
-            } else {
-                player.y--;
-            }
-        }
-        cordY = ((player.y / 32) | 0);
-        modY = 32 - (player.y % 32);
-        topCollision = false;
-        botCollision = false;
-    }
-
-    if (leftCollision || rightCollision) {
-        while (player.x % 32 > 0) {
-            if (leftCollision) {
-                player.x++;
-            } else {
-                player.x--;
-            }
-        }
-        cordX = ((player.x / 32) | 0);
-        modX = 32 - (player.x % 32);
-        leftCollision = false;
-        rightCollision = false;
-    }
-
-    var bitmaps = [];
-    for (var i = 0; i < mapData.tilesets.length; i++) {
-        bitmaps[i] = new createjs.Bitmap(mapData.tilesets[i].image);
-    }
-
-    for (var y = cordY - extra - screenHeight; y < cordY + extra + screenHeight; y++) {
-        for (var x = cordX - extra - screenWidth; x < cordX + extra + screenWidth; x++) {
+    for (var iy = cordY - 1 - screenHeight; iy < cordY + 1 + screenHeight; iy++) {
+        for (var ix = cordX - 1 - screenWidth; ix < cordX + 1 + screenWidth; ix++) {
+            //console.log(ix + " " +iy);
             // create a new Bitmap for each cell
             var cellBitmap;
             // layer data has single dimension array
-            var idx = x + y * layerData.width;
+            var idx = ix + iy * layerData.width;
             // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
-            //console.log(layerData.data[idx]);
-            cellBitmap = bitmaps[layerData.data[idx]-1].clone();//new createjs.Bitmap(mapData.tilesets[layerData.data[idx]-1].image);
-            /*if (layerData.data[idx] == 1) {
-                cellBitmap = new createjs.Sprite(tilesetSheetA);
-            } else {
-                cellBitmap = new createjs.Sprite(tilesetSheetB);
-            }*/
+            //console.log(idx);
+            cellBitmap = bitmaps[layerData.data[idx]-1].clone();
+
+            // if (layerData.data[idx] == 1) {
+            //     cellBitmap = new createjs.Sprite(tilesetSheetA);
+            // } else {
+            //     cellBitmap = new createjs.Sprite(tilesetSheetB);
+            // }
 
             //cellBitmap.gotoAndStop(layerData.data[idx] - 1);
             // isometrix tile positioning based on X Y order from Tiled
-            cellBitmap.x = x * d - 32 + modX - (cordX - extra - screenWidth) * d;
-            cellBitmap.y = y * d - 32 + modY - (cordY - extra - screenHeight) * d;
+            cellBitmap.x = ix * d - 32 + modX - (cordX - 1 - screenWidth) * d;
+            cellBitmap.y = iy * d - 32 + modY - (cordY - 1 - screenHeight) * d;
 
             gameContainer.addChild(cellBitmap);
         }
     }
-
-
-    var entities = [player];
 
     // loop to reposition all entities and then draw them
     for (var i = 0; i < entities.length; i++) {
@@ -193,7 +54,6 @@ function createMap(player, delta) {
         );
         gameContainer.addChild(display);
     }
-
 
 
     // overlay for debug mode
