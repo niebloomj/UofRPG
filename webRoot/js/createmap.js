@@ -50,15 +50,15 @@ function tickMap(delta) {
 
     benchmark("minimap", function(){
         var minimap = getMinimapDisplay();
-        minimap.setTransform(27 * TILE_D - 11, 10); //There's probably a better way to calculate the X coordinate
+        minimap.setTransform(stage.canvas.width - minimap.getBounds().width - 10, 10);
         gameContainer.addChild(minimap);
     });
 
-    benchmark("hudbar", function(){
-        var hudbar = getHudbarDisplay();
-        hudbar.setTransform(10, 10);
-        gameContainer.addChild(hudbar);
-    });
+    // benchmark("hudbar", function(){
+    //     var hudbar = getHudbarDisplay();
+    //     hudbar.setTransform(10, 10);
+    //     gameContainer.addChild(hudbar);
+    // });
 
 
     benchmark("stage.update", function(){
@@ -104,57 +104,63 @@ var minimapColors = [
 var minimapCrosshairColor = [0, 0, 128]; // color for crosshair [r, g, b]
 var minimapOpacity = 0.7 * 256 - 1; // how visible is minimap? (0-255)
 
-var minimapWidth = 31; // width of minimap (in tiles)
-var minimapHeight = 31; // height of minimap (in tiles)
+var minimapWidth = 48; // width of minimap (in tiles)
+var minimapHeight = 48; // height of minimap (in tiles)
 var minimapTileSize = 2; // size of tiles on minimap (in px)
+
+var minimapBitmap=false;
 
 /**
  * Gets a DisplayObject representing the minimap
  * pixel drawing technique based on http://community.createjs.com/discussions/easeljs/1291-bitmap-pixel-manipulation
  */
 function getMinimapDisplay() {
+    console.log("ding!");
     var layerData = mapData.layers[0];
     var miniD = minimapTileSize;
 
+    var minimapWidthPx = minimapWidth * minimapTileSize;
+    var minimapHeightPx = minimapHeight * minimapTileSize;
+
+    if (!minimapBitmap) {
+        var placeholder = new createjs.Shape();
+        placeholder.graphics.beginFill("#0000ff").drawRect(0, 0, minimapWidthPx, minimapHeightPx);
+        return placeholder;
+    }
+
     var miniCordX = ((player.x / TILE_D) | 0);
     var miniCordY = ((player.y / TILE_D) | 0);
-    var miniModX = miniD - (player.x % miniD);
-    var miniModY = miniD - (player.y % miniD);
 
-    var posX = (miniCordX - 1 - minimapWidth);
-    var posY = (miniCordY - 1 - minimapHeight);
+    minimapBitmap.sourceRect = new createjs.Rectangle(
+        (miniCordX * minimapTileSize - minimapWidth), 
+        (miniCordY * minimapTileSize - minimapWidth), 
+        minimapWidthPx, 
+        minimapHeightPx
+    );
 
-    var midX = (posX + (miniCordX + 1 + minimapWidth)) / 2;
-    var midY = (posY + (miniCordY + 1 + minimapHeight)) / 2;
-    var offsetX = miniD - (miniCordX - 1 - minimapWidth) * miniD;
-    var offsetY = miniD - (miniCordX - 1 - minimapHeight) * miniD;
+    return minimapBitmap;
+}
 
+/**
+ * Pre-renders minimap
+ */
+function initMinimap() {
+    var layerData = mapData.layers[0];
+    var miniD = minimapTileSize;
 
     var canvas = document.createElement("canvas");
+    canvas.width  = mapData.width * miniD;
+    canvas.height = mapData.height * miniD;
     var ctx = canvas.getContext("2d");
     var id = ctx.createImageData(miniD, miniD);
     var data = id.data;
 
-    var firstX = posX * miniD - offsetX;
-    var firstY = posY * miniD - offsetY;
-
-    for (var iy = miniCordY - 1 - minimapHeight; iy < miniCordY + 1 + minimapHeight; iy++) {
-        for (var ix = miniCordX - 1 - minimapWidth; ix < miniCordX + 1 + minimapWidth; ix++) {
+    for (var iy = 0; iy < mapData.height; iy++) {
+        for (var ix = 0; ix < mapData.width; ix++) {
 
             var idx = ix + iy * layerData.width;
             var tid = layerData.data[idx] - 1;
             var color = getMinimapColor(tid);
-
-            var pixelX = (ix * miniD - offsetX) - firstX;
-            var pixelY = (iy * miniD - offsetY) - firstY;
-
-            var localMidX = ix - midX;
-            var localMidY = iy - midY;
-
-            // This runs if we're coloring a cross around the player (just, uh, trust me).
-            if (((localMidX + 1 == 0) || (localMidY + 1 == 0)) && ((localMidX + 1 < 2) && (localMidX + 1 > -2)) && ((localMidY + 1 < 2) && (localMidY + 1 > -2))) {
-                color = minimapCrosshairColor;
-            }
 
             for (var i = 0; i < data.length; i += 4) {
                 data[i] = color[0];
@@ -163,11 +169,11 @@ function getMinimapDisplay() {
                 data[i + 3] = minimapOpacity;
             }
 
-            ctx.putImageData(id, pixelX, pixelY);
+            ctx.putImageData(id, ix * miniD, iy * miniD);
         }
     }
 
-    return new createjs.Bitmap(canvas);
+    minimapBitmap = new createjs.Bitmap(canvas);
 }
 
 /**
@@ -240,7 +246,7 @@ function getHudbarDisplay() {
 /**
  * Prepares hudbars for first draw
  */
-function initializeHudbars() {
+function initHudbar() {
     healthbarGraphics = new createjs.Graphics();
 
     // draw border of health bar

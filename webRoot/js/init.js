@@ -8,7 +8,7 @@ Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
 var accountsTable = new AccountsTable();
 var username = null;
 
-var benchmarkingMode = true;
+var benchmarkingMode = false;
 var debugMode = false;
 if (window.location.hash) {
     var hash = window.location.hash.substring(1);

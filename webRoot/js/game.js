@@ -37,8 +37,11 @@ function createGame() {
         bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0], dims[i][1], dims[i][2], dims[i][3]);
     }
 
+    // pre-renders minimap
+    initMinimap();
+
     // preps hudbars to be drawn
-    initializeHudbars();
+    initHudbar();
 
     // create the player
     player = new Player("PlaceholderUsername", mapData);
