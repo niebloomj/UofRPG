@@ -32,14 +32,18 @@ function createGame() {
 
     // prep the tiles to be drawn
     var tilesheet = new createjs.Bitmap("img/tiles.png");
+
+    // coordinates of each tile in the tiles.png file!
+    // [x, y, width, height]
     var dims = [
-        [1, 0], // grass
-        [0, 0] // brick
+        [32, 0, 32, 32], // grass
+        [0, 0, 32, 32] // brick
     ];
+    
     bitmaps = [];
     for (var i = 0; i < dims.length; i++) {
         bitmaps[i] = tilesheet.clone();
-        bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0]*d, dims[i][1]*d, d, d);
+        bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0], dims[i][1], dims[i][2], dims[i][3]);
     }
 
     // create the player
