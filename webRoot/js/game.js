@@ -34,7 +34,7 @@ function createGame() {
     var tilesheet = new createjs.Bitmap("img/tiles.png");
     var dims = [
         [1, 0], // grass
-        [0, 0] // dirt
+        [0, 0] // brick
     ];
     bitmaps = [];
     for (var i = 0; i < dims.length; i++) {
