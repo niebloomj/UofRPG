@@ -120,13 +120,6 @@ function getMinimapGraphics() {
             }
 
             ctx.putImageData(id, pixelX, pixelY);
-            // for (var i = 0; i < miniD; i++) {
-            //     for (var j = 0; j < miniD; j++) {
-            //         ctx.putImageData( id, pixelX + i, pixelY+j ); 
-            //     }
-            // }
-
-            
         }
     }
     return new createjs.Bitmap(canvas);
