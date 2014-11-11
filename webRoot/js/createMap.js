@@ -48,7 +48,7 @@ function tickMap(delta) {
     }
 
     var minimap = getMinimapGraphics();
-    minimap.setTransform(10, 10);
+    minimap.setTransform(27 * TILE_D - 15, 10); //There's probably a better way to calculate the X coordinate
     gameContainer.addChild(minimap);
 
 
