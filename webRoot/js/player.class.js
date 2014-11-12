@@ -173,7 +173,7 @@ Player.prototype.getDisplay = function() {
 
     var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
     sprite.setTransform(0, -1 * this.height());
-    if (!(this.isMovingLeft)) {
+    if (!(this.isMovingLeft) && (this.currentCharacter != 4)) {
         sprite.x = this.width();
         sprite.scaleX = -1;
     }
