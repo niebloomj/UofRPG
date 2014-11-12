@@ -182,22 +182,22 @@
   <tile id="10">
    <image width="32" height="32" source="../../Art Assets/Tiles/PavementTiles/Pavement.png"/>
   </tile>
-  <tile id="14">
+  <tile id="11">
    <image width="32" height="32" source="../../Art Assets/Tiles/PavementTiles/PavementYellowDiagRevised.png"/>
   </tile>
-  <tile id="15">
+  <tile id="12">
    <image width="32" height="32" source="../../Art Assets/Tiles/PavementTiles/PavementYellowDiag2Revised.png"/>
   </tile>
-  <tile id="16">
+  <tile id="13">
    <image width="32" height="32" source="../../Art Assets/Tiles/PavementTiles/GrassPavement1.png"/>
   </tile>
-  <tile id="17">
+  <tile id="14">
    <image width="32" height="32" source="../../Art Assets/Tiles/PavementTiles/GrassPavement2.png"/>
   </tile>
-  <tile id="18">
+  <tile id="15">
    <image width="32" height="32" source="../../Art Assets/Tiles/PavementTiles/SidewalkPavement1.png"/>
   </tile>
-  <tile id="19">
+  <tile id="16">
    <image width="32" height="32" source="../../Art Assets/Tiles/PavementTiles/SidewalkPavement2.png"/>
   </tile>
  </tileset>
