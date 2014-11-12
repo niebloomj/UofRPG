@@ -2,8 +2,8 @@ function Player(name, map) {
     this.name = name;
     this.map = map;
 
-    this.health = 16;
     this.maxHealth = 20;
+    this.health = this.maxHealth;
 
     this.isMoveU = false;
     this.isMoveD = false;

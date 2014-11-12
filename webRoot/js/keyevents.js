@@ -1,4 +1,5 @@
 // key bindings
+// look up key codes at http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 var KEYCODE_DEBUG = 192; // grave (`)
 var KEYCODE_BENCHMARK = 220; // backslash (\)
 
