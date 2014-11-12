@@ -21,21 +21,68 @@ function createGame() {
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     mapData = mapDataJson;
 
-    // prep the tiles to be drawn
-    var tilesheet = new createjs.Bitmap("img/tiles.png");
+    tiles = [];
+    for (var tsid = 0; tsid < mapData.tilesets.length; tsid++) {
+        var tileset = mapData.tilesets[tsid];
+        var firstgid = parseInt(tileset.firstgid);
 
-    // coordinates of each tile in the tiles.png file!
-    // [x, y, width, height]
-    var dims = [
-        [32, 0, 32, 32], // grass
-        [0, 0, 32, 32] // brick
-    ];
+        // special case for multi-tile tilesets
+        if (typeof tileset.tiles !== 'undefined') {
+            
+            for (var key in tileset.tiles) {
+                var tileRef = tileset.tiles[key];
 
-    bitmaps = [];
-    for (var i = 0; i < dims.length; i++) {
-        bitmaps[i] = tilesheet.clone();
-        bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0], dims[i][1], dims[i][2], dims[i][3]);
+                var tileObj = {
+                    image: tileRef.image,
+                    bitmap: new createjs.Bitmap(tileRef.image)
+                };
+
+                var index = firstgid + parseInt(key);
+                tiles[index] = tileObj;
+            }
+
+        /*// special case for spritesheet-based tilesets
+        } else if (tileset.imageheight != tileset.tileheight || tileset.imagewidth != tileset.tilewidth) {
+            
+            var mh = tileset.imageheight;
+            var th = tileset.tileheight;
+            var mw = tileset.imagewidth;
+            var tw = tileset.tilewidth;
+            var sheet = new createjs.Bitmap(tileset.image);
+
+            var tilesTall = mh / th;
+            var tilesWide = mw / tw;
+
+            for (var i = 0; i < mh / th; i++) {
+                for (var j = 0; j < mw / tw; j++) {
+
+                    var bmp = sheet.clone();
+                    bmp.sourceRect = new createjs.Rectangle(j * tw, i * th, tw, th);
+
+                    var tileObj = {
+                        image: tileset.image,
+                        bitmap: bmp
+                    };
+
+                    var index = firstgid + ((i * tilesTall) + j);
+                    tiles[index] = tileObj;
+
+                    console.log(i + "," + j + ": " + index + ", " + (j * tw) +" "+ (i * th) +" "+ tw +" "+ th);
+                }
+            }
+            */
+        // case for "normal" tilesets with just one tile
+        } else {
+            var tileObj = {
+                image: tileset.image,
+                bitmap: new createjs.Bitmap(tileset.image)
+            };
+
+            tiles[firstgid] = tileObj;
+        }
     }
+    //console.log(tiles);
+
 
     // preps minimap to be drawn
     initMinimap();

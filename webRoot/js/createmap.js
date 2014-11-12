@@ -2,8 +2,8 @@ var mapData;
 var screenWidth = 15;
 var screenHeight = 8;
 var TILE_D = 32;
-var bitmaps;
 var entities;
+var tiles;
 
 
 function tickMap(delta) {
@@ -26,7 +26,7 @@ function tickMap(delta) {
                 var idx = ix + iy * layerData.width;
                 // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
 
-                cellBitmap = bitmaps[layerData.data[idx] - 1].clone();
+                cellBitmap = getBitmap(layerData.data[idx]).clone();
 
                 // isometrix tile positioning based on X Y order from Tiled
                 cellBitmap.x = ix * d - d + modX - (cordX - 1 - screenWidth) * d;
@@ -92,6 +92,14 @@ function tickMap(delta) {
             $("#debugBox").addClass("hidden");
         }
     });
+}
+
+
+function getBitmap(tid) {
+    if (typeof tiles[tid] !== 'undefined') {
+        return tiles[tid].bitmap;
+    }
+    return tiles[1].bitmap; //TODO hardcode a little less
 }
 
 
@@ -180,7 +188,7 @@ function renderMinimap() {
  * Color given as an array [r, g, b, a]
  */
 function getMinimapColor(tid) {
-    if (tid >= 0 && tid < minimapColors.length) {
+    if (typeof minimapColors[tid] !== 'undefined') {
         return minimapColors[tid];
     }
     return [0, 0, 0, 255];
