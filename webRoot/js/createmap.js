@@ -17,7 +17,7 @@ function tickMap(delta) {
     var modX = d - (player.x % d);
     var modY = d - (player.y % d);
 
-    benchmark("tiles", function(){
+    benchmark("d:tiles", function(){
         for (var iy = cordY - 1 - screenHeight; iy < cordY + 1 + screenHeight; iy++) {
             for (var ix = cordX - 1 - screenWidth; ix < cordX + 1 + screenWidth; ix++) {
                 // create a new Bitmap for each cell
@@ -37,35 +37,37 @@ function tickMap(delta) {
         }
     });
 
-    // loop to reposition all entities and then draw them
-    for (var i = 0; i < entities.length; i++) {
-        var entity = entities[i];
-        var display = entity.getDisplay();
-        display.setTransform(
-            entity.x - (entity.x - entity.width() / 2 - screenWidth * d),
-            entity.y - (entity.y - entity.height() / 2 - screenHeight * d)
-        );
-        gameContainer.addChild(display);
-    }
+    benchmark("d:entities", function(){
+        // loop to reposition all entities and then draw them
+        for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];
+            var display = entity.getDisplay();
+            display.setTransform(
+                entity.x - (entity.x - entity.width() / 2 - screenWidth * d),
+                entity.y - (entity.y - entity.height() / 2 - screenHeight * d)
+            );
+            gameContainer.addChild(display);
+        }
+    });
 
-    benchmark("minimap", function(){
+    benchmark("d:minimap", function(){
         var minimap = getMinimapDisplay();
         minimap.setTransform(stage.canvas.width - minimap.getBounds().width - 10, 10);
         gameContainer.addChild(minimap);
     });
 
-    benchmark("hudbar", function(){
+    benchmark("d:hudbar", function(){
         var hudbar = getHudbarDisplay();
         hudbar.setTransform(10, 10);
         gameContainer.addChild(hudbar);
     });
 
 
-    benchmark("stage.update", function(){
+    benchmark("d:update", function(){
         stage.update();
     });
 
-    benchmark("debug overlay", function(){
+    benchmark("debug", function(){
         // overlay for debug mode
         if (debugMode) {
             var overlayStr = "";
@@ -108,25 +110,18 @@ var minimapWidth = 48; // width of minimap (in tiles)
 var minimapHeight = 48; // height of minimap (in tiles)
 var minimapTileSize = 2; // size of tiles on minimap (in px)
 
-var minimapBitmap=false;
+var minimapBitmap;
 
 /**
  * Gets a DisplayObject representing the minimap
  * pixel drawing technique based on http://community.createjs.com/discussions/easeljs/1291-bitmap-pixel-manipulation
  */
 function getMinimapDisplay() {
-    console.log("ding!");
     var layerData = mapData.layers[0];
     var miniD = minimapTileSize;
 
     var minimapWidthPx = minimapWidth * minimapTileSize;
     var minimapHeightPx = minimapHeight * minimapTileSize;
-
-    if (!minimapBitmap) {
-        var placeholder = new createjs.Shape();
-        placeholder.graphics.beginFill("#0000ff").drawRect(0, 0, minimapWidthPx, minimapHeightPx);
-        return placeholder;
-    }
 
     var miniCordX = ((player.x / TILE_D) | 0);
     var miniCordY = ((player.y / TILE_D) | 0);
@@ -141,10 +136,14 @@ function getMinimapDisplay() {
     return minimapBitmap;
 }
 
+function initMinimap() {
+    renderMinimap();
+}
+
 /**
  * Pre-renders minimap
  */
-function initMinimap() {
+function renderMinimap() {
     var layerData = mapData.layers[0];
     var miniD = minimapTileSize;
 
@@ -171,6 +170,7 @@ function initMinimap() {
 
             ctx.putImageData(id, ix * miniD, iy * miniD);
         }
+        setLoadingProgressValue(Math.floor(iy/mapData.height));
     }
 
     minimapBitmap = new createjs.Bitmap(canvas);

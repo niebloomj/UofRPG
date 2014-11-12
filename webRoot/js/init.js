@@ -129,7 +129,6 @@ function loginSuccessful(name) {
     $("#loginHeader").addClass("hidden");
     $(".theGame").removeClass("hidden");
     $("#gameHeader").removeClass("hidden");
-    stage.update();
     createGame();
 }
 

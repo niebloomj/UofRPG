@@ -37,7 +37,7 @@ function createGame() {
         bitmaps[i].sourceRect = new createjs.Rectangle(dims[i][0], dims[i][1], dims[i][2], dims[i][3]);
     }
 
-    // pre-renders minimap
+    // preps minimap to be drawn
     initMinimap();
 
     // preps hudbars to be drawn
@@ -58,6 +58,7 @@ var benchmarks = [];
 
 // NOT TO BE EXPLICITLY CALLED!!
 function tick(event) {
+
     // tick all the entities
     benchmark("entities", function(){
         for (var i = 0; i < entities.length; i++) {
@@ -75,6 +76,8 @@ function tick(event) {
 
     //player.iterateCharacter(); //uncomment for fun times! :)
 }
+
+
 
 function benchmark(label, func) {
     if (!debugMode || !benchmarkingMode) {
@@ -99,7 +102,7 @@ function benchmarkTick() {
     var benchmarkStr = "<br><br><strong>BENCHMARKS</strong>";
     var totalElapsed = 0;
     for (var i = 0; i < benchmarks.length; i++) {
-        benchmarkStr += "<br>" + benchmarks[i].label + ":<span class='pull-right'>" + benchmarks[i].elapsed +"</span>";
+        benchmarkStr += "<br>" + benchmarks[i].label + "<span class='pull-right'>" + benchmarks[i].elapsed +"</span>";
         totalElapsed += benchmarks[i].elapsed;
     }
 
