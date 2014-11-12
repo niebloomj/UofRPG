@@ -104,7 +104,7 @@ var minimapColors = [
 ]
 
 var minimapCrosshairColor = [0, 0, 128]; // color for crosshair [r, g, b]
-var minimapOpacity = 0.7 * 256 - 1; // how visible is minimap? (0-255)
+var minimapOpacity = 255; // how visible is minimap? (0-255)
 
 var minimapWidth = 48; // width of minimap (in tiles)
 var minimapHeight = 48; // height of minimap (in tiles)
@@ -170,7 +170,6 @@ function renderMinimap() {
 
             ctx.putImageData(id, ix * miniD, iy * miniD);
         }
-        setLoadingProgressValue(Math.floor(iy/mapData.height));
     }
 
     minimapBitmap = new createjs.Bitmap(canvas);
