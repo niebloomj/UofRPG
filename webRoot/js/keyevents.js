@@ -65,7 +65,8 @@ function keyup(event) {
             benchmarkingMode = !benchmarkingMode;
             break;
         case KEYCODE_TOGGLE_PLAYER:
-            player.iterateCharacter();
+            if (debugMode)
+                player.iterateCharacter();
             break;
     }
 }

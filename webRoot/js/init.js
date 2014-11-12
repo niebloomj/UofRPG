@@ -127,6 +127,36 @@ function loginSuccessful(name) {
     username = name;
     $("#loginContainer").addClass("hidden");
     $("#loginHeader").addClass("hidden");
+    selectPlayer();
+}
+
+function selectPlayer() {
+
+    $("#btnSantiago").click(function() {
+        $(".paneButtons").addClass("hidden");
+        player.setPlayer(0);
+    });
+    $("#btnAlex").click(function() {
+        $(".paneButtons").addClass("hidden");
+        player.setPlayer(1);
+    });
+    $("#btnBrad").click(function() {
+        $(".paneButtons").addClass("hidden");
+        player.setPlayer(2);
+    });
+    $("#btnNaropa").click(function() {
+        $(".paneButtons").addClass("hidden");
+        player.setPlayer(3);
+    });
+    $("#btnAaron").click(function() {
+        $(".paneButtons").addClass("hidden");
+        player.setPlayer(4);
+    });
+    $("#btnHayden").click(function() {
+        $(".paneButtons").addClass("hidden");
+        player.setPlayer(5);
+    });
+
     $(".theGame").removeClass("hidden");
     $("#gameHeader").removeClass("hidden");
     createGame();

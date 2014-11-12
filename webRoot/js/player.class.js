@@ -19,7 +19,7 @@ function Player(name, map) {
     this.sprintMultiplier = 1.5;
 
     this.currentCharacter = 0;
-    this.characters = ["img/sprites/player_santiago.png", "img/sprites/player_alex.png", "img/sprites/player_brad.png", "img/sprites/player_naropa.png", "img/sprites/player_aaron.png"];
+    this.characters = ["img/sprites/player_santiago.png", "img/sprites/player_alex.png", "img/sprites/player_brad.png", "img/sprites/player_naropa.png", "img/sprites/player_aaron.png", "img/sprites/player_hayden.png"];
 
 }
 
