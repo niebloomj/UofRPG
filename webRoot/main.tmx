@@ -1,232 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="251" height="218" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="1375641.original" tilewidth="32" tileheight="32">
-  <image source="1375641.original.png" width="32" height="32"/>
+ <tileset firstgid="1" name="white" tilewidth="32" tileheight="32">
+  <image source="img/tiles/misc/white.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="2" name="1375644.original" tilewidth="32" tileheight="32">
-  <image source="1375644.original.png" width="32" height="32"/>
+ <tileset firstgid="2" name="black" tilewidth="32" tileheight="32">
+  <image source="img/tiles/misc/black.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="3" name="SidewalkPixel2" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SidewalkPixel2.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SidewalkPixel2.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="4" name="Grass1" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/grass/Grass1.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/grass/Grass1.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="5" name="SidewalkPixel3" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SidewalkPixel3.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SidewalkPixel3.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="6" name="SG2" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SG2.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SG2.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="7" name="SG3" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SG3.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SG3.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="8" name="SG4" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SG4.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SG4.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="9" name="SidewalkBrickBottom" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SidewalkBrickBottom.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SidewalkBrickBottom.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="10" name="SidewalkBrickSide" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SidewalkBrickSide.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SidewalkBrickSide.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="11" name="SidewalkBrickTop" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/sidewalk/SidewalkBrickTop.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/sidewalk/SidewalkBrickTop.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="12" name="Sidewalk" tilewidth="32" tileheight="32">
   <tile id="0">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkFence.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkFence.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkPixel.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkPixel.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkPixel2.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkPixel2.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkPixel3.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkPixel3.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkStair.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkStair.png"/>
   </tile>
   <tile id="5">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkStairDown.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkStairDown.png"/>
   </tile>
   <tile id="6">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkStairLeft.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkStairLeft.png"/>
   </tile>
   <tile id="7">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkStairRight.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkStairRight.png"/>
   </tile>
   <tile id="8">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/Clay.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/Clay.png"/>
   </tile>
  </tileset>
  <tileset firstgid="21" name="Pavement" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/pavement/Pavement.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/pavement/Pavement.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="22" name="Water" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/misc/Water.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/misc/Water.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="23" name="GrassBrick" tilewidth="32" tileheight="32">
   <tile id="0">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickBottomLeft.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickBottomLeft.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickBottomRight.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickBottomRight.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickDown.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickDown.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickLeft.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickLeft.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickRight.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickRight.png"/>
   </tile>
   <tile id="5">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickTopLeft.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickTopLeft.png"/>
   </tile>
   <tile id="6">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickTopRight.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickTopRight.png"/>
   </tile>
   <tile id="7">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickUp.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickUp.png"/>
   </tile>
   <tile id="8">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickCornerLeft.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickCornerLeft.png"/>
   </tile>
   <tile id="9">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickRight.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickRight.png"/>
   </tile>
   <tile id="10">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickCornerRight.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickCornerRight.png"/>
   </tile>
   <tile id="11">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/LineHalf.png"/>
+   <image width="32" height="32" source="img/tiles/grass/LineHalf.png"/>
   </tile>
   <tile id="12">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/LineFull.png"/>
+   <image width="32" height="32" source="img/tiles/grass/LineFull.png"/>
   </tile>
   <tile id="13">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/GrassBrickCornerBottomRight.png"/>
+   <image width="32" height="32" source="img/tiles/grass/GrassBrickCornerBottomRight.png"/>
   </tile>
   <tile id="14">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField1-1.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField1-1.png"/>
   </tile>
   <tile id="15">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField1-2.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField1-2.png"/>
   </tile>
   <tile id="16">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField1-3.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField1-3.png"/>
   </tile>
   <tile id="17">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField1-4.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField1-4.png"/>
   </tile>
   <tile id="18">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField2-1.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField2-1.png"/>
   </tile>
   <tile id="19">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField2-2.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField2-2.png"/>
   </tile>
   <tile id="20">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField2-3.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField2-3.png"/>
   </tile>
   <tile id="21">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField2-4.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField2-4.png"/>
   </tile>
   <tile id="22">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField3-1.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField3-1.png"/>
   </tile>
   <tile id="23">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField3-2.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField3-2.png"/>
   </tile>
   <tile id="24">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField3-3.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField3-3.png"/>
   </tile>
   <tile id="25">
-   <image width="32" height="32" source="../webRoot/img/tiles/grass/CenterField3-4.png"/>
+   <image width="32" height="32" source="img/tiles/grass/CenterField3-4.png"/>
   </tile>
  </tileset>
  <tileset firstgid="49" name="PavementLines" tilewidth="32" tileheight="32">
   <tile id="0">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementLineLeft.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementLineLeft.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementLineRight.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementLineRight.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementYellow.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementYellow.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementLineDown.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementLineDown.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementLineUp.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementLineUp.png"/>
   </tile>
   <tile id="5">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementYellowX.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementYellowX.png"/>
   </tile>
   <tile id="6">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementCurveBottomLeft.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementCurveBottomLeft.png"/>
   </tile>
   <tile id="7">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementCurveBottomRight.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementCurveBottomRight.png"/>
   </tile>
   <tile id="8">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementCurveTopLeft.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementCurveTopLeft.png"/>
   </tile>
   <tile id="9">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementCurveTopRight.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementCurveTopRight.png"/>
   </tile>
   <tile id="10">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/Pavement.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/Pavement.png"/>
   </tile>
   <tile id="11">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementYellowDiagRevised.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementYellowDiagRevised.png"/>
   </tile>
   <tile id="12">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/PavementYellowDiag2Revised.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/PavementYellowDiag2Revised.png"/>
   </tile>
   <tile id="13">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/GrassPavement1.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/GrassPavement1.png"/>
   </tile>
   <tile id="14">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/GrassPavement2.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/GrassPavement2.png"/>
   </tile>
   <tile id="15">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/SidewalkPavement1.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/SidewalkPavement1.png"/>
   </tile>
   <tile id="16">
-   <image width="32" height="32" source="../webRoot/img/tiles/pavement/SidewalkPavement2.png"/>
+   <image width="32" height="32" source="img/tiles/pavement/SidewalkPavement2.png"/>
   </tile>
  </tileset>
  <tileset firstgid="69" name="sidewalk" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/grass/TileSet2.png" trans="ffffff" width="128" height="224"/>
+  <image source="img/tiles/grass/TileSet2.png" trans="ffffff" width="128" height="224"/>
  </tileset>
  <tileset firstgid="97" name="Pavement" tilewidth="32" tileheight="32">
-  <image source="../webRoot/img/tiles/pavement/Pavement.png" trans="ffffff" width="32" height="32"/>
+  <image source="img/tiles/pavement/Pavement.png" trans="ffffff" width="32" height="32"/>
  </tileset>
  <tileset firstgid="98" name="Sidewalk2" tilewidth="32" tileheight="32">
   <tile id="0">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkFenceCenter.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkFenceCenter.png"/>
   </tile>
   <tile id="1">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkFenceLeft.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkFenceLeft.png"/>
   </tile>
   <tile id="2">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkFenceRight.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkFenceRight.png"/>
   </tile>
   <tile id="3">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkStairLeftBarrier.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkStairLeftBarrier.png"/>
   </tile>
   <tile id="4">
-   <image width="32" height="32" source="../webRoot/img/tiles/sidewalk/SidewalkStairRightBarrier.png"/>
+   <image width="32" height="32" source="img/tiles/sidewalk/SidewalkStairRightBarrier.png"/>
   </tile>
  </tileset>
  <tileset firstgid="103" name="building" tilewidth="32" tileheight="32">
   <tile id="0">
-   <image width="32" height="32" source="../webRoot/img/tiles/building/Bricks1.png"/>
+   <image width="32" height="32" source="img/tiles/building/Bricks1.png"/>
   </tile>
  </tileset>
  <layer name="Tile Layer 1" width="251" height="218">
