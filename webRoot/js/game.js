@@ -102,6 +102,7 @@ function createGame() {
 }
 
 var benchmarks = [];
+//this.konami = false;
 
 // NOT TO BE EXPLICITLY CALLED!!
 function tick(event) {
@@ -116,6 +117,9 @@ function tick(event) {
 
     // tick the map
     tickMap(event.delta);
+
+    //if(this.konami == true)
+    //    player.iterateCharacter();
 
     benchmark("benchmark", function(){
         benchmarkTick();
