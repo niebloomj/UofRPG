@@ -1,193 +1,246 @@
 function Player(name, map) {
-    this.name = name;
-    this.map = map;
+	this.name = name;
+	this.map = map;
 
-    this.maxHealth = 20;
-    this.health = this.maxHealth;
+	this.maxHealth = 20;
+	this.health = this.maxHealth;
 
-    this.isMoveU = false;
-    this.isMoveD = false;
-    this.isMoveL = false;
-    this.isMoveR = false;
+	this.isMoveU = false;
+	this.isMoveD = false;
+	this.isMoveL = false;
+	this.isMoveR = false;
 
-    this.isSprinting = false;
-    this.isNoCollide = false;
+	this.isSprinting = false;
+	this.isNoCollide = false;
 
-    this.isMovingLeft = true;
+	this.isMovingLeft = true;
 
-    this.walkSpeed = 5;
-    this.sprintMultiplier = 1.5;
+	this.walkSpeed = 5;
+	this.sprintMultiplier = 1.5;
 
-    this.currentCharacter = 0;
-    this.characters = ["img/sprites/player_santiago.png", "img/sprites/player_alex.png", "img/sprites/player_brad.png", "img/sprites/player_naropa.png", "img/sprites/player_aaron.png", "img/sprites/player_hayden.png"];
+	this.totalMoved = 0;
 
+	this.currentCharacter = 0;
+	this.characters = [
+		"img/sprites/player_santiago.png",
+		"img/sprites/player_alex.png",
+		"img/sprites/player_brad.png",
+		"img/sprites/player_naropa.png",
+		"img/sprites/player_aaron.png",
+		"img/sprites/player_hayden.png"
+	];
 }
 
 // defines a human-controlled entity
 Player.prototype = new Entity(3200, 3200);
 
-
 Player.prototype.deltaX = function(elapsedTime) {
-    var deltaX = 0;
-    if (this.isMoveL) {
-        deltaX -= this.walkSpeed;
-    }
-    if (this.isMoveR) {
-        deltaX += this.walkSpeed;
-    }
-    deltaX *= (this.isSprinting ? this.sprintMultiplier : 1)
-    deltaX *= elapsedTime / TARGET_FPS;
-    return Math.floor(deltaX);
+	var deltaX = 0;
+	if (this.isMoveL) {
+		deltaX -= this.walkSpeed;
+		this.totalMoved += 1;
+	}
+	if (this.isMoveR) {
+		deltaX += this.walkSpeed;
+		this.totalMoved += 1;
+	}
+	deltaX *= (this.isSprinting ? this.sprintMultiplier : 1)
+	deltaX *= elapsedTime / TARGET_FPS;
+	return Math.floor(deltaX);
 };
 
 Player.prototype.deltaY = function(elapsedTime) {
-    var deltaY = 0;
-    if (this.isMoveU) {
-        deltaY -= this.walkSpeed;
-    }
-    if (this.isMoveD) {
-        deltaY += this.walkSpeed;
-    }
-    deltaY *= (this.isSprinting ? this.sprintMultiplier : 1)
-    deltaY *= elapsedTime / TARGET_FPS;
-    return Math.floor(deltaY);
+	var deltaY = 0;
+	if (this.isMoveU) {
+		deltaY -= this.walkSpeed;
+		this.totalMoved += 1;
+	}
+	if (this.isMoveD) {
+		deltaY += this.walkSpeed;
+		this.totalMoved += 1;
+	}
+	deltaY *= (this.isSprinting ? this.sprintMultiplier : 1)
+	deltaY *= elapsedTime / TARGET_FPS;
+	return Math.floor(deltaY);
 };
 
 // tells this entity to move according to its current velocity
 Player.prototype.move = function(delta) {
-    this.x += this.deltaX(delta);
-    this.y += this.deltaY(delta);
+	//Storing variable instead of running
+	//function twice was INTENTIONAL
+	var moveXBy = this.deltaX(delta);
+	var moveYBy = this.deltaY(delta);
+	if (moveXBy != 0 || moveYBy != 0) {
+		this.updateSteps();
+	}
+	this.x += moveXBy;
+	this.y += moveYBy;
 };
 
-Player.prototype.tick = function(delta) {
-    this.move(delta);
-    this.handleCollision();
+Player.prototype.updateSteps = function() {
+	if (this.totalMoved % 100 == 0) {
+		var globalSteps = this.totalMoved
+		var steps = new PlayerStatsTable()
+		var query = new Parse.Query(PlayerStatsTable);
+		query.equalTo("Username", username);
+		query.find({
+			success: function(results) {
+				if (results.length == 1) {
+					var object = results[0];
+					object.save(null, {
+						success: function(object) {
+							object.set("Steps",
+								object.get('Steps') + globalSteps);
+							object.save();
+						}
+					});
+				} else if (results.length == 0) {
+					steps.set("Username", username);
+					steps.save(null, {
+						success: function(steps) {
+							console.log(globalSteps);
+							steps.set("Steps", globalSteps);
+							steps.save();
+						}
+					});
+				}
+			},
+			error: function(error) {
+				showLoginMessage(error.message, "danger");
+			}
+		});
+		this.totalMoved = 0;
+	}
+}
 
-    if (this.isMoveR && !(this.isMoveL)) {
-        this.isMovingLeft = false;
-    }
-    if (this.isMoveL && !(this.isMoveR)) {
-        this.isMovingLeft = true;
-    }
+Player.prototype.tick = function(delta) {
+	this.move(delta);
+	this.handleCollision();
+
+	if (this.isMoveR && !(this.isMoveL)) {
+		this.isMovingLeft = false;
+	}
+	if (this.isMoveL && !(this.isMoveR)) {
+		this.isMovingLeft = true;
+	}
 };
 
 Player.prototype.iterateCharacter = function() {
-    this.currentCharacter = (this.currentCharacter + 1) % this.characters.length;
+	this.currentCharacter = (this.currentCharacter + 1) % this.characters.length;
 }
 
 Player.prototype.handleCollision = function() {
 
-    var d = TILE_D;
-    var layerData = this.map.layers[0];
+	var d = TILE_D;
+	var layerData = this.map.layers[0];
 
-    var cordX = ((this.x / d) | 0);
-    var cordY = ((this.y / d) | 0);
-    var modX = d - (this.x % d);
-    var modY = d - (this.y % d);
+	var cordX = ((this.x / d) | 0);
+	var cordY = ((this.y / d) | 0);
+	var modX = d - (this.x % d);
+	var modY = d - (this.y % d);
 
-    var botXRight = cordX,
-        botYRight = cordY,
-        topXRight = cordX,
-        topYRight = cordY - 1,
-        botXLeft = cordX - 1,
-        botYLeft = cordY,
-        topXLeft = cordX - 1,
-        topYLeft = cordY - 1;
+	var botXRight = cordX,
+		botYRight = cordY,
+		topXRight = cordX,
+		topYRight = cordY - 1,
+		botXLeft = cordX - 1,
+		botYLeft = cordY,
+		topXLeft = cordX - 1,
+		topYLeft = cordY - 1;
 
-    var topLeftIndex = topXLeft + topYLeft * layerData.width;
-    var botLeftIndex = botXLeft + botYLeft * layerData.width;
-    var topRightIndex = topXRight + topYRight * layerData.width;
-    var botRightIndex = botXRight + botYRight * layerData.width;
+	var topLeftIndex = topXLeft + topYLeft * layerData.width;
+	var botLeftIndex = botXLeft + botYLeft * layerData.width;
+	var topRightIndex = topXRight + topYRight * layerData.width;
+	var botRightIndex = botXRight + botYRight * layerData.width;
 
+	var topLeftCollision = false;
+	var topRightCollision = false;
+	var botLeftCollision = false;
+	var botRightCollision = false;
 
-    var topLeftCollision = false;
-    var topRightCollision = false;
-    var botLeftCollision = false;
-    var botRightCollision = false;
+	// Note each statement MUST be in a separate try-catch. This was done intentionally.
+	try {
+		botLeftCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
+	} catch (err) {}
 
-    // Note each statement MUST be in a separate try-catch. This was done intentionally.
-    try {
-        botLeftCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
-    } catch (err) {}
+	try {
+		topLeftCollision = this.map.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
+	} catch (err) {}
 
-    try {
-        topLeftCollision = this.map.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
-    } catch (err) {}
+	try {
+		topRightCollision = this.map.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
+	} catch (err) {}
 
-    try {
-        topRightCollision = this.map.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
-    } catch (err) {}
+	try {
+		botRightCollision = this.map.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
+	} catch (err) {}
 
-    try {
-        botRightCollision = this.map.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == this.map.tilesets[1].tileproperties[0];
-    } catch (err) {}
+	var topCollisionHard = topLeftCollision && topRightCollision;
+	var botCollisionHard = botLeftCollision && botRightCollision;
+	var leftCollisionHard = topLeftCollision && botLeftCollision;
+	var rightCollisionHard = topRightCollision && botRightCollision;
 
-    var topCollisionHard = topLeftCollision && topRightCollision;
-    var botCollisionHard = botLeftCollision && botRightCollision;
-    var leftCollisionHard = topLeftCollision && botLeftCollision;
-    var rightCollisionHard = topRightCollision && botRightCollision;
+	var topCollision = topCollisionHard || (topLeftCollision && !leftCollisionHard) || (topRightCollision && !rightCollisionHard);
+	var botCollision = botCollisionHard || (botLeftCollision && !leftCollisionHard) || (botRightCollision && !rightCollisionHard);
+	var leftCollision = leftCollisionHard || (topLeftCollision && !topCollisionHard) || (botLeftCollision && !botCollisionHard);
+	var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
 
-    var topCollision = topCollisionHard || (topLeftCollision && !leftCollisionHard) || (topRightCollision && !rightCollisionHard);
-    var botCollision = botCollisionHard || (botLeftCollision && !leftCollisionHard) || (botRightCollision && !rightCollisionHard);
-    var leftCollision = leftCollisionHard || (topLeftCollision && !topCollisionHard) || (botLeftCollision && !botCollisionHard);
-    var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
+	if (debugMode && this.isNoCollide) {
+		//isCollision = false;
+		topCollision = false;
+		botCollision = false;
+		leftCollision = false;
+		rightCollision = false;
+	}
 
-    if (debugMode && this.isNoCollide) {
-        //isCollision = false;
-        topCollision = false;
-        botCollision = false;
-        leftCollision = false;
-        rightCollision = false;
-    }
+	if (topCollision || botCollision) {
+		while (this.y % d > 0) {
+			if (topCollision) {
+				this.y++;
+			} else {
+				this.y--;
+			}
+		}
+		cordY = ((this.y / d) | 0);
+		modY = d - (this.y % d);
+		topCollision = false;
+		botCollision = false;
+	}
 
-    if (topCollision || botCollision) {
-        while (this.y % d > 0) {
-            if (topCollision) {
-                this.y++;
-            } else {
-                this.y--;
-            }
-        }
-        cordY = ((this.y / d) | 0);
-        modY = d - (this.y % d);
-        topCollision = false;
-        botCollision = false;
-    }
-
-    if (leftCollision || rightCollision) {
-        while (this.x % d > 0) {
-            if (leftCollision) {
-                this.x++;
-            } else {
-                this.x--;
-            }
-        }
-        cordX = ((this.x / d) | 0);
-        modX = d - (this.x % d);
-        leftCollision = false;
-        rightCollision = false;
-    }
+	if (leftCollision || rightCollision) {
+		while (this.x % d > 0) {
+			if (leftCollision) {
+				this.x++;
+			} else {
+				this.x--;
+			}
+		}
+		cordX = ((this.x / d) | 0);
+		modX = d - (this.x % d);
+		leftCollision = false;
+		rightCollision = false;
+	}
 };
 
 Player.prototype.getDisplay = function() {
 
-    var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
-    sprite.setTransform(0, -1 * this.height());
-    if (!(this.isMovingLeft)) {
-        sprite.x = this.width();
-        sprite.scaleX = -1;
-    }
+	var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
+	sprite.setTransform(0, -1 * this.height());
+	if (!(this.isMovingLeft)) {
+		sprite.x = this.width();
+		sprite.scaleX = -1;
+	}
 
-    var parent = new createjs.Container();
-    parent.addChild(sprite)
-    return parent;
+	var parent = new createjs.Container();
+	parent.addChild(sprite)
+	return parent;
 
 };
 
 Player.prototype.width = function() {
-    return 16;
+	return 16;
 };
 
 Player.prototype.height = function() {
-    return 48;
+	return 48;
 };
