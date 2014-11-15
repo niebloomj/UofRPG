@@ -180,6 +180,9 @@ Player.prototype.handleCollision = function() {
 			overlayStr += LBREAK;
 			overlayStr += "exact: " + player.x + "," + player.y;
 
+			//overlayStr += LBREAK;
+			//overlayStr += "character: " + player.characters[currentCharacter];
+
 			if (player.isNoCollide) {
 				overlayStr += LBREAK;
 				overlayStr += "no collision"
