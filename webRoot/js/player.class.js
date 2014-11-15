@@ -27,7 +27,8 @@ function Player(name, map) {
 		"img/sprites/player_brad.png",
 		"img/sprites/player_naropa.png",
 		"img/sprites/player_aaron.png",
-		"img/sprites/player_hayden.png"
+		"img/sprites/player_hayden.png",
+		"img/sprites/player_jacob.png"
 	];
 }
 
