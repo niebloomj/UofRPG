@@ -51,21 +51,32 @@ Player.prototype.handleCollision = function() {
     var botRightCollision = false;
 
     // Note each statement MUST be in a separate try-catch. This was done intentionally.
-	
     try {
-        botLeftCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+       // botLeftCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+		if ((layerData.data[botLeftIndex] - 1) == 1){
+			botLeftCollision = true;
+		}
     } catch (err) {}
 
     try {
-        topLeftCollision = this.map.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+       // topLeftCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+		if ((layerData.data[topLeftCollision] - 1) == 1){
+			botLeftCollision = true;
+		}
     } catch (err) {}
 
     try {
-        topRightCollision = this.map.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+       // topRightCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+		if ((layerData.data[topRightCollision] - 1) == 1){
+			botLeftCollision = true;
+		}
     } catch (err) {}
 
     try {
-        botRightCollision = this.map.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+     //   botRightCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
+		if ((layerData.data[botRightCollision] - 1) == 1){
+			botLeftCollision = true;
+		}
     } catch (err) {}
 
     var topCollisionHard = topLeftCollision && topRightCollision;
@@ -113,6 +124,7 @@ Player.prototype.handleCollision = function() {
         leftCollision = false;
         rightCollision = false;
     }
+	
 }
 
 	
