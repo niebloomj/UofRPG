@@ -2,11 +2,10 @@ var stage, output, holder;
 var tileset;
 var mapData;
 var startContainer, menuContainer, loginContainer, registerContainer, gameContainer;
-var AccountsTable = Parse.Object.extend("Accounts");
 var PlayerStatsTable = Parse.Object.extend("PlayerStats");
 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
 	"XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
-var accountsTable = new AccountsTable();
+var currentUser;
 
 var username = null;
 var benchmarkingMode = false;
@@ -32,6 +31,12 @@ function init() {
 	$("#btnLogin").click(function() {
 		$(".paneButtons").addClass("hidden");
 		$(".paneLogin").removeClass("hidden");
+		currentUser = Parse.User.current();
+		if (currentUser) {
+			loginSuccessful(currentUser.getUsername());
+			$("#formLoginUsername").val("");
+			$("#formLoginPassword").val("");
+		}
 	});
 
 	$("#btnRegister").click(function() {
@@ -40,68 +45,39 @@ function init() {
 	});
 
 	$("#formLoginSubmit").click(function() {
-		var query = new Parse.Query(AccountsTable);
-		query.equalTo("Username", $("#formLoginUsername").val());
-		query.find({
-			success: function(results) {
-				if (results.length == 1) {
-					query.equalTo("Password", $("#formLoginPassword").val());
-					query.find({
-						success: function(results) {
-							if (results.length == 1) {
-								loginSuccessful($("#formLoginUsername").val());
-								$("#formLoginUsername").val("");
-								$("#formLoginPassword").val("");
-							} else {
-								$("#formLoginPassword").val("");
-								showLoginMessage("That password does not match.", "danger");
-							}
-						},
-						error: function(error) {
-							showLoginMessage(error.message, "danger");
-						}
-					});
-				} else {
+		Parse.User.logIn($("#formLoginUsername").val(),
+			$("#formLoginPassword").val(), {
+				success: function(user) {
+					loginSuccessful($("#formLoginUsername").val());
 					$("#formLoginUsername").val("");
 					$("#formLoginPassword").val("");
-					showLoginMessage("That username does not exist.", "warning");
+				},
+				error: function(user, error) {
+					$("#formLoginPassword").val("");
+					showLoginMessage("That username or password does not match.", "danger");
 				}
-			},
-			error: function(error) {
-				showLoginMessage(error.message, "danger");
-			}
-		});
+			});
 	});
 
 	$("#formRegisterSubmit").click(function() {
 		if ($("#formRegisterUsername").val().length >= 5) {
-			var query = new Parse.Query(AccountsTable);
-			query.equalTo("Username", $("#formRegisterUsername").val());
-			query.find({
-				success: function(results) {
-					if (results.length == 0) {
-						accountsTable.save({
-							Username: $("#formRegisterUsername").val(),
-							Password: $("#formRegisterPassword").val()
-						});
-						stage.removeChild(registerContainer);
-						showLoginMessage("Account created!", "success");
-						loginSuccessful($("#formRegisterUsername").val());
-					} else {
-						$("#formRegisterUsername").val("");
-						$("#formRegisterPassword").val("");
-						showLoginMessage("Username already exists.", "danger");
-					}
+			var user = new Parse.User();
+			user.set("username", $("#formRegisterUsername").val());
+			user.set("password", $("#formRegisterPassword").val());
+			user.signUp(null, {
+				success: function(user) {
+					stage.removeChild(registerContainer);
+					showLoginMessage("Account created!", "success");
+					loginSuccessful($("#formRegisterUsername").val());
 				},
-				error: function(error) {
-					showLoginMessage(error.message, "danger");
+				error: function(user, error) {
+					alert("Error: " + error.code + " " + error.message);
 				}
 			});
 		} else {
 			showLoginMessage("Username must be at least 5 characters", "danger");
 		}
 	});
-
 	$("#loginContainerAlertCloseBtn").click(function() {
 		$("#loginContainerAlert").addClass("hidden");
 	});

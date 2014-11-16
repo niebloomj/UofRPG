@@ -90,18 +90,20 @@ Player.prototype.updateSteps = function() {
 					var object = results[0];
 					object.save(null, {
 						success: function(object) {
-							object.set("Steps",
-								object.get('Steps') + globalSteps);
+							var newStepCount = object.get('Steps') + globalSteps;
+							object.set("Steps", newStepCount);
 							object.save();
+							console.log(newStepCount + " Total Steps Taken");
 						}
 					});
 				} else if (results.length == 0) {
 					steps.set("Username", username);
 					steps.save(null, {
 						success: function(steps) {
-							console.log(globalSteps);
-							steps.set("Steps", globalSteps);
-							steps.save();
+							var newStepCount = object.get('Steps') + globalSteps;
+							object.set("Steps", newStepCount);
+							object.save();
+							console.log(newStepCount + "Total Steps Taken");
 						}
 					});
 				}
