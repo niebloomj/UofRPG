@@ -49,32 +49,24 @@ function tickMap(delta) {
 		var botLeftCollision = false;
 		var botRightCollision = false;
 
-		// Note each statement MUST be in a separate try-catch. This was done intentionally.
 		try {
-			// botLeftCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[botLeftIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
 			if ((layerData.data[botLeftIndex] - 1) == 1) {
 				botLeftCollision = true;
 			}
 		} catch (err) {}
-
 		try {
-			// topLeftCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[topLeftIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
-			if ((layerData.data[topLeftCollision] - 1) == 1) {
-				botLeftCollision = true;
+			if ((layerData.data[topLeftIndex] - 1) == 1) {
+				topLeftCollision = true;
 			}
 		} catch (err) {}
-
 		try {
-			// topRightCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[topRightIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
-			if ((layerData.data[topRightCollision] - 1) == 1) {
-				botLeftCollision = true;
+			if ((layerData.data[topRightIndex] - 1) == 1) {
+				topRightCollision = true;
 			}
 		} catch (err) {}
-
 		try {
-			//   botRightCollision = this.map.tilesets[layerData.data[botLeftIndex] - 1].image.name.contains("black");//this.map.tilesets[layerData.data[botRightIndex] - 1].tileproperties[0] == "black";//this.map.tilesets[1].tileproperties[0];
-			if ((layerData.data[botRightCollision] - 1) == 1) {
-				botLeftCollision = true;
+			if ((layerData.data[botRightIndex] - 1) == 1) {
+				botRightCollision = true;
 			}
 		} catch (err) {}
 
@@ -89,7 +81,6 @@ function tickMap(delta) {
 		var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
 
 		if (debugMode && this.isNoCollide) {
-			//isCollision = false;
 			topCollision = false;
 			botCollision = false;
 			leftCollision = false;
@@ -123,7 +114,6 @@ function tickMap(delta) {
 			leftCollision = false;
 			rightCollision = false;
 		}
-
 	}
 
 	benchmark("d:tiles", function() {

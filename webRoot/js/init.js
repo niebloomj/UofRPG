@@ -6,21 +6,12 @@ var PlayerStatsTable = Parse.Object.extend("PlayerStats");
 Parse.initialize("dUWpFIH0Iv7AGTYW5ps6TkYScmxjG1LgX8hIlfNV",
 	"XSET46QVsV1VfewbHB0T5VoOPyaYpRIoowhtc7vF");
 var currentUser;
-
 var username = null;
 var benchmarkingMode = false;
 var debugMode = false;
-// if (window.location.hash) {
-// 	var hash = window.location.hash.substring(1);
-// 	if (hash == "debug") {
-// 		debugMode = true;
-// 	}
-// }
 
 function init() {
-	//Create the Stage
 	stage = new createjs.Stage("demoCanvas");
-	//Create Containers
 	startContainer = new createjs.Container();
 	menuContainer = new createjs.Container();
 	loginContainer = new createjs.Container();
@@ -33,9 +24,7 @@ function init() {
 		$(".paneLogin").removeClass("hidden");
 		currentUser = Parse.User.current();
 		if (currentUser) {
-			loginSuccessful(currentUser.getUsername());
-			$("#formLoginUsername").val("");
-			$("#formLoginPassword").val("");
+			loginSuccessful();
 		}
 	});
 
@@ -48,7 +37,7 @@ function init() {
 		Parse.User.logIn($("#formLoginUsername").val(),
 			$("#formLoginPassword").val(), {
 				success: function(user) {
-					loginSuccessful($("#formLoginUsername").val());
+					loginSuccessful();
 					$("#formLoginUsername").val("");
 					$("#formLoginPassword").val("");
 				},
@@ -68,7 +57,7 @@ function init() {
 				success: function(user) {
 					stage.removeChild(registerContainer);
 					showLoginMessage("Account created!", "success");
-					loginSuccessful($("#formRegisterUsername").val());
+					loginSuccessful();
 				},
 				error: function(user, error) {
 					alert("Error: " + error.code + " " + error.message);
@@ -95,9 +84,7 @@ $.getScript("js/keyevents.js", function() {
 			$.getScript("js/createmap.js", function() {
 				$.getScript("js/entity.class.js", function() {
 					$.getScript("js/player.class.js", function() {
-						if (debugMode) {
-							loginSuccessful("DEBUG USER");
-						}
+
 					});
 				});
 			});
@@ -105,8 +92,8 @@ $.getScript("js/keyevents.js", function() {
 	});
 });
 
-function loginSuccessful(name) {
-	username = name;
+function loginSuccessful() {
+	username = currentUser.getUsername();
 	$("#loginContainer").addClass("hidden");
 	$("#loginHeader").addClass("hidden");
 	selectPlayer();
@@ -141,6 +128,8 @@ function selectPlayer() {
 
 	$(".theGame").removeClass("hidden");
 	$("#gameHeader").removeClass("hidden");
+
+	username = currentUser.getUsername();
 	createGame();
 }
 
