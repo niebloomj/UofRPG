@@ -10,12 +10,12 @@ var currentUser;
 var username = null;
 var benchmarkingMode = false;
 var debugMode = false;
-if (window.location.hash) {
-	var hash = window.location.hash.substring(1);
-	if (hash == "debug") {
-		debugMode = true;
-	}
-}
+// if (window.location.hash) {
+// 	var hash = window.location.hash.substring(1);
+// 	if (hash == "debug") {
+// 		debugMode = true;
+// 	}
+// }
 
 function init() {
 	//Create the Stage
