@@ -306,8 +306,8 @@ var hudbarIconSize = 24; // width of hudbar icon (in px)
 var hudbarIconPadding = 4; // separation width between icon and hudbar (in px)
 
 // HEALTHBAR SETTINGS
-var healthbarColorFill = "#e00"; // color of available health
-var healthbarColorEmpty = "#aaa"; // color of missing health
+var healthbarColorFill = "#2fff00";//"#e00"; // color of available health
+var healthbarColorEmpty = "#ff0000";//"#aaa"; // color of missing health
 var healthbarColorBorder = "#222"; // color of hudbar border
 var healthbarIconPath = "img/sprites/heart8_24.png"; // square of size hudbarIconSize
 
