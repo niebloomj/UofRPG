@@ -1,5 +1,7 @@
 // constant for movement speed
 var TARGET_FPS = 30;
+var player;
+var uro;
 
 function createGame() {
 	//Create Game Container
@@ -91,7 +93,9 @@ function createGame() {
 	player = new Player("PlaceholderUsername", mapData);
 	$("#gameHeaderNavUsername").html(username);
 
-	entities = [player];
+	uro = new Uros(3264, 3264);
+
+	entities = [player, uro];
 
 	createjs.Ticker.on("tick", tick);
 	createjs.Ticker.setInterval(1000 / TARGET_FPS);

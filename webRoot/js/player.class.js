@@ -118,6 +118,7 @@ Player.prototype.updateSteps = function() {
 
 Player.prototype.tick = function(delta) {
 	this.move(delta);
+	this.handleCollision();
 
 	if (this.isMoveR && !(this.isMoveL)) {
 		this.isMovingLeft = false;
@@ -125,7 +126,103 @@ Player.prototype.tick = function(delta) {
 	if (this.isMoveL && !(this.isMoveR)) {
 		this.isMovingLeft = true;
 	}
-};
+}
+
+Player.prototype.handleCollision = function() {
+
+	var d = this.map.tilewidth;
+	var layerData = this.map.layers[0];
+
+	var cordX = ((this.x / d) | 0);
+	var cordY = ((this.y / d) | 0);
+	var modX = d - (this.x % d);
+	var modY = d - (this.y % d);
+
+	var botXRight = cordX,
+		botYRight = cordY,
+		topXRight = cordX,
+		topYRight = cordY - 1,
+		botXLeft = cordX - 1,
+		botYLeft = cordY,
+		topXLeft = cordX - 1,
+		topYLeft = cordY - 1;
+
+	var topLeftIndex = topXLeft + topYLeft * layerData.width;
+	var botLeftIndex = botXLeft + botYLeft * layerData.width;
+	var topRightIndex = topXRight + topYRight * layerData.width;
+	var botRightIndex = botXRight + botYRight * layerData.width;
+
+	var topLeftCollision = false;
+	var topRightCollision = false;
+	var botLeftCollision = false;
+	var botRightCollision = false;
+
+	try {
+		if ((layerData.data[botLeftIndex] - 1) == 1) {
+			botLeftCollision = true;
+		}
+	} catch (err) {}
+	try {
+		if ((layerData.data[topLeftIndex] - 1) == 1) {
+			topLeftCollision = true;
+		}
+	} catch (err) {}
+	try {
+		if ((layerData.data[topRightIndex] - 1) == 1) {
+			topRightCollision = true;
+		}
+	} catch (err) {}
+	try {
+		if ((layerData.data[botRightIndex] - 1) == 1) {
+			botRightCollision = true;
+		}
+	} catch (err) {}
+
+	var topCollisionHard = topLeftCollision && topRightCollision;
+	var botCollisionHard = botLeftCollision && botRightCollision;
+	var leftCollisionHard = topLeftCollision && botLeftCollision;
+	var rightCollisionHard = topRightCollision && botRightCollision;
+
+	var topCollision = topCollisionHard || (topLeftCollision && !leftCollisionHard) || (topRightCollision && !rightCollisionHard);
+	var botCollision = botCollisionHard || (botLeftCollision && !leftCollisionHard) || (botRightCollision && !rightCollisionHard);
+	var leftCollision = leftCollisionHard || (topLeftCollision && !topCollisionHard) || (botLeftCollision && !botCollisionHard);
+	var rightCollision = rightCollisionHard || (topRightCollision && !topCollisionHard) || (botRightCollision && !botCollisionHard);
+
+	if (debugMode && this.isNoCollide) {
+		topCollision = false;
+		botCollision = false;
+		leftCollision = false;
+		rightCollision = false;
+	}
+
+	if (topCollision || botCollision) {
+		while (this.y % d > 0) {
+			if (topCollision) {
+				this.y++;
+			} else {
+				this.y--;
+			}
+		}
+		cordY = ((this.y / d) | 0);
+		modY = d - (this.y % d);
+		topCollision = false;
+		botCollision = false;
+	}
+
+	if (leftCollision || rightCollision) {
+		while (this.x % d > 0) {
+			if (leftCollision) {
+				this.x++;
+			} else {
+				this.x--;
+			}
+		}
+		cordX = ((this.x / d) | 0);
+		modX = d - (this.x % d);
+		leftCollision = false;
+		rightCollision = false;
+	}
+}
 
 Player.prototype.iterateCharacter = function() {
 	this.currentCharacter = (this.currentCharacter + 1) % this.characters.length;
