@@ -118,6 +118,13 @@ function tick(event) {
 
 	// tick the map
 	tickMap(event.delta);
+	
+	combatTicks++;
+	
+	if (combatTicks == 30) {
+		initCombat();
+		combatTicks = 0;
+	}
 
 	//if(this.konami == true)
 	//    player.iterateCharacter();
