@@ -108,13 +108,15 @@ var benchmarks = [];
 // NOT TO BE EXPLICITLY CALLED!!
 function tick(event) {
 
-	// tick all the entities
-	benchmark("entities", function() {
-		for (var i = 0; i < entities.length; i++) {
-			var entity = entities[i];
-			entity.tick(event.delta);
-		}
-	});
+	// tick all the entities (unless we're in combat)
+	if (!inCombat) {
+		benchmark("entities", function() {
+			for (var i = 0; i < entities.length; i++) {
+				var entity = entities[i];
+				entity.tick(event.delta);
+			}
+		});
+	}
 
 	// tick the map
 	if (!inCombat) {
