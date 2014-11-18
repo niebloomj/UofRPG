@@ -117,11 +117,13 @@ function tick(event) {
 	});
 
 	// tick the map
-	tickMap(event.delta);
+	if (!inCombat) {
+		tickMap(event.delta);
+	}
 	
 	combatTicks++;
 	
-	if (combatTicks == 30) {
+	if (combatTicks == 150) {
 		initCombat();
 		combatTicks = 0;
 	}
