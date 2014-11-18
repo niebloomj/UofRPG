@@ -123,9 +123,12 @@ function tick(event) {
 		tickMap(event.delta);
 	}
 	
-	combatTicks++;
+	if ((player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR) && !inCombat) {
+		combatTicks++;
+		console.log(combatTicks);
+	}
 	
-	if (combatTicks == 150) {
+	if ((randomInt(0,50000) < 100 + combatTicks && (player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR))) {
 		initCombat();
 		combatTicks = 0;
 	}
