@@ -42,8 +42,8 @@ function tickMap(delta) {
 			var entity = entities[i];
 			var display = entity.getDisplay();
 			display = display.setTransform(
-				entity.x - (entity.x - entity.width() / 2 - screenWidth * d),
-				entity.y - (entity.y - entity.height() / 2 - screenHeight * d)
+				entity.x - (player.x - entity.width() / 2 - screenWidth * d),
+				entity.y - (player.y - entity.height() / 2 - screenHeight * d)
 			);
 			gameContainer.addChild(display);
 		}

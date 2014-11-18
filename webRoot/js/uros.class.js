@@ -14,7 +14,6 @@ Uros.prototype.deltaY = function(elapsedTime) {
 };
 
 Uros.prototype.tick = function(delta) {
-
 };
 
 Uros.prototype.move = function(delta) {

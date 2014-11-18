@@ -95,7 +95,7 @@ function createGame() {
 
 	uro = new Uros(3264, 3264);
 
-	entities = [player, uro];
+	entities = [uro, player];
 
 	createjs.Ticker.on("tick", tick);
 	createjs.Ticker.setInterval(1000 / TARGET_FPS);
