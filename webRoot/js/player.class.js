@@ -31,10 +31,8 @@ function Player(name, map) {
 				var object = results[0];
 				if (object.get('Uros')) {
 					money = object.get('Uros');
-					console.log("money " + money);
 				} else {
 					money = 0;
-					console.log("money " + money);
 				}
 				$("#walletAmount").html("$" + money + " Uros");
 			}
@@ -96,7 +94,6 @@ Player.prototype.move = function(delta) {
 	var moveXBy = this.deltaX(delta);
 	var moveYBy = this.deltaY(delta);
 	if (moveXBy != 0 || moveYBy != 0) {
-		console.log("third " + money);
 		this.updateSteps();
 	}
 	this.x += moveXBy;
