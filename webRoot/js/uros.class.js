@@ -20,7 +20,37 @@ Uros.prototype.tick = function(delta) {
 	if (distance < 20) {
 		var indexOfUro = entities.indexOf(this);
 		if (indexOfUro > -1) {
-			entities.splice(indexOfUro , 1);
+			entities.splice(indexOfUro, 1);
+			money = money + 25;
+			var statTable = new PlayerStatsTable()
+			var query = new Parse.Query(PlayerStatsTable);
+			query.equalTo("Username", username);
+			query.find({
+				success: function(results) {
+					if (results.length == 1) {
+						var object = results[0];
+						object.save(null, {
+							success: function(object) {
+								object.set("Uros", money);
+								object.save();
+								$("#walletAmount").html("$" + money + " Uros");
+							}
+						});
+					} else if (results.length == 0) {
+						statTable.set("Username", username);
+						statTable.save(null, {
+							success: function(statTable) {
+								statTable.set("Uros", money);
+								statTable.save();
+								$("#walletAmount").html("$" + money + " Uros");
+							}
+						});
+					}
+				},
+				error: function(error) {
+					showLoginMessage(error.message, "danger");
+				}
+			});
 		}
 	}
 };

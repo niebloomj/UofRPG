@@ -88,7 +88,7 @@ $.getScript("js/keyevents.js", function() {
 					$.getScript("js/player.class.js", function() {
 						$.getScript("js/uros.class.js", function() {
 							$.getScript("js/combat.js", function() {
-							
+
 							});
 						});
 					});

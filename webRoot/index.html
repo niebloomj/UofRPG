@@ -57,15 +57,14 @@
     padding: 5px;
     z-index: 1000;
   }
-
   #gameHeaderNav {
     margin-top: 10px;
     max-width: 992px;
     margin-left: auto;
     margin-right: auto;
   }
-  
-  #mastfoot, #mastfoot a {
+  #mastfoot,
+  #mastfoot a {
     color: white;
   }
   </style>
@@ -104,15 +103,26 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span id="gameHeaderNavUsername">Name unknown</span> <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-user"></span>
+                  <span id="gameHeaderNavUsername">Name unknown</span>
+                  <span></span>
+                  <span class="glyphicon glyphicon-shopping-cart"></span>
+                  <span id="walletAmount">$0 Uros</span>
+                  <span class="caret"></span>
+                </a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings</a></li>
-                  <li><a href="logout.html">Log out</a></li>
+                  <li><a href="#">Settings</a>
+                  </li>
+                  <li><a href="logout.html">Log out</a>
+                  </li>
                 </ul>
               </li>
             </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
       </nav>
 
       <div class="text-center">
@@ -176,7 +186,7 @@
       <div class="row-fluid">
         <div class="pull-left">
           <span class="h1">
-           <a href="proposal.pdf">Proposal</a>
+            <a href="proposal.pdf">Proposal</a>
           </span>
         </div>
         <div class="pull-right text-right">
@@ -189,4 +199,5 @@
     </footer>
   </div>
 </body>
+
 </html>

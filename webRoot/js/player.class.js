@@ -1,3 +1,5 @@
+var money = 0;
+
 function Player(name, map) {
 	this.name = name;
 	this.map = map;
@@ -19,6 +21,28 @@ function Player(name, map) {
 	this.sprintMultiplier = 1.5;
 
 	this.totalMoved = 0;
+
+	var statsTable = new PlayerStatsTable()
+	var query = new Parse.Query(PlayerStatsTable);
+	query.equalTo("Username", username);
+	query.find({
+		success: function(results) {
+			if (results.length == 1) {
+				var object = results[0];
+				if (object.get('Uros')) {
+					money = object.get('Uros');
+					console.log("money " + money);
+				} else {
+					money = 0;
+					console.log("money " + money);
+				}
+				$("#walletAmount").html("$" + money + " Uros");
+			}
+		},
+		error: function(error) {
+			showLoginMessage(error.message, "danger");
+		}
+	});
 
 	this.currentCharacter = 0;
 	this.characters = [
@@ -72,6 +96,7 @@ Player.prototype.move = function(delta) {
 	var moveXBy = this.deltaX(delta);
 	var moveYBy = this.deltaY(delta);
 	if (moveXBy != 0 || moveYBy != 0) {
+		console.log("third " + money);
 		this.updateSteps();
 	}
 	this.x += moveXBy;
