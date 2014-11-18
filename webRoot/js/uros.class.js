@@ -14,6 +14,15 @@ Uros.prototype.deltaY = function(elapsedTime) {
 };
 
 Uros.prototype.tick = function(delta) {
+	var xDist = this.x - player.x;
+	var yDist = this.y - player.y;
+	var distance = Math.sqrt(xDist * xDist + yDist * yDist);
+	if (distance < 20) {
+		var indexOfUro = entities.indexOf(this);
+		if (indexOfUro > -1) {
+			entities.splice(indexOfUro , 1);
+		}
+	}
 };
 
 Uros.prototype.move = function(delta) {
