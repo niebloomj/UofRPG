@@ -37,6 +37,7 @@ function init() {
 		Parse.User.logIn($("#formLoginUsername").val(),
 			$("#formLoginPassword").val(), {
 				success: function(user) {
+					currentUser = Parse.User.current();
 					loginSuccessful();
 					$("#formLoginUsername").val("");
 					$("#formLoginPassword").val("");
@@ -57,6 +58,7 @@ function init() {
 				success: function(user) {
 					stage.removeChild(registerContainer);
 					showLoginMessage("Account created!", "success");
+					currentUser = Parse.User.current();
 					loginSuccessful();
 				},
 				error: function(user, error) {
