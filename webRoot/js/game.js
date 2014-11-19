@@ -2,6 +2,7 @@
 var TARGET_FPS = 30;
 var player;
 var uro;
+var time = 0;
 
 function createGame() {
 	//Create Game Container
@@ -116,6 +117,7 @@ function tick(event) {
 				entity.tick(event.delta);
 			}
 		});
+		time++;
 	}
 
 	// tick the map
