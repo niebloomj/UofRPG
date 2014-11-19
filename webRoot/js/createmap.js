@@ -257,13 +257,14 @@ function getHudbarDisplay() {
 		hudbarInnerHeight
 	);
 
-	// add temperature bar icon to hudbar
-	hudbar.addChild(tempbarIcon);
 
 	// add temperature bar to hudbar
 	tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight);
 	hudbar.addChild(tempbar);
 
+	// add temperature bar icon to hudbar
+	hudbar.addChild(tempbarIcon);
+	
 	return hudbar;
 }
 
