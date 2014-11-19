@@ -264,7 +264,7 @@ function getHudbarDisplay() {
 
 	// add temperature bar icon to hudbar
 	hudbar.addChild(tempbarIcon);
-	
+
 	return hudbar;
 }
 
