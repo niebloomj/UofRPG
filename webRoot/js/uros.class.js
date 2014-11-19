@@ -60,13 +60,9 @@ Uros.prototype.move = function(delta) {
 };
 
 Uros.prototype.getDisplay = function() {
-	var sprite = new createjs.Bitmap("img/coin.png");
-	sprite.setTransform(0,16);
-
-	return sprite;
-	/*var circle = new createjs.Shape();
+	var circle = new createjs.Shape();
 	circle.graphics.beginFill("yellow").drawCircle(0, 0, 16);
-	return circle;*/
+	return circle;
 };
 
 Uros.prototype.width = function() {
