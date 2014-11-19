@@ -213,6 +213,14 @@ var healthbarIconPath = "img/sprites/heart8_24.png"; // square of size hudbarIco
 
 var healthbarGraphics, healthbarIcon;
 
+// TEMPERATURE SETTINGS
+var tempbarColorFill = "#5dd0e4"; //"#e00"; // color of available health
+var tempbarColorEmpty = "#fbfbfb"; //"#aaa"; // color of missing health
+var tempbarColorBorder = "#222"; // color of hudbar border
+var tempbarIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIconSize
+
+var tempbarGraphics, tempbarIcon;
+
 /**
  * Gets a DisplayObject representing the hudbars like health and stuff
  */
@@ -221,8 +229,10 @@ function getHudbarDisplay() {
 	// create images;
 	var hudbar = new createjs.Container();
 	var healthbar = new createjs.Shape(healthbarGraphics.clone());
+	var tempbar = new createjs.Shape(tempbarGraphics.clone())
 
 	var healthPct = player.health / player.maxHealth; // fraction representing player health
+	var tempPct = 20;
 
 	// draw filled section of healthbar
 	healthbar.graphics.f(healthbarColorFill);
@@ -238,6 +248,21 @@ function getHudbarDisplay() {
 	// add health bar to hudbar
 	healthbar.setTransform(hudbarIconSize + hudbarIconPadding, 0);
 	hudbar.addChild(healthbar);
+
+	// draw filled section of tempbar
+	tempbar.graphics.f(tempbarColorFill);
+	tempbar.graphics.r(
+		hudbarBorder, hudbarBorder*2,
+		Math.floor(hudbarInnerWidth * tempPct),
+		hudbarInnerHeight
+	);
+
+	// add temperature bar icon to hudbar
+	hudbar.addChild(tempbarIcon);
+
+	// add temperature bar to hudbar
+	tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight);
+	hudbar.addChild(tempbar);
 
 	return hudbar;
 }
@@ -265,4 +290,24 @@ function initHudbar() {
 	);
 
 	healthbarIcon = new createjs.Bitmap(healthbarIconPath);
+
+	tempbarGraphics = new createjs.Graphics();
+
+	// draw border of temp bar
+	tempbarGraphics.f(tempbarColorBorder);
+	tempbarGraphics.r(
+		0, 0,
+		hudbarWidth,
+		hudbarHeight
+	);
+
+	// draw background of temp bar
+	tempbarGraphics.f(tempbarColorEmpty);
+	tempbarGraphics.r(
+		hudbarBorder, hudbarBorder,
+		hudbarInnerWidth,
+		hudbarInnerHeight
+	);
+
+	tempbarIcon = new createjs.Bitmap(tempbarIconPath);
 }

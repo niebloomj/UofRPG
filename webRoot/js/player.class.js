@@ -7,6 +7,9 @@ function Player(name, map) {
 	this.maxHealth = 20;
 	this.health = this.maxHealth;
 
+	this.maxTemp = 100;
+	this.temp = this.maxTemp;
+
 	this.isMoveU = false;
 	this.isMoveD = false;
 	this.isMoveL = false;
@@ -34,7 +37,7 @@ function Player(name, map) {
 				} else {
 					money = 0;
 				}
-				$("#walletAmount").html("$" + money + " Uros");
+				$("#walletAmount").html("$" + money + " URos");
 			}
 		},
 		error: function(error) {
