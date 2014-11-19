@@ -19,9 +19,9 @@ function Player(name, map) {
 	this.isNoCollide = false;
 
 	this.isMovingLeft = true;
-	this.isMovingRight;
-	this.isMovingDown;
-	this.isMovingUp;
+	this.isMovingRight = true;
+	this.isMovingDown = true;
+	this.isMovingUp = true;
 
 	this.walkSpeed = 5;
 	this.sprintMultiplier = 1.5;
@@ -274,7 +274,7 @@ Player.prototype.getDisplay = function() {
 	}
 
 	if (!(this.isMovingUp)) {
-		sprite = "img/sprites/player_santiagoSouth.png";
+		sprite = createjs.Bitmap(this.characters[7]);
 	}
 
 	var parent = new createjs.Container();
