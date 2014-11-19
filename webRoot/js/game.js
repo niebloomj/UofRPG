@@ -128,7 +128,7 @@ function tick(event) {
 		console.log(combatTicks);
 	}
 	
-	if ((randomInt(0,50000) < 100 + combatTicks && (player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR))) {
+	if ((randomInt(500,50000) < 100 + combatTicks && (player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR))) {
 		initCombat();
 		combatTicks = 0;
 	}
