@@ -31,7 +31,7 @@ Uros.prototype.tick = function(delta) {
 						var object = results[0];
 						object.save(null, {
 							success: function(object) {
-								object.set("Uros", money);
+								object.set("URos", money);
 								object.save();
 								$("#walletAmount").html("$" + money + " URos");
 							}
@@ -40,7 +40,7 @@ Uros.prototype.tick = function(delta) {
 						statTable.set("Username", username);
 						statTable.save(null, {
 							success: function(statTable) {
-								statTable.set("Uros", money);
+								statTable.set("URos", money);
 								statTable.save();
 								$("#walletAmount").html("$" + money + " URos");
 							}
