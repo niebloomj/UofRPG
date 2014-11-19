@@ -232,7 +232,14 @@ function getHudbarDisplay() {
 	var tempbar = new createjs.Shape(tempbarGraphics.clone())
 
 	var healthPct = player.health / player.maxHealth; // fraction representing player health
-	var tempPct = 20;
+	var tempPct = player.health / player.maxHealth;
+
+	// add health bar icon to hudbar
+	hudbar.addChild(healthbarIcon);
+
+	// add temperature bar icon to hudbar
+	tempbarIcon.y = 25;
+	hudbar.addChild(tempbarIcon);
 
 	// draw filled section of healthbar
 	healthbar.graphics.f(healthbarColorFill);
@@ -242,13 +249,6 @@ function getHudbarDisplay() {
 		hudbarInnerHeight
 	);
 
-	// add health bar icon to hudbar
-	hudbar.addChild(healthbarIcon);
-
-	// add health bar to hudbar
-	healthbar.setTransform(hudbarIconSize + hudbarIconPadding, 0);
-	hudbar.addChild(healthbar);
-
 	// draw filled section of tempbar
 	tempbar.graphics.f(tempbarColorFill);
 	tempbar.graphics.r(
@@ -257,12 +257,13 @@ function getHudbarDisplay() {
 		hudbarInnerHeight
 	);
 
-	// add temperature bar to hudbar
-	tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight);
-	hudbar.addChild(tempbar);
+	// add health bar to hudbar
+	healthbar.setTransform(hudbarIconSize + hudbarIconPadding, 0);
+	hudbar.addChild(healthbar);
 
-	// add temperature bar icon to hudbar
-	hudbar.addChild(tempbarIcon);
+	// add temperature bar to hudbar
+	tempbar.setTransform(hudbarIconSize + hudbarIconPadding , hudbarHeight);
+	hudbar.addChild(tempbar);
 
 	return hudbar;
 }
