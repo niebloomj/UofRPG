@@ -19,9 +19,6 @@ function Player(name, map) {
 	this.isNoCollide = false;
 
 	this.isMovingLeft = true;
-	this.isMovingRight;
-	this.isMovingDown;
-	this.isMovingUp;
 
 	this.walkSpeed = 5;
 	this.sprintMultiplier = 1.5;
@@ -56,8 +53,7 @@ function Player(name, map) {
 		"img/sprites/player_naropa.png",
 		"img/sprites/player_aaron.png",
 		"img/sprites/player_hayden.png",
-		"img/sprites/player_jacob.png",
-		"img/sprites/player_santiagoSouth.png"
+		"img/sprites/player_jacob.png"
 	];
 }
 
@@ -154,13 +150,6 @@ Player.prototype.tick = function(delta) {
 	}
 	if (this.isMoveL && !(this.isMoveR)) {
 		this.isMovingLeft = true;
-	}
-
-	if (this.isMoveU && !(this.isMoveD)) {
-		this.isMovingUp = true;
-	}
-	if (this.isMoveD && !(this.isMoveU)) {
-		this.isMovingDown = false;
 	}
 }
 
@@ -271,10 +260,6 @@ Player.prototype.getDisplay = function() {
 	if (!(this.isMovingLeft)) {
 		sprite.x = this.width();
 		sprite.scaleX = -1;
-	}
-
-	if (!(this.isMovingUp)) {
-		sprite = "img/sprites/player_santiagoSouth.png";
 	}
 
 	var parent = new createjs.Container();
