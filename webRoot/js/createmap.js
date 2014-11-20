@@ -252,11 +252,10 @@ function getHudbarDisplay() {
 	// draw filled section of tempbar
 	tempbar.graphics.f(tempbarColorFill);
 	tempbar.graphics.r(
-		hudbarBorder, hudbarBorder*2,
+		hudbarBorder, hudbarBorder * 2,
 		Math.floor(hudbarInnerWidth * tempPct),
 		hudbarInnerHeight
 	);
-
 
 	// add temperature bar to hudbar
 	tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight);
