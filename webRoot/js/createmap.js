@@ -221,9 +221,6 @@ var tempbarIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIc
 
 var tempbarGraphics, tempbarIcon;
 
-var healthTxt;
-var temperatureTxt;
-var currentTemp;
 /**
  * Gets a DisplayObject representing the hudbars like health and stuff
  */
@@ -235,14 +232,7 @@ function getHudbarDisplay() {
 	var tempbar = new createjs.Shape(tempbarGraphics.clone())
 
 	var healthPct = player.health / player.maxHealth; // fraction representing player health
-	var tempPct = 1;
-
-	// add health bar icon to hudbar
-	hudbar.addChild(healthbarIcon);
-
-	// add temperature bar icon to hudbar
-	tempbarIcon.y = 25;
-	hudbar.addChild(tempbarIcon);
+	var tempPct = 20;
 
 	// draw filled section of healthbar
 	healthbar.graphics.f(healthbarColorFill);
@@ -252,49 +242,30 @@ function getHudbarDisplay() {
 		hudbarInnerHeight
 	);
 
-	// draw filled section of tempbar
-	tempbar.graphics.f(tempbarColorFill);
-	tempbar.graphics.r(
-		hudbarBorder, hudbarBorder * 2,
-		Math.floor(hudbarInnerWidth * tempPct),
-		hudbarInnerHeight
-	);
+	// add health bar icon to hudbar
+	hudbar.addChild(healthbarIcon);
 
 	// add health bar to hudbar
 	healthbar.setTransform(hudbarIconSize + hudbarIconPadding, 0);
 	hudbar.addChild(healthbar);
 
+	// draw filled section of tempbar
+	tempbar.graphics.f(tempbarColorFill);
+	tempbar.graphics.r(
+		hudbarBorder, hudbarBorder*2,
+		Math.floor(hudbarInnerWidth * tempPct),
+		hudbarInnerHeight
+	);
+
+
 	// add temperature bar to hudbar
 	tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight);
 	hudbar.addChild(tempbar);
 
-	healthTxt = new createjs.Text("0", "20px Arial", "#ff0000");
-	healthTxt.x = 222;
-	healthTxt.y = 0;
-	hudbar.addChild(healthTxt);
-
-	temperatureTxt = new createjs.Text("0˚", "20px Arial", "#00ffff");
-	temperatureTxt.x = 222;
-	temperatureTxt.y = 28;
-	hudbar.addChild(temperatureTxt);
-
-	updateBarText();
+	// add temperature bar icon to hudbar
+	hudbar.addChild(tempbarIcon);
 
 	return hudbar;
-}
-
-function updateBarText() {
-	healthTxt.text = player.health;
-	jQuery(document).ready(function($) {
-		$.ajax({
-			url: "http://api.openweathermap.org/data/2.5/find?q=Rochester&units=imperial",
-			dataType: "json",
-			success: function(json) {
-				currentTemp = json.list[3].main.temp + "˚";
-			}
-		});
-	});
-	temperatureTxt.text = currentTemp;
 }
 
 /**

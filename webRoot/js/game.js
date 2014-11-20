@@ -3,7 +3,6 @@ var TARGET_FPS = 30;
 var player;
 var uro;
 var time = 0;
-var noTick = false;
 
 function createGame() {
 	//Create Game Container
@@ -88,27 +87,20 @@ function createGame() {
 	// preps minimap to be drawn
 	initMinimap();
 
+	// preps hudbars to be drawn
+	initHudbar();
+
 	// create the player
 	player = new Player("PlaceholderUsername", mapData);
 	$("#gameHeaderNavUsername").html(username);
 
-	// preps hudbars to be drawn
-	initHudbar();
+	uro = new Uros(3264, 3264);
 
-	entities = [player];
-
-	for (var i = 0; i < 200; i++) {
-		uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
-		entities.push(uro);
-	}
+	entities = [uro, player];
 
 	createjs.Ticker.on("tick", tick);
 	createjs.Ticker.setInterval(1000 / TARGET_FPS);
 	//createjs.Ticker.setFPS(60); //for the glory of GabeN!
-}
-
-function getRandInt(min, max) {
-	return Math.random() * (max - min) + min;
 }
 
 var benchmarks = [];
@@ -116,40 +108,41 @@ var benchmarks = [];
 
 // NOT TO BE EXPLICITLY CALLED!!
 function tick(event) {
+
 	// tick all the entities (unless we're in combat)
-	if (!noTick) {
-		if (!inCombat) {
-			benchmark("entities", function() {
-				for (var i = 0; i < entities.length; i++) {
-					var entity = entities[i];
-					entity.tick(event.delta);
-				}
-			});
-			time++;
-		}
-
-		// tick the map
-		if (!inCombat) {
-			tickMap(event.delta);
-		}
-
-		if ((player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR) && !inCombat) {
-			combatTicks++;
-		}
-
-		if ((randomInt(500, 50000) < 100 + combatTicks && (player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR))) {
-			initCombat();
-			combatTicks = 0;
-		}
-	} else {
-		player.isMoveU = false;
-		player.isMoveD = false;
-		player.isMoveL = false;
-		player.isMoveR = false;
+	if (!inCombat) {
+		benchmark("entities", function() {
+			for (var i = 0; i < entities.length; i++) {
+				var entity = entities[i];
+				entity.tick(event.delta);
+			}
+		});
+		time++;
 	}
+
+	// tick the map
+	if (!inCombat) {
+		tickMap(event.delta);
+	}
+	
+	if ((player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR) && !inCombat) {
+		combatTicks++;
+		console.log(combatTicks);
+	}
+	
+	if ((randomInt(500,50000) < 100 + combatTicks && (player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR))) {
+		initCombat();
+		combatTicks = 0;
+	}
+
+	//if(this.konami == true)
+	//    player.iterateCharacter();
+
 	benchmark("benchmark", function() {
 		benchmarkTick();
 	});
+
+	//player.iterateCharacter(); //uncomment for fun times! :)
 }
 
 function benchmark(label, func) {
