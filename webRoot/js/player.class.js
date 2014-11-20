@@ -4,7 +4,7 @@ function Player(name, map) {
 	this.name = name;
 	this.map = map;
 
-	this.maxHealth = 20;
+	this.maxHealth = 100;
 	this.health = this.maxHealth;
 
 	this.maxTemp = 100;
@@ -108,7 +108,7 @@ Player.prototype.move = function(delta) {
 };
 
 Player.prototype.updateSteps = function() {
-	if (this.totalMoved % 100 == 0) {
+	if (this.totalMoved % 50 == 0) {
 		var globalSteps = this.totalMoved
 		var steps = new PlayerStatsTable()
 		var query = new Parse.Query(PlayerStatsTable);
@@ -123,6 +123,14 @@ Player.prototype.updateSteps = function() {
 							object.set("Steps", newStepCount);
 							object.save();
 							console.log(newStepCount + " Total Steps Taken");
+							if (newStepCount % 500 == 0) {
+								player.health -= 5;
+								noTick = true;
+								alert("You lost five health because of the cold. WEAR A JACKET");
+								setTimeout(function() {
+									noTick = false;
+								}, 250);
+							}
 						}
 					});
 				} else if (results.length == 0) {
