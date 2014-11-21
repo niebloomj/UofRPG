@@ -17,7 +17,11 @@ Uros.prototype.tick = function(delta) {
 	var xDist = this.x - player.x;
 	var yDist = this.y - player.y;
 	var distance = Math.sqrt(xDist * xDist + yDist * yDist);
-	if (distance < 20) {
+	
+	//console.log("player x " + player.x);
+	var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
+	
+	if (isCollision){//distance < 20) {
 		var indexOfUro = entities.indexOf(this);
 		if (indexOfUro > -1) {
 			entities.splice(indexOfUro, 1);
@@ -61,7 +65,7 @@ Uros.prototype.move = function(delta) {
 
 Uros.prototype.getDisplay = function() {
 	var sprite = new createjs.Bitmap("img/coin.png");
-	sprite.setTransform(0,16);
+	//sprite.setTransform(0,16);
 
 	return sprite;
 	/*var circle = new createjs.Shape();
