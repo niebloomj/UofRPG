@@ -2,6 +2,7 @@
 var TARGET_FPS = 30;
 var player;
 var uro;
+var healthblob;
 var time = 0;
 var noTick = false;
 
@@ -97,10 +98,16 @@ function createGame() {
 
 	entities = [player];
 
+	for (var i = 0; i < 50; i++) {
+		blob = new HealthBlobs(getRandInt(0, 6400), getRandInt(0, 6400));
+		entities.push(blob); 
+	}
+
 	for (var i = 0; i < 200; i++) {
 		uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
 		entities.push(uro); 
 	}
+	
 	uro = new Uros(player.x+20, player.y+20); // very useful for testing
 	entities.push(uro);
 
