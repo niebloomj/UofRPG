@@ -18,7 +18,6 @@ Uros.prototype.tick = function(delta) {
     var yDist = this.y - player.y;
     var distance = Math.sqrt(xDist * xDist + yDist * yDist);
 
-    //console.log("player x " + player.x);
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
     if (isCollision) { //distance < 20) {

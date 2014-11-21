@@ -96,8 +96,6 @@ Player.prototype.deltaY = function(elapsedTime) {
 
 // tells this entity to move according to its current velocity
 Player.prototype.move = function(delta) {
-    //Storing variable instead of running
-    //function twice was INTENTIONAL
     var moveXBy = this.deltaX(delta);
     var moveYBy = this.deltaY(delta);
     if (moveXBy != 0 || moveYBy != 0) {

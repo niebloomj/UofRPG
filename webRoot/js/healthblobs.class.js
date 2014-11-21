@@ -18,10 +18,9 @@ HealthBlobs.prototype.tick = function(delta) {
     var yDist = this.y - player.y;
     var distance = Math.sqrt(xDist * xDist + yDist * yDist);
 
-    //console.log("player x " + player.x);
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
-    if (isCollision) { //distance < 20) {
+    if (isCollision) {
         var indexOfBlob = entities.indexOf(this);
         if (indexOfBlob > -1) {
             entities.splice(indexOfBlob, 1);
@@ -36,10 +35,6 @@ HealthBlobs.prototype.move = function(delta) {
 };
 
 HealthBlobs.prototype.getDisplay = function() {
-    /*var sprite = new createjs.Bitmap("img/coin.png");
-	//sprite.setTransform(0,16);
-
-	return sprite;*/
     var circle = new createjs.Shape();
     var circle = new createjs.Shape();
     circle.graphics.beginFill("red").drawCircle(0, 0, 16);
