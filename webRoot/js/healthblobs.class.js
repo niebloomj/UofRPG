@@ -25,7 +25,11 @@ HealthBlobs.prototype.tick = function(delta) {
         if (indexOfBlob > -1) {
             entities.splice(indexOfBlob, 1);
             player.health += 10;
+            noTick = true;
             alert("You got 10 health");
+            setTimeout(function() {
+                noTick = false;
+            }, 250);
         }
     }
 };
