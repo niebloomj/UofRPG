@@ -25,30 +25,30 @@ var KEYCODE_ESC = 27; // ESCAPE
 
 function keydown(event) {
 
-	//queue.enqueue(event);
-	//if (queue.length > 8)
-	//    queue.dequeue();
+    //queue.enqueue(event);
+    //if (queue.length > 8)
+    //    queue.dequeue();
 
-	player.isSprinting = event.shiftKey;
-	player.isNoCollide = event.ctrlKey;
-	switch (event.keyCode) {
-		case KEYCODE_UP:
-		case KEYCODE_UP_ALT:
-			player.isMoveU = true;
-			break;
-		case KEYCODE_DOWN:
-		case KEYCODE_DOWN_ALT:
-			player.isMoveD = true;
-			break;
-		case KEYCODE_LEFT:
-		case KEYCODE_LEFT_ALT:
-			player.isMoveL = true;
-			break;
-		case KEYCODE_RIGHT:
-		case KEYCODE_RIGHT_ALT:
-			player.isMoveR = true;
-			break;
-			/*case KEYCODE_ENTER:
+    player.isSprinting = event.shiftKey;
+    player.isNoCollide = event.ctrlKey;
+    switch (event.keyCode) {
+        case KEYCODE_UP:
+        case KEYCODE_UP_ALT:
+            player.isMoveU = true;
+            break;
+        case KEYCODE_DOWN:
+        case KEYCODE_DOWN_ALT:
+            player.isMoveD = true;
+            break;
+        case KEYCODE_LEFT:
+        case KEYCODE_LEFT_ALT:
+            player.isMoveL = true;
+            break;
+        case KEYCODE_RIGHT:
+        case KEYCODE_RIGHT_ALT:
+            player.isMoveR = true;
+            break;
+            /*case KEYCODE_ENTER:
 			    var temp = queue.dequeue();
 			    if (temp == KEYCODE_UP){
 			        temp = queue.dequeue();
@@ -76,38 +76,38 @@ function keydown(event) {
 			        }
 			    }
 			    break;*/
-	}
+    }
 }
 
 function keyup(event) {
-	player.isSprinting = event.shiftKey;
-	player.isNoCollide = event.ctrlKey;
-	switch (event.keyCode) {
-		case KEYCODE_UP:
-		case KEYCODE_UP_ALT:
-			player.isMoveU = false;
-			break;
-		case KEYCODE_DOWN:
-		case KEYCODE_DOWN_ALT:
-			player.isMoveD = false;
-			break;
-		case KEYCODE_LEFT:
-		case KEYCODE_LEFT_ALT:
-			player.isMoveL = false;
-			break;
-		case KEYCODE_RIGHT:
-		case KEYCODE_RIGHT_ALT:
-			player.isMoveR = false;
-			break;
-		case KEYCODE_DEBUG:
-			debugMode = !debugMode;
-			break;
-		case KEYCODE_BENCHMARK:
-			benchmarkingMode = !benchmarkingMode;
-			break;
-		case KEYCODE_TOGGLE_PLAYER:
-			if (debugMode)
-				player.iterateCharacter();
-			break;
-	}
+    player.isSprinting = event.shiftKey;
+    player.isNoCollide = event.ctrlKey;
+    switch (event.keyCode) {
+        case KEYCODE_UP:
+        case KEYCODE_UP_ALT:
+            player.isMoveU = false;
+            break;
+        case KEYCODE_DOWN:
+        case KEYCODE_DOWN_ALT:
+            player.isMoveD = false;
+            break;
+        case KEYCODE_LEFT:
+        case KEYCODE_LEFT_ALT:
+            player.isMoveL = false;
+            break;
+        case KEYCODE_RIGHT:
+        case KEYCODE_RIGHT_ALT:
+            player.isMoveR = false;
+            break;
+        case KEYCODE_DEBUG:
+            debugMode = !debugMode;
+            break;
+        case KEYCODE_BENCHMARK:
+            benchmarkingMode = !benchmarkingMode;
+            break;
+        case KEYCODE_TOGGLE_PLAYER:
+            if (debugMode)
+                player.iterateCharacter();
+            break;
+    }
 }
