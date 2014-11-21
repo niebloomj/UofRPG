@@ -64,15 +64,12 @@ Uros.prototype.move = function(delta) {
 };
 
 Uros.prototype.getDisplay = function() {
-<<<<<<< HEAD
-	var sprite = new createjs.Bitmap("img/coin.png");
+	/*var sprite = new createjs.Bitmap("img/coin.png");
 	//sprite.setTransform(0,16);
 
-	return sprite;
-	/*var circle = new createjs.Shape();
-=======
+	return sprite;*/
 	var circle = new createjs.Shape();
->>>>>>> origin/master
+	var circle = new createjs.Shape();
 	circle.graphics.beginFill("yellow").drawCircle(0, 0, 16);
 	return circle;
 };
