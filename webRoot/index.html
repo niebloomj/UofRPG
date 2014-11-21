@@ -13,6 +13,8 @@
   <script src="lib/easeljs-0.7.0.min.js"></script>
   <script src="lib/soundjs-0.5.2.min.js"></script>
 
+  <script src="build/js/messenger.min.js"></script>
+  <script src="build/js/messenger-theme-future.js"></script>
   <script src="js/init.js"></script>
   <script>
   window.addEventListener("keydown", function(e) {
@@ -24,6 +26,17 @@
   </script>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="build/css/messenger.css" rel="stylesheet">
+  <link href="build/css/messenger-theme-future.css" rel="stylesheet">
+
+  <script>
+  Messenger().run
+  Messenger.options = {
+    extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+    theme: 'future'
+  }
+  Messenger().post("Your request has succeded!");
+  </script>
   <style type="text/css">
   body {
     background-image: url(img/webmain_background2.gif);
@@ -73,6 +86,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
 </head>
 
 <body onLoad="init();">
