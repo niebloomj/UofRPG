@@ -21,7 +21,7 @@ Collider.prototype.contains = function(coll) {
     //console.log("PlayerX: " + player.x + " This.x: " + this.x + " ThisGapX: " + thisGapX + " playerGapX: " + playerGapX);
     //console.log("PlayerY: " + player.y + " This.y: " + this.y + " ThisGapY: " + thisGapY + " playerGapY: " + playerGapY);
 
-	/*
+	
     // main check
     if (((player.x >= this.x) && (thisGapX >= player.x)) && ((player.y >= this.y) && (thisGapY >= player.y))){ // check if in same x zone
         return true;
@@ -44,9 +44,9 @@ Collider.prototype.contains = function(coll) {
     // cleanup check
     if (((player.x >= this.x) && (thisGapX >= player.x)) && ((this.y <= playerGapY) && (this.gapY >= player.Y))){
         return true;
-    }*/
+    }
 	
-	var xDist = player.x - this.x;
+	/*var xDist = player.x - this.x;
 	var yDist = player.y - this.y;
 	var distance = Math.sqrt(xDist*xDist + yDist*yDist);
 	
@@ -63,7 +63,7 @@ Collider.prototype.contains = function(coll) {
 	if (rect1.x >= rect2.x + rect2.width || rect1.x + rect1.width <= rect2.x || rect1.y >= rect2.y + rect2.height || rect1.y + rect1.height <= rect2.y ){
 		return true;
 	}
-    return false;
+    return false;*/
 	//xreturn false;
 
     //return false;
