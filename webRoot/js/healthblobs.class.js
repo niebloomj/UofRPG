@@ -3,7 +3,7 @@ function HealthBlobs(x, y) {
     this.y = y;
 }
 
-HealthBlobs.prototype = new Entity(this.x, this.y);
+HealthBlobs.prototype = new Entity(this.x, this.y, 32, 32);
 
 HealthBlobs.prototype.deltaX = function(elapsedTime) {
     return 0;

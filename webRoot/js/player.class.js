@@ -62,7 +62,7 @@ function Player(name, map) {
 }
 
 // defines a human-controlled entity
-Player.prototype = new Entity(3200, 3200);
+Player.prototype = new Entity(3200, 3200, 16, 48);
 
 Player.prototype.deltaX = function(elapsedTime) {
     var deltaX = 0;

@@ -104,8 +104,8 @@ function createGame() {
     }
 
     for (var i = 0; i < 200; i++) {
-        uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
-        entities.push(uro);
+        //uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
+        //entities.push(uro);
     }
 
     uro = new Uros(player.x + 20, player.y + 20); // very useful for testing

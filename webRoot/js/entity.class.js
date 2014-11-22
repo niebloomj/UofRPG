@@ -10,6 +10,12 @@ function Entity() {
         this.x = arguments[0];
         this.y = arguments[1];
     }
+	 if (arguments.length == 4) {
+        this.x = arguments[0];
+        this.y = arguments[1];
+		this.width = arguments[2];
+		this.height = arguments[3];
+    }
 }
 
 // gets horizontal velocity
