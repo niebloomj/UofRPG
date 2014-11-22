@@ -122,12 +122,22 @@ Player.prototype.updateSteps = function() {
                             object.save();
                             console.log(newStepCount + " Total Steps Taken");
                             if (newStepCount % 500 == 0) {
-                                player.health -= 5;
-                                noTick = true;
-                                alert("You lost five health because of the cold. WEAR A JACKET");
-                                setTimeout(function() {
-                                    noTick = false;
-                                }, 250);
+								if ((player.health - 5) > 0){
+									player.health -= 5;
+									Messenger().post({
+										message: "You lost five health because of the cold. WEAR A JACKET",
+										type: "error", // info error or success. Use error for negative, success positive, and info neutral
+										hideAfter: "3"
+									})
+								}else{
+									player.health = 0;
+									Messenger().post({
+										message: "You Died!!",
+										type: "error", // info error or success. Use error for negative, success positive, and info neutral
+										hideAfter: "5"
+									})
+									// do death
+								}
                             }
                         }
                     });

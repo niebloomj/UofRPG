@@ -13,23 +13,32 @@ HealthBlobs.prototype.deltaY = function(elapsedTime) {
     return 0;
 };
 
-HealthBlobs.prototype.tick = function(delta) {
+HealthBlobs.prototype.tick = function(delta){
     var xDist = this.x - player.x;
     var yDist = this.y - player.y;
     var distance = Math.sqrt(xDist * xDist + yDist * yDist);
 
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
-    if (isCollision) {
+    if (isCollision){
         var indexOfBlob = entities.indexOf(this);
         if (indexOfBlob > -1) {
             entities.splice(indexOfBlob, 1);
-            player.health += 10;
-            noTick = true;
-            alert("You got 10 health");
-            setTimeout(function() {
-                noTick = false;
-            }, 250);
+			if (player.health + 10 <= 100){
+				player.health += 10;
+				Messenger().post({
+					message: "You got 10 health!",
+					type: "success", // info error or success. Use error for negative, success positive, and info neutral
+					hideAfter: "3"
+				})
+			}else if (player.health != 100){
+				player.health = 100;
+				Messenger().post({
+					message: "You got 10 health!",
+					type: "success", // info error or success. Use error for negative, success positive, and info neutral
+					hideAfter: "3"
+				})
+			}
         }
     }
 };
