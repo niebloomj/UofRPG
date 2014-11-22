@@ -24,6 +24,14 @@ Uros.prototype.tick = function(delta) {
         var indexOfUro = entities.indexOf(this);
         if (indexOfUro > -1) {
             entities.splice(indexOfUro, 1);
+
+            //audio by naropian
+            createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashPlugin]);
+            createjs.Sound.alternateExtensions = ["mp3"];
+            createjs.Sound.addEventListener("fileload", createjs.proxy(this.loadHandler, (this)));
+            createjs.Sound.registerSound("..\/..\/Sound Assets\/Pick up coin.wav", "sound");
+
+
             money = money + 25;
             var statTable = new PlayerStatsTable()
             var query = new Parse.Query(PlayerStatsTable);
@@ -57,6 +65,13 @@ Uros.prototype.tick = function(delta) {
         }
     }
 };
+
+function loadHandler(event) {
+     // This is fired for each sound that is registered.
+     var instance = createjs.Sound.play("sound");  // play using id.  Could also use full sourcepath or event.src.
+     instance.addEventListener("complete", createjs.proxy(this.handleComplete, this));
+     instance.volume = 0.5;
+ }
 
 Uros.prototype.move = function(delta) {
 
