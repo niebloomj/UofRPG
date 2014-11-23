@@ -26,10 +26,12 @@ Uros.prototype.tick = function(delta) {
             entities.splice(indexOfUro, 1);
 
             //audio by naropian
-            createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.FlashPlugin]);
-            createjs.Sound.alternateExtensions = ["mp3"];
-            createjs.Sound.addEventListener("fileload", createjs.proxy(this.loadHandler, (this)));
-            createjs.Sound.registerSound("..\/..\/Sound Assets\/Pick up coin.wav", "sound");
+            //createjs.Sound.alternateExtensions = ["mp3"];
+            //createjs.Sound.addEventListener("fileload", createjs.proxy(this.loadHandler, this));
+            //createjs.Sound.registerSound("..\/img\/Pick up coin.mp3", "sound");
+            var audio = new Audio('..\/img\/Pick up coin.mp3');
+            //audio.volume= .1;
+            audio.play();
 
 
             money = money + 25;
@@ -67,6 +69,7 @@ Uros.prototype.tick = function(delta) {
 };
 
 function loadHandler(event) {
+    consol.log("kiss my bum");
      // This is fired for each sound that is registered.
      var instance = createjs.Sound.play("sound");  // play using id.  Could also use full sourcepath or event.src.
      instance.addEventListener("complete", createjs.proxy(this.handleComplete, this));
