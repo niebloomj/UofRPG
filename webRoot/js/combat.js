@@ -22,61 +22,86 @@ function initCombat() {
 	
     stage.update();
 	
+	// Implement timer feature with below code later
+	/*var i = 0;
+	Messenger().run({
+	  errorMessage: 'You missed.',
+	  successMessage: 'You dealt 10 damage!',
+	  action: function(opts) {
+		if (++i < 3) {
+		  return opts.error({
+			status: 500,
+			readyState: 0,
+			responseText: 0
+		  });
+		} else {
+		  return opts.success();
+		}
+	  }
+	});*/
+	
 	var msg;
+
 	msg = Messenger().post({
-		message: 'Choose an option.',
-		type: 'info',
-		actions: {
-			attack: {
-				label: 'Attack!',
-				action: function() {
+	  message: 'Choose an option.',
+	  type: 'info',
+	  actions: {
+		attack: {
+		  label: 'Attack!',
+		  action: function() {
+			return msg.update({
+			  message: 'Choose an attack style.',
+			  type: 'success',
+			  actions: {
+				punch: {
+				  label: 'Punch!',
+				  action: function() {
 					return msg.update({
-					message: 'Choose an attack style.',
-					type: 'success',
-					actions: {
-						punch: {
-							label: 'Punch!',
-							action: function() {
-								return msg.update({
-								message: 'Your fists are mighty. +10 Damage!',
-								type: 'success',
-								actions: false
-							}
-						},
-						kick: {
-							label: 'Kick!',
-							action: function() {
-								return msg.update({
-								message: 'You have the kick of a kangaroo. +200 Damage!',
-								type: 'success',
-								actions: false
-								});
-							}
-						},
-						sing: {
-							label: 'Sing!',
-							action: function() {
-								return msg.update({
-								message: 'This is no time for singing! +0 Damage!',
-								type: 'success',
-								actions: false
-							}
-						}
-					}  
-				});
+					  message: 'Your fists are mighty. +10 Damage!',
+					  type: 'success',
+					  actions: false
+					});
+				  }
+				},
+				kick: {
+				  label: 'Kick!',
+				  action: function() {
+					return msg.update({
+					  message: 'You have the kick of a kangaroo. +200 Damage!',
+					  type: 'success',
+					  actions: false
+					});
+				  }
+				},
+				sing: {
+				  label: 'Sing!',
+				  action: function() {
+					return msg.update({
+					  message: 'This is no time for singing! +0 Damage!',
+					  type: 'success',
+					  actions: false
+					});
+				  }
+				}
 			}
+			  
+			});
+		  }
 		},
+		
 		defend: {
-			label: 'Defend!',
-			action: function() {
-				return msg.update({
-				message: 'You dodged a devestating smash!',
-				type: 'success',
-				actions: false
-			}
+		  label: 'Defend!',
+		  action: function() {
+			return msg.update({
+			  message: 'You dodged a devestating smash!',
+			  type: 'success',
+			  actions: false
+			});
+		  }
 		}
 	  }
 	});
+
 }
 
 function randomInt(min, max) {
