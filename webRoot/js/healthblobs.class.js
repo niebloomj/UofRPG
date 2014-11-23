@@ -48,11 +48,10 @@ HealthBlobs.prototype.move = function(delta) {
 };
 
 HealthBlobs.prototype.getDisplay = function() {
-    var heart = new createjs.Shape();
-    var heart1 = new Image();
-    heart1.src = 'img/sprites/heart8_24.png';
-    heart.graphics.beginBitmapFill(heart1, "no-repeat").drawRect(0, 0, 24, 24);
-    return heart;
+    var circle = new createjs.Shape();
+    var circle = new createjs.Shape();
+    circle.graphics.beginFill("red").drawCircle(0, 0, 16);
+    return circle;
 };
 
 HealthBlobs.prototype.width = function() {
