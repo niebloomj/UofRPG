@@ -146,21 +146,27 @@ function getMinimapDisplay() {
 	return null;
 }
 
+
+var isMinimapReady;
+
 function initMinimap() {
-    //renderMinimap();
+	isMinimapReady = false;
+	setTimeout(loadMap, 0);
 }
 
 /*function executeAsync(func) {
     setTimeout(func, 0);
 }*/
 
-var isMinimapReady;
-initMinimap(function() {
+function loadMap(){
 	isMinimapReady = false;
-    alert("Test");
 	renderMinimap();
-	isMinimapReady = true;
-});
+	//isMinimapReady = true;
+}
+
+/*initMinimap(function() {
+	
+});*/
 
 /**
  * Pre-renders minimap
