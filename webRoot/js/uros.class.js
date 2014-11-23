@@ -85,9 +85,12 @@ Uros.prototype.getDisplay = function() {
 	//sprite.setTransform(0,16);
 
 	return sprite;*/
+    
+    var coinNew = new Image();
+    coinNew.src = 'img/coin.png';
     var circle = new createjs.Shape();
-    var circle = new createjs.Shape();
-    circle.graphics.beginFill("yellow").drawCircle(0, 0, 16);
+
+    circle.graphics.beginBitmapFill(coinNew, "no-repeat").drawRect(0, 0, 32, 32);
     return circle;
 };
 
