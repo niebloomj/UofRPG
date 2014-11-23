@@ -285,15 +285,14 @@ Player.prototype.getDisplay = function() {
     var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
    // sprite.setTransform(0, -1 * this.height());
 	    sprite.scaleX = -1;
-    /*if (!(this.isMovingLeft)) {
+    if (!(this.isMovingLeft)) {
         sprite.x = this.width();
         sprite.scaleX = -1;
     }
 
     if (!(this.isMovingUp)) {
         sprite = createjs.Bitmap(this.characters[7]);
-    }*/
-
+    }
     var parent = new createjs.Container();
     parent.addChild(sprite)
     return parent;
@@ -301,9 +300,9 @@ Player.prototype.getDisplay = function() {
 };
 
 Player.prototype.width = function() {
-    return 0;//16;
+    return 0; //16;
 };
 
 Player.prototype.height = function() {
-    return 0;//48;
+    return 0; //48;
 };
