@@ -150,13 +150,14 @@ function getMinimapDisplay() {
 var isMinimapReady;
 
 function initMinimap() {
-	var num_threads = 2;
+	/*var num_threads = 2;
 	var MT = new Multithread(num_threads);
 	isMinimapReady = false;
 	var task = MT.process(renderMinimap, function(){
 		console.log("Loading map async.");
 	});
-	task();
+	task();*/
+	renderMinimap();
 }
 
 
@@ -173,7 +174,8 @@ function initMinimap() {
  */
 function renderMinimap() {
 	//if (isMinimapReady){
-	try{
+	//try{
+		console.log("HERE");
 		var layerData = mapData.layers[0];
 		var miniD = minimapTileSize;
 
@@ -204,9 +206,9 @@ function renderMinimap() {
 
 		minimapBitmap = new createjs.Bitmap(canvas);
 		
-		}catch (Exception){
+		//}catch (Exception){
 			
-		}
+		//}
 		isMinimapReady = true;
 }
 
