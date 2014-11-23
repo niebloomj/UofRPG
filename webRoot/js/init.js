@@ -88,12 +88,12 @@ $.getScript("js/keyevents.js", function() {
     $.getScript("js/game.js", function() {
         $.getScript("maps/main.map.js", function() {
             $.getScript("js/createmap.js", function() {
-                $.getScript("js/entity.class.js", function() {
-                    $.getScript("js/player.class.js", function() {
-                        $.getScript("js/uros.class.js", function() {
+                $.getScript("js/Entities/entity.class.js", function() {
+                    $.getScript("js/Entities/player.class.js", function() {
+                        $.getScript("js/Entities/uros.class.js", function() {
                             $.getScript("js/combat.js", function() {
                                 $.getScript("js/collider.class.js", function() {
-                                    $.getScript("js/healthblobs.class.js", function() {
+                                    $.getScript("js/Entities/healthblobs.class.js", function() {
 
                                     });
                                 });
