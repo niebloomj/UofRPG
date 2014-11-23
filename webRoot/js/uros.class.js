@@ -91,10 +91,15 @@ Uros.prototype.getDisplay = function() {
     return circle;
 };
 
+/*
+* We need to delete the below methods.  These create OFFSETS of the location which makes calculations completely different.
+* Use .trueWidth and .trueHeight for now.  If these methods are deleted, you can revert back to using just .width and .height
+*
+*/
 Uros.prototype.width = function() {
-    return 32;
+    return 0;
 };
 
 Uros.prototype.height = function() {
-    return 32;
+    return 0;
 };
