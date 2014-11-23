@@ -150,19 +150,19 @@ function getMinimapDisplay() {
 var isMinimapReady;
 
 function initMinimap() {
+	var num_threads = 2;
+	var MT = new Multithread(num_threads);
 	isMinimapReady = false;
-	setTimeout(loadMap, 0);
+	var task = MT.process(renderMinimap, function(){
+		console.log("Loading map async.");
+	});
+	task();
 }
+
 
 /*function executeAsync(func) {
     setTimeout(func, 0);
 }*/
-
-function loadMap(){
-	isMinimapReady = false;
-	renderMinimap();
-	//isMinimapReady = true;
-}
 
 /*initMinimap(function() {
 	
@@ -172,7 +172,8 @@ function loadMap(){
  * Pre-renders minimap
  */
 function renderMinimap() {
-	if (isMinimapReady){
+	//if (isMinimapReady){
+	try{
 		var layerData = mapData.layers[0];
 		var miniD = minimapTileSize;
 
@@ -202,7 +203,11 @@ function renderMinimap() {
 		}
 
 		minimapBitmap = new createjs.Bitmap(canvas);
-	}
+		
+		}catch (Exception){
+			
+		}
+		isMinimapReady = true;
 }
 
 /**
