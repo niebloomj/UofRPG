@@ -283,7 +283,7 @@ Player.prototype.iterateCharacter = function() {
 Player.prototype.getDisplay = function() {
 
     var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
-   // sprite.setTransform(0, -1 * this.height());
+		sprite.setTransform(0, -1 * this.height());
 	    sprite.scaleX = -1;
     if (!(this.isMovingLeft)) {
         sprite.x = this.width();
