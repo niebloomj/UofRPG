@@ -104,11 +104,11 @@ function createGame() {
     }
 
     for (var i = 0; i < 200; i++) {
-        //uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
-        //entities.push(uro);
+        uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
+        entities.push(uro);
     }
 
-    uro = new Uros(player.x + 20, player.y + 20); // very useful for testing
+    uro = new Uros(player.x + 50, player.y + 50); // very useful for testing
     entities.push(uro);
 
     createjs.Ticker.on("tick", tick);

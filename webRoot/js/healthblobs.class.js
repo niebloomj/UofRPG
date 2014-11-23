@@ -56,9 +56,9 @@ HealthBlobs.prototype.getDisplay = function() {
 };
 
 HealthBlobs.prototype.width = function() {
-    return 32;
+    return 0;//32;
 };
 
 HealthBlobs.prototype.height = function() {
-    return 32;
+    return 0;//32;
 };

@@ -3,7 +3,7 @@ function Uros(x, y) {
     this.y = y;
 }
 
-Uros.prototype = new Entity(this.x, this.y);
+Uros.prototype = new Entity(this.x, this.y, 32, 32);
 
 Uros.prototype.deltaX = function(elapsedTime) {
     return 0;
