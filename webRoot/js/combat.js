@@ -1,14 +1,17 @@
 var inCombat = false;
 var combatTicks = 0;
 var combatShape = new createjs.Shape();
-var combatText = new createjs.Text("Combat!", "bold 36pt Arial", "white");
+var combatText = new createjs.Text("#feelinit", "bold 36pt Arial", "red");
+var combatBackground = new Image();
+combatBackground.src = 'img/CombatTest.png';
+
 
 function initCombat() {
     inCombat = true;
 
     gameContainer.removeAllChildren();
 
-    combatShape.graphics.beginFill("black").drawRect(0, 0, screenWidth * 64 + 32, screenHeight * 64 + 32);
+    combatShape.graphics.beginBitmapFill(combatBackground, "no-repeat").drawRect(0,0, 992, 544);
     combatText.textAlign = "center";
     combatText.textBaseline = "middle";
     combatText.x = (screenWidth * 64 + 32) / 2;
