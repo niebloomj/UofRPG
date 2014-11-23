@@ -50,9 +50,41 @@ function initCombat() {
 		  label: 'Attack!',
 		  action: function() {
 			return msg.update({
-			  message: 'You dealt so much damage bro!',
+			  message: 'Choose an attack style.',
 			  type: 'success',
-			  actions: false
+			  actions: {
+				punch: {
+				  label: 'Punch!',
+				  action: function() {
+					return msg.update({
+					  message: 'Your fists are mighty. +10 Damage!',
+					  type: 'success',
+					  actions: false
+					});
+				  }
+				},
+				kick: {
+				  label: 'Kick!',
+				  action: function() {
+					return msg.update({
+					  message: 'You have the kick of a kangaroo. +200 Damage!',
+					  type: 'success',
+					  actions: false
+					});
+				  }
+				},
+				sing: {
+				  label: 'Sing!',
+				  action: function() {
+					return msg.update({
+					  message: 'This is no time for singing! +0 Damage!',
+					  type: 'success',
+					  actions: false
+					});
+				  }
+				}
+			}
+			  
 			});
 		  }
 		},
