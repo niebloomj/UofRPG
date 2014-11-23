@@ -50,9 +50,11 @@ function tickMap(delta) {
     });
 
     benchmark("d:minimap", function() {
-        var minimap = getMinimapDisplay();
-        minimap.setTransform(stage.canvas.width - minimap.getBounds().width - 10, 10);
-        gameContainer.addChild(minimap);
+		if (isMinimapReady){
+			var minimap = getMinimapDisplay();
+			minimap.setTransform(stage.canvas.width - minimap.getBounds().width - 10, 10);
+			gameContainer.addChild(minimap);
+		}
     });
 
     benchmark("d:hudbar", function() {
@@ -124,61 +126,77 @@ var minimapBitmap;
  * pixel drawing technique based on http://community.createjs.com/discussions/easeljs/1291-bitmap-pixel-manipulation
  */
 function getMinimapDisplay() {
-    var layerData = mapData.layers[0];
-    var miniD = minimapTileSize;
+	if (isMinimapReady){
+		var layerData = mapData.layers[0];
+		var miniD = minimapTileSize;
 
-    var minimapWidthPx = minimapWidth * minimapTileSize;
-    var minimapHeightPx = minimapHeight * minimapTileSize;
+		var minimapWidthPx = minimapWidth * minimapTileSize;
+		var minimapHeightPx = minimapHeight * minimapTileSize;
 
-    var miniCordX = ((player.x / TILE_D) | 0);
-    var miniCordY = ((player.y / TILE_D) | 0);
+		var miniCordX = ((player.x / TILE_D) | 0);
+		var miniCordY = ((player.y / TILE_D) | 0);
 
-    minimapBitmap.sourceRect = new createjs.Rectangle(
-        (miniCordX * minimapTileSize - minimapWidth), (miniCordY * minimapTileSize - minimapWidth),
-        minimapWidthPx,
-        minimapHeightPx
-    );
-
-    return minimapBitmap;
+		minimapBitmap.sourceRect = new createjs.Rectangle(
+			(miniCordX * minimapTileSize - minimapWidth), (miniCordY * minimapTileSize - minimapWidth),
+			minimapWidthPx,
+			minimapHeightPx
+		);
+		return minimapBitmap;
+	}
+	return null;
 }
 
 function initMinimap() {
-    renderMinimap();
+    //renderMinimap();
 }
+
+/*function executeAsync(func) {
+    setTimeout(func, 0);
+}*/
+
+var isMinimapReady;
+initMinimap(function() {
+	isMinimapReady = false;
+    alert("Test");
+	renderMinimap();
+	isMinimapReady = true;
+});
 
 /**
  * Pre-renders minimap
  */
 function renderMinimap() {
-    var layerData = mapData.layers[0];
-    var miniD = minimapTileSize;
+	if (isMinimapReady){
+		var layerData = mapData.layers[0];
+		var miniD = minimapTileSize;
 
-    var canvas = document.createElement("canvas");
-    canvas.width = mapData.width * miniD;
-    canvas.height = mapData.height * miniD;
-    var ctx = canvas.getContext("2d");
-    var id = ctx.createImageData(miniD, miniD);
-    var data = id.data;
+		var canvas = document.createElement("canvas");
+		canvas.width = mapData.width * miniD;
+		canvas.height = mapData.height * miniD;
+		var ctx = canvas.getContext("2d");
+		var id = ctx.createImageData(miniD, miniD);
+		var data = id.data;
 
-    for (var iy = 0; iy < mapData.height; iy++) {
-        for (var ix = 0; ix < mapData.width; ix++) {
+		for (var iy = 0; iy < mapData.height; iy++) {
+			for (var ix = 0; ix < mapData.width; ix++) {
 
-            var idx = ix + iy * layerData.width;
-            var tid = layerData.data[idx] - 1;
-            var color = getMinimapColor(tid);
+				var idx = ix + iy * layerData.width;
+				var tid = layerData.data[idx] - 1;
+				var color = getMinimapColor(tid);
 
-            for (var i = 0; i < data.length; i += 4) {
-                data[i] = color[0];
-                data[i + 1] = color[1];
-                data[i + 2] = color[2];
-                data[i + 3] = minimapOpacity;
-            }
+				for (var i = 0; i < data.length; i += 4) {
+					data[i] = color[0];
+					data[i + 1] = color[1];
+					data[i + 2] = color[2];
+					data[i + 3] = minimapOpacity;
+				}
 
-            ctx.putImageData(id, ix * miniD, iy * miniD);
-        }
-    }
+				ctx.putImageData(id, ix * miniD, iy * miniD);
+			}
+		}
 
-    minimapBitmap = new createjs.Bitmap(canvas);
+		minimapBitmap = new createjs.Bitmap(canvas);
+	}
 }
 
 /**
