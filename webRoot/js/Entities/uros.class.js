@@ -35,7 +35,7 @@ Uros.prototype.tick = function(delta) {
             audio.play();
 
 
-            money = money + 25;
+            player.money = player.money + 25;
             var statTable = new PlayerStatsTable()
             var query = new Parse.Query(PlayerStatsTable);
             query.equalTo("Username", username);
@@ -45,9 +45,9 @@ Uros.prototype.tick = function(delta) {
                         var object = results[0];
                         object.save(null, {
                             success: function(object) {
-                                object.set("Uros", money);
+                                object.set("Uros", player.money);
                                 object.save();
-                                $("#walletAmount").html("$" + money + " URos");
+                                $("#walletAmount").html("$" + player.money + " URos");
                                 Messenger().post({
                                     parentLocations: ['.theGame'],
                                     message: "You got 25 Uros!!",
@@ -60,9 +60,9 @@ Uros.prototype.tick = function(delta) {
                         statTable.set("Username", username);
                         statTable.save(null, {
                             success: function(statTable) {
-                                statTable.set("Uros", money);
+                                statTable.set("Uros", player.money);
                                 statTable.save();
-                                $("#walletAmount").html("$" + money + " URos");
+                                $("#walletAmount").html("$" + player.money + " URos");
                             }
                         });
                     }
