@@ -6,12 +6,13 @@ var combatBackground = new Image();
 combatBackground.src = 'img/CombatTest.png';
 var fightMusic = new Audio('..\/audio\/FightMusic.mp3');
 
-
 function initCombat() {
     inCombat = true;
     fightMusic.volume = fightMusic.volume * .7;
     backgroundMusic.pause();
     fightMusic.play();
+    backgroundMusic=new Audio('..\/audio\/BackgroundMusic.mp3');
+    backgroundMusic.loop=true;
 
     gameContainer.removeAllChildren();
 
@@ -46,37 +47,37 @@ function initCombat() {
                             punch: {
                                 label: 'Punch!',
                                 action: function() {
+                                    goBack();
                                     return msg.update({
                                         message: 'Your fists are mighty. +10 Damage!',
                                         type: 'success',
                                         hideAfter: false,
                                         actions: false
                                     });
-                                    inCombat = false;
                                 }
                             },
                             kick: {
                                 label: 'Kick!',
                                 action: function() {
+                                    goBack();
                                     return msg.update({
                                         message: 'You have the kick of a kangaroo. +200 Damage!',
                                         type: 'success',
                                         hideAfter: false,
                                         actions: false
                                     });
-                                    inCombat = false;
                                 }
                             },
                             sing: {
                                 label: 'Sing!',
                                 action: function() {
+                                    goBack();
                                     return msg.update({
                                         message: 'This is no time for singing! +0 Damage!',
                                         type: 'success',
                                         hideAfter: false,
                                         actions: false
                                     });
-                                    inCombat = false;
                                 }
                             }
                         }
@@ -87,14 +88,20 @@ function initCombat() {
             defend: {
                 label: 'Defend!',
                 action: function() {
+                    goBack();
                     return msg.update({
                         message: 'You dodged a devestating smash!',
                         type: 'success',
                         actions: false
                     });
-                    inCombat = false;
                 }
             }
         }
     });
+}
+
+function goBack(){
+    inCombat = false;
+    backgroundMusic.play();
+    fightMusic.pause();
 }
