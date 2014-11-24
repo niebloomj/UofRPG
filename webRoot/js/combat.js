@@ -32,13 +32,16 @@ function initCombat() {
     msg = Messenger().post({
         message: 'Choose an option.',
         type: 'info',
+		hideAfter: false,
         actions: {
             attack: {
                 label: 'Attack!',
+				hideAfter: false,
                 action: function() {
                     return msg.update({
                         message: 'Choose an attack style.',
                         type: 'success',
+						hideAfter: false,
                         actions: {
                             punch: {
                                 label: 'Punch!',
@@ -46,6 +49,7 @@ function initCombat() {
                                     return msg.update({
                                         message: 'Your fists are mighty. +10 Damage!',
                                         type: 'success',
+										hideAfter: false,
                                         actions: false
                                     });
                                     inCombat = false;
@@ -57,6 +61,7 @@ function initCombat() {
                                     return msg.update({
                                         message: 'You have the kick of a kangaroo. +200 Damage!',
                                         type: 'success',
+										hideAfter: false,
                                         actions: false
                                     });
                                     inCombat = false;
@@ -68,6 +73,7 @@ function initCombat() {
                                     return msg.update({
                                         message: 'This is no time for singing! +0 Damage!',
                                         type: 'success',
+										hideAfter: false,
                                         actions: false
                                     });
                                     inCombat = false;
