@@ -44,10 +44,20 @@ Rando.prototype.healSelf = function() {
 
 Rando.prototype.attack = function() {
 	this.roll();
-	if (this.rng > 25) {
-		player.takeDamage(this.strength);
+	if (this.rng > 30) {
+		this.roll();
+		if (this.rng > 25) {
+			player.takeDamage(this.strength);
+		} else {
+			//Rando misses :(
+		}
 	} else {
-		//Rando misses :(
+		this.roll();
+		if (this.rng > 50) {
+			player.takeDamage(this.strength * 1.5);
+		} else {
+			//Rando misses :(
+		}
 	}
 };
 
