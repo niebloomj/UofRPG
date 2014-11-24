@@ -31,7 +31,7 @@ function initCombat() {
     var msg;
 
     msg = Messenger().post({
-        message: 'Choose an option.',
+        message: 'Some rando appeared! Choose an option.',
         type: 'info',
         hideAfter: false,
         actions: {
