@@ -40,9 +40,9 @@ Randos.prototype.tick = function(delta) {
                 })
             }
         }
-        //var audio = new Audio('..\/audio\/loseHealth.mp3');
-        //audio.volume=audio.volume*.2;
-        //audio.play();
+        var audio = new Audio('..\/audio\/loseHealth.mp3');
+        audio.volume=audio.volume*.2;
+        audio.play();
     }
 };
 
