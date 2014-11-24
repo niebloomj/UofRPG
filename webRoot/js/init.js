@@ -10,7 +10,6 @@ var username = null;
 var benchmarkingMode = false;
 var debugMode = false;
 var backgroundMusic=new Audio('..\/audio\/BackgroundMusic.mp3');
-var fightMusic=new Audio('..\/audio\/FightMusic.mp3');
 
 function init() {
     stage = new createjs.Stage("demoCanvas");
@@ -118,6 +117,7 @@ function loginSuccessful() {
     selectPlayer();
     backgroundMusic.loop=true;
     fightMusic.loop=true;
+    backgroundMusic.volume=backgroundMusic.volume*.7;
     backgroundMusic.play();
 }
 

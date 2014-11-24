@@ -30,7 +30,7 @@ Uros.prototype.tick = function(delta) {
             //createjs.Sound.addEventListener("fileload", createjs.proxy(this.loadHandler, this));
             //createjs.Sound.registerSound("..\/img\/Pick up coin.mp3", "sound");
             var audio = new Audio('..\/audio\/coin.mp3');
-            audio.volume=audio.volume*.5;
+            audio.volume=audio.volume*.35;
             //audio.volume= .1;
             audio.play();
 
