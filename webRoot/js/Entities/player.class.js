@@ -150,24 +150,24 @@ Player.prototype.handleCollision = function() {
     var topRightCollision = false;
     var botLeftCollision = false;
     var botRightCollision = false;
-
+	
     try {
-        if ((layerData.data[botLeftIndex] - 1) == 1) {
+        if ((layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botLeftCollision = true;
         }
     } catch (err) {}
     try {
-        if ((layerData.data[topLeftIndex] - 1) == 1) {
+        if ((layerData.data[topLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             topLeftCollision = true;
         }
     } catch (err) {}
     try {
-        if ((layerData.data[topRightIndex] - 1) == 1) {
+        if ((layerData.data[topRightIndex].properties[0] == "solid")){// - 1) == 1) {
             topRightCollision = true;
         }
     } catch (err) {}
     try {
-        if ((layerData.data[botRightIndex] - 1) == 1) {
+        if ((layerData.data[botRightIndex].properties[0] == "solid")){// - 1) == 1) {
             botRightCollision = true;
         }
     } catch (err) {}
