@@ -4,10 +4,14 @@ var combatShape = new createjs.Shape();
 var combatText = new createjs.Text("#feelinit", "bold 36pt Arial", "red");
 var combatBackground = new Image();
 combatBackground.src = 'img/CombatTest.png';
+var fightMusic=new Audio('..\/audio\/FightMusic.mp3');
 
 
 function initCombat() {
     inCombat = true;
+    fightMusic.volume=fightMusic.volume*.5;
+    backgroundMusic.pause();
+    fightMusic.play();
 
     gameContainer.removeAllChildren();
 
