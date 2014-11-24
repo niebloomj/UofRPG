@@ -4,6 +4,7 @@ function Player(name, map) {
     this.temp = 50;
 
     //Stats
+    this.maxHealth = 100;
     this.health = 100;
     this.strength = 10;
     this.intelligence = 10;
