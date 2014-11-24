@@ -123,37 +123,7 @@ function createGame() {
     initMinimap();
     //createjs.Ticker.setFPS(60); //for the glory of GabeN!
 
-    var query = new Parse.Query(PlayerStatsTable);
-    query.equalTo("Username", username);
-    query.find({
-        success: function(results) {
-            if (results.length == 1) {
-                var object = results[0];
-                if (object.get('Uros')) {
-                    player.money = object.get('Uros');
-                }
-                $("#walletAmount").html("$" + player.money + " URos");
-                if (object.get('PlayerX')) {
-                    player.x = object.get('PlayerX');
-                }
-                if (object.get('PlayerY')) {
-                    player.y = object.get('PlayerY');
-                }
-                if (object.get('Health')) {
-                    player.health = object.get('Health');
-                    if (player.health == 0) {
-                        player.health = 10;
-                    }
-                }
-                if (object.get('Steps')) {
-                    player.totalMoved = object.get('Steps');
-                }
-            }
-        },
-        error: function(error) {
-            showLoginMessage(error.message, "danger");
-        }
-    });
+    loadSavedGame();
 }
 
 function getRandInt(min, max) {

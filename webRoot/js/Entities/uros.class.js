@@ -18,9 +18,12 @@ Uros.prototype.tick = function(delta) {
     var yDist = this.y - player.y;
     var distance = Math.sqrt(xDist * xDist + yDist * yDist);
 
-    var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
+    var isCollision = (new Collider(
+        this.x, this.y,
+        this.width, this.height).contains(player.x,
+        player.y, player.width, player.height));
 
-    if (isCollision) { //distance < 20) {
+    if (isCollision) {
         var indexOfUro = entities.indexOf(this);
         if (indexOfUro > -1) {
             entities.splice(indexOfUro, 1);
@@ -34,43 +37,14 @@ Uros.prototype.tick = function(delta) {
             //audio.volume= .1;
             audio.play();
 
-
             player.money = player.money + 25;
-            var statTable = new PlayerStatsTable()
-            var query = new Parse.Query(PlayerStatsTable);
-            query.equalTo("Username", username);
-            query.find({
-                success: function(results) {
-                    if (results.length == 1) {
-                        var object = results[0];
-                        object.save(null, {
-                            success: function(object) {
-                                object.set("Uros", player.money);
-                                object.save();
-                                $("#walletAmount").html("$" + player.money + " URos");
-                                Messenger().post({
-                                    parentLocations: ['.theGame'],
-                                    message: "You got 25 Uros!!",
-                                    type: "success", // info error or success. Use error for negative, success positive, and info neutral
-                                    hideAfter: "3"
-                                })
-                            }
-                        });
-                    } else if (results.length == 0) {
-                        statTable.set("Username", username);
-                        statTable.save(null, {
-                            success: function(statTable) {
-                                statTable.set("Uros", player.money);
-                                statTable.save();
-                                $("#walletAmount").html("$" + player.money + " URos");
-                            }
-                        });
-                    }
-                },
-                error: function(error) {
-                    showLoginMessage(error.message, "danger");
-                }
-            });
+            $("#walletAmount").html("$" + player.money + " URos");
+            Messenger().post({
+                parentLocations: ['.theGame'],
+                message: "You got 25 Uros",
+                type: "success",
+                hideAfter: "3"
+            })
         }
     }
 };
