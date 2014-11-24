@@ -108,7 +108,7 @@ function createGame() {
         entities.push(uro);
     }
 
-    for (var i = 0; i < 200; i++){
+    for (var i = 0; i < 20; i++){
         rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(rando);
     }

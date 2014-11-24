@@ -20,53 +20,30 @@ Randos.prototype.tick = function(delta) {
 
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
-  /*  if (isCollision) { //distance < 20) {
-        var indexOfRando = entities.indexOf(this);
-        if (indexOfRando > -1) {
-            entities.splice(indexOfRando, 1);
-
-            //audio by naropian
-            //createjs.Sound.alternateExtensions = ["mp3"];
-            //createjs.Sound.addEventListener("fileload", createjs.proxy(this.loadHandler, this));
-            //createjs.Sound.registerSound("..\/img\/Pick up coin.mp3", "sound");
-            var audio = new Audio('..\/audio\/coin.mp3');
-            audio.volume=audio.volume*.35;
-            //audio.volume= .1;
-            audio.play();
-
-
-            money = money + 25;
-            var statTable = new PlayerStatsTable()
-            var query = new Parse.Query(PlayerStatsTable);
-            query.equalTo("Username", username);
-            query.find({
-                success: function(results) {
-                    if (results.length == 1) {
-                        var object = results[0];
-                        object.save(null, {
-                            success: function(object) {
-                                object.set("Randos", money);
-                                object.save();
-                                $("#walletAmount").html("$" + money + " URos");
-                            }
-                        });
-                    } else if (results.length == 0) {
-                        statTable.set("Username", username);
-                        statTable.save(null, {
-                            success: function(statTable) {
-                                statTable.set("Randos", money);
-                                statTable.save();
-                                $("#walletAmount").html("$" + money + " URos");
-                            }
-                        });
-                    }
-                },
-                error: function(error) {
-                    showLoginMessage(error.message, "danger");
-                }
-            });
+   if (isCollision) {
+        var indexOfBlob = entities.indexOf(this);
+        if (indexOfBlob > -1) {
+            entities.splice(indexOfBlob, 1);
+            if (player.health - 10 >= 0) {
+                player.health -= 10;
+                Messenger().post({
+                    parentLocations:['.theGame'],
+                    message: "You lost 10 health. Don't touch the randos",
+                    type: "success", // info error or success. Use error for negative, success positive, and info neutral
+                    hideAfter: "3"
+                })
+            } else{
+                 Messenger().post({
+                    message: "You died to randos",
+                    type: "error", // info error or success. Use error for negative, success positive, and info neutral
+                    hideAfter: "3"
+                })
+            }
         }
-    }*/
+        //var audio = new Audio('..\/audio\/loseHealth.mp3');
+        //audio.volume=audio.volume*.2;
+        //audio.play();
+    }
 };
 
 Randos.prototype.move = function(delta) {
