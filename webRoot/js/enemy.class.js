@@ -10,7 +10,13 @@ function Enemy(name, level, maxHealth, strength, intelligence, defense) {
 
 Enemy.prototype.strength = function() {
 	if (randomInt(0,100) > 25) {
-		Player.health -= this.strength - Player.defense;
+		if (this.strength - player.defense > 0) {
+			player.takeDamage(this.strength - player.defense);
+		} else {
+			//message about the player resisting the attack or something
+		}
+	} else {
+		//enemy misses
 	}
 }
 
@@ -35,5 +41,9 @@ Enemy.prototype.damage = function(amt) {
 }
 
 Enemy.prototype.castSpell = function(spellName, spellDamage) {
-	
+	if (spellDamage - player.defense > 0) {
+		player.takeDamage(spellDamage - player.defense);
+	} else {
+		//message about the player resisting the attack or something
+	}
 }
