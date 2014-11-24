@@ -44,7 +44,7 @@ function Player(name, map) {
                 } else {
                     money = 0;
                 }
-                $("#walletAmount").html("$" + money + " URos");
+                $("#walletAmount").html("₹" + money);
             }
         },
         error: function(error) {
