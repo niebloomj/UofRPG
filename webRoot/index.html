@@ -87,14 +87,9 @@
 		bottom: 8px;
 	}
 	
-	/*.btn-teal {
-		color: #fff;
-		background-color: #009688;
-		border-color: #069083;
-	}
-	.btn-teal:not(.btn-link):not(.btn-flat) {
-		background-color: #009688;
-	}*/
+	#storeModal {
+    color: black;
+  }
   </style>
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -106,6 +101,25 @@
 <body onLoad="init();" class="inverse">
   <div class="hidden" id="debugBox"></div>
   <div class="container">
+
+
+    <div class="modal fade" id="storeModal" tabindex="-1" role="dialog" aria-labelledby="storeModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="storeModalLabel">Hillside Market</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 		<div class="row">
 			<header id="loginHeader" class="text-center col-xs-8 col-xs-offset-2">
@@ -184,8 +198,8 @@
           <span id="loginContainerAlertContent"></span>
         </div>
         <div class="paneButtons">
-          <button id="btnLogin" class="btn btn-lg btn-block btn-warning">Login</button>
-          <button id="btnRegister" class="btn btn-lg btn-block btn-warning">Register</button>
+          <button id="btnLogin" class="btn btn-lg btn-block btn-material-deeporange">Login</button>
+          <button id="btnRegister" class="btn btn-lg btn-block btn-material-deeporange">Register</button>
         </div>
         <div class="paneLogin hidden">
           <div class="form-group">
@@ -196,7 +210,7 @@
             <label for="formLoginPassword">Password</label>
             <input type="password" class="form-control input-lg" id="formLoginPassword" placeholder="Password">
           </div>
-          <button type="button" id="formLoginSubmit" data-loading-text="Loading..." class="btn btn-lg btn-warning">
+          <button type="button" id="formLoginSubmit" data-loading-text="Loading..." class="btn btn-lg btn-material-deeporange">
             Submit
           </button>
         </div>
@@ -209,7 +223,7 @@
             <label for="formRegisterPassword">Password</label>
             <input type="password" class="form-control input-lg" id="formRegisterPassword" placeholder="Password">
           </div>
-          <button type="button" id="formRegisterSubmit" data-loading-text="Loading..." class="btn btn-lg btn-warning">
+          <button type="button" id="formRegisterSubmit" data-loading-text="Loading..." class="btn btn-lg btn-material-deeporange">
             Submit
           </button>
         </div>
