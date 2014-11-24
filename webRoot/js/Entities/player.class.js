@@ -7,9 +7,9 @@ function Player(name, map) {
     this.maxHealth = 100;
     this.health = 100;
     this.strength = 10;
+    this.defense = 5;
     this.intelligence = 10;
     this.charisma = 999999999; // Damn, you're smooth B^)
-    this.defense = 5;
     this.money = 0;
     //Moving Variables
     this.isMoveU = false;
