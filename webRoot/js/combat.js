@@ -19,9 +19,77 @@ function initCombat() {
 
     gameContainer.addChild(combatShape);
     gameContainer.addChild(combatText);
+	
+    gameContainer.addChild(getHudbarDisplay());
+    stage.update();
 
-    
-    // HUDBAR SETTINGS
+    var msg;
+
+    msg = Messenger().post({
+        message: 'Choose an option.',
+        type: 'info',
+        actions: {
+            attack: {
+                label: 'Attack!',
+                action: function() {
+                    return msg.update({
+                        message: 'Choose an attack style.',
+                        type: 'success',
+                        actions: {
+                            punch: {
+                                label: 'Punch!',
+                                action: function() {
+                                    return msg.update({
+                                        message: 'Your fists are mighty. +10 Damage!',
+                                        type: 'success',
+                                        actions: false
+                                    });
+                                    inCombat = false;
+                                }
+                            },
+                            kick: {
+                                label: 'Kick!',
+                                action: function() {
+                                    return msg.update({
+                                        message: 'You have the kick of a kangaroo. +200 Damage!',
+                                        type: 'success',
+                                        actions: false
+                                    });
+                                    inCombat = false;
+                                }
+                            },
+                            sing: {
+                                label: 'Sing!',
+                                action: function() {
+                                    return msg.update({
+                                        message: 'This is no time for singing! +0 Damage!',
+                                        type: 'success',
+                                        actions: false
+                                    });
+                                    inCombat = false;
+                                }
+                            }
+                        }
+                    });
+                }
+            },
+
+            defend: {
+                label: 'Defend!',
+                action: function() {
+                    return msg.update({
+                        message: 'You dodged a devestating smash!',
+                        type: 'success',
+                        actions: false
+                    });
+                    inCombat = false;
+                }
+            }
+        }
+    });
+}
+
+ // HUDBAR SETTINGS
     var hudbarWidth = 192; // hudbar width (in px)
     var hudbarHeight = 24; // hudbar height (in px)
 
@@ -100,82 +168,6 @@ function initCombat() {
     updateBarText();
 
     return hudbar;
-}
-    gameContainer.addChild(getHudbarDisplay());
-    stage.update();
-
-    var msg;
-
-    msg = Messenger().post({
-        message: 'Choose an option.',
-        type: 'info',
-        actions: {
-            attack: {
-                label: 'Attack!',
-                action: function() {
-                    return msg.update({
-                        message: 'Choose an attack style.',
-                        type: 'success',
-                        actions: {
-                            punch: {
-                                label: 'Punch!',
-                                action: function() {
-                                    return msg.update({
-                                        message: 'Your fists are mighty. +10 Damage!',
-                                        type: 'success',
-                                        actions: false
-                                    });
-                                    setTimeout(function() {
-                                        inCombat = false;
-                                    }, 1);
-                                }
-                            },
-                            kick: {
-                                label: 'Kick!',
-                                action: function() {
-                                    return msg.update({
-                                        message: 'You have the kick of a kangaroo. +200 Damage!',
-                                        type: 'success',
-                                        actions: false
-                                    });
-                                    setTimeout(function() {
-                                        inCombat = false;
-                                    }, 1);
-                                }
-                            },
-                            sing: {
-                                label: 'Sing!',
-                                action: function() {
-                                    return msg.update({
-                                        message: 'This is no time for singing! +0 Damage!',
-                                        type: 'success',
-                                        actions: false
-                                    });
-                                    setTimeout(function() {
-                                        inCombat = false;
-                                    }, 1);
-                                }
-                            }
-                        }
-                    });
-                }
-            },
-
-            defend: {
-                label: 'Defend!',
-                action: function() {
-                    return msg.update({
-                        message: 'You dodged a devestating smash!',
-                        type: 'success',
-                        actions: false
-                    });
-                    setTimeout(function() {
-                        inCombat = false;
-                    }, 1);
-                }
-            }
-        }
-    });
 }
 
 function randomInt(min, max) {
