@@ -40,7 +40,7 @@ Rando.prototype.decide = function() {
 
 Rando.prototype.healSelf = function() {
 	this.heal(10);
-}
+};
 
 Rando.prototype.attack = function() {
 	this.roll();
@@ -49,11 +49,11 @@ Rando.prototype.attack = function() {
 	} else {
 		//Rando misses :(
 	}
-}
+};
 
 Rando.prototype.defend = function() {
 	this.defense += this.defense / 2; //Randos are pretty good at defending. Who knew?
-}
+};
 
 Rando.prototype.castspell = function() {
 	this.roll();
