@@ -299,6 +299,14 @@ Player.prototype.getDisplay = function() {
 
 };
 
+Player.prototype.takeDamage = function(amt) {
+    if (this.health - amt <= 0) {
+        //Player.die(); rip in peace
+    } else {
+        this.health -= amt;
+    }
+};
+
 Player.prototype.width = function() {
     return 0; //16;
 };

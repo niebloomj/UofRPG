@@ -1,15 +1,16 @@
-function Enemy(name, level, maxHealth, attack, defense) {
+function Enemy(name, level, maxHealth, strength, intelligence, defense) {
 	this.name = name;
 	this.level = level;
 	this.maxHealth = maxHealth;
 	this.currHealth = maxHealth;
-	this.attack = attack;
+	this.strength = strength;
+	this.intelligence = intelligence;
 	this.defense = defense;
 }
 
-Enemy.prototype.attack = function() {
+Enemy.prototype.strength = function() {
 	if (randomInt(0,100) > 25) {
-		Player.health -= this.attack - Player.defense;
+		Player.health -= this.strength - Player.defense;
 	}
 }
 
@@ -31,4 +32,8 @@ Enemy.prototype.damage = function(amt) {
 	} else {
 		this.health -= amt;
 	}
+}
+
+Enemy.prototype.castSpell = function(spellName, spellDamage) {
+	
 }
