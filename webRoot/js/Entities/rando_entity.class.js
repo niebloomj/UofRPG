@@ -45,7 +45,7 @@ Randos.prototype.tick = function(delta) {
             }
             
         }
-        var audio = new Audio('..\/audio\/getHurt.mp3');
+        var audio = new Audio('..\/audio\/giveHurt.mp3');
         audio.volume=audio.volume*.2;
         audio.play();
     }
