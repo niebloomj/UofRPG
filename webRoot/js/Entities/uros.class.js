@@ -30,6 +30,7 @@ Uros.prototype.tick = function(delta) {
             //createjs.Sound.addEventListener("fileload", createjs.proxy(this.loadHandler, this));
             //createjs.Sound.registerSound("..\/img\/Pick up coin.mp3", "sound");
             var audio = new Audio('..\/audio\/coin.mp3');
+            audio.volume=audio.volume*.5;
             //audio.volume= .1;
             audio.play();
 
@@ -67,7 +68,7 @@ Uros.prototype.tick = function(delta) {
         }
     }
 };
-
+/*
 function loadHandler(event) {
     consol.log("kiss my bum");
     // This is fired for each sound that is registered.
@@ -75,7 +76,7 @@ function loadHandler(event) {
     instance.addEventListener("complete", createjs.proxy(this.handleComplete, this));
     instance.volume = 0.5;
 }
-
+*/
 Uros.prototype.move = function(delta) {
 
 };
