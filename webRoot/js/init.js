@@ -95,7 +95,9 @@ $.getScript("js/keyevents.js", function() {
                             $.getScript("js/combat.js", function() {
                                 $.getScript("js/collider.class.js", function() {
                                     $.getScript("js/Entities/healthblobs.class.js", function() {
+                                        $.getScript("js/enemy.class.js", function() {
 
+                                        });
                                     });
                                 });
                             });
