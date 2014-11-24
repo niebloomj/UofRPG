@@ -149,12 +149,12 @@ var isMinimapReady;
 
 function initMinimap() {
     /*var num_threads = 2;
-	var MT = new Multithread(num_threads);
-	isMinimapReady = false;
-	var task = MT.process(renderMinimap, function(){
-		console.log("Loading map async.");
-	});
-	task();*/
+    var MT = new Multithread(num_threads);
+    isMinimapReady = false;
+    var task = MT.process(renderMinimap, function(){
+        console.log("Loading map async.");
+    });
+    task();*/
     renderMinimap();
 }
 
@@ -164,7 +164,7 @@ function initMinimap() {
 }*/
 
 /*initMinimap(function() {
-	
+    
 });*/
 
 /**
@@ -309,11 +309,11 @@ function updateBarText() {
             url: "http://api.openweathermap.org/data/2.5/find?q=Rochester&units=imperial",
             dataType: "json",
             success: function(json) {
-                currentTemp = json.list[3].main.temp + "˚";
+                currentTemp = json.list[3].main.temp;
             }
         });
     });
-    temperatureTxt.text = currentTemp;
+    temperatureTxt.text = currentTemp + "˚";
 }
 
 /**
