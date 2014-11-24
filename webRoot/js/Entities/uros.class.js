@@ -71,12 +71,21 @@ Uros.prototype.tick = function(delta) {
 /*
 function loadHandler(event) {
     consol.log("kiss my bum");
+<<<<<<< HEAD
     // This is fired for each sound that is registered.
     var instance = createjs.Sound.play("sound"); // play using id.  Could also use full sourcepath or event.src.
     instance.addEventListener("complete", createjs.proxy(this.handleComplete, this));
     instance.volume = 0.5;
 }
 */
+=======
+     // This is fired for each sound that is registered.
+     var instance = createjs.Sound.play("sound");  // play using id.  Could also use full sourcepath or event.src.
+     instance.addEventListener("complete", createjs.proxy(this.handleComplete, this));
+     instance.volume = 0.5;
+ }
+
+>>>>>>> parent of 4d04e05... Syntax :)
 Uros.prototype.move = function(delta) {
 
 };
@@ -93,10 +102,10 @@ Uros.prototype.getDisplay = function() {
 };
 
 /*
- * We need to delete the below methods.  These create OFFSETS of the location which makes calculations completely different.
- * Use .trueWidth and .trueHeight for now.  If these methods are deleted, you can revert back to using just .width and .height
- *
- */
+* We need to delete the below methods.  These create OFFSETS of the location which makes calculations completely different.
+* Use .trueWidth and .trueHeight for now.  If these methods are deleted, you can revert back to using just .width and .height
+*
+*/
 Uros.prototype.width = function() {
     return 0;
 };

@@ -122,6 +122,7 @@ Player.prototype.updateSteps = function() {
                             object.save();
                             console.log(newStepCount + " Total Steps Taken");
                             if (newStepCount % 500 == 0) {
+<<<<<<< HEAD
                                 if (currentTemp < 40) {
                                     if ((player.health - 5) > 0) {
                                         player.health -= 5;
@@ -140,6 +141,24 @@ Player.prototype.updateSteps = function() {
                                             // do death
                                     }
                                 }
+=======
+								if ((player.health - 5) > 0){
+									player.health -= 5;
+									Messenger().post({
+										message: "You lost five health because of the cold. WEAR A JACKET",
+										type: "error", // info error or success. Use error for negative, success positive, and info neutral
+										hideAfter: "3"
+									})
+								}else{
+									player.health = 0;
+									Messenger().post({
+										message: "You Died!!",
+										type: "error", // info error or success. Use error for negative, success positive, and info neutral
+										hideAfter: "5"
+									})
+									// do death
+								}
+>>>>>>> parent of 4d04e05... Syntax :)
                             }
                         }
                     });
@@ -285,8 +304,8 @@ Player.prototype.iterateCharacter = function() {
 Player.prototype.getDisplay = function() {
 
     var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
-    sprite.setTransform(0, -1 * this.height());
-    sprite.scaleX = -1;
+		sprite.setTransform(0, -1 * this.height());
+	    sprite.scaleX = -1;
     if (!(this.isMovingLeft)) {
         sprite.x = this.width();
         sprite.scaleX = -1;

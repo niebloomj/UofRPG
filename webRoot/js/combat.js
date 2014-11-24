@@ -11,7 +11,7 @@ function initCombat() {
 
     gameContainer.removeAllChildren();
 
-    combatShape.graphics.beginBitmapFill(combatBackground, "no-repeat").drawRect(0, 0, 992, 544);
+    combatShape.graphics.beginBitmapFill(combatBackground, "no-repeat").drawRect(0,0, 992, 544);
     combatText.textAlign = "center";
     combatText.textBaseline = "middle";
     combatText.x = (screenWidth * 64 + 32) / 2;
@@ -20,9 +20,15 @@ function initCombat() {
     gameContainer.addChild(combatShape);
     gameContainer.addChild(combatText);
 	
+<<<<<<< HEAD
     gameContainer.addChild(getHudbarDisplay());
+=======
+>>>>>>> parent of 4d04e05... Syntax :)
     stage.update();
+	
+	var msg;
 
+<<<<<<< HEAD
     var msg;
 
     msg = Messenger().post({
@@ -87,6 +93,78 @@ function initCombat() {
             }
         }
     });
+=======
+	msg = Messenger().post({
+		message: 'Choose an option.',
+		type: 'info',
+		actions: {
+			attack: {
+				label: 'Attack!',
+				action: function() {
+					return msg.update({
+					message: 'Choose an attack style.',
+					type: 'success',
+					actions: {
+						punch: {
+							label: 'Punch!',
+							action: function() {
+								return msg.update({
+								message: 'Your fists are mighty. +10 Damage!',
+								type: 'success',
+								actions: false
+								});
+								setTimeout(function() {
+									inCombat = false;
+								}, 1);
+							}
+						},
+						kick: {
+							label: 'Kick!',
+							action: function() {
+								return msg.update({
+								message: 'You have the kick of a kangaroo. +200 Damage!',
+								type: 'success',
+								actions: false
+								});
+								setTimeout(function() {
+									inCombat = false;
+								}, 1);
+							}
+						},
+						sing: {
+							label: 'Sing!',
+							action: function() {
+								return msg.update({
+								message: 'This is no time for singing! +0 Damage!',
+								type: 'success',
+								actions: false
+								});
+								setTimeout(function() {
+									inCombat = false;
+								}, 1);
+							}
+						}
+					}
+				});
+			}
+		},
+		
+		defend: {
+			label: 'Defend!',
+			action: function() {
+				return msg.update({
+				message: 'You dodged a devestating smash!',
+				type: 'success',
+				actions: false
+				});
+				setTimeout(function() {
+					inCombat = false;
+				}, 1);
+			}
+		}
+	  }
+	});							
+>>>>>>> parent of 4d04e05... Syntax :)
 }
 
  // HUDBAR SETTINGS
