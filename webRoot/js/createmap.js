@@ -234,15 +234,24 @@ var healthbarIconPath = "img/sprites/heart8_24.png"; // square of size hudbarIco
 var healthbarGraphics, healthbarIcon;
 
 // TEMPERATURE SETTINGS
-var tempbarColorFill = "#5dd0e4"; //"#e00"; // color of available health
-var tempbarColorEmpty = "#fbfbfb"; //"#aaa"; // color of missing health
+var tempbarColorFill = "#5dd0e4"; //"#e00"; // color of available temp
+var tempbarColorEmpty = "#fbfbfb"; //"#aaa"; // color of missing temp
 var tempbarColorBorder = "#222"; // color of hudbar border
 var tempbarIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIconSize
 
 var tempbarGraphics, tempbarIcon;
 
+// EXPERIENCE SETTINGS
+var expColorFill = "#5dd0e4"; //"#e00"; // color of available exp
+var expColorEmpty = "#fbfbfb"; //"#aaa"; // color of missing exp
+var expColorBorder = "#222"; // color of hudbar border
+var expIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIconSize
+
+var expGraphics, expIcon;
+
 var healthTxt;
 var temperatureTxt;
+var expTxt;
 var currentTemp;
 /**
  * Gets a DisplayObject representing the hudbars like health and stuff
