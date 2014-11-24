@@ -51,7 +51,7 @@ function initCombat() {
                                     return msg.update({
                                         message: 'Your fists are mighty. +10 Damage!',
                                         type: 'success',
-                                        hideAfter: false,
+                                        hideAfter: 3,
                                         actions: false
                                     });
                                 }
@@ -63,7 +63,7 @@ function initCombat() {
                                     return msg.update({
                                         message: 'You have the kick of a kangaroo. +200 Damage!',
                                         type: 'success',
-                                        hideAfter: false,
+                                        hideAfter: 3,
                                         actions: false
                                     });
                                 }
@@ -75,7 +75,7 @@ function initCombat() {
                                     return msg.update({
                                         message: 'This is no time for singing! +0 Damage!',
                                         type: 'success',
-                                        hideAfter: false,
+                                        hideAfter: 3,
                                         actions: false
                                     });
                                 }
@@ -92,6 +92,7 @@ function initCombat() {
                     return msg.update({
                         message: 'You dodged a devestating smash!',
                         type: 'success',
+                        hideAfter: 3,
                         actions: false
                     });
                 }
