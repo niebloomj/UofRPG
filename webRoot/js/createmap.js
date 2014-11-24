@@ -155,7 +155,7 @@ function initMinimap() {
         console.log("Loading map async.");
     });
     task();*/
-    renderMinimap();
+    //renderMinimap();
 }
 
 
