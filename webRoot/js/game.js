@@ -103,15 +103,15 @@ function createGame() {
 function resetItems() {
     entities = [player];
 
-    for (var i = 0; i < 40; i++) {
+    for (var i = 0; i < 20; i++) {
         blob = new HealthBlobs(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(blob);
     }
-    for (var i = 0; i < 200; i++) {
+    for (var i = 0; i < 100; i++) {
         uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(uro);
     }
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 50; i++) {
         rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(rando);
     }
