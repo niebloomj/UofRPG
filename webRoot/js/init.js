@@ -9,6 +9,7 @@ var currentUser;
 var username = null;
 var benchmarkingMode = false;
 var debugMode = false;
+var backgroundMusic=new Audio('..\/audio\/BackgroundMusic.mp3');
 
 function init() {
     stage = new createjs.Stage("demoCanvas");
@@ -111,6 +112,8 @@ function loginSuccessful() {
     $("#loginContainer").addClass("hidden");
     $("#loginHeader").addClass("hidden");
     selectPlayer();
+    backgroundMusic.loop=true;
+    backgroundMusic.play();
 }
 
 function selectPlayer() {
