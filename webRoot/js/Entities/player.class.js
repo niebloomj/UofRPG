@@ -7,6 +7,11 @@ function Player(name, map) {
     this.maxHealth = 100;
     this.health = this.maxHealth;
 
+    this.strength = 10;
+    this.intelligence = 10;
+    this.charisma = 999999999; // Damn, you're smooth B^)
+    this.defense = 5;
+
     this.maxTemp = 100;
     this.temp = this.maxTemp;
 
@@ -302,10 +307,14 @@ Player.prototype.getDisplay = function() {
 };
 
 Player.prototype.takeDamage = function(amt) {
-    if (this.health - amt <= 0) {
-        //Player.die(); rip in peace
+    if (amt - this.defense > 0) {
+        if (this.health - amt <= 0) {
+            //Player.die(); rip in peace
+        } else {
+            this.health -= amt;
+        }
     } else {
-        this.health -= amt;
+        //something about the player resisting the attack or something
     }
 };
 

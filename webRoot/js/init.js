@@ -85,29 +85,18 @@ init();
 });*/
 
 // loads up all the scripts
-$.getScript("js/keyevents.js", function() {
-    $.getScript("js/game.js", function() {
-        $.getScript("maps/main.map.js", function() {
-            $.getScript("js/createmap.js", function() {
-                $.getScript("js/Entities/entity.class.js", function() {
-                    $.getScript("js/Entities/player.class.js", function() {
-                        $.getScript("js/Entities/uros.class.js", function() {
-                            $.getScript("js/combat.js", function() {
-                                $.getScript("js/collider.class.js", function() {
-                                    $.getScript("js/Entities/healthblobs.class.js", function() {
-                                        $.getScript("js/Enemies/enemy.class.js", function() {
-
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    });
-});
+$.getScript("js/keyevents.js", function() {});
+$.getScript("js/game.js", function() {});
+$.getScript("maps/main.map.js", function() {});
+$.getScript("js/createmap.js", function() {});
+$.getScript("js/Entities/entity.class.js", function() {});
+$.getScript("js/Entities/player.class.js", function() {});
+$.getScript("js/Entities/uros.class.js", function() {});
+$.getScript("js/combat.js", function() {});
+$.getScript("js/collider.class.js", function() {});
+$.getScript("js/Entities/healthblobs.class.js", function() {});
+$.getScript("js/Enemies/enemy.class.js", function() {});
+$.getScript("js/Enemies/rando.class.js", function() {});
 
 function loginSuccessful() {
     username = currentUser.getUsername();
