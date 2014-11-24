@@ -123,17 +123,14 @@ Player.prototype.updateSteps = function() {
                         success: function(object) {
                             var newStepCount = object.get('Steps') + globalSteps;
                             object.set("Steps", newStepCount);
-                            console.log(player.x);
                             object.set("PlayerX", player.x);
                             object.set("PlayerY", player.y);
                             object.save();
                             console.log(newStepCount + " Total Steps Taken");
                             if (newStepCount % 500 == 0) {
-                                console.log(currentTemp);
                                 if (currentTemp < 50) {
                                     if ((player.health - 5) > 0) {
                                         player.health -= 5;
-                                        console.log(player.health);
                                         Messenger().post({
                                             message: "You lost five health because of the cold. WEAR A JACKET",
                                             type: "error", // info error or success. Use error for negative, success positive, and info neutral
