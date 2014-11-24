@@ -28,7 +28,7 @@ Randos.prototype.tick = function(delta) {
             entities.splice(indexOfRando, 1);
             initCombat();
             
-            if (player.health - 10 >= 0) {
+            if (player.health - 10 > 0) {
                 player.health -= 10;
                 Messenger().post({
                     parentLocations:['.theGame'],
