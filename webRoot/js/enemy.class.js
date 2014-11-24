@@ -6,18 +6,11 @@ function Enemy(name, level, maxHealth, strength, intelligence, defense) {
 	this.strength = strength;
 	this.intelligence = intelligence;
 	this.defense = defense;
-	this.rng = randomInt(0, 100);
 }
-
-Enemy.prototype.decide = function() {};
 
 Enemy.prototype.attack = function() {};
 
 Enemy.prototype.defend = function() {};
-
-Enemy.prototype.roll = function() {
-	this.rng = randomInt(0, 100);
-};
 
 Enemy.prototype.heal = function(amt) {
 	if (this.health + amt > this.maxHealth) {
