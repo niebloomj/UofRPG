@@ -78,15 +78,10 @@ Player.prototype.deltaY = function(elapsedTime) {
     return Math.floor(deltaY);
 };
 
-// tells this entity to move according to its current velocity
 Player.prototype.move = function(delta) {
-    var moveXBy = this.deltaX(delta);
-    var moveYBy = this.deltaY(delta);
-    if (moveXBy != 0 || moveYBy != 0) {
-        this.updateSteps();
-    }
-    this.x += moveXBy;
-    this.y += moveYBy;
+    this.x += this.deltaX(delta);
+    this.y += this.deltaY(delta);
+    this.updateSteps();
 };
 
 Player.prototype.updateSteps = function() {

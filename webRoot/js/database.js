@@ -1,4 +1,5 @@
 function saveGame() {
+    console.log("Saving Game");
     var query = new Parse.Query(PlayerStatsTable);
     query.equalTo("Username", username);
     query.find({
