@@ -81,9 +81,6 @@ function init() {
 }
 init();
 
-/*$.ajaxSetup({
-  cache: true
-});*/
 
 // loads up all the scripts
 $.getScript("js/keyevents.js", function() {
