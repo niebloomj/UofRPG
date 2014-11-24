@@ -26,7 +26,9 @@ Rando.prototype.decide = function() {
 		}
 	} else {
 		this.roll();
-		if (this.rng > 70) {
+		if (this.rng > 90) {
+			this.castspell(); //Desperation attack!!
+		} else if (this.rng > 70) {
 			this.attack();
 		} else if (this.rng > 40) {
 			this.defend();
@@ -41,7 +43,8 @@ Rando.prototype.healSelf = function() {
 }
 
 Rando.prototype.attack = function() {
-	if (randomInt(0, 100) > 25) {
+	this.roll();
+	if (this.rng > 25) {
 		player.takeDamage(this.strength);
 	} else {
 		//Rando misses :(
@@ -53,6 +56,10 @@ Rando.prototype.defend = function() {
 };
 
 Rando.prototype.castspell = function() {
-	//Randos use fireballs, by the way
-	player.takeDamage(7);
+	this.roll();
+	if (this.rng > 75) {
+		player.takeDamage(25);
+	} else {
+		//rando's spell fails
+	}
 };
