@@ -34,12 +34,19 @@ HealthBlobs.prototype.tick = function(delta) {
                 })
             } else if (player.health != 100) {
                 player.health = 100;
-                Messenger().post({
-                    message: "You already have full health :(",
+				 Messenger().post({
+					parentLocations:['.theGame'],
+                    message: "You got 10 health!",
                     type: "success", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
-            }
+            }else{
+				 Messenger().post({
+                    message: "You already have full health!",
+                    type: "error", // info error or success. Use error for negative, success positive, and info neutral
+                    hideAfter: "3"
+                })
+			}
         }
         var audio = new Audio('..\/audio\/gainHealth.mp3');
         audio.volume=audio.volume*.2;
