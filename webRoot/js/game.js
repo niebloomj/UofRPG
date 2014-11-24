@@ -92,19 +92,25 @@ function createGame() {
 
     // preps hudbars to be drawn
     initHudbar();
+    resetItems();
+    createjs.Ticker.on("tick", tick);
+    createjs.Ticker.setInterval(1000 / TARGET_FPS);
+    // preps minimap to be drawn
+    initMinimap();
+    loadSavedGame();
+}
 
+function resetItems() {
     entities = [player];
 
     for (var i = 0; i < 40; i++) {
         blob = new HealthBlobs(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(blob);
     }
-
     for (var i = 0; i < 200; i++) {
         uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(uro);
     }
-
     for (var i = 0; i < 100; i++) {
         rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(rando);
@@ -115,15 +121,6 @@ function createGame() {
 
     rando = new Randos(player.x + 50, player.y + 50); // very useful for testing
     entities.push(rando);
-
-    createjs.Ticker.on("tick", tick);
-    createjs.Ticker.setInterval(1000 / TARGET_FPS);
-
-    // preps minimap to be drawn
-    initMinimap();
-    //createjs.Ticker.setFPS(60); //for the glory of GabeN!
-
-    loadSavedGame();
 }
 
 function getRandInt(min, max) {

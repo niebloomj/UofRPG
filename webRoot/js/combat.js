@@ -105,6 +105,7 @@ function initCombat() {
 }
 
 function goBack(){
+    resetItems();
     inCombat = false;
     backgroundMusic.play();
     fightMusic.pause();
