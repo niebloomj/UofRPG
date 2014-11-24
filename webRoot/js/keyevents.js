@@ -21,13 +21,7 @@ var KEYCODE_B = 66; // B
 var KEYCODE_ENTER = 13; // ENTER
 var KEYCODE_ESC = 27; // ESCAPE
 
-//var queue = new Queue();
-
 function keydown(event) {
-
-    //queue.enqueue(event);
-    //if (queue.length > 8)
-    //    queue.dequeue();
 
     player.isSprinting = event.shiftKey;
     player.isNoCollide = event.ctrlKey;
@@ -48,34 +42,6 @@ function keydown(event) {
         case KEYCODE_RIGHT_ALT:
             player.isMoveR = true;
             break;
-            /*case KEYCODE_ENTER:
-			    var temp = queue.dequeue();
-			    if (temp == KEYCODE_UP){
-			        temp = queue.dequeue();
-			        if (temp == KEYCODE_UP){
-			            temp = queue.dequeue();
-			            if (temp == KEYCODE_DOWN){
-			                temp = queue.dequeue();
-			                if (temp == KEYCODE_DOWN){
-			                    temp = queue.dequeue();
-			                    if (temp == KEYCODE_LEFT){
-			                        temp = queue.dequeue();
-			                        if (temp == KEYCODE_RIGHT){
-			                            temp = queue.dequeue();
-			                            if (temp == KEYCODE_B){
-			                                temp = queue.dequeue();
-			                                if (temp == KEYCODE_A){
-			                                    temp = queue.dequeue();
-			                                    game.konami = true;
-			                                }
-			                            }
-			                        }
-			                    }
-			                }
-			            }
-			        }
-			    }
-			    break;*/
     }
 }
 
