@@ -76,7 +76,7 @@ function init() {
     });
     Messenger.options = {
         extraClasses: 'messenger-fixed messenger-on-bottom',
-        theme: 'air'
+        theme: 'flat'
     }
 }
 init();
