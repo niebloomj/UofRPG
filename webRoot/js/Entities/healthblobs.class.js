@@ -34,7 +34,7 @@ HealthBlobs.prototype.tick = function(delta) {
             } else if (player.health != 100) {
                 player.health = 100;
                 Messenger().post({
-                    message: "You got 10 health!",
+                    message: "You already have full health :(",
                     type: "success", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
