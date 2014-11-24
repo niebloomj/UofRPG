@@ -242,17 +242,19 @@ var tempbarIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIc
 var tempbarGraphics, tempbarIcon;
 
 // EXPERIENCE SETTINGS
-var expColorFill = "#5dd0e4"; //"#e00"; // color of available exp
-var expColorEmpty = "#fbfbfb"; //"#aaa"; // color of missing exp
-var expColorBorder = "#222"; // color of hudbar border
-var expIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIconSize
+var expbarColorFill = "#ffa500"; //"#e00"; // color of available exp
+var expbarColorEmpty = "#ff0000"; //"#aaa"; // color of missing exp
+var expbarColorBorder = "#222"; // color of hudbar border
+var expbarIconPath = "img/sprites/exp_24.png"; // square of size hudbarIconSize
 
-var expGraphics, expIcon;
+var expbarGraphics, expbarIcon;
 
 var healthTxt;
 var temperatureTxt;
 var expTxt;
 var currentTemp;
+
+var expPct;
 /**
  * Gets a DisplayObject representing the hudbars like health and stuff
  */
@@ -260,10 +262,12 @@ function getHudbarDisplay() {
     // create images;
     var hudbar = new createjs.Container();
     var healthbar = new createjs.Shape(healthbarGraphics.clone());
-    var tempbar = new createjs.Shape(tempbarGraphics.clone())
+    var tempbar = new createjs.Shape(tempbarGraphics.clone());
+    var expbar = new createjs.Shape(expbarGraphics.clone());
 
     var healthPct = player.health / player.maxHealth; // fraction representing player health
     var tempPct = 1;
+    expPct = 0.75;
 
     // add health bar icon to hudbar
     hudbar.addChild(healthbarIcon);
@@ -271,6 +275,10 @@ function getHudbarDisplay() {
     // add temperature bar icon to hudbar
     tempbarIcon.y = 25;
     hudbar.addChild(tempbarIcon);
+
+    // add experience bar icon to hudbar
+    expbarIcon.y = 50;
+    hudbar.addChild(expbarIcon);
 
     // draw filled section of healthbar
     healthbar.graphics.f(healthbarColorFill);
@@ -288,6 +296,14 @@ function getHudbarDisplay() {
         hudbarInnerHeight
     );
 
+    // draw filled section of expbar
+    expbar.graphics.f(expbarColorFill);
+    expbar.graphics.r(
+        hudbarBorder, hudbarBorder,
+        Math.floor(hudbarInnerWidth * expPct),
+        hudbarInnerHeight
+    );
+
     // add health bar to hudbar
     healthbar.setTransform(hudbarIconSize + hudbarIconPadding, 0);
     hudbar.addChild(healthbar);
@@ -295,6 +311,10 @@ function getHudbarDisplay() {
     // add temperature bar to hudbar
     tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight);
     hudbar.addChild(tempbar);
+
+    // add experience bar to hudbar
+    expbar.setTransform(hudbarIconSize + hudbarIconPadding, 2*hudbarHeight);
+    hudbar.addChild(expbar);
 
     healthTxt = new createjs.Text("0", "20px Arial", "#ff0000");
     healthTxt.x = 222;
@@ -305,6 +325,11 @@ function getHudbarDisplay() {
     temperatureTxt.x = 222;
     temperatureTxt.y = 28;
     hudbar.addChild(temperatureTxt);
+
+    expTxt = new createjs.Text(expPct * 100 + " exp", "20px Arial", "#ffa500");
+    expTxt.x = 222;
+    expTxt.y = 50;
+    hudbar.addChild(expTxt);
 
     updateBarText();
 
@@ -323,6 +348,7 @@ function updateBarText() {
         });
     });
     temperatureTxt.text = currentTemp + "˚";
+    expTxt = expPct * 100;
 }
 
 /**
@@ -368,6 +394,26 @@ function initHudbar() {
     );
 
     tempbarIcon = new createjs.Bitmap(tempbarIconPath);
+
+    expbarGraphics = new createjs.Graphics();
+
+    // draw border of exp bar
+    expbarGraphics.f(expbarColorBorder);
+    expbarGraphics.r(
+        0, 0,
+        hudbarWidth,
+        hudbarHeight
+    );
+
+    // draw background of exp bar
+    expbarGraphics.f(expbarColorEmpty);
+    expbarGraphics.r(
+        hudbarBorder, hudbarBorder,
+        hudbarInnerWidth,
+        hudbarInnerHeight
+    );
+
+    expbarIcon = new createjs.Bitmap(expbarIconPath);
 }
 
 function randomInt(min, max) {
