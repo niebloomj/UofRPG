@@ -27,6 +27,7 @@ HealthBlobs.prototype.tick = function(delta) {
             if (player.health + 10 <= 100) {
                 player.health += 10;
                 Messenger().post({
+					parentLocations:['.theGame'],
                     message: "You got 10 health!",
                     type: "success", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
