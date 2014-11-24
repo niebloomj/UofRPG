@@ -252,7 +252,6 @@ var expbarGraphics, expbarIcon;
 var healthTxt;
 var temperatureTxt;
 var expTxt;
-var currentTemp = 0;
 
 var expPct;
 /**
@@ -338,19 +337,19 @@ function getHudbarDisplay() {
 
 function updateBarText() {
     healthTxt.text = player.health;
-    if (currentTemp == 0 || player.totalMoved % 500 == 0) {
+    if (player.totalMoved % 500 == 0) {
     	console.log("Updated Weather");
         jQuery(document).ready(function($) {
             $.ajax({
                 url: "http://api.openweathermap.org/data/2.5/find?q=Rochester&units=imperial",
                 dataType: "json",
                 success: function(json) {
-                    currentTemp = json.list[3].main.temp;
+                    player.temp = json.list[3].main.temp;
                 }
             });
         });
     }
-    temperatureTxt.text = currentTemp + "˚";
+    temperatureTxt.text = player.temp + "˚";
     expTxt = expPct * 100;
 }
 

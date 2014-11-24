@@ -102,6 +102,15 @@ function createGame() {
 
 function resetItems() {
     entities = [player];
+    jQuery(document).ready(function($) {
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/find?q=Rochester&units=imperial",
+            dataType: "json",
+            success: function(json) {
+                player.temp = json.list[3].main.temp;
+            }
+        });
+    });
 
     for (var i = 0; i < 20; i++) {
         blob = new HealthBlobs(getRandInt(0, 6400), getRandInt(0, 6400));

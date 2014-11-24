@@ -81,7 +81,7 @@ Player.prototype.move = function(delta) {
 Player.prototype.stepCheck = function() {
     if (player.totalMoved % 50 == 0) {
         if (player.totalMoved % 500 == 0) {
-            if (currentTemp < 50) {
+            if (player.temp < 50) {
                 if ((player.health - 5) > 0) {
                     player.health -= 5;
                     Messenger().post({
