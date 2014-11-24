@@ -156,7 +156,6 @@ Player.prototype.updateSteps = function() {
                             var newStepCount = object.get('Steps') + globalSteps;
                             object.set("Steps", newStepCount);
                             object.save();
-                            console.log(newStepCount + "Total Steps Taken");
                         }
                     });
                 }
