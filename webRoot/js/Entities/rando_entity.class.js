@@ -23,9 +23,11 @@ Randos.prototype.tick = function(delta) {
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
    if (isCollision) {
-        var indexOfBlob = entities.indexOf(this);
-        if (indexOfBlob > -1) {
-            entities.splice(indexOfBlob, 1);
+        var indexOfRando = entities.indexOf(this);
+        if (indexOfRando > -1) {
+            entities.splice(indexOfRando, 1);
+            initCombat();
+            /*
             if (player.health - 10 >= 0) {
                 player.health -= 10;
                 Messenger().post({
@@ -41,10 +43,11 @@ Randos.prototype.tick = function(delta) {
                     hideAfter: "3"
                 })
             }
+            */
         }
-        var audio = new Audio('..\/audio\/getHurt.mp3');
-        audio.volume=audio.volume*.2;
-        audio.play();
+        //var audio = new Audio('..\/audio\/getHurt.mp3');
+        //audio.volume=audio.volume*.2;
+        //audio.play();
     }
 };
 
