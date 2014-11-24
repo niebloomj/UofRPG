@@ -173,9 +173,6 @@ function initMinimap() {
  * Pre-renders minimap
  */
 function renderMinimap() {
-    //if (isMinimapReady){
-    //try{
-    console.log("HERE");
     var layerData = mapData.layers[0];
     var miniD = minimapTileSize;
 
@@ -199,16 +196,10 @@ function renderMinimap() {
                 data[i + 2] = color[2];
                 data[i + 3] = minimapOpacity;
             }
-
             ctx.putImageData(id, ix * miniD, iy * miniD);
         }
     }
-
     minimapBitmap = new createjs.Bitmap(canvas);
-
-    //}catch (Exception){
-
-    //}
     isMinimapReady = true;
 }
 
