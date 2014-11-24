@@ -253,6 +253,7 @@ var healthTxt;
 var temperatureTxt;
 var expTxt;
 var currentTemp;
+var currentWeather;
 /**
  * Gets a DisplayObject representing the hudbars like health and stuff
  */
@@ -319,6 +320,7 @@ function updateBarText() {
             dataType: "json",
             success: function(json) {
                 currentTemp = json.list[3].main.temp;
+                currentWeather = json.list[3].weather[0].main;
             }
         });
     });
