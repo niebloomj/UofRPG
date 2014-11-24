@@ -143,7 +143,7 @@ Player.prototype.updateSteps = function() {
                                                 type: "error", // info error or success. Use error for negative, success positive, and info neutral
                                                 hideAfter: "5"
                                             })
-                                            // do death
+                                        location.reload();
                                     }
                                 }
                             }

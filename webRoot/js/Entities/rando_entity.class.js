@@ -42,6 +42,7 @@ Randos.prototype.tick = function(delta) {
                     type: "error", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
+                location.reload();
             }
             
         }
