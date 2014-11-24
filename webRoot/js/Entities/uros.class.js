@@ -30,7 +30,7 @@ Uros.prototype.tick = function(delta) {
             //createjs.Sound.addEventListener("fileload", createjs.proxy(this.loadHandler, this));
             //createjs.Sound.registerSound("..\/img\/Pick up coin.mp3", "sound");
             var audio = new Audio('..\/audio\/coin.mp3');
-            audio.volume=audio.volume*.35;
+            audio.volume = audio.volume * .35;
             //audio.volume= .1;
             audio.play();
 
@@ -48,6 +48,12 @@ Uros.prototype.tick = function(delta) {
                                 object.set("Uros", money);
                                 object.save();
                                 $("#walletAmount").html("$" + money + " URos");
+                                Messenger().post({
+                                    parentLocations: ['.theGame'],
+                                    message: "You got 25 Uros!!",
+                                    type: "success", // info error or success. Use error for negative, success positive, and info neutral
+                                    hideAfter: "3"
+                                })
                             }
                         });
                     } else if (results.length == 0) {
@@ -83,9 +89,9 @@ Uros.prototype.move = function(delta) {
 
 Uros.prototype.getDisplay = function() {
     var sprite = new createjs.Bitmap("img/coin.png");
-	//sprite.setTransform(0,16);
+    //sprite.setTransform(0,16);
 
-	return sprite;
+    return sprite;
     // var circle = new createjs.Shape();
     // var circle = new createjs.Shape();
     // circle.graphics.beginFill("yellow").drawCircle(0, 0, 16);
