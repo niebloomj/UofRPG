@@ -9,7 +9,7 @@ var fightMusic = new Audio('..\/audio\/FightMusic.mp3');
 
 function initCombat() {
     inCombat = true;
-    fightMusic.volume = fightMusic.volume * .5;
+    fightMusic.volume = fightMusic.volume * .7;
     backgroundMusic.pause();
     fightMusic.play();
 
