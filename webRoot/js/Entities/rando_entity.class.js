@@ -27,7 +27,7 @@ Randos.prototype.tick = function(delta) {
         if (indexOfRando > -1) {
             entities.splice(indexOfRando, 1);
             initCombat();
-            /*
+            
             if (player.health - 10 >= 0) {
                 player.health -= 10;
                 Messenger().post({
@@ -43,11 +43,11 @@ Randos.prototype.tick = function(delta) {
                     hideAfter: "3"
                 })
             }
-            */
+            
         }
-        //var audio = new Audio('..\/audio\/getHurt.mp3');
-        //audio.volume=audio.volume*.2;
-        //audio.play();
+        var audio = new Audio('..\/audio\/getHurt.mp3');
+        audio.volume=audio.volume*.2;
+        audio.play();
     }
 };
 
