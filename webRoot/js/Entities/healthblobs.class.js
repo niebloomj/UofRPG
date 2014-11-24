@@ -40,6 +40,8 @@ HealthBlobs.prototype.tick = function(delta) {
                 })
             }
         }
+        var audio = new Audio('..\/audio\/gainHealth.mp3');
+        audio.play();
     }
 };
 
