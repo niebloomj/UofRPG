@@ -6,16 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>University of Rochester Playing Game: Year 1</title>
+
   <script src="lib/jquery.min.js"></script>
   <script src="lib/bootstrap.min.js"></script>
   <script src="lib/parse-1.3.0.min.js"></script>
   <script src="lib/easeljs-0.7.0.min.js"></script>
   <script src="lib/soundjs-0.5.2.min.js"></script>
   <script src="lib/multithread.js"></script>
-  <script src="lib/ripples.min.js"></script>
-  <script src="lib/material.min.js"></script>
+	<script src="lib/ripples.min.js"></script>
+	<script src="lib/material.min.js"></script>
   <script src="lib/messenger.min.js"></script>
   <script src="lib/messenger-theme-flat.js"></script>
+	
   <script src="js/init.js"></script>
   <script>
   window.addEventListener("keydown", function(e) {
@@ -27,15 +29,18 @@
   </script>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/material-wfont.min.css" rel="stylesheet">
-  <link href="css/ripples.min.css" rel="stylesheet">
+	<link href="css/material-wfont.min.css" rel="stylesheet">
+	<link href="css/ripples.min.css" rel="stylesheet">
   <link href="css/messenger.css" rel="stylesheet">
   <link href="css/messenger-theme-flat.css" rel="stylesheet">
+	
   <style type="text/css">
-  .jumbotron.jumbotron-biglogo {
-    margin-top: 5px;
-    background-color: #666666;
-  }
+	
+	.jumbotron.jumbotron-biglogo {
+		margin-top: 5px;
+		background-color: #00467f;
+	}
+	
   #loginContainer .paneButtons button {
     font-size: 42px;
     margin-bottom: 24px;
@@ -70,19 +75,24 @@
   #mastfoot a {
     color: white;
   }
-  .stickBottomLeft {
-    position: absolute;
-    left: 16px;
-    bottom: 8px;
-  }
-  .stickBottomRight {
-    position: absolute;
-    right: 16px;
-    bottom: 8px;
-  }
-  #storeModal {
+	
+	.stickBottomLeft {
+		position: absolute;
+		left: 16px;
+		bottom: 8px;
+	}
+	
+	.stickBottomRight {
+		position: absolute;
+		right: 16px;
+		bottom: 8px;
+	}
+	
+	#storeModal {
     color: black;
   }
+
+
   #gameHeaderNav .navbar-text.navbar-right {
     margin-right: 5px;
   }
@@ -97,19 +107,18 @@
 <body onLoad="init();" class="inverse">
   <div class="hidden" id="debugBox"></div>
   <div class="container">
-
-    <canvas id="canvas" style="position : absolute; top : 0px; left : 0px;"></canvas>
-    <script type="text/javascript" src="http://sheepeuh.com/rain/dat.gui.js"></script>
-    <div style="position : absolute; bottom : 0px; left : 0px; margin : 20px; padding : 5px; background-color:#ce3635;">
-      <a href="http://sheepeuh.com" style="color: white; text-decoration : none; font-family: 'Lato', sans-serif; text-shadow: 1px 1px 1px black;">Me</a>
-    </div>
+	
+	<canvas id="canvas" style="position : absolute; top : 0px; left : 0px;"></canvas>
+	<script type="text/javascript" src="http://sheepeuh.com/rain/dat.gui.js"></script>
+	<div style="position : absolute; bottom : 0px; left : 0px; margin : 20px; padding : 5px; background-color:#ce3635;">
+		<a href="http://sheepeuh.com" style="color: white; text-decoration : none; font-family: 'Lato', sans-serif; text-shadow: 1px 1px 1px black;">Me</a>
+	</div>
 
     <div class="modal fade" id="storeModal" tabindex="-1" role="dialog" aria-labelledby="storeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-            </button>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title" id="storeModalLabel">Hillside Market</h4>
           </div>
           <div class="modal-body">
@@ -123,14 +132,14 @@
       </div>
     </div>
 
-    <div class="row">
-      <header id="loginHeader" class="text-center col-xs-8 col-xs-offset-2">
-        <div class="jumbotron jumbotron-biglogo">
-          <img src="img/logo_header.png">
-          <span class="sr-only">UofRPG: Year 1</span>
-        </div>
-      </header>
-    </div>
+		<div class="row">
+			<header id="loginHeader" class="text-center col-xs-8 col-xs-offset-2">
+				<div class="jumbotron jumbotron-biglogo">
+					<img src="img/logo_header.png">
+					<span class="sr-only">UofRPG: Year 1</span>
+				</div>
+			</header>
+		</div>
 
     <div id="gameHeader" class="hidden">
       <nav id="gameHeaderNav" class="navbar navbar-default" role="navigation">
@@ -240,17 +249,17 @@
     </div>
     <div id="gameDom">
     </div>
-
-    <footer id="mastfoot">
-      <div class="stickBottomLeft">
-        <a href="proposal.pdf" class="btn btn-primary btn-lg">Proposal</a>
-      </div>
-
-      <div class="stickBottomRight">
-        <div class="text-right">Copyright &copy; 2014</div>
-        <a href="credits.html" class="btn btn-primary btn-lg">Credits</a>
-      </div>
-    </footer>
+		
+		<footer id="mastfoot">
+			<div class="stickBottomLeft">
+				<a href="proposal.pdf" class="btn btn-primary btn-lg">Proposal</a>
+			</div>
+			
+			<div class="stickBottomRight">
+				<div class="text-right">Copyright &copy; 2014</div>
+				<a href="credits.html" class="btn btn-primary btn-lg">Credits</a>
+			</div>
+		</footer>
   </div>
 </body>
 
