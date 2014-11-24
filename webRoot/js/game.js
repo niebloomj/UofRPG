@@ -46,35 +46,35 @@ function createGame() {
             }
 
             /*// special case for spritesheet-based tilesets
-			} else if (tileset.imageheight != tileset.tileheight || tileset.imagewidth != tileset.tilewidth) {
-			    
-			    var mh = tileset.imageheight;
-			    var th = tileset.tileheight;
-			    var mw = tileset.imagewidth;
-			    var tw = tileset.tilewidth;
-			    var sheet = new createjs.Bitmap(tileset.image);
+            } else if (tileset.imageheight != tileset.tileheight || tileset.imagewidth != tileset.tilewidth) {
+                
+                var mh = tileset.imageheight;
+                var th = tileset.tileheight;
+                var mw = tileset.imagewidth;
+                var tw = tileset.tilewidth;
+                var sheet = new createjs.Bitmap(tileset.image);
 
-			    var tilesTall = mh / th;
-			    var tilesWide = mw / tw;
+                var tilesTall = mh / th;
+                var tilesWide = mw / tw;
 
-			    for (var i = 0; i < mh / th; i++) {
-			        for (var j = 0; j < mw / tw; j++) {
+                for (var i = 0; i < mh / th; i++) {
+                    for (var j = 0; j < mw / tw; j++) {
 
-			            var bmp = sheet.clone();
-			            bmp.sourceRect = new createjs.Rectangle(j * tw, i * th, tw, th);
+                        var bmp = sheet.clone();
+                        bmp.sourceRect = new createjs.Rectangle(j * tw, i * th, tw, th);
 
-			            var tileObj = {
-			                image: tileset.image,
-			                bitmap: bmp
-			            };
+                        var tileObj = {
+                            image: tileset.image,
+                            bitmap: bmp
+                        };
 
-			            var index = firstgid + ((i * tilesTall) + j);
-			            tiles[index] = tileObj;
+                        var index = firstgid + ((i * tilesTall) + j);
+                        tiles[index] = tileObj;
 
-			            console.log(i + "," + j + ": " + index + ", " + (j * tw) +" "+ (i * th) +" "+ tw +" "+ th);
-			        }
-			    }
-			    */
+                        console.log(i + "," + j + ": " + index + ", " + (j * tw) +" "+ (i * th) +" "+ tw +" "+ th);
+                    }
+                }
+                */
             // case for "normal" tilesets with just one tile
         } else {
             var tileObj = {
@@ -85,9 +85,6 @@ function createGame() {
             tiles[firstgid] = tileObj;
         }
     }
-    //console.log(tiles);
-
-
 
     // create the player
     player = new Player("PlaceholderUsername", mapData);
@@ -125,6 +122,25 @@ function createGame() {
     // preps minimap to be drawn
     initMinimap();
     //createjs.Ticker.setFPS(60); //for the glory of GabeN!
+
+    var query = new Parse.Query(PlayerStatsTable);
+    query.equalTo("Username", username);
+    query.find({
+        success: function(results) {
+            if (results.length == 1) {
+                var object = results[0];
+                if (object.get('PlayerX')) {
+                    player.x = object.get('PlayerX');
+                }
+                if (object.get('PlayerY')) {
+                    player.y = object.get('PlayerY');
+                }
+            }
+        },
+        error: function(error) {
+            showLoginMessage(error.message, "danger");
+        }
+    });
 }
 
 function getRandInt(min, max) {

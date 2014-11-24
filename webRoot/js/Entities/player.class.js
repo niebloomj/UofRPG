@@ -33,7 +33,6 @@ function Player(name, map) {
 
     this.totalMoved = 0;
 
-    var statsTable = new PlayerStatsTable()
     var query = new Parse.Query(PlayerStatsTable);
     query.equalTo("Username", username);
     query.find({
@@ -124,10 +123,13 @@ Player.prototype.updateSteps = function() {
                         success: function(object) {
                             var newStepCount = object.get('Steps') + globalSteps;
                             object.set("Steps", newStepCount);
+                            console.log(player.x);
+                            object.set("PlayerX", player.x);
+                            object.set("PlayerY", player.y);
                             object.save();
                             console.log(newStepCount + " Total Steps Taken");
                             if (newStepCount % 500 == 0) {
-                            	console.log(currentTemp);
+                                console.log(currentTemp);
                                 if (currentTemp < 50) {
                                     if ((player.health - 5) > 0) {
                                         player.health -= 5;
