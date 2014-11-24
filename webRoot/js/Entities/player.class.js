@@ -1,5 +1,3 @@
-var money = 0;
-
 function Player(name, map) {
     this.name = name;
     this.map = map;
@@ -32,6 +30,7 @@ function Player(name, map) {
     this.sprintMultiplier = 1.5;
 
     this.totalMoved = 0;
+<<<<<<< HEAD
 
     var query = new Parse.Query(PlayerStatsTable);
     query.equalTo("Username", username);
@@ -44,13 +43,16 @@ function Player(name, map) {
                 } else {
                     money = 0;
                 }
-                $("#walletAmount").html("$" + money + " URos");
+                $("#walletAmount").html("₹" + money);
             }
         },
         error: function(error) {
             showLoginMessage(error.message, "danger");
         }
     });
+=======
+    this.money = 0;
+>>>>>>> origin/master
 
     this.currentCharacter = 0;
     this.characters = [
@@ -110,63 +112,28 @@ Player.prototype.move = function(delta) {
 };
 
 Player.prototype.updateSteps = function() {
-    if (this.totalMoved % 50 == 0) {
-        var globalSteps = this.totalMoved
-        var steps = new PlayerStatsTable()
-        var query = new Parse.Query(PlayerStatsTable);
-        query.equalTo("Username", username);
-        query.find({
-            success: function(results) {
-                if (results.length == 1) {
-                    var object = results[0];
-                    object.save(null, {
-                        success: function(object) {
-                            var newStepCount = object.get('Steps') + globalSteps;
-                            object.set("Steps", newStepCount);
-                            object.set("PlayerX", player.x);
-                            object.set("PlayerY", player.y);
-                            console.log(player.health);
-                            object.set("Health", player.health);
-                            object.save();
-                            console.log(newStepCount + " Total Steps Taken");
-                            if (newStepCount % 500 == 0) {
-                                if (currentTemp < 50) {
-                                    if ((player.health - 5) > 0) {
-                                        player.health -= 5;
-                                        Messenger().post({
-                                            message: "You lost five health because of the cold. WEAR A JACKET",
-                                            type: "error", // info error or success. Use error for negative, success positive, and info neutral
-                                            hideAfter: "3"
-                                        })
-                                    } else {
-                                        player.health = 0;
-                                        Messenger().post({
-                                                message: "You Died!!",
-                                                type: "error", // info error or success. Use error for negative, success positive, and info neutral
-                                                hideAfter: "5"
-                                            })
-                                        location.reload();
-                                    }
-                                }
-                            }
-                        }
-                    });
-                } else if (results.length == 0) {
-                    steps.set("Username", username);
-                    steps.save(null, {
-                        success: function(steps) {
-                            var newStepCount = object.get('Steps') + globalSteps;
-                            object.set("Steps", newStepCount);
-                            object.save();
-                        }
-                    });
+    if (player.totalMoved % 50 == 0) {
+        if (player.totalMoved % 500 == 0) {
+            if (currentTemp < 50) {
+                if ((player.health - 5) > 0) {
+                    player.health -= 5;
+                    Messenger().post({
+                        message: "You lost five health because of the cold. WEAR A JACKET",
+                        type: "error",
+                        hideAfter: "3"
+                    })
+                } else {
+                    player.health = 0;
+                    Messenger().post({
+                        message: "You Died!!",
+                        type: "error",
+                        hideAfter: "5"
+                    })
+                    location.reload();
                 }
-            },
-            error: function(error) {
-                showLoginMessage(error.message, "danger");
             }
-        });
-        this.totalMoved = 0;
+        }
+        saveGame();
     }
 }
 
