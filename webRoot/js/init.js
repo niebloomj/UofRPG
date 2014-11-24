@@ -95,7 +95,8 @@ $.getScript("js/collider.class.js", function() {
 $.getScript("js/Entities/healthblobs.class.js", function() {
 $.getScript("js/Enemies/enemy.class.js", function() {
 $.getScript("js/Enemies/rando.class.js", function() {
-});});});});});});});});});});});});
+$.getScript("js/store.js", function() {
+});});});});});});});});});});});});});
 
 function loginSuccessful() {
     username = currentUser.getUsername();
