@@ -581,7 +581,7 @@ var mapDataJson = { "height":218,
                 },
              "16":
                 {
-                 "image":"img\/tiles\/building\/Marblecolumn middle.png"
+                 "image":"img\/tiles\/building\/Marblecolumnmiddle.png"
                 },
              "17":
                 {
