@@ -127,7 +127,7 @@ Player.prototype.updateSteps = function() {
                             object.save();
                             console.log(newStepCount + " Total Steps Taken");
                             if (newStepCount % 500 == 0) {
-                                if (currentTemp < 40) {
+                                if (currentTemp < 50) {
                                     if ((player.health - 5) > 0) {
                                         player.health -= 5;
                                         Messenger().post({

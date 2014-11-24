@@ -57,11 +57,9 @@ function tickMap(delta) {
         }
     });
 
-    benchmark("d:hudbar", function() {
-        var hudbar = getHudbarDisplay();
-        hudbar.setTransform(10, 10);
-        gameContainer.addChild(hudbar);
-    });
+    var hudbar = getHudbarDisplay();
+    hudbar.setTransform(10, 10);
+    gameContainer.addChild(hudbar);
 
     benchmark("d:update", function() {
         stage.update();
@@ -250,7 +248,6 @@ var currentTemp;
  * Gets a DisplayObject representing the hudbars like health and stuff
  */
 function getHudbarDisplay() {
-
     // create images;
     var hudbar = new createjs.Container();
     var healthbar = new createjs.Shape(healthbarGraphics.clone());
@@ -362,4 +359,8 @@ function initHudbar() {
     );
 
     tempbarIcon = new createjs.Bitmap(tempbarIconPath);
+}
+
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
