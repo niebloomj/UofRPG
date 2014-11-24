@@ -18,11 +18,11 @@ Enemy.prototype.strength = function() {
 	} else {
 		//enemy misses
 	}
-}
+};
 
 Enemy.prototype.defend = function() {
 	this.defense += (this.defense / 2);
-}
+};
 
 Enemy.prototype.heal = function(amt) {
 	if (this.health + amt > this.maxHealth) {
@@ -30,7 +30,7 @@ Enemy.prototype.heal = function(amt) {
 	} else {
 		this.health += amt;
 	}
-}
+};
 
 Enemy.prototype.damage = function(amt) {
 	if (this.health - amt < 0) {
@@ -38,7 +38,15 @@ Enemy.prototype.damage = function(amt) {
 	} else {
 		this.health -= amt;
 	}
-}
+};
+
+Enemy.prototype.takeDamage = function(amt) {
+	if (amt - this.defense > 0) {
+		this.health -= amt - this.defense;
+	} else {
+		//Something about the enemy resisting the attack
+	}
+};
 
 Enemy.prototype.castSpell = function(spellName, spellDamage) {
 	if (spellDamage - player.defense > 0) {
@@ -46,4 +54,4 @@ Enemy.prototype.castSpell = function(spellName, spellDamage) {
 	} else {
 		//message about the player resisting the attack or something
 	}
-}
+};
