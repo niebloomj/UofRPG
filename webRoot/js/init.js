@@ -97,7 +97,7 @@ $.getScript("js/Entities/healthblobs.class.js", function() {
 $.getScript("js/Enemies/enemy.class.js", function() {
 $.getScript("js/Enemies/rando.class.js", function() {
 $.getScript("js/store.js", function() {
-	$.getScript("js/database.js", function() {
+$.getScript("js/database.js", function() {
 });});});});});});});});});});});});});});});
 
 function loginSuccessful() {

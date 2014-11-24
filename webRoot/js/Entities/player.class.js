@@ -30,29 +30,7 @@ function Player(name, map) {
     this.sprintMultiplier = 1.5;
 
     this.totalMoved = 0;
-<<<<<<< HEAD
-
-    var query = new Parse.Query(PlayerStatsTable);
-    query.equalTo("Username", username);
-    query.find({
-        success: function(results) {
-            if (results.length == 1) {
-                var object = results[0];
-                if (object.get('Uros')) {
-                    money = object.get('Uros');
-                } else {
-                    money = 0;
-                }
-                $("#walletAmount").html("₹" + money);
-            }
-        },
-        error: function(error) {
-            showLoginMessage(error.message, "danger");
-        }
-    });
-=======
     this.money = 0;
->>>>>>> origin/master
 
     this.currentCharacter = 0;
     this.characters = [
