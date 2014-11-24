@@ -122,21 +122,23 @@ Player.prototype.updateSteps = function() {
                             object.save();
                             console.log(newStepCount + " Total Steps Taken");
                             if (newStepCount % 500 == 0) {
-                                if ((player.health - 5) > 0) {
-                                    player.health -= 5;
-                                    Messenger().post({
-                                        message: "You lost five health because of the cold. WEAR A JACKET",
-                                        type: "error", // info error or success. Use error for negative, success positive, and info neutral
-                                        hideAfter: "3"
-                                    })
-                                } else {
-                                    player.health = 0;
-                                    Messenger().post({
-                                            message: "You Died!!",
+                                if (currentTemp < 40) {
+                                    if ((player.health - 5) > 0) {
+                                        player.health -= 5;
+                                        Messenger().post({
+                                            message: "You lost five health because of the cold. WEAR A JACKET",
                                             type: "error", // info error or success. Use error for negative, success positive, and info neutral
-                                            hideAfter: "5"
+                                            hideAfter: "3"
                                         })
-                                        // do death
+                                    } else {
+                                        player.health = 0;
+                                        Messenger().post({
+                                                message: "You Died!!",
+                                                type: "error", // info error or success. Use error for negative, success positive, and info neutral
+                                                hideAfter: "5"
+                                            })
+                                            // do death
+                                    }
                                 }
                             }
                         }
@@ -297,6 +299,14 @@ Player.prototype.getDisplay = function() {
     parent.addChild(sprite)
     return parent;
 
+};
+
+Player.prototype.takeDamage = function(amt) {
+    if (this.health - amt <= 0) {
+        //Player.die(); rip in peace
+    } else {
+        this.health -= amt;
+    }
 };
 
 Player.prototype.width = function() {
