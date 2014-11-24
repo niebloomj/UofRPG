@@ -113,6 +113,7 @@ function loginSuccessful() {
     username = currentUser.getUsername();
     $("#loginContainer").addClass("hidden");
     $("#loginHeader").addClass("hidden");
+	$("body").addClass("inGame");
     selectPlayer();
     backgroundMusic.loop=true;
     backgroundMusic.play();
