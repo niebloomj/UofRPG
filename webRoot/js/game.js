@@ -2,6 +2,7 @@
 var TARGET_FPS = 30;
 var player;
 var uro;
+var rando;
 var healthblob;
 var time = 0;
 var noTick = false;
@@ -107,8 +108,16 @@ function createGame() {
         entities.push(uro);
     }
 
+    for (var i = 0; i < 200; i++){
+        rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));
+        entities.push(rando);
+    }
+
     uro = new Uros(player.x + 50, player.y + 50); // very useful for testing
     entities.push(uro);
+
+    rando = new Randos(player.x + 50, player.y + 50); // very useful for testing
+    entities.push(rando);
 
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.setInterval(1000 / TARGET_FPS);
