@@ -43,7 +43,7 @@ function Player(name, map) {
                 } else {
                     money = 0;
                 }
-                $("#walletAmount").html("₹" + money);
+                $("#walletAmount").html("$" + money + " URos");
             }
         },
         error: function(error) {
