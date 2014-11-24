@@ -74,10 +74,10 @@ function init() {
     $("#loginContainerAlertCloseBtn").click(function() {
         $("#loginContainerAlert").addClass("hidden");
     });
-	Messenger.options = {
-		extraClasses: 'messenger-fixed messenger-on-bottom',
-		theme: 'future'
-	}
+    Messenger.options = {
+        extraClasses: 'messenger-fixed messenger-on-bottom',
+        theme: 'future'
+    }
 }
 init();
 
