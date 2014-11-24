@@ -105,7 +105,7 @@ function createGame() {
         entities.push(uro);
     }
 
-    for (var i = 0; i < 100; i++){
+    for (var i = 0; i < 100; i++) {
         rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(rando);
     }
@@ -134,6 +134,12 @@ function createGame() {
                 }
                 if (object.get('PlayerY')) {
                     player.y = object.get('PlayerY');
+                }
+                if (object.get('Health')) {
+                    player.health = object.get('Health');
+                    if (player.health == 0) {
+                        player.health = 10;
+                    }
                 }
             }
         },

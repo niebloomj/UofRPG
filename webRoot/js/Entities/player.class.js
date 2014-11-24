@@ -125,6 +125,8 @@ Player.prototype.updateSteps = function() {
                             object.set("Steps", newStepCount);
                             object.set("PlayerX", player.x);
                             object.set("PlayerY", player.y);
+                            console.log(player.health);
+                            object.set("Health", player.health);
                             object.save();
                             console.log(newStepCount + " Total Steps Taken");
                             if (newStepCount % 500 == 0) {
