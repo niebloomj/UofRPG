@@ -40,7 +40,7 @@ Randos.prototype.tick = function(delta) {
                 })
             }
         }
-        var audio = new Audio('..\/audio\/loseHealth.mp3');
+        var audio = new Audio('..\/audio\/getHurt.mp3');
         audio.volume=audio.volume*.2;
         audio.play();
     }
