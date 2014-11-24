@@ -18,6 +18,8 @@ Randos.prototype.tick = function(delta) {
     var yDist = this.y - player.y;
     var distance = Math.sqrt(xDist * xDist + yDist * yDist);
 
+    this.move(randomInt(1, 3));
+
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
    if (isCollision) {
@@ -47,7 +49,8 @@ Randos.prototype.tick = function(delta) {
 };
 
 Randos.prototype.move = function(delta) {
-
+    this.x += this.deltaX(delta);
+    this.y += this.deltaY(delta);
 };
 
 Randos.prototype.getDisplay = function() {
