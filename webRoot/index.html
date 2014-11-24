@@ -28,6 +28,7 @@
   }, false);
   </script>
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/material-wfont.min.css" rel="stylesheet">
 	<link href="css/ripples.min.css" rel="stylesheet">
   <link href="css/messenger.css" rel="stylesheet">
@@ -159,15 +160,22 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+              <p class="navbar-text">
+                <span class="glyphicon glyphicon-user"></span>
+                <span id="gameHeaderNavUsername"></span>
+              </p>
+              <p class="navbar-text">
+                <i class="fa fa-money"></i>
+                <span id="walletAmount"></span>
+              </p>
               <li>
                 <a href="#" data-toggle="modal" data-target="#storeModal">
-                  <span class="glyphicon glyphicon-shopping-cart"></span>
-                  <span id="walletAmount">$0 Uros</span>
+                  <i class="fa fa-shopping-cart"></i>
                 </a>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="glyphicon glyphicon-wrench"></span> 
+                  <i class="fa fa-cogs"></i>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -178,10 +186,6 @@
                 </ul>
               </li>
             </ul>
-            <p class="navbar-text navbar-right">
-              <span class="glyphicon glyphicon-user"></span>
-              <span id="gameHeaderNavUsername">Name unknown</span>
-            </p>
           </div>
           <!-- /.navbar-collapse -->
         </div>
