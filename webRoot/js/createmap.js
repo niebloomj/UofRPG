@@ -313,7 +313,7 @@ function getHudbarDisplay() {
     hudbar.addChild(tempbar);
 
     // add experience bar to hudbar
-    expbar.setTransform(hudbarIconSize + hudbarIconPadding, 2*hudbarHeight);
+    expbar.setTransform(hudbarIconSize + hudbarIconPadding, 2 * hudbarHeight);
     hudbar.addChild(expbar);
 
     healthTxt = new createjs.Text("0", "20px Arial", "#ff0000");
