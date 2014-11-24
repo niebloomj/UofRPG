@@ -29,7 +29,7 @@ Randos.prototype.tick = function(delta) {
                 Messenger().post({
                     parentLocations:['.theGame'],
                     message: "You lost 10 health. Don't touch the randos",
-                    type: "success", // info error or success. Use error for negative, success positive, and info neutral
+                    type: "error", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
             } else{

@@ -43,7 +43,7 @@ HealthBlobs.prototype.tick = function(delta) {
             }else{
 				 Messenger().post({
                     message: "You already have full health!",
-                    type: "error", // info error or success. Use error for negative, success positive, and info neutral
+                    type: "info", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
 			}
