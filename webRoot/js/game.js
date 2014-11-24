@@ -129,6 +129,10 @@ function createGame() {
         success: function(results) {
             if (results.length == 1) {
                 var object = results[0];
+                if (object.get('Uros')) {
+                    player.money = object.get('Uros');
+                }
+                $("#walletAmount").html("$" + player.money + " URos");
                 if (object.get('PlayerX')) {
                     player.x = object.get('PlayerX');
                 }
@@ -140,6 +144,9 @@ function createGame() {
                     if (player.health == 0) {
                         player.health = 10;
                     }
+                }
+                if (object.get('Steps')) {
+                    player.totalMoved = object.get('Steps');
                 }
             }
         },
