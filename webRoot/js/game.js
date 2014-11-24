@@ -86,7 +86,7 @@ function createGame() {
     }
     //console.log(tiles);
 
-
+    
 
     // create the player
     player = new Player("PlaceholderUsername", mapData);
@@ -112,8 +112,8 @@ function createGame() {
 
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.setInterval(1000 / TARGET_FPS);
-
-    // preps minimap to be drawn
+	
+	// preps minimap to be drawn
     initMinimap();
     //createjs.Ticker.setFPS(60); //for the glory of GabeN!
 }

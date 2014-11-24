@@ -10,11 +10,11 @@ function Entity() {
         this.x = arguments[0];
         this.y = arguments[1];
     }
-    if (arguments.length == 4) {
+	 if (arguments.length == 4) {
         this.x = arguments[0];
         this.y = arguments[1];
-        this.trueWidth = arguments[2];
-        this.trueHeight = arguments[3];
+		this.trueWidth = arguments[2];
+		this.trueHeight = arguments[3];
     }
 }
 
