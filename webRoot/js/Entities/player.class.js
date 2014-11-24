@@ -1,36 +1,29 @@
 function Player(name, map) {
     this.name = name;
     this.map = map;
+    this.temp = 50;
 
-    this.maxHealth = 100;
-    this.health = this.maxHealth;
-
+    //Stats
+    this.health = 100;
     this.strength = 10;
     this.intelligence = 10;
     this.charisma = 999999999; // Damn, you're smooth B^)
     this.defense = 5;
-
-    this.maxTemp = 100;
-    this.temp = this.maxTemp;
-
+    this.money = 0;
+    //Moving Variables
     this.isMoveU = false;
     this.isMoveD = false;
     this.isMoveL = false;
     this.isMoveR = false;
-
     this.isSprinting = false;
     this.isNoCollide = false;
-
     this.isMovingLeft = true;
     this.isMovingRight = true;
     this.isMovingDown = true;
     this.isMovingUp = true;
-
     this.walkSpeed = 5;
     this.sprintMultiplier = 1.5;
-
     this.totalMoved = 0;
-    this.money = 0;
 
     this.currentCharacter = 0;
     this.characters = [
@@ -81,10 +74,10 @@ Player.prototype.deltaY = function(elapsedTime) {
 Player.prototype.move = function(delta) {
     this.x += this.deltaX(delta);
     this.y += this.deltaY(delta);
-    this.updateSteps();
+    this.stepCheck();
 };
 
-Player.prototype.updateSteps = function() {
+Player.prototype.stepCheck = function() {
     if (player.totalMoved % 50 == 0) {
         if (player.totalMoved % 500 == 0) {
             if (currentTemp < 50) {
@@ -120,7 +113,6 @@ Player.prototype.tick = function(delta) {
     if (this.isMoveL && !(this.isMoveR)) {
         this.isMovingLeft = true;
     }
-
     if (this.isMoveU && !(this.isMoveD)) {
         this.isMovingUp = true;
     }
