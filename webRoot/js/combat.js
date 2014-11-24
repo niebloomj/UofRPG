@@ -100,8 +100,8 @@ function initCombat() {
             }
         }
     });
-    //expPct += 0.1;
-    //updateBarText();
+    expPct += 0.1;
+    updateBarText();
 }
 
 function goBack(){
