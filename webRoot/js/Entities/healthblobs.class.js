@@ -42,7 +42,7 @@ HealthBlobs.prototype.tick = function(delta) {
             }
         }
         var audio = new Audio('..\/audio\/gainHealth.mp3');
-        audio.volume=audio.volume*.35;
+        audio.volume=audio.volume*.2;
         audio.play();
     }
 };
@@ -52,10 +52,14 @@ HealthBlobs.prototype.move = function(delta) {
 };
 
 HealthBlobs.prototype.getDisplay = function() {
+    var sprite = new createjs.Bitmap("img/sprites/heart8_24.png");
+    return sprite;
+    /*
     var circle = new createjs.Shape();
     var circle = new createjs.Shape();
     circle.graphics.beginFill("red").drawCircle(0, 0, 16);
     return circle;
+    */
 };
 
 HealthBlobs.prototype.width = function() {
