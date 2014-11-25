@@ -22,6 +22,8 @@ $('#storeModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this);
 
+  console.log("CAN YOU SEE THIS JACOB??");
+
   var itemContainer = modal.find('.store-modal-items');
   var itemsHtml = "";
   for (var i = 0; i < storeItems.length; i++) {
