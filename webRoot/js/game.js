@@ -62,8 +62,9 @@ function createGame() {
     initHudbar(); // preps hudbars to be drawn
     initMinimap(); // preps minimap to be drawn
 
-    resetItems();
+    
     loadSavedGame();
+    resetItems();
     initStatsPopover();
 
     createjs.Ticker.on("tick", tick);
