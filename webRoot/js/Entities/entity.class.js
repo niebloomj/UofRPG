@@ -13,8 +13,8 @@ function Entity() {
     if (arguments.length == 4) {
         this.x = arguments[0];
         this.y = arguments[1];
-        this.trueWidth = arguments[2];
-        this.trueHeight = arguments[3];
+        this.width = arguments[2];
+        this.height = arguments[3];
     }
 }
 
@@ -40,16 +40,6 @@ Entity.prototype.getDisplay = function() {
     circle.graphics.beginFill("blue").drawCircle(0, 0, 16);
     return circle;
 };
-
-// gets the width of this object's display
-Entity.prototype.width = function() {
-    return 32;
-}
-
-// gets the height of this object's display
-Entity.prototype.height = function() {
-    return 32;
-}
 
 // tells this entity to react to a tick
 Entity.prototype.tick = function(delta) {

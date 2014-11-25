@@ -42,10 +42,12 @@ function tickMap(delta) {
             var entity = entities[i];
             var display = entity.getDisplay();
             display = display.setTransform(
-                entity.x - (player.x - entity.width() / 2 - screenWidth * d),
-                entity.y - (player.y - entity.height() / 2 - screenHeight * d)
+                entity.x - (player.x - screenWidth * d),
+                entity.y - (player.y - screenHeight * d)
             );
-            gameContainer.addChild(display);
+            if (display.x > 0 && display.x < stage.canvas.width && display.y > 0 && display.y < stage.canvas.height) {
+                gameContainer.addChild(display);
+            }
         }
     });
 

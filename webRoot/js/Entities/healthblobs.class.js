@@ -68,11 +68,3 @@ HealthBlobs.prototype.getDisplay = function() {
     return circle;
     */
 };
-
-HealthBlobs.prototype.width = function() {
-    return 0; //32;
-};
-
-HealthBlobs.prototype.height = function() {
-    return 0; //32;
-};

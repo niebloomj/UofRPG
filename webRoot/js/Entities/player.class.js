@@ -228,16 +228,17 @@ Player.prototype.iterateCharacter = function() {
 Player.prototype.getDisplay = function() {
 
     var sprite = new createjs.Bitmap(this.characters[this.currentCharacter]);
-    sprite.setTransform(0, -1 * this.height());
-    sprite.scaleX = -1;
-    if (!(this.isMovingLeft)) {
-        sprite.x = this.width();
-        sprite.scaleX = -1;
-    }
 
     if (!(this.isMovingUp)) {
         sprite = createjs.Bitmap(this.characters[7]);
     }
+
+    if (this.isMovingLeft) {
+        sprite.setTransform(0, 0, 1); //-1 * this.height
+    } else {
+        sprite.setTransform(this.width, 0, -1);
+    }
+
     var parent = new createjs.Container();
     parent.addChild(sprite)
     return parent;
@@ -254,14 +255,6 @@ Player.prototype.takeDamage = function(amt) {
     } else {
         //something about the player resisting the attack or something
     }
-};
-
-Player.prototype.width = function() {
-    return 0; //16;
-};
-
-Player.prototype.height = function() {
-    return 0; //48;
 };
 
 Player.prototype.setMaxHealth = function(newMaxHealth) {

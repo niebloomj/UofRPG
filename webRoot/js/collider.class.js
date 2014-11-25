@@ -30,8 +30,8 @@ Collider.prototype.contains = function(coll) {
     var A = player;
     var B = this;
 
-    if (((B.x >= A.x) && (B.x <= (A.x + A.trueWidth))) || ((B.x <= A.x) && ((B.x + (32 + 16)) >= (A.x + A.trueWidth)))) { // check x direction
-        if (((B.y >= A.y) && (B.y <= (A.y + A.trueHeight + 16))) || ((B.y <= A.y) && ((B.y + 16) >= (A.y)))) { // check y direction
+    if (((B.x >= A.x) && (B.x <= (A.x + A.width))) || ((B.x <= A.x) && ((B.x + (32 + 16)) >= (A.x + A.width)))) { // check x direction
+        if (((B.y >= A.y) && (B.y <= (A.y + A.height + 16))) || ((B.y <= A.y) && ((B.y + 16) >= (A.y)))) { // check y direction
             return true;
         }
     }
