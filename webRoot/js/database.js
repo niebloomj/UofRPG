@@ -14,7 +14,6 @@ function saveGame() {
                         object.set("Health", player.health);
                         object.set("Uros", player.money);
                         object.save();
-                        console.log(player.totalMoved + " Total Steps Taken");
                     }
                 });
             } else if (results.length == 0) {
@@ -28,7 +27,6 @@ function saveGame() {
                         object.set("Health", player.health);
                         object.set("Uros", player.money);
                         object.save();
-                        console.log(player.totalMoved + " Total Steps Taken");
                     }
                 });
             } else {
