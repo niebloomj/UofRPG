@@ -28,6 +28,7 @@ $('#storeModal').on('show.bs.modal', function (event) {
     var index = parseInt(button.attr('data-index'));
     var item = storeItems[index];
     player.addToInventory(item.id);
+    player.setMoney(player.money - item.price);
     Messenger().post({
         parentLocations: ['.theGame'],
         message: "Item purchased!",
@@ -45,7 +46,7 @@ function updateStore() {
   var itemsHtml = "";
   for (var i = 0; i < storeItems.length; i++) {
     var item = storeItems[i];
-    if (item.isBuyable && !player.isInInventory(item.id)) {
+    if (item.isBuyable) {
       var html = "";
       html += '<div class="col-xs-3 store-modal-item" data-storeid="' + item.id + '">';
       html += '<div class="panel panel-default"><div class="panel-body">';
@@ -54,8 +55,13 @@ function updateStore() {
       html += '<h4 class="store-modal-title">' + item.displayName + '</h4>';
       html += '<p>' + item.description + '</p>';
       // TODO display non-zero attributes
-      html += '<button type="button" class="btn btn-primary btn-xs btn-block store-modal-buy" data-index="' + i + '">';
-      html += 'Buy ($' + item.price + ')</button>';
+
+      var isOwned = player.isInInventory(item.id);
+      var disabledStr = isOwned ? ' disabled="disabled"' : "";
+      var buyStr = isOwned ? 'Owned ($' + item.price + ')' : 'Buy ($' + item.price + ')';
+
+      html += '<button type="button" class="btn btn-primary btn-xs btn-block store-modal-buy" data-index="' + i + '"' + disabledStr + '>';
+      html += buyStr + '</button>';
       html += '</div>';
       html += '</div></div></div>';
       itemsHtml += html;

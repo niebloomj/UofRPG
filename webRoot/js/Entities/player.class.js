@@ -85,8 +85,8 @@ Player.prototype.stepCheck = function() {
     if (player.totalMoved % 50 == 0) {
         if (player.totalMoved % 500 == 0) {
             if (player.temp < 50) {
-                if ((player.health - 5) > 0) {
-                    player.health -= 5;
+                if ((player.health - 5) > 0 && player.isInInventory("jacket")) {
+                    player.setHealth(player.health - 5);
                     Messenger().post({
                         message: "You lost five health because of the cold. WEAR A JACKET",
                         type: "error",
@@ -292,15 +292,17 @@ Player.prototype.setMoney = function(newMoney) {
     $(".walletAmount").html("$" + this.money + " URos");
 };
 
+
 Player.prototype.addToInventory = function(itemId) {
     this.inventory.push(itemId);
 };
 
 Player.prototype.isInInventory = function(itemId) {
-  for (var i = 0; i < this.inventory.length; i++) {
-    if (this.inventory[i].id == itemId) {
-        return true;
+    console.log(this.inventory);
+    for (var i = 0; i < this.inventory.length; i++) {
+        if (this.inventory[i] == itemId) {
+            return true;
+        }
     }
-  }
-  return false;
+    return false;
 };
