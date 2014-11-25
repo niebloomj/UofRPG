@@ -1,3 +1,5 @@
+var Rando = function(){};
+
 Rando.prototype = new Enemy("Rando", 1, 25, 20, 10, 5);
 
 Rando.prototype.decide = function() {

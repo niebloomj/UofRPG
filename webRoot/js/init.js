@@ -81,58 +81,38 @@ function init() {
     }
 }
 
-//$.ajaxSetup({ cache: true });
-
-// $.when(
-//     $.getScript("js/keyevents.js"),
-//     $.getScript("js/store.js"),
-//     $.getScript("js/database.js"),
-//     $.getScript("js/game.js"),
-//     $.getScript("maps/main.map.js"),
-//     $.getScript("js/createmap.js"),
-//     $.getScript("js/Entities/entity.class.js"),
-//     $.getScript("js/Entities/player.class.js"),
-//     $.getScript("js/Entities/uros.class.js"),
-//     $.getScript("js/Entities/rando_entity.class.js"),
-//     $.getScript("js/combat.js"),
-//     $.getScript("js/collider.class.js"),
-//     $.getScript("js/Entities/healthblobs.class.js"),
-//     $.getScript("js/Enemies/enemy.class.js"),
-//     $.getScript("js/Enemies/rando.class.js"),
-//     $.Deferred(function( deferred ){
-//         $( deferred.resolve );
-//     })
-// ).done(function(){
-
-//     console.log('asdf');
-//     $("#btnLogin").removeAttr("disabled");
-//     $("#btnRegister").removeAttr("disabled");
-
-// });
-
+// loads up all the scripts and preps the game
 function loadItUp() {
     console.log("yup");
-    // loads up all the scripts
-    $.getScript("js/keyevents.js", function() {
-    $.getScript("js/database.js", function() {
-    $.getScript("js/game.js", function() {
-    $.getScript("maps/main.map.js", function() {
-    $.getScript("js/createmap.js", function() {
-    $.getScript("js/store.js", function() {
-    $.getScript("js/Entities/entity.class.js", function() {
-    $.getScript("js/Entities/player.class.js", function() {
-    $.getScript("js/Entities/uros.class.js", function() {
-    $.getScript("js/Entities/rando_entity.class.js", function() {
-    $.getScript("js/combat.js", function() {
-    $.getScript("js/collider.class.js", function() {
-    $.getScript("js/Entities/healthblobs.class.js", function() {
-    $.getScript("js/Enemies/enemy.class.js", function() {
-    $.getScript("js/Enemies/rando.class.js", function() {
-        console.log('asdf');
-        $("#btnLogin").removeAttr("disabled");
-        $("#btnRegister").removeAttr("disabled");
-        init();
-    });});});});});});});});});});});});});});});
+    var scripts = new getScripts(
+        [
+            'js/keyevents.js',
+            'js/store.js',
+            'js/database.js',
+            'js/game.js',
+            'maps/main.map.js',
+            'js/createmap.js',
+            'js/Entities/entity.class.js',
+            'js/Entities/player.class.js',
+            'js/Entities/uros.class.js',
+            'js/Entities/rando_entity.class.js',
+            'js/combat.js',
+            'js/collider.class.js',
+            'js/Entities/healthblobs.class.js',
+            'js/Enemies/enemy.class.js',
+            'js/Enemies/rando.class.js'
+        ],
+        function() {
+            /* Optional - Executed each time a script has loaded (Use for Progress updates?) */
+        },
+        function () {
+            console.log('asdf');
+            $("#btnLogin").removeAttr("disabled");
+            $("#btnRegister").removeAttr("disabled");
+            init();
+        }
+    );
+    scripts.fetch();
 }
 
 function loginSuccessful() {

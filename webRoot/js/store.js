@@ -47,7 +47,7 @@ $('#storeModal').on('show.bs.modal', function (event) {
 
 $('.store-modal-buy').click(function(){
   var button = $(this);
-  var index = parseInt(button.attr('data-index');
+  var index = parseInt(button.attr('data-index'));
   var item = storeItems[index];
   player.addToInventory(item.id);
   Messenger().post({
