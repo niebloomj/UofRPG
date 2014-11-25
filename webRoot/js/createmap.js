@@ -226,6 +226,8 @@ var hudbarInnerHeight = hudbarHeight - hudbarBorder * 2;
 var hudbarIconSize = 24; // width of hudbar icon (in px)
 var hudbarIconPadding = 4; // separation width between icon and hudbar (in px)
 
+var hudbarVerticalPadding = 2; // padding between each hudbar
+
 // HEALTHBAR SETTINGS
 var healthbarColorFill = "#2fff00"; //"#e00"; // color of available health
 var healthbarColorEmpty = "#ff0000"; //"#aaa"; // color of missing health
@@ -255,29 +257,44 @@ var temperatureTxt;
 var expTxt;
 
 var expPct;
+
+var lastHudbar;
+var lastHealthPct = -1;
+var lastTempPct = -1;
+var lastExpPct = -1;
+
 /**
  * Gets a DisplayObject representing the hudbars like health and stuff
  */
 function getHudbarDisplay() {
-    // create images;
-    var hudbar = new createjs.Container();
-    var healthbar = new createjs.Shape(healthbarGraphics.clone());
-    var tempbar = new createjs.Shape(tempbarGraphics.clone());
-    var expbar = new createjs.Shape(expbarGraphics.clone());
 
     var healthPct = player.health / player.maxHealth; // fraction representing player health
     var tempPct = 1;
     expPct = 0.75;
 
+    // don't rebuild the image if nothing's changed
+    if (healthPct == lastHealthPct && tempPct == lastTempPct && expPct == lastExpPct) {
+        return lastHudbar;
+    }
+    lastHealthPct = healthPct;
+    lastTempPct = tempPct;
+    lastExpPct = expPct;
+
+    // create images
+    var hudbar = new createjs.Container();
+    var healthbar = new createjs.Shape(healthbarGraphics.clone());
+    var tempbar = new createjs.Shape(tempbarGraphics.clone());
+    var expbar = new createjs.Shape(expbarGraphics.clone());
+
     // add health bar icon to hudbar
     hudbar.addChild(healthbarIcon);
 
     // add temperature bar icon to hudbar
-    tempbarIcon.y = 25;
+    tempbarIcon.y = hudbarIconSize + hudbarVerticalPadding;
     hudbar.addChild(tempbarIcon);
 
     // add experience bar icon to hudbar
-    expbarIcon.y = 50;
+    expbarIcon.y = 2 * (hudbarIconSize + hudbarVerticalPadding);
     hudbar.addChild(expbarIcon);
 
     // draw filled section of healthbar
@@ -291,7 +308,7 @@ function getHudbarDisplay() {
     // draw filled section of tempbar
     tempbar.graphics.f(tempbarColorFill);
     tempbar.graphics.r(
-        hudbarBorder, hudbarBorder * 2,
+        hudbarBorder, hudbarBorder,
         Math.floor(hudbarInnerWidth * tempPct),
         hudbarInnerHeight
     );
@@ -309,11 +326,11 @@ function getHudbarDisplay() {
     hudbar.addChild(healthbar);
 
     // add temperature bar to hudbar
-    tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight);
+    tempbar.setTransform(hudbarIconSize + hudbarIconPadding, hudbarHeight + hudbarVerticalPadding);
     hudbar.addChild(tempbar);
 
     // add experience bar to hudbar
-    expbar.setTransform(hudbarIconSize + hudbarIconPadding, 2 * hudbarHeight);
+    expbar.setTransform(hudbarIconSize + hudbarIconPadding, 2 * (hudbarHeight + hudbarVerticalPadding));
     hudbar.addChild(expbar);
 
     healthTxt = new createjs.Text("0", "20px Arial", "#ff0000");
@@ -333,6 +350,7 @@ function getHudbarDisplay() {
 
     updateBarText();
 
+    lastHudbar = hudbar;
     return hudbar;
 }
 

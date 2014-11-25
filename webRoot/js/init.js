@@ -122,7 +122,7 @@ function loginSuccessful() {
     selectPlayer();
     backgroundMusic.loop=true;
     fightMusic.loop=true;
-    // backgroundMusic.play();
+    backgroundMusic.play();
 }
 
 function selectPlayer() {
