@@ -13,6 +13,7 @@ var backgroundMusic=new Audio('..\/audio\/BackgroundMusic.mp3');
 var fightMusic=new Audio('..\/audio\/FightMusic.mp3');
 
 function init() {
+
     stage = new createjs.Stage("demoCanvas");
     startContainer = new createjs.Container();
     menuContainer = new createjs.Container();
@@ -79,26 +80,60 @@ function init() {
         theme: 'flat'
     }
 }
-init();
 
+//$.ajaxSetup({ cache: true });
 
-// loads up all the scripts
-$.getScript("js/keyevents.js", function() {
-$.getScript("js/store.js", function() {
-$.getScript("js/database.js", function() {
-$.getScript("js/game.js", function() {
-$.getScript("maps/main.map.js", function() {
-$.getScript("js/createmap.js", function() {
-$.getScript("js/Entities/entity.class.js", function() {
-$.getScript("js/Entities/player.class.js", function() {
-$.getScript("js/Entities/uros.class.js", function() {
-$.getScript("js/Entities/rando_entity.class.js", function() {
-$.getScript("js/combat.js", function() {
-$.getScript("js/collider.class.js", function() {
-$.getScript("js/Entities/healthblobs.class.js", function() {
-$.getScript("js/Enemies/enemy.class.js", function() {
-$.getScript("js/Enemies/rando.class.js", function() {
-});});});});});});});});});});});});});});});
+// $.when(
+//     $.getScript("js/keyevents.js"),
+//     $.getScript("js/store.js"),
+//     $.getScript("js/database.js"),
+//     $.getScript("js/game.js"),
+//     $.getScript("maps/main.map.js"),
+//     $.getScript("js/createmap.js"),
+//     $.getScript("js/Entities/entity.class.js"),
+//     $.getScript("js/Entities/player.class.js"),
+//     $.getScript("js/Entities/uros.class.js"),
+//     $.getScript("js/Entities/rando_entity.class.js"),
+//     $.getScript("js/combat.js"),
+//     $.getScript("js/collider.class.js"),
+//     $.getScript("js/Entities/healthblobs.class.js"),
+//     $.getScript("js/Enemies/enemy.class.js"),
+//     $.getScript("js/Enemies/rando.class.js"),
+//     $.Deferred(function( deferred ){
+//         $( deferred.resolve );
+//     })
+// ).done(function(){
+
+//     console.log('asdf');
+//     $("#btnLogin").removeAttr("disabled");
+//     $("#btnRegister").removeAttr("disabled");
+
+// });
+
+function loadItUp() {
+    console.log("yup");
+    // loads up all the scripts
+    $.getScript("js/keyevents.js", function() {
+    $.getScript("js/database.js", function() {
+    $.getScript("js/game.js", function() {
+    $.getScript("maps/main.map.js", function() {
+    $.getScript("js/createmap.js", function() {
+    $.getScript("js/store.js", function() {
+    $.getScript("js/Entities/entity.class.js", function() {
+    $.getScript("js/Entities/player.class.js", function() {
+    $.getScript("js/Entities/uros.class.js", function() {
+    $.getScript("js/Entities/rando_entity.class.js", function() {
+    $.getScript("js/combat.js", function() {
+    $.getScript("js/collider.class.js", function() {
+    $.getScript("js/Entities/healthblobs.class.js", function() {
+    $.getScript("js/Enemies/enemy.class.js", function() {
+    $.getScript("js/Enemies/rando.class.js", function() {
+        console.log('asdf');
+        $("#btnLogin").removeAttr("disabled");
+        $("#btnRegister").removeAttr("disabled");
+        init();
+    });});});});});});});});});});});});});});});
+}
 
 function loginSuccessful() {
     username = currentUser.getUsername();
@@ -154,3 +189,46 @@ function showLoginMessage(message, level) {
     $("#loginContainerAlert").addClass("alert-" + level);
     $("#loginContainerAlertContent").html(message);
 }
+
+
+function getScripts( scripts, onScript, onComplete )
+{
+    this.async = true;
+    this.cache = false;
+    this.data = null;
+    this.complete = function () { $.scriptHandler.loaded(); };
+    this.scripts = scripts;
+    this.onScript = onScript;
+    this.onComplete = onComplete;
+    this.total = scripts.length;
+    this.progress = 0;
+};
+
+getScripts.prototype.fetch = function() {
+    $.scriptHandler = this;
+    var src = this.scripts[ this.progress ];
+    console.log('%cFetching %s','color:#ffbc2e;', src);
+
+    $.ajax({
+        crossDomain:true,
+        async:this.async,
+        cache:this.cache,
+        type:'GET',
+        url: src,
+        data:this.data,
+        statusCode: {
+            200: this.complete
+        },
+        dataType:'script'
+    });
+};
+
+getScripts.prototype.loaded = function () {
+    this.progress++;
+    if( this.progress >= this.total ) {
+        if(this.onComplete) this.onComplete();
+    } else {
+        this.fetch();
+    };
+    if(this.onScript) this.onScript();
+};

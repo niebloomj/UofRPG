@@ -11,6 +11,9 @@ function Player(name, map) {
     this.intelligence = 10;
     this.charisma = 999999999; // Damn, you're smooth B^)
     this.money = 0;
+
+    this.inventory = [];
+
     //Moving Variables
     this.isMoveU = false;
     this.isMoveD = false;
@@ -287,4 +290,17 @@ Player.prototype.setCharisma = function(newCharisma) {
 Player.prototype.setMoney = function(newMoney) {
     this.money = newMoney;
     $(".walletAmount").html("$" + this.money + " URos");
+};
+
+Player.prototype.addToInventory = function(itemId) {
+    this.inventory.push(itemId);
+};
+
+Player.prototype.isInInventory = function(itemId) {
+  for (var i = 0; i < this.inventory.length; i++) {
+    if (inventory[i].id == itemId) {
+        return true;
+    }
+  }
+  return false;
 };
