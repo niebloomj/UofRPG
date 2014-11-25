@@ -38,10 +38,10 @@ Uros.prototype.tick = function(delta) {
             audio.play();
 
             player.money = player.money + 25;
-            $("#walletAmount").html("$" + player.money + " URos");
+            $(".walletAmount").html("$" + player.money + " URos");
             Messenger().post({
                 parentLocations: ['.theGame'],
-                message: "You got 25 Uros",
+                message: "You got 25 URos!",
                 type: "success",
                 hideAfter: "3"
             })

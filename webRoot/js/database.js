@@ -50,7 +50,7 @@ function loadSavedGame() {
                 if (object.get('Uros')) {
                     player.money = object.get('Uros');
                 }
-                $("#walletAmount").html("$" + player.money + " URos");
+                $(".walletAmount").html("$" + player.money + " URos");
                 if (object.get('PlayerX')) {
                     player.x = object.get('PlayerX');
                 }
