@@ -24,7 +24,7 @@ function Player(name, map) {
     this.isMovingUp = true;
     this.walkSpeed = 5;
     this.sprintMultiplier = 1.5;
-    this.totalMoved = 0;
+    this.totalMoved = 1;
 
     this.currentCharacter = 0;
     this.characters = [
