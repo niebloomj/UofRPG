@@ -84,6 +84,7 @@ init();
 
 // loads up all the scripts
 $.getScript("js/keyevents.js", function() {
+$.getScript("js/store.js", function() {
 $.getScript("js/database.js", function() {
 $.getScript("js/game.js", function() {
 $.getScript("maps/main.map.js", function() {
@@ -97,7 +98,6 @@ $.getScript("js/collider.class.js", function() {
 $.getScript("js/Entities/healthblobs.class.js", function() {
 $.getScript("js/Enemies/enemy.class.js", function() {
 $.getScript("js/Enemies/rando.class.js", function() {
-$.getScript("js/store.js", function() {
 });});});});});});});});});});});});});});});
 
 function loginSuccessful() {
