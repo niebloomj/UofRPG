@@ -16,7 +16,7 @@ Randos.prototype.deltaX = function(elapsedTime) {
 		}
 	}
 	countX++;
-    return currX;
+    return Math.floor(currX);
 };
 
 var countY=0;
@@ -30,7 +30,7 @@ Randos.prototype.deltaY = function(elapsedTime) {
 		}
 	}
 	countY++;
-    return currY;
+    return Math.floor(currY);
 };
 
 Randos.prototype.tick = function(delta) {
