@@ -93,13 +93,7 @@ Player.prototype.stepCheck = function() {
                         hideAfter: "3"
                     })
                 } else {
-                    player.health = 0;
-                    Messenger().post({
-                        message: "You Died!!",
-                        type: "error",
-                        hideAfter: "5"
-                    })
-                    location.reload();
+                    player.setHealth(0);
                 }
             }
         }
@@ -280,7 +274,13 @@ Player.prototype.setMaxHealth = function(newMaxHealth) {
 Player.prototype.setHealth = function(newHealth) {
     this.health = newHealth;
     if (this.health == 0) {
-        this.health = 10;
+        this.health == 10;
+        Messenger().post({
+            message: "You Died!!",
+            type: "error",
+            hideAfter: "5"
+        })
+        location.reload();
     }
 };
 
