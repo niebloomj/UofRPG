@@ -227,7 +227,15 @@ var hudbarIconSize = 24; // width of hudbar icon (in px)
 var hudbarIconPadding = 4; // separation width between icon and hudbar (in px)
 
 var hudbarVerticalPadding = 2; // padding between each hudbar
+
 var hudbarTextPadding = 4; // padding between text and hudbar
+var hudbarTextStyle = "20px Arial"; // font for hudbar stuff
+
+// stores last tick's hudbar
+var lastHudbar;
+var lastHealthPct = -1;
+var lastTempPct = -1;
+var lastExpPct = -1;
 
 // HEALTHBAR SETTINGS
 var healthbarColorFill = "#2fff00"; //"#e00"; // color of available health
@@ -236,6 +244,7 @@ var healthbarColorBorder = "#222"; // color of hudbar border
 var healthbarIconPath = "img/sprites/heart8_24.png"; // square of size hudbarIconSize
 
 var healthbarGraphics, healthbarIcon;
+var healthTxt;
 
 // TEMPERATURE SETTINGS
 var tempbarColorFill = "#5dd0e4"; // color of available temp
@@ -244,6 +253,7 @@ var tempbarColorBorder = "#222"; // color of hudbar border
 var tempbarIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIconSize
 
 var tempbarGraphics, tempbarIcon;
+var temperatureTxt;
 
 // EXPERIENCE SETTINGS
 var expbarColorFill = "#ffa500"; // color of available exp
@@ -252,15 +262,7 @@ var expbarColorBorder = "#222"; // color of hudbar border
 var expbarIconPath = "img/sprites/exp_24.png"; // square of size hudbarIconSize
 
 var expbarGraphics, expbarIcon;
-
-var healthTxt;
-var temperatureTxt;
 var expTxt;
-
-var lastHudbar;
-var lastHealthPct = -1;
-var lastTempPct = -1;
-var lastExpPct = -1;
 
 /**
  * Gets a DisplayObject representing the hudbars like health and stuff
@@ -334,17 +336,17 @@ function getHudbarDisplay() {
 
     var textX = hudbarIconSize + hudbarIconPadding + hudbarWidth + hudbarTextPadding;
 
-    healthTxt = new createjs.Text("0", "20px Arial", "#ff0000");
+    healthTxt = new createjs.Text("0", hudbarTextStyle, healthbarColorFill);
     healthTxt.x = textX;
     healthTxt.y = 0;
     hudbar.addChild(healthTxt);
 
-    temperatureTxt = new createjs.Text("0˚", "20px Arial", "#00ffff");
+    temperatureTxt = new createjs.Text("0˚", hudbarTextStyle, tempbarColorFill);
     temperatureTxt.x = textX;
     temperatureTxt.y = hudbarHeight + hudbarVerticalPadding;
     hudbar.addChild(temperatureTxt);
 
-    expTxt = new createjs.Text(expPct * 100 + " exp", "20px Arial", "#ffa500");
+    expTxt = new createjs.Text(expPct * 100 + " exp", hudbarTextStyle, expbarColorFill);
     expTxt.x = textX;
     expTxt.y = 2 * (hudbarHeight + hudbarVerticalPadding);
     hudbar.addChild(expTxt);
