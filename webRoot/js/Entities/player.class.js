@@ -298,7 +298,7 @@ Player.prototype.addToInventory = function(itemId) {
 
 Player.prototype.isInInventory = function(itemId) {
   for (var i = 0; i < this.inventory.length; i++) {
-    if (inventory[i].id == itemId) {
+    if (this.inventory[i].id == itemId) {
         return true;
     }
   }
