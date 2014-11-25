@@ -237,16 +237,16 @@ var healthbarIconPath = "img/sprites/heart8_24.png"; // square of size hudbarIco
 var healthbarGraphics, healthbarIcon;
 
 // TEMPERATURE SETTINGS
-var tempbarColorFill = "#5dd0e4"; //"#e00"; // color of available temp
-var tempbarColorEmpty = "#fbfbfb"; //"#aaa"; // color of missing temp
+var tempbarColorFill = "#5dd0e4"; // color of available temp
+var tempbarColorEmpty = "#fbfbfb"; // color of missing temp
 var tempbarColorBorder = "#222"; // color of hudbar border
 var tempbarIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIconSize
 
 var tempbarGraphics, tempbarIcon;
 
 // EXPERIENCE SETTINGS
-var expbarColorFill = "#ffa500"; //"#e00"; // color of available exp
-var expbarColorEmpty = "#ff0000"; //"#aaa"; // color of missing exp
+var expbarColorFill = "#ffa500"; // color of available exp
+var expbarColorEmpty = "#ff0000"; // color of missing exp
 var expbarColorBorder = "#222"; // color of hudbar border
 var expbarIconPath = "img/sprites/exp_24.png"; // square of size hudbarIconSize
 
