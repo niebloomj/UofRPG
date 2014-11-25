@@ -44,38 +44,7 @@ function createGame() {
                 var index = firstgid + parseInt(key);
                 tiles[index] = tileObj;
             }
-
-            /*// special case for spritesheet-based tilesets
-            } else if (tileset.imageheight != tileset.tileheight || tileset.imagewidth != tileset.tilewidth) {
-                
-                var mh = tileset.imageheight;
-                var th = tileset.tileheight;
-                var mw = tileset.imagewidth;
-                var tw = tileset.tilewidth;
-                var sheet = new createjs.Bitmap(tileset.image);
-
-                var tilesTall = mh / th;
-                var tilesWide = mw / tw;
-
-                for (var i = 0; i < mh / th; i++) {
-                    for (var j = 0; j < mw / tw; j++) {
-
-                        var bmp = sheet.clone();
-                        bmp.sourceRect = new createjs.Rectangle(j * tw, i * th, tw, th);
-
-                        var tileObj = {
-                            image: tileset.image,
-                            bitmap: bmp
-                        };
-
-                        var index = firstgid + ((i * tilesTall) + j);
-                        tiles[index] = tileObj;
-
-                        console.log(i + "," + j + ": " + index + ", " + (j * tw) +" "+ (i * th) +" "+ tw +" "+ th);
-                    }
-                }
-                */
-            // case for "normal" tilesets with just one tile
+        // case for "normal" tilesets with just one tile
         } else {
             var tileObj = {
                 image: tileset.image,
@@ -89,15 +58,16 @@ function createGame() {
     // create the player
     player = new Player("PlaceholderUsername", mapData);
     $("#gameHeaderNavUsername").html(username);
+    
+    initHudbar(); // preps hudbars to be drawn
+    initMinimap(); // preps minimap to be drawn
 
-    // preps hudbars to be drawn
-    initHudbar();
     resetItems();
+    loadSavedGame();
+    initStatsPopover();
+
     createjs.Ticker.on("tick", tick);
     createjs.Ticker.setInterval(1000 / TARGET_FPS);
-    // preps minimap to be drawn
-    initMinimap();
-    loadSavedGame();
 }
 
 function resetItems() {
@@ -131,7 +101,6 @@ function getRandInt(min, max) {
 }
 
 var benchmarks = [];
-//this.konami = false;
 
 // NOT TO BE EXPLICITLY CALLED!!
 function tick(event) {
@@ -210,4 +179,20 @@ function benchmarkTick() {
     $("#debugBox").html($("#debugBox").html() + benchmarkStr);
 
     benchmarks = [];
+}
+
+function initStatsPopover() {
+    $('.statsPopover').popover({
+        content: function() {
+            var statsHtml = '';
+            statsHtml += '<p class="nobr"><span class="label label-primary">STR</span> ' + player.strength + '</p>';
+            statsHtml += '<p class="nobr"><span class="label label-primary">DEF</span> ' + player.defense + '</p>';
+            statsHtml += '<p class="nobr"><span class="label label-primary">INT</span> ' + player.intelligence + '</p>';
+            statsHtml += '<p class="nobr"><span class="label label-primary">CHR</span> ' + player.charisma + '</p>';
+            return statsHtml;
+        },
+        html: true,
+        placement: 'bottom',
+        trigger: 'hover'
+    });
 }

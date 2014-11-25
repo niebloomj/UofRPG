@@ -32,6 +32,8 @@
   <link href="css/messenger.css" rel="stylesheet">
   <link href="css/messenger-theme-flat.css" rel="stylesheet">
   <style type="text/css">
+  .nobr { white-space:nowrap; }
+
   .jumbotron.jumbotron-biglogo {
     margin-top: 5px;
     background-color: #00467f;
@@ -167,8 +169,10 @@
             <ul class="nav navbar-nav navbar-right">
               <li>
                 <a>
-                  <span class="glyphicon glyphicon-user"></span>
-                  <span id="gameHeaderNavUsername"></span>
+                  <span class="statsPopover">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span id="gameHeaderNavUsername"></span>
+                  </span>
                 </a>
               </li>
               <li>
