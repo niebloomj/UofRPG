@@ -5,20 +5,32 @@ function Randos(x, y) {
 
 Randos.prototype = new Entity(this.x, this.y, 16, 48);
 
+var countX=0;
+var currX=0;
 Randos.prototype.deltaX = function(elapsedTime) {
-	var value = (Math.random() * (10 - 0) + 0);
-	if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
-		value *= -1;
+	if (currX == 0 || countX >= 5000){
+		countX = 0;
+		currX = (Math.random() * (8 - 0) + 0);
+		if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
+			currX *= -1;
+		}
 	}
-    return value;
+	countX++;
+    return currX;
 };
 
+var countY=0;
+var currY=0;
 Randos.prototype.deltaY = function(elapsedTime) {
-	var value = (Math.random() * (10 - 0) + 0);
-	if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
-		value *= -1;
+	if (currY == 0 || countY >= 5000){
+		countY = 0;
+		currY = (Math.random() * (8 - 0) + 0);
+		if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
+			currY *= -1;
+		}
 	}
-    return value;
+	countY++;
+    return currY;
 };
 
 Randos.prototype.tick = function(delta) {
