@@ -97,6 +97,19 @@ function initCombat() {
                         actions: false
                     });
                 }
+            },
+
+            run: {
+                label: 'Run!',
+                action: function() {
+                    goBack();
+                    return msg.update({
+                        message: 'You really ran away from that?',
+                        type: 'success',
+                        hideAfter: 3,
+                        actions: false
+                    });
+                }
             }
         }
     });
