@@ -92,7 +92,7 @@ Player.prototype.stepCheck = function() {
                         type: "error",
                         hideAfter: "3"
                     })
-                } else {
+                } else if (!player.isInInventory("jacket")){
                     player.health = 0;
                     Messenger().post({
                         message: "You Died!!",
@@ -153,24 +153,29 @@ Player.prototype.handleCollision = function() {
     var topRightCollision = false;
     var botLeftCollision = false;
     var botRightCollision = false;
-	
-    try {
-        if ((layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
+	 // 48 and 49
+     try {
+		var v1 = layerData.data[botLeftIndex-1];
+		//console.log("Val: " + v1);
+        if (!isWhiteListed(v1)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botLeftCollision = true;
         }
     } catch (err) {}
     try {
-        if ((layerData.data[topLeftIndex].properties[0] == "solid")){// - 1) == 1) {
+		var v2 = layerData.data[topLeftIndex-1];
+        if (!isWhiteListed(v2)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             topLeftCollision = true;
         }
     } catch (err) {}
     try {
-        if ((layerData.data[topRightIndex].properties[0] == "solid")){// - 1) == 1) {
+		var v3 = layerData.data[topRightIndex-1];
+        if (!isWhiteListed(v3)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             topRightCollision = true;
         }
     } catch (err) {}
     try {
-        if ((layerData.data[botRightIndex].properties[0] == "solid")){// - 1) == 1) {
+		var v4 = layerData.data[botRightIndex-1];
+        if (!isWhiteListed(v4)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botRightCollision = true;
         }
     } catch (err) {}
@@ -219,6 +224,17 @@ Player.prototype.handleCollision = function() {
         leftCollision = false;
         rightCollision = false;
     }
+}
+
+function isWhiteListed(num){
+	var list = [3,4,9,12,14,42,43,45,48,46,49,50,52,58,59,66,67,68,69,82,83,85];
+	
+	for (var i=0; i<list.length; i++){
+		if (list[i] == num){
+			return true;
+		}
+	}
+	return false;
 }
 
 Player.prototype.iterateCharacter = function() {

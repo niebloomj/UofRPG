@@ -169,8 +169,6 @@ function tick(event) {
     benchmark("benchmark", function() {
         benchmarkTick();
     });
-
-    console.log(player.width);
 }
 
 function benchmark(label, func) {
