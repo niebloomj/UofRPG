@@ -151,7 +151,7 @@ Player.prototype.handleCollision = function() {
 	 // 48 and 49
      try {
 		var v1 = layerData.data[botLeftIndex];
-		console.log("Val: " + v1);
+		//console.log("Val: " + v1);
         if (!isWhiteListed(v1)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botLeftCollision = true;
         }
