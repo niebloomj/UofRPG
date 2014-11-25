@@ -40,12 +40,11 @@ function tickMap(delta) {
         // loop to reposition all entities and then draw them
         for (var i = 0; i < entities.length; i++) {
             var entity = entities[i];
-            var display = entity.getDisplay();
-            display = display.setTransform(
-                entity.x - (player.x - screenWidth * d),
-                entity.y - (player.y - screenHeight * d)
-            );
-            if (display.x > 0 && display.x < stage.canvas.width && display.y > 0 && display.y < stage.canvas.height) {
+            var tX = entity.x - (player.x - screenWidth * d);
+            var tY = entity.y - (player.y - screenHeight * d);
+            if (tX + entity.width > 0 && tX < stage.canvas.width && tY + entity.height > 0 && tY < stage.canvas.height) {
+                var display = entity.getDisplay();
+                display = display.setTransform(tX,tY);
                 gameContainer.addChild(display);
             }
         }
