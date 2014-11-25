@@ -260,3 +260,31 @@ Player.prototype.width = function() {
 Player.prototype.height = function() {
     return 0; //48;
 };
+
+Player.prototype.setMaxHealth = function(newMaxHealth) {
+    this.maxHealth = newMaxHealth;
+};
+
+Player.prototype.setHealth = function(newHealth) {
+    this.health = newHealth;
+    if (this.health == 0) {
+        this.health = 10;
+    }
+};
+
+Player.prototype.setStrength = function(newStrength) {
+    this.strength = newStrength;
+};
+
+Player.prototype.setDefense = function(newDefense) {
+    this.defense = newDefense;
+};
+
+Player.prototype.setCharisma = function(newCharisma) {
+    this.charisma = newCharisma;
+};
+
+Player.prototype.setMoney = function(newMoney) {
+    this.money = newMoney;
+    $(".walletAmount").html("$" + this.money + " URos");
+};

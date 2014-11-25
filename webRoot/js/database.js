@@ -48,9 +48,10 @@ function loadSavedGame() {
             if (results.length == 1) {
                 var object = results[0];
                 if (object.get('Uros')) {
-                    player.money = object.get('Uros');
+                    player.setMoney(object.get('Uros'));
+                } else {
+                    player.setMoney(player.money);
                 }
-                $(".walletAmount").html("$" + player.money + " URos");
                 if (object.get('PlayerX')) {
                     player.x = object.get('PlayerX');
                 }
@@ -58,10 +59,7 @@ function loadSavedGame() {
                     player.y = object.get('PlayerY');
                 }
                 if (object.get('Health')) {
-                    player.health = object.get('Health');
-                    if (player.health == 0) {
-                        player.health = 10;
-                    }
+                    player.setHealth(object.get('Health'));
                 }
                 if (object.get('Steps')) {
                     player.totalMoved = object.get('Steps');
