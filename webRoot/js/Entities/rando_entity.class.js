@@ -6,11 +6,19 @@ function Randos(x, y) {
 Randos.prototype = new Entity(this.x, this.y, 16, 48);
 
 Randos.prototype.deltaX = function(elapsedTime) {
-    return 0;
+	var value = (Math.random() * (10 - 0) + 0);
+	if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
+		value *= -1;
+	}
+    return value;
 };
 
 Randos.prototype.deltaY = function(elapsedTime) {
-    return 0;
+	var value = (Math.random() * (10 - 0) + 0);
+	if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
+		value *= -1;
+	}
+    return value;
 };
 
 Randos.prototype.tick = function(delta) {
