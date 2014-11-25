@@ -85,7 +85,7 @@ Player.prototype.stepCheck = function() {
     if (player.totalMoved % 50 == 0) {
         if (player.totalMoved % 500 == 0) {
             if (player.temp < 50) {
-                if ((player.health - 5) > 0 && player.isInInventory("jacket")) {
+                if ((player.health - 5) > 0 && !player.isInInventory("jacket")) {
                     player.setHealth(player.health - 5);
                     Messenger().post({
                         message: "You lost five health because of the cold. WEAR A JACKET",
