@@ -124,12 +124,6 @@ function resetItems() {
         rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));
         entities.push(rando);
     }
-
-    uro = new Uros(player.x + 50, player.y + 50); // very useful for testing
-    entities.push(uro);
-
-    rando = new Randos(player.x + 50, player.y + 50); // very useful for testing
-    entities.push(rando);
 }
 
 function getRandInt(min, max) {
