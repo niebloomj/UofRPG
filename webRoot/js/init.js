@@ -83,7 +83,6 @@ function init() {
 
 // loads up all the scripts and preps the game
 function loadItUp() {
-    console.log("yup");
     var scripts = new getScripts(
         [
             'js/keyevents.js',
@@ -106,7 +105,7 @@ function loadItUp() {
             /* Optional - Executed each time a script has loaded (Use for Progress updates?) */
         },
         function () {
-            console.log('asdf');
+            console.log('%cAll scripts loaded!','color:#ffbc2e;');
             $("#btnLogin").removeAttr("disabled");
             $("#btnRegister").removeAttr("disabled");
             init();
@@ -171,6 +170,7 @@ function showLoginMessage(message, level) {
 }
 
 
+// taken from http://stackoverflow.com/a/21817543
 function getScripts( scripts, onScript, onComplete )
 {
     this.async = true;
