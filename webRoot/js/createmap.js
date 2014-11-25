@@ -227,6 +227,7 @@ var hudbarIconSize = 24; // width of hudbar icon (in px)
 var hudbarIconPadding = 4; // separation width between icon and hudbar (in px)
 
 var hudbarVerticalPadding = 2; // padding between each hudbar
+var hudbarTextPadding = 4; // padding between text and hudbar
 
 // HEALTHBAR SETTINGS
 var healthbarColorFill = "#2fff00"; //"#e00"; // color of available health
@@ -331,19 +332,21 @@ function getHudbarDisplay() {
     expbar.setTransform(hudbarIconSize + hudbarIconPadding, 2 * (hudbarHeight + hudbarVerticalPadding));
     hudbar.addChild(expbar);
 
+    var textX = hudbarIconSize + hudbarIconPadding + hudbarWidth + hudbarTextPadding;
+
     healthTxt = new createjs.Text("0", "20px Arial", "#ff0000");
-    healthTxt.x = 222;
+    healthTxt.x = textX;
     healthTxt.y = 0;
     hudbar.addChild(healthTxt);
 
     temperatureTxt = new createjs.Text("0˚", "20px Arial", "#00ffff");
-    temperatureTxt.x = 222;
-    temperatureTxt.y = 28;
+    temperatureTxt.x = textX;
+    temperatureTxt.y = hudbarHeight + hudbarVerticalPadding;
     hudbar.addChild(temperatureTxt);
 
     expTxt = new createjs.Text(expPct * 100 + " exp", "20px Arial", "#ffa500");
-    expTxt.x = 222;
-    expTxt.y = 50;
+    expTxt.x = textX;
+    expTxt.y = 2 * (hudbarHeight + hudbarVerticalPadding);
     hudbar.addChild(expTxt);
 
     updateBarText();
