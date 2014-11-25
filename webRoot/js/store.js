@@ -1,20 +1,20 @@
 var storeItems = [
-	{
-		id: "jacket",
-		displayName: "Jacket",
-		isBuyable: true,
-		price: 100,
-		description: "Basic protection against the harsh winter",
-		fileLarge: "img/sprites/letterman_jacket_64.png",
-		fileSmall: "img/sprites/letterman_jacket_32.png",
-		attributes: {
-			health: 0,
-			strength: 0,
-			defense: 0,
-			intelligence: 0,
-			charisma: 0
-		}
-	}
+  {
+    id: "jacket",
+    displayName: "Jacket",
+    isBuyable: true,
+    price: 100,
+    description: "Basic protection against the harsh winter",
+    fileLarge: "img/sprites/letterman_jacket_64.png",
+    fileSmall: "img/sprites/letterman_jacket_32.png",
+    attributes: {
+      health: 0,
+      strength: 0,
+      defense: 0,
+      intelligence: 0,
+      charisma: 0
+    }
+  }
 ];
 
 
