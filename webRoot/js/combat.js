@@ -113,7 +113,7 @@ function initCombat() {
             }
         }
     });
-    expPct += 0.1;
+    player.experience += 1;
     updateBarText();
 }
 

@@ -256,8 +256,6 @@ var healthTxt;
 var temperatureTxt;
 var expTxt;
 
-var expPct;
-
 var lastHudbar;
 var lastHealthPct = -1;
 var lastTempPct = -1;
@@ -270,7 +268,7 @@ function getHudbarDisplay() {
 
     var healthPct = player.health / player.maxHealth; // fraction representing player health
     var tempPct = 1;
-    expPct = 0.75;
+    var expPct = player.experience/100;
 
     // don't rebuild the image if nothing's changed
     if (healthPct == lastHealthPct && tempPct == lastTempPct && expPct == lastExpPct) {
