@@ -268,7 +268,7 @@ function getHudbarDisplay() {
 
     var healthPct = player.health / player.maxHealth; // fraction representing player health
     var tempPct = 1;
-    var expPct = player.experience/100;
+    var expPct = player.experience / 100;
 
     // don't rebuild the image if nothing's changed
     if (healthPct == lastHealthPct && tempPct == lastTempPct && expPct == lastExpPct) {
@@ -367,7 +367,7 @@ function updateBarText() {
         });
     }
     temperatureTxt.text = player.temp + "˚";
-    expTxt = expPct * 100;
+    expTxt = player.experience;
 }
 
 /**
