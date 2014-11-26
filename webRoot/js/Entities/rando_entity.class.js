@@ -4,6 +4,7 @@ function Randos(x, y) {
 
     this.lastDeltaX = 0;
     this.lastDeltaY = 0;
+    this.lastAngle = Math.random() * (2 * Math.PI);
     this.velocity = 3;
     this.timeBetweenVectorChange = 120;
     this.currTimeBetweenVectorChange = this.timeBetweenVectorChange;
@@ -22,7 +23,9 @@ Randos.prototype.calculateVector = function(elapsedTime) {
 		this.currTimeBetweenVectorChange = Math.ceil(this.timeBetweenVectorChange + (Math.random() * 2 * this.timeBetweenVectorChangeVariance) - this.timeBetweenVectorChangeVariance);
 		console.log(this.currTimeBetweenVectorChange);
 
-		var angle = Math.random() * (2 * Math.PI);
+		var angle = (Math.random() * Math.PI + this.lastAngle) % (2 * Math.PI);
+		this.lastAngle = angle;
+		
 		var tan = Math.tan(angle);
 
 		var denom = Math.sqrt(Math.pow(tan, 2) + 1);
