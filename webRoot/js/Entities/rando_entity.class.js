@@ -4,7 +4,7 @@ function Randos(x, y) {
 
     this.lastDeltaX = 0;
     this.lastDeltaY = 0;
-    this.velocity = 5;
+    this.velocity = 3;
     this.countVector = -1;
 }
 
@@ -24,7 +24,7 @@ Randos.prototype.calculateVector = function() {
 		this.lastDeltaX = this.velocity / denom;
 		this.lastDeltaY = (this.velocity * tan) / denom;
 
-		this.lastDeltaX *= (angle >= Math.PI/2 && angle < 1.5*Math.PI) ? 1 : -1;
+		this.lastDeltaX *= (angle >= Math.PI/2 && angle < 1.5*Math.PI) ? -1 : 1;
 	}
 	this.countVector++;
 }
@@ -59,21 +59,18 @@ Randos.prototype.tick = function(delta) {
     }
 };
 
-/*
-* TODO: Find a way to use this method and delete above move method.
-* This method implements rando collision.
-* This method should solve issue of Randos all moving together.
-*/
 Randos.prototype.move = function(delta) {
 	this.calculateVector(delta);
-    this.x += this.deltaX(delta);
-    this.y += this.deltaY(delta);
+   
+	var mapData = mapDataJson;
 	
-	/*var mapData = mapDataJson;
-	if (isWhiteListed(mapData.layers[0].data[coordToTile(getMovementX()) + coordToTile(getMovementY()) * mapData.layers[0].width])){
-		this.x += getMovementX();
-		this.y += getMovementY();
-	}*/
+	if (isWhiteListed(mapData.layers[0].data[coordToTile(this.x+(this.deltaX(delta) > 0 ? 32 : -32)) + coordToTile(this.y+(this.deltaY(delta) > 0 ? 32 : -32)) * mapData.layers[0].width])){
+		this.x += ((this.deltaX(delta) >0) ? this.deltaX(delta) : (this.deltaX(delta)*1));
+		this.y += ((this.deltaY(delta) >0 )? this.deltaY(delta) : (this.deltaY(delta)*1));
+	}else{
+		this.lastDeltaX*=-1;
+		this.lastDeltaY*=-1;
+	}
 };
 
 Randos.prototype.getDisplay = function() {
