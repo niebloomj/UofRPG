@@ -41,3 +41,10 @@ Collider.prototype.contains = function(coll) {
 function valueInRange(value, min, max) {
     return ((value >= min) && (value <= max));
 }
+
+/*
+* Note: 1,1 Tile is 32,32 coord
+*/
+function coordToTile(val){
+	return Math.floor(val/32);
+}

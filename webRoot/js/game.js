@@ -82,14 +82,22 @@ function resetItems() {
             }
         });
     });
-
+	var mapData = mapDataJson;
     for (var i = 0; i < 20; i++) {
-        blob = new HealthBlobs(getRandInt(0, 6400), getRandInt(0, 6400));
+		do {
+			var xCo = getRandInt(0, 6400);
+			var yCo = getRandInt(0, 6400);
+			blob = new HealthBlobs(xCo, yCo);
+		}while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
         entities.push(blob);
     }
-    for (var i = 0; i < 100; i++) {
-        uro = new Uros(getRandInt(0, 6400), getRandInt(0, 6400));
-        entities.push(uro);
+    for (var i = 0; i < 100; i++) {		
+		do {
+			var xCo = getRandInt(0, 6400);
+			var yCo = getRandInt(0, 6400);
+			uro = new Uros(xCo, yCo);
+		}while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
+		entities.push(uro);
     }
     for (var i = 0; i < 50; i++) {
         rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));

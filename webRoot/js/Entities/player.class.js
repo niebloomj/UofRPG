@@ -1,3 +1,4 @@
+var map;
 function Player(name, map) {
     this.name = name;
     this.map = map;
