@@ -130,15 +130,17 @@ function tick(event) {
             initCombat();
             combatTicks = 0;
         }
+        if (!inCombat) {
+            benchmark("benchmark", function() {
+                benchmarkTick();
+            });
+        }
     } else {
         player.isMoveU = false;
         player.isMoveD = false;
         player.isMoveL = false;
         player.isMoveR = false;
     }
-    benchmark("benchmark", function() {
-        benchmarkTick();
-    });
 }
 
 function benchmark(label, func) {

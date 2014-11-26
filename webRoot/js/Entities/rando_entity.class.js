@@ -48,23 +48,6 @@ Randos.prototype.tick = function(delta) {
             entities.splice(indexOfRando, 1);
             initCombat();
             
-            if (player.health - 10 > 0) {
-                player.health -= 10;
-                Messenger().post({
-                    parentLocations:['.theGame'],
-                    message: "You lost 10 health. Don't touch the randos",
-                    type: "error", // info error or success. Use error for negative, success positive, and info neutral
-                    hideAfter: "3"
-                })
-            } else{
-                 Messenger().post({
-                    message: "You died to randos",
-                    type: "error", // info error or success. Use error for negative, success positive, and info neutral
-                    hideAfter: "3"
-                })
-                location.reload();
-            }
-            
         }
         var audio = new Audio('..\/audio\/giveHurt.mp3');
         audio.volume=audio.volume*.2;
