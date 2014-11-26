@@ -106,8 +106,8 @@ function loadItUp() {
         },
         function () {
             console.log('%cAll scripts loaded!','color:#ffbc2e;');
-            $("#btnLogin").removeAttr("disabled");
-            $("#btnRegister").removeAttr("disabled");
+            $(".paneLoading").addClass("hidden");
+            $(".paneButtons").removeClass("hidden");
             init();
         }
     );
