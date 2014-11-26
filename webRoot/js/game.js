@@ -100,7 +100,11 @@ function resetItems() {
 		entities.push(uro);
     }
     for (var i = 0; i < 50; i++) {
-        rando = new Randos(getRandInt(0, 6400), getRandInt(0, 6400));
+		do {
+			var xCo = getRandInt(0, 6400);
+			var yCo = getRandInt(0, 6400);
+			rando = new Randos(xCo, yCo);
+		}while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
         entities.push(rando);
     }
 }
@@ -120,6 +124,10 @@ function tick(event) {
                 for (var i = 0; i < entities.length; i++) {
                     var entity = entities[i];
                     entity.tick(event.delta);
+					
+					if (entity instanceof Randos){
+						//entity.move2();
+					}
                 }
             });
             time++;

@@ -1,4 +1,3 @@
-var map;
 function Player(name, map) {
     this.name = name;
     this.map = map;
@@ -223,7 +222,7 @@ Player.prototype.handleCollision = function() {
 }
 
 function isWhiteListed(num){
-	var list = [3,4,9,10,12,14,42,43,45,48,44,46,49,50,51,52,58,59,66,67,68,69,82,83,85];
+	var list = [3,4,9,10,12,14,42,43,45,48,44,46,47,49,50,51,52,58,59,66,67,68,69,82,83,85];
 	
 	for (var i=0; i<list.length; i++){
 		if (list[i] == num){
