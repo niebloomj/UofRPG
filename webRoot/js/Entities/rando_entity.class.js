@@ -31,6 +31,8 @@ Randos.prototype.calculateVector = function() {
 		var denom = Math.sqrt(Math.pow(tan, 2) + 1);
 		this.lastDeltaX = this.velocity / denom;
 		this.lastDeltaY = (this.velocity * tan) / denom;
+
+		this.lastDeltaX *= (angle >= Math.PI/2 && angle < 1.5*Math.PI) ? 1 : -1;
 	}
 	this.countVector++;
 }
