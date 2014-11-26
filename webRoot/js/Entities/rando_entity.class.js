@@ -21,11 +21,10 @@ Randos.prototype.calculateVector = function(elapsedTime) {
 	if (this.countVector < 0 || this.countVector >= this.currTimeBetweenVectorChange) {
 		this.countVector = 0;
 		this.currTimeBetweenVectorChange = Math.ceil(this.timeBetweenVectorChange + (Math.random() * 2 * this.timeBetweenVectorChangeVariance) - this.timeBetweenVectorChangeVariance);
-		console.log(this.currTimeBetweenVectorChange);
 
 		var angle = (Math.random() * Math.PI + this.lastAngle) % (2 * Math.PI);
 		this.lastAngle = angle;
-		
+
 		var tan = Math.tan(angle);
 
 		var denom = Math.sqrt(Math.pow(tan, 2) + 1);
