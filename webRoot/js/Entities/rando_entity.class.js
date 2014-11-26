@@ -8,7 +8,7 @@ function Randos(x, y) {
     this.timeBetweenVectorChange = 120;
     this.currTimeBetweenVectorChange = this.timeBetweenVectorChange;
     this.timeBetweenVectorChangeVariance = 30;
-    this.countVector = Math.random() * this.timeBetweenVectorChange;
+    this.countVector = -1;
 }
 
 Randos.prototype = new Entity(this.x, this.y, 16, 48);
