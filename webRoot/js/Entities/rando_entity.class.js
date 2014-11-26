@@ -2,14 +2,6 @@ function Randos(x, y) {
     this.x = x;
     this.y = y;
 
-
-    // this.countX = 0;
-    // this.currX = 0;
-
-    // this.countY = 0;
-    // this.currY = 0;
-
-    // this.lastDeltaX = null;
     this.lastDeltaX = 0;
     this.lastDeltaY = 0;
     this.velocity = 5;
