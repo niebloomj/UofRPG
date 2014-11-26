@@ -1,10 +1,13 @@
 var inCombat = false;
 var combatTicks = 0;
 var combatShape = new createjs.Shape();
+var combatEnemy = new createjs.Shape();
 var combatText = new createjs.Text("#feelinit", "bold 36pt Arial", "red");
 var combatBackground = new Image();
 combatBackground.src = 'img/CombatTest.png';
 var fightMusic = new Audio('..\/audio\/FightMusic.mp3');
+var Enemy1 = new Image();
+Enemy1.src = 'img/rando_large.png';
 
 function initCombat() {
     var combatSuccessful = false;
@@ -18,13 +21,17 @@ function initCombat() {
     gameContainer.removeAllChildren();
 
     combatShape.graphics.beginBitmapFill(combatBackground, "no-repeat").drawRect(0, 0, 992, 544);
+    combatEnemy.graphics.beginBitmapFill(Enemy1, "no-repeat").drawRect(0, 0, 80, 240);
+    combatEnemy.x = 480;
+    combatEnemy.y = 180;
     combatText.textAlign = "center";
     combatText.textBaseline = "middle";
     combatText.x = (screenWidth * 64 + 32) / 2;
     combatText.y = (screenHeight * 64 + 32) / 2;
 
     gameContainer.addChild(combatShape);
-    gameContainer.addChild(combatText);
+    gameContainer.addChild(combatEnemy);
+    //gameContainer.addChild(combatText);
 
     gameContainer.addChild(getHudbarDisplay());
     stage.update();
