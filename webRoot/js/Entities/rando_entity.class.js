@@ -1,36 +1,46 @@
 function Randos(x, y) {
     this.x = x;
     this.y = y;
+
+
+    // this.countX = 0;
+    // this.currX = 0;
+
+    // this.countY = 0;
+    // this.currY = 0;
+
+    // this.lastDeltaX = null;
+    this.lastDeltaX = 0;
+    this.lastDeltaY = 0;
+    this.velocity = 5;
+    this.countVector = -1;
 }
 
 Randos.prototype = new Entity(this.x, this.y, 16, 48);
 
-var countX=0;
-var currX=0;
-Randos.prototype.deltaX = function(elapsedTime) {
-	if (currX == 0 || countX >= 5000){
-		countX = 0;
-		currX = (Math.random() * (4 - 0) + 0);
-		if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
-			currX *= -1;
-		}
+
+// this calculates a vector based on a random angle and a constant magnitude
+// math used: http://www.wolframalpha.com/input/?i=sqrt%28v%5E2+-+y%5E2%29+%3D+x+and+tan%28a%29+%3D+y%2Fx
+Randos.prototype.calculateVector = function() {
+	if (this.countVector < 0 || this.countVector >= 90) {
+		this.countVector = 0;
+
+		var angle = Math.random() * (2 * Math.PI);
+		var tan = Math.tan(angle);
+
+		var denom = Math.sqrt(Math.pow(tan, 2) + 1);
+		this.lastDeltaX = this.velocity / denom;
+		this.lastDeltaY = (this.velocity * tan) / denom;
 	}
-	countX++;
-    return Math.floor(currX);
+	this.countVector++;
+}
+
+Randos.prototype.deltaX = function(elapsedTime) {
+	return this.lastDeltaX * (elapsedTime / TARGET_FPS);
 };
 
-var countY=0;
-var currY=0;
 Randos.prototype.deltaY = function(elapsedTime) {
-	if (currY == 0 || countY >= 5000){
-		countY = 0;
-		currY = (Math.random() * (4 - 0) + 0);
-		if ((Math.floor(Math.random() * (2 - 1 + 1)) + 1) == 1){
-			currY *= -1;
-		}
-	}
-	countY++;
-    return Math.floor(currY);
+	return this.lastDeltaY * (elapsedTime / TARGET_FPS);
 };
 
 Randos.prototype.tick = function(delta) {
@@ -38,7 +48,7 @@ Randos.prototype.tick = function(delta) {
     var yDist = this.y - player.y;
     var distance = Math.sqrt(xDist * xDist + yDist * yDist);
 
-    this.move(randomInt(1, 3));
+    this.move(delta);
 
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
@@ -61,6 +71,7 @@ Randos.prototype.tick = function(delta) {
 * This method should solve issue of Randos all moving together.
 */
 Randos.prototype.move = function(delta) {
+	this.calculateVector(delta);
     this.x += this.deltaX(delta);
     this.y += this.deltaY(delta);
 	
