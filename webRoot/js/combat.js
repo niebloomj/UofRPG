@@ -268,9 +268,8 @@ function enemyTurn2(decision) {
                                                 player.setHealth(10); // just so it isn't game over
                                                 saveGame();
                                                 setTimeout(function() {
-                                                    location.reload();
-                                                }, 1000);
-                                                // goBack();
+                                                	goBack()
+                                                }, 250);
                                                 return msg.cancel();
                                             }
                                         }
@@ -355,9 +354,8 @@ function enemyTurn2(decision) {
                                                 player.setHealth(10); // just so it isn't game over
                                                 saveGame();
                                                 setTimeout(function() {
-                                                    location.reload();
-                                                }, 1000);
-                                                // goBack();
+                                                	goBack()
+                                                }, 250);
                                                 return msg.cancel();
                                             }
                                         }
