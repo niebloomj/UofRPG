@@ -9,7 +9,7 @@ function Player(name, map) {
     this.strength = 10;
     this.defense = 5;
     this.intelligence = 10;
-    this.charisma = 999999999; // Damn, you're smooth B^)
+    this.charisma = 5; 
     this.experience = 75;
     this.money = 0;
 

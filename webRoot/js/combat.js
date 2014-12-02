@@ -16,7 +16,7 @@ var randoHealth;
 function initCombat() {
     var combatSuccessful = false;
     inCombat = true;
-    fightMusic.volume = fightMusic.volume * .7;
+    fightMusic.volume = fightMusic.volume * .6;
     backgroundMusic.pause();
     fightMusic.play();
     backgroundMusic=new Audio('..\/audio\/BackgroundMusic.mp3');
@@ -234,17 +234,19 @@ function enemyTurn2(decision){
 						label: 'Continue.',
                         action: function() {
 							var isDead = false;
-							if (player.health-damage <= 0){
+							var currHealth = player.health;
+							if (currHealth-damage <= 0){
 								isDead = true;
 							}else{
-								player.setHealth(player.health-damage); //.takeDamage(damage); take damage doesn't work
+								player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
+							updateBarText();
 							stage.update();
 							if (isDead){
 								msg.update({
 									message: "Oh dear! You died!",
 									type: "error",
-									hideAfter: 3,
+									hideAfter: false,
 									actions: {
 										Continue: {
 											label: 'Conintue',
@@ -310,17 +312,19 @@ function enemyTurn2(decision){
 						label: 'Continue.',
                         action: function() {
 							var isDead = false;
-							if (player.health-damage <= 0){
+							var currHealth = player.health;
+							if (currHealth-damage <= 0){
 								isDead = true;
 							}else{
-								player.setHealth(player.health-damage); //.takeDamage(damage); take damage doesn't work
+								player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
+							updateBarText();
 							stage.update();
 							if (isDead){
 								msg.update({
 									message: "Oh dear! You died!",
 									type: "error",
-									hideAfter: 3,
+									hideAfter: false,
 									actions: {
 										Continue: {
 											label: 'Conintue',
