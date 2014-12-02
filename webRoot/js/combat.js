@@ -63,7 +63,7 @@ function mainOption(){
                 }
             },
 
-            defend: {
+           /* defend: {
                 label: 'Defend!',
                 action: function() {
                     goBack();
@@ -74,7 +74,7 @@ function mainOption(){
                         actions: false
                     });
                 }
-            },
+            },*/
 
             run: {
                 label: 'Run!',
@@ -234,11 +234,12 @@ function enemyTurn2(decision){
 						label: 'Continue.',
                         action: function() {
 							var isDead = false;
-							var currHealth = player.health;
-							if (currHealth-damage <= 0){
+							// weird workaround but has to be done...
+							player.health -= damage;
+							if (player.health <= 0){
 								isDead = true;
-							}else{
-								player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
+							//}else{
+								//player.health -= damage;//player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
 							updateBarText();
 							stage.update();
@@ -253,7 +254,7 @@ function enemyTurn2(decision){
 											action: function(){
 												player.setHealth(50); // just so it isn't game over
 												goBack();
-												return false;
+												return true;
 											}
 										}
 									}
@@ -312,11 +313,12 @@ function enemyTurn2(decision){
 						label: 'Continue.',
                         action: function() {
 							var isDead = false;
-							var currHealth = player.health;
-							if (currHealth-damage <= 0){
+							// weird workaround but has to be done...
+							player.health -= damage;
+							if (player.health <= 0){
 								isDead = true;
-							}else{
-								player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
+							//}else{
+								//player.health -= damage;//player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
 							updateBarText();
 							stage.update();
@@ -331,7 +333,7 @@ function enemyTurn2(decision){
 											action: function(){
 												player.setHealth(50); // just so it isn't game over
 												goBack();
-												return false;
+												return true;
 											}
 										}
 									}
