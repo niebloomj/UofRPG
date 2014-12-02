@@ -297,6 +297,10 @@ Player.prototype.setCharisma = function(newCharisma) {
     this.charisma = newCharisma;
 };
 
+Player.prototype.setIntelligence = function(newIntelligence) {
+    this.intelligence = newIntelligence;
+};
+
 Player.prototype.setMoney = function(newMoney) {
     this.money = newMoney;
     $(".walletAmount").html("$" + this.money + " URos");
@@ -316,7 +320,6 @@ Player.prototype.addToInventory = function(item) {
 };
 
 Player.prototype.isInInventory = function(itemId) {
-    console.log(this.inventory);
     for (var i = 0; i < this.inventory.length; i++) {
         if (this.inventory[i] == itemId) {
             return true;
