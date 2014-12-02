@@ -242,6 +242,9 @@ function enemyTurn2(decision){
 								//player.health -= damage;//player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
 							updateBarText();
+							var hudbar = getHudbarDisplay();
+							hudbar.setTransform(10, 10);
+							gameContainer.addChild(hudbar);
 							stage.update();
 							if (isDead){
 								msg.update({
@@ -321,6 +324,9 @@ function enemyTurn2(decision){
 								//player.health -= damage;//player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
 							updateBarText();
+							var hudbar = getHudbarDisplay();
+							hudbar.setTransform(10, 10);
+							gameContainer.addChild(hudbar);
 							stage.update();
 							if (isDead){
 								msg.update({
