@@ -9,7 +9,7 @@ function Player(name, map) {
     this.strength = 10;
     this.defense = 5;
     this.intelligence = 10;
-    this.charisma = 5; 
+    this.charisma = 5;
     this.experience = 75;
     this.money = 0;
 
@@ -148,29 +148,29 @@ Player.prototype.handleCollision = function() {
     var topRightCollision = false;
     var botLeftCollision = false;
     var botRightCollision = false;
-	 // 48 and 49
-     try {
-		var v1 = layerData.data[botLeftIndex];
-		// console.log("Val: " + v1);
-        if (!isWhiteListed(v1)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
+    // 48 and 49
+    try {
+        var v1 = layerData.data[botLeftIndex];
+        // console.log("Val: " + v1);
+        if (!isWhiteListed(v1)) { //(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botLeftCollision = true;
         }
     } catch (err) {}
     try {
-		var v2 = layerData.data[topLeftIndex];
-        if (!isWhiteListed(v2)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
+        var v2 = layerData.data[topLeftIndex];
+        if (!isWhiteListed(v2)) { //(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             topLeftCollision = true;
         }
     } catch (err) {}
     try {
-		var v3 = layerData.data[topRightIndex];
-        if (!isWhiteListed(v3)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
+        var v3 = layerData.data[topRightIndex];
+        if (!isWhiteListed(v3)) { //(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             topRightCollision = true;
         }
     } catch (err) {}
     try {
-		var v4 = layerData.data[botRightIndex];
-        if (!isWhiteListed(v4)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
+        var v4 = layerData.data[botRightIndex];
+        if (!isWhiteListed(v4)) { //(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botRightCollision = true;
         }
     } catch (err) {}
@@ -221,15 +221,15 @@ Player.prototype.handleCollision = function() {
     }
 }
 
-function isWhiteListed(num){
-	var list = [3,4,7,9,10,12,14,42,43,45,48,44,46,47,49,50,51,52,58,59,66,67,68,69,82,83,85];
-	
-	for (var i=0; i<list.length; i++){
-		if (list[i] == num){
-			return true;
-		}
-	}
-	return false;
+function isWhiteListed(num) {
+    var list = [3, 4, 7, 9, 10, 12, 14, 42, 43, 45, 48, 44, 46, 47, 49, 50, 51, 52, 58, 59, 66, 67, 68, 69, 82, 83, 85];
+
+    for (var i = 0; i < list.length; i++) {
+        if (list[i] == num) {
+            return true;
+        }
+    }
+    return false;
 }
 
 Player.prototype.iterateCharacter = function() {
@@ -255,6 +255,17 @@ Player.prototype.getDisplay = function() {
     return parent;
 
 };
+
+Player.prototype.die = function() {
+    player.money = Math.round((player.money * 9/10) / 10) * 10;
+    player.setMoney(player.money);
+    console.log(player.money);
+    player.setHealth(100); // just so it isn't game over
+    saveGame();
+    setTimeout(function() {
+        goBack()
+    }, 250);
+}
 
 Player.prototype.takeDamage = function(amt) {
     if (amt - this.defense > 0) {

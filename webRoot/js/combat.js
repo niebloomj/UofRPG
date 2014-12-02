@@ -265,11 +265,7 @@ function enemyTurn2(decision) {
                                         Continue: {
                                             label: 'Conintue',
                                             action: function() {
-                                                player.setHealth(10); // just so it isn't game over
-                                                saveGame();
-                                                setTimeout(function() {
-                                                	goBack()
-                                                }, 250);
+                                                player.die()
                                                 return msg.cancel();
                                             }
                                         }
@@ -351,11 +347,7 @@ function enemyTurn2(decision) {
                                         Continue: {
                                             label: 'Conintue',
                                             action: function() {
-                                                player.setHealth(10); // just so it isn't game over
-                                                saveGame();
-                                                setTimeout(function() {
-                                                	goBack()
-                                                }, 250);
+                                                player.die();
                                                 return msg.cancel();
                                             }
                                         }
