@@ -52,6 +52,24 @@ var storeItems = [
       intelligence: 0,
       charisma: 0
     }
+  },
+  {
+    id: "wastemoney",
+    displayName: "Waste money",
+    isBuyable: true,
+    isPersistent: false,
+    price: 100,
+    description: "Destroys $100 you dumb fuck",
+    fileLarge: "img/sprites/placeholder_64.png",
+    fileSmall: "img/sprites/placeholder_32.png",
+    attributes: {
+      maxHealth: 0,
+      health: 0,
+      strength: 0,
+      defense: 0,
+      intelligence: 0,
+      charisma: 0
+    }
   }
 ];
 
@@ -70,26 +88,36 @@ function updateStore() {
   for (var i = 0; i < storeItems.length; i++) {
     var item = storeItems[i];
     var html = "";
-    html += '<div class="col-xs-3 store-modal-item" data-storeid="' + item.id + '">';
+    html += '<div class="col-xs-4 store-modal-item" data-storeid="' + item.id + '">';
     html += '<div class="panel panel-default"><div class="panel-body">';
     html += '<div class="store-modal-image"><img src="' + item.fileLarge + '"></div>';
     html += '<div class="store-modal-caption">';
     html += '<h4 class="store-modal-title">' + item.displayName + '</h4>';
     html += '<p>' + item.description + '</p>';
 
-    console.log(player.money - item.price);
-    var canBuy = !player.isInInventory(item.id)
-      && item.isBuyable
-      && player.money - item.price >= 0
-      && ((item.attributes.health != 0 && player.health != player.maxHealth) || item.attributes.health == 0);
+    var canBuy = true;
+
+    var buyStr = "Buy";
+    if (!item.isBuyable || player.isInInventory(item.id)) {
+      buyStr = "Sold Out";
+      canBuy = false;
+    } else if (player.money - item.price < 0) {
+      buyStr = "Too Expensive";
+      canBuy = false;
+    } else if (player.health >= player.maxHealth && item.attributes.health != 0) {
+      buyStr = "Already Full";
+      canBuy = false;
+    }
+    buyStr += ' ($' + item.price + ')'
+
     var disabledStr = canBuy ? "" : ' disabled="disabled"';
-    var buyStr = /*canBuy ?*/ 'Buy ($' + item.price + ')' /*: 'n/a ($' + item.price + ')'*/;
+
 
     html += '<button type="button" class="btn btn-primary btn-xs btn-block store-modal-buy" data-index="' + i + '"' + disabledStr + '>';
     html += buyStr + '</button>';
     html += '</div>';
     html += '</div></div></div>';
-    if (i % 4 == 3) {
+    if (i % 3 == 2) {
       html += '<div class="clearfix"></div>';
     }
     itemsHtml += html;
