@@ -261,6 +261,8 @@ Player.prototype.die = function() {
     player.setMoney(player.money);
     console.log(player.money);
     player.setHealth(100); // just so it isn't game over
+	player.x = 60*32;
+	player.y = 63*32;
     saveGame();
     setTimeout(function() {
         goBack()
@@ -284,16 +286,19 @@ Player.prototype.setMaxHealth = function(newMaxHealth) {
 };
 
 Player.prototype.setHealth = function(newHealth) {
-    this.health = Math.min(newHealth, this.maxHealth);
-    if (this.health <= 0) {
-        this.health == 10;
-        Messenger().post({
-            message: "You Died!!",
-            type: "error",
-            hideAfter: "5"
-        })
-        location.reload();
-    }
+	if (newHealth < 0){
+		this.health = 0;
+		Messenger().post({
+           message: "You Died!!",
+           type: "error",
+           hideAfter: "5"
+        });
+        //location.reload();
+	}else if (newHealth > this.maxHealth){
+		this.health = this.maxHealth;
+	}else{
+		this.health = newHealth;
+	}
 };
 
 Player.prototype.setStrength = function(newStrength) {

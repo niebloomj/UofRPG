@@ -244,7 +244,7 @@ function enemyTurn2(decision) {
                         action: function() {
                             var isDead = false;
                             // weird workaround but has to be done...
-                            player.health -= damage;
+                            player.setHealth(player.health-damage);
                             if (player.health <= 0) {
                                 isDead = true;
                                 //}else{
@@ -326,7 +326,7 @@ function enemyTurn2(decision) {
                         action: function() {
                             var isDead = false;
                             // weird workaround but has to be done...
-                            player.health -= damage;
+                            player.setHealth(player.health-damage);
                             if (player.health <= 0) {
                                 isDead = true;
                                 //}else{
