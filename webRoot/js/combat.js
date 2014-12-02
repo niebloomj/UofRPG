@@ -254,7 +254,7 @@ function enemyTurn2(decision){
 											action: function(){
 												player.setHealth(50); // just so it isn't game over
 												goBack();
-												return true;
+												return msg.cancel();
 											}
 										}
 									}
@@ -333,7 +333,7 @@ function enemyTurn2(decision){
 											action: function(){
 												player.setHealth(50); // just so it isn't game over
 												goBack();
-												return true;
+												return msg.cancel();
 											}
 										}
 									}

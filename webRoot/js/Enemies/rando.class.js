@@ -53,7 +53,6 @@ Rando.prototype.attack = function() {
 	if (this.rng > 30) {
 		this.roll();
 		if (this.rng > 25) {
-			//player.takeDamage(this.strength);
 			return ("attack " + this.strength);
 		} else {
 			//Rando misses :(
@@ -62,7 +61,6 @@ Rando.prototype.attack = function() {
 	} else {
 		this.roll();
 		if (this.rng > 50) {
-			//player.takeDamage(this.strength * 1.5);
 			return ("attack " + (this.strength*1.5));
 		} else {
 			//Rando misses :(
@@ -80,7 +78,6 @@ Rando.prototype.attack = function() {
 Rando.prototype.castspell = function() {
 	this.roll();
 	if (this.rng > 75) {
-		//player.takeDamage(25);
 		return "spell 25";
 	} else {
 		//rando's spell fails
