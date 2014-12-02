@@ -93,6 +93,12 @@ function mainOption(){
 }
 
 function secondaryOption(type){
+	var damage;
+	if (Math.floor((Math.random() * 3) + 1) == 1){
+		damage = 0; // 1/3 chance you miss
+	}else{
+		damage = Math.floor((Math.random() * 20) + 1);
+	}
 	if (type == "attack"){
 		msg.update({
 		message: 'Choose an attack style.',
@@ -102,7 +108,7 @@ function secondaryOption(type){
             punch: {
                 label: 'Punch!',
                 action: function() {
-					randoHealth -= 10;
+					randoHealth -= damage;
 					if (randoHealth <= 0){
 						goBack();
 						return msg.update({
@@ -115,13 +121,21 @@ function secondaryOption(type){
 						healthText.text = ("Rando Health: " + randoHealth);
 						stage.update();
 					}
-						return attack2("Your fists are mighty. +10 Damage!");
+					if (damage == 0){
+						attack2("You missed! +0 damage");
+					}else if (damage <= 5){
+						return attack2("Your fists are mighty. +" + damage + " damage");
+					}else if (damage <= 13){
+						return attack2("You are a champion boxer. +" + damage + " damage");
+					}else{
+						return attack2("You are basically Mike Tyson. +" + damage + " damage");
+					}
                 }
             },
             kick: {
                 label: 'Kick!',
                 action: function() {
-					randoHealth -= 20;
+					randoHealth -= damage;
 					if (randoHealth <= 0){
                         goBack();
 						return msg.update({
@@ -133,8 +147,16 @@ function secondaryOption(type){
 					}else{
 						healthText.text = ("Rando Health: " + randoHealth);
 						stage.update();
-                    }								
-					return attack2("You have the kick of a kangaroo. +20 Damage");
+                    }
+					if (damage == 0){
+						attack2("You missed! +0 damage");
+					}else if (damage <= 5){
+						return attack2("Your foot made a successful impact. +" + damage + " damage");
+					}else if (damage <= 13){
+						return attack2("You are a karate master! +" + damage + " damage");
+					}else{
+						return attack2("You have the kick of a kangaroo! +" + damage + " damage");
+					}					
 				}
             },
             sing: {
