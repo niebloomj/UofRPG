@@ -303,8 +303,16 @@ Player.prototype.setMoney = function(newMoney) {
 };
 
 
-Player.prototype.addToInventory = function(itemId) {
-    this.inventory.push(itemId);
+Player.prototype.addToInventory = function(item) {
+    if (item.isPersistent) {
+        this.inventory.push(item.id);
+    }
+    this.setMaxHealth(this.maxHealth + item.attributes.maxHealth);
+    this.setHealth(this.health + item.attributes.health);
+    this.setStrength(this.strength + item.attributes.strength);
+    this.setDefense(this.defense + item.attributes.defense);
+    this.setIntelligence(this.intelligence + item.attributes.intelligence);
+    this.setCharisma(this.charisma + item.attributes.charisma);
 };
 
 Player.prototype.isInInventory = function(itemId) {

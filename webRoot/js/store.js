@@ -3,12 +3,50 @@ var storeItems = [
     id: "jacket",
     displayName: "Jacket",
     isBuyable: true,
+    isPersistent: true,
     price: 100,
     description: "Basic protection against the harsh winter",
     fileLarge: "img/sprites/letterman_jacket_64.png",
     fileSmall: "img/sprites/letterman_jacket_32.png",
     attributes: {
+      maxHealth: 0,
       health: 0,
+      strength: 0,
+      defense: 0,
+      intelligence: 0,
+      charisma: 0
+    }
+  },
+  {
+    id: "healthpotion_small",
+    displayName: "Small Health Potion",
+    isBuyable: true,
+    isPersistent: true,
+    price: 30,
+    description: "Restores 20 health points",
+    fileLarge: "img/sprites/placeholder_64.png",
+    fileSmall: "img/sprites/placeholder_32.png",
+    attributes: {
+      maxHealth: 0,
+      health: 20,
+      strength: 0,
+      defense: 0,
+      intelligence: 0,
+      charisma: 0
+    }
+  },
+  {
+    id: "healthpotion_large",
+    displayName: "Large Health Potion",
+    isBuyable: true,
+    isPersistent: true,
+    price: 50,
+    description: "Restores 40 health points",
+    fileLarge: "img/sprites/placeholder_64.png",
+    fileSmall: "img/sprites/placeholder_32.png",
+    attributes: {
+      maxHealth: 0,
+      health: 40,
       strength: 0,
       defense: 0,
       intelligence: 0,
@@ -27,7 +65,7 @@ $('#storeModal').on('show.bs.modal', function (event) {
     var button = $(this);
     var index = parseInt(button.attr('data-index'));
     var item = storeItems[index];
-    player.addToInventory(item.id);
+    player.addToInventory(item);
     player.setMoney(player.money - item.price);
     Messenger().post({
         parentLocations: ['.theGame'],
