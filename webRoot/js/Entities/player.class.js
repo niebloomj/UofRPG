@@ -151,7 +151,7 @@ Player.prototype.handleCollision = function() {
 	 // 48 and 49
      try {
 		var v1 = layerData.data[botLeftIndex];
-		//console.log("Val: " + v1);
+		// console.log("Val: " + v1);
         if (!isWhiteListed(v1)){//(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botLeftCollision = true;
         }
@@ -222,7 +222,7 @@ Player.prototype.handleCollision = function() {
 }
 
 function isWhiteListed(num){
-	var list = [3,4,9,10,12,14,42,43,45,48,44,46,47,49,50,51,52,58,59,66,67,68,69,82,83,85];
+	var list = [3,4,7,9,10,12,14,42,43,45,48,44,46,47,49,50,51,52,58,59,66,67,68,69,82,83,85];
 	
 	for (var i=0; i<list.length; i++){
 		if (list[i] == num){
