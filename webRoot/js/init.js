@@ -88,6 +88,7 @@ function loadItUp() {
             'js/keyevents.js',
             'js/store.js',
             'js/database.js',
+            'js/audio.js',
             'js/game.js',
             'maps/main.map.js',
             'js/createmap.js',
