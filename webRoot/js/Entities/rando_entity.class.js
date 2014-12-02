@@ -10,6 +10,7 @@ function Randos(x, y) {
     this.currTimeBetweenVectorChange = this.timeBetweenVectorChange;
     this.timeBetweenVectorChangeVariance = 30;
     this.countVector = -1;
+	this.skinIndex = Math.floor((Math.random() * 6) + 1);
 }
 
 Randos.prototype = new Entity(this.x, this.y, 16, 48);
@@ -81,6 +82,20 @@ Randos.prototype.move = function(delta) {
 };
 
 Randos.prototype.getDisplay = function() {
-    var sprite = new createjs.Bitmap("img/rando.png");
+	var imgType;
+	if (this.skinIndex == 1){
+		imgType = "img/sprites/player_aaron.png";
+	}else if (this.skinIndex == 2){
+		imgType = "img/sprites/player_alex.png";
+	}else if (this.skinIndex == 3){
+		imgType = "img/sprites/player_brad.png";
+	}else if (this.skinIndex == 4){
+		imgType = "img/sprites/player_hayden.png";
+	}else if (this.skinIndex == 5){
+		imgType = "img/sprites/player_jacob.png";
+	}else if (this.skinIndex == 6){
+		imgType = "img/sprites/player_naropa.png";
+	}
+    var sprite = new createjs.Bitmap(imgType);
 	return sprite;
 };
