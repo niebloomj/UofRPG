@@ -59,9 +59,9 @@ var storeItems = [
     isBuyable: true,
     isPersistent: false,
     price: 100,
-    description: "Welcome to Hillside, bitch",
-    fileLarge: "img/sprites/placeholder_64.png",
-    fileSmall: "img/sprites/placeholder_32.png",
+    description: "Welcome to Hillside, bitch!",
+    fileLarge: "img/sprites/fuckyou_64.png",
+    fileSmall: "img/sprites/fuckyou_32.png",
     attributes: {
       maxHealth: 0,
       health: 0,
@@ -93,7 +93,7 @@ function updateStore() {
     html += '<div class="store-modal-image"><img src="' + item.fileLarge + '"></div>';
     html += '<div class="store-modal-caption">';
     html += '<h4 class="store-modal-title">' + item.displayName + '</h4>';
-    html += '<p>' + item.description + '</p>';
+    html += '<p class="text-center">' + item.description + '</p>';
 
     var canBuy = true;
 
@@ -137,5 +137,6 @@ function updateStore() {
         hideAfter: "3"
     });
     updateStore();
+    saveGame();
   });
 }
