@@ -94,94 +94,94 @@ function mainOption(){
 
 function secondaryOption(type){
 	if (type == "attack"){
-	 msg.update({
-	 message: 'Choose an attack style.',
-                        type: 'success',
-                        hideAfter: false,
-                        actions: {
-                            punch: {
-                                label: 'Punch!',
-                                action: function() {
-									randoHealth -= 10;
-									if (randoHealth <= 0){
-										goBack();
-										return msg.update({
-											message: 'You have defeated the all-mighty rando, bro!  Way to go!!',
-											type: 'success',
-											hideAfter: 3,
-											actions: false
-										});
-									}else{
-										healthText.text = ("Rando Health: " + randoHealth);
-										stage.update();
-									}
-                                    return attack2("Your fists are mighty. +10 Damage!");
-                                }
-                            },
-                            kick: {
-                                label: 'Kick!',
-                                action: function() {
-								randoHealth -= 20;
-								if (randoHealth <= 0){
-                                    goBack();
-									return msg.update({
-										message: 'You have defeated the all-mighty rando, bro!  Way to go!!',
-										type: 'success',
-										hideAfter: 3,
-										actions: false
-									});
-								}else{
-									healthText.text = ("Rando Health: " + randoHealth);
-									stage.update();
-                                }								
-								return attack2("You have the kick of a kangaroo. +20 Damage");
-								}
-                            },
-                            sing: {
-                                label: 'Sing!',
-                                action: function() {
-                                    if (randoHealth <= 0){
-										goBack();
-									}
-                                    return attack2("This is no time for singing! +0 Damage!");
-                                }
-                            }
-                        }
+		msg.update({
+		message: 'Choose an attack style.',
+		type: 'success',
+		hideAfter: false,
+		actions: {
+            punch: {
+                label: 'Punch!',
+                action: function() {
+					randoHealth -= 10;
+					if (randoHealth <= 0){
+						goBack();
+						return msg.update({
+							message: 'You have defeated the all-mighty rando, bro!  Way to go!!',
+							type: 'success',
+							hideAfter: 3,
+							actions: false
+						});
+					}else{
+						healthText.text = ("Rando Health: " + randoHealth);
+						stage.update();
+					}
+						return attack2("Your fists are mighty. +10 Damage!");
+                }
+            },
+            kick: {
+                label: 'Kick!',
+                action: function() {
+					randoHealth -= 20;
+					if (randoHealth <= 0){
+                        goBack();
+						return msg.update({
+							message: 'You have defeated the all-mighty rando, bro!  Way to go!!',
+							type: 'success',
+							hideAfter: 3,
+							actions: false
+						});
+					}else{
+						healthText.text = ("Rando Health: " + randoHealth);
+						stage.update();
+                    }								
+					return attack2("You have the kick of a kangaroo. +20 Damage");
+				}
+            },
+            sing: {
+                label: 'Sing!',
+                action: function() {
+					if (randoHealth <= 0){
+						goBack();
+					}
+                    return attack2("This is no time for singing! +0 Damage!");
+                }
+            }
+        }
      });
-	 }
+	}
 }
 
 function attack2(statement){
 	msg.update({
-	 message: statement,
-                        type: 'success',
-                        hideAfter: false,
-                        actions: {
-                            Continue: {
-                                label: 'Continue.',
-                                action: function() {
-                                    return enemyTurn();
-									}
-									}
-									}
-									});
+		message: statement,
+        type: 'success',
+        hideAfter: false,
+        actions: {
+            Continue: {
+				label: 'Continue.',
+				action: function() {
+					return enemyTurn();
+				}
+			}
+		}
+	});
 }
 
 function enemyTurn(){
 	msg.update({
-	 message: "The rando is contemplating its next move...",
-                        type: 'info',
-                        hideAfter: false,
-                        actions: {
-                            Continue: {
-                                label: 'Continue.',
-                                action: function() {
-									console.log(myRando);//.decide()); // <---- produces error even when I set return to just false
-                                    return enemyTurn2("attack 0");//myRando.decide());
-									}
-									}
-									}
-									});
+		message: "The rando is contemplating its next move...",
+        type: 'info',
+        hideAfter: false,
+        actions: {
+			Continue: {
+				label: 'Continue.',
+                action: function() {
+					console.log(myRando);//.decide()); // <---- produces error even when I set return to just false
+                    return enemyTurn2("attack 0");//myRando.decide());
+				}
+			}
+		}
+	});
 }
 
 function enemyTurn2(decision){
@@ -190,36 +190,35 @@ function enemyTurn2(decision){
 		
 		if (damage == 0){
 			msg.update({
-			message: "The rando just BARELY missed you!",
-                        type: 'success',
-                        hideAfter: false,
-                        actions: {
-                            Continue: {
-                                label: 'Continue.',
-                                action: function() {
-                                    return secondaryOption("attack");
-									}
-									}
-									}
-									});
+				message: "The rando just BARELY missed you!",
+                type: 'success',
+                hideAfter: false,
+                actions: {
+					Continue: {
+                        label: 'Continue.',
+                        action: function() {
+							return secondaryOption("attack");
+						}
+					}
+				}
+			});
 		}else{
 			msg.update({
-			message: "The rando assaulted you! +" + damage + " damage.",
-                        type: 'success',
-                        hideAfter: false,
-                        actions: {
-                            Continue: {
-                                label: 'Continue.',
-                                action: function() {
-									player.takeDamage(damage);
-                                    return secondaryOption("attack");
-									}
-									}
-									}
-									});
+				message: "The rando assaulted you! +" + damage + " damage.",
+                type: 'success',
+                hideAfter: false,
+                actions: {
+					Continue: {
+						label: 'Continue.',
+                        action: function() {
+							player.takeDamage(damage);
+                            return secondaryOption("attack");
+						}
+					}
+				}
+			});
 		}
 	}
-	
 }
 
 function goBack(){
