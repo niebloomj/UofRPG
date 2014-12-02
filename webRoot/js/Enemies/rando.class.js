@@ -1,6 +1,7 @@
 //var Rando = function(){};
 function Rando(){
 	this.maxHealth = 100;
+	this.strength -= 10;
 };
 
 Rando.prototype = new Enemy("Rando", 1, 25, 20, 10, 5);
@@ -44,8 +45,13 @@ Rando.prototype.decide = function() {
 };
 
 Rando.prototype.healSelf = function() {
-	this.heal(10);
-	return "heal 10";
+	if (Math.floor((Math.random() * 3) + 1) == 2){ // 1/3 chance of a "super heal"
+		this.heal(10);
+		return "heal 10";
+	}else{
+		this.heal(5);
+		return "heal 5";
+	}
 };
 
 Rando.prototype.attack = function() {
