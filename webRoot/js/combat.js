@@ -198,8 +198,8 @@ function enemyTurn(){
 			Continue: {
 				label: 'Continue.',
                 action: function() {
-					console.log(myRando);//.decide()); // <---- produces error even when I set return to just false
-                    return enemyTurn2("attack 0");//myRando.decide());
+					//console.log(myRando.decide());//.decide()); // <---- produces error even when I set return to just false
+                    return enemyTurn2(myRando.decide());//"attack 0");//myRando.decide());
 				}
 			}
 		}
@@ -233,8 +233,108 @@ function enemyTurn2(decision){
 					Continue: {
 						label: 'Continue.',
                         action: function() {
-							player.takeDamage(damage);
-                            return secondaryOption("attack");
+							var isDead = false;
+							if (player.health-damage <= 0){
+								isDead = true;
+							}else{
+								player.setHealth(player.health-damage); //.takeDamage(damage); take damage doesn't work
+							}
+							stage.update();
+							if (isDead){
+								msg.update({
+									message: "Oh dear! You died!",
+									type: "error",
+									hideAfter: 3,
+									actions: {
+										Continue: {
+											label: 'Conintue',
+											action: function(){
+												player.setHealth(50); // just so it isn't game over
+												goBack();
+												return false;
+											}
+										}
+									}
+								});	
+							}else{
+								return secondaryOption("attack");
+							}
+						}
+					}
+				}
+			});
+		}
+	}else if (decision.indexOf("heal") != -1){
+		var healAmount = decision.substring(decision.indexOf(" "));
+		
+		msg.update({
+			message: "The rando healed itself! +" + healAmount + " health.",
+            type: 'success',
+            hideAfter: false,
+            actions: {
+				Continue: {
+                label: 'Continue.',
+					action: function() {
+						randoHealth += parseInt(healAmount);
+						healthText.text = ("Rando Health: " + randoHealth);
+						stage.update();
+						return secondaryOption("attack");
+					}
+				}
+			}
+		});
+	}else if (decision.indexOf("spell") != -1){
+		var damage = decision.substring(decision.indexOf(" "));
+		
+		if (damage == 0){
+			msg.update({
+				message: "The rando just BARELY missed you!",
+                type: 'success',
+                hideAfter: false,
+                actions: {
+					Continue: {
+                        label: 'Continue.',
+                        action: function(){
+							return secondaryOption("attack");
+						}
+					}
+				}
+			});
+		}else{
+			msg.update({
+				message: "The rando cast a magic spell on you! +" + damage + " damage.",
+                type: 'success',
+                hideAfter: false,
+                actions: {
+					Continue: {
+						label: 'Continue.',
+                        action: function() {
+							var isDead = false;
+							if (player.health-damage <= 0){
+								isDead = true;
+							}else{
+								player.setHealth(player.health-damage); //.takeDamage(damage); take damage doesn't work
+							}
+							stage.update();
+							if (isDead){
+								msg.update({
+									message: "Oh dear! You died!",
+									type: "error",
+									hideAfter: 3,
+									actions: {
+										Continue: {
+											label: 'Conintue',
+											action: function(){
+												player.setHealth(50); // just so it isn't game over
+												goBack();
+												return false;
+											}
+										}
+									}
+								});	
+							}else{
+								return secondaryOption("attack");
+							}
 						}
 					}
 				}
