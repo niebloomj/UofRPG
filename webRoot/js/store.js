@@ -18,14 +18,14 @@ var storeItems = [
     }
   },
   {
-    id: "healthpotion_small",
-    displayName: "Small Health Potion",
+    id: "healthboost_small",
+    displayName: "Oreos",
     isBuyable: true,
     isPersistent: false,
     price: 30,
     description: "Restores 20 health points",
-    fileLarge: "img/sprites/placeholder_64.png",
-    fileSmall: "img/sprites/placeholder_32.png",
+    fileLarge: "img/sprites/oreo_64.png",
+    fileSmall: "img/sprites/oreo_32.png",
     attributes: {
       maxHealth: 0,
       health: 20,
@@ -36,8 +36,8 @@ var storeItems = [
     }
   },
   {
-    id: "healthpotion_large",
-    displayName: "Large Health Potion",
+    id: "healthboost_large",
+    displayName: "Poptarts",
     isBuyable: true,
     isPersistent: false,
     price: 50,
@@ -55,11 +55,11 @@ var storeItems = [
   },
   {
     id: "wastemoney",
-    displayName: "Waste money",
+    displayName: "Throw away $100",
     isBuyable: true,
     isPersistent: false,
     price: 100,
-    description: "Destroys $100 you dumb fuck",
+    description: "Welcome to Hillside, bitch",
     fileLarge: "img/sprites/placeholder_64.png",
     fileSmall: "img/sprites/placeholder_32.png",
     attributes: {
