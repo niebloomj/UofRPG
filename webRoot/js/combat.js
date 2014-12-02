@@ -24,7 +24,19 @@ function initCombat() {
 
     gameContainer.removeAllChildren();
 
-    combatShape.graphics.beginBitmapFill(combatBackground, "no-repeat").drawRect(0, 0, 992, 544);
+	setupScene();
+
+	myRando = new Rando();
+	randoHealth = 100;
+   
+	mainOption();
+   
+    //player.experience += 1;
+    updateBarText();
+}
+
+function setupScene(){
+	combatShape.graphics.beginBitmapFill(combatBackground, "no-repeat").drawRect(0, 0, 992, 544);
     combatEnemy.graphics.beginBitmapFill(Enemy1, "no-repeat").drawRect(0, 0, 80, 240);
     combatEnemy.x = 480;
     combatEnemy.y = 180;
@@ -39,14 +51,6 @@ function initCombat() {
 
     gameContainer.addChild(getHudbarDisplay());
     stage.update();
-
-	myRando = new Rando();
-	randoHealth = 100;
-   
-	mainOption();
-   
-    player.experience += 1;
-    updateBarText();
 }
 
 function mainOption(){
@@ -111,8 +115,10 @@ function secondaryOption(type){
 					randoHealth -= damage;
 					if (randoHealth <= 0){
 						goBack();
+						var exp = Math.floor((Math.random() * 25) + 15);
+						player.experience += exp;
 						return msg.update({
-							message: 'You have defeated the all-mighty rando, bro!  Way to go!!',
+							message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
 							type: 'success',
 							hideAfter: 3,
 							actions: false
@@ -138,8 +144,10 @@ function secondaryOption(type){
 					randoHealth -= damage;
 					if (randoHealth <= 0){
                         goBack();
+						var exp = Math.floor((Math.random() * 25) + 15);
+						player.experience += exp;
 						return msg.update({
-							message: 'You have defeated the all-mighty rando, bro!  Way to go!!',
+							message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
 							type: 'success',
 							hideAfter: 3,
 							actions: false
@@ -241,10 +249,11 @@ function enemyTurn2(decision){
 							//}else{
 								//player.health -= damage;//player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
-							updateBarText();
+							gameContainer.removeAllChildren();
 							var hudbar = getHudbarDisplay();
 							hudbar.setTransform(10, 10);
 							gameContainer.addChild(hudbar);
+							setupScene();
 							stage.update();
 							if (isDead){
 								msg.update({
@@ -323,10 +332,11 @@ function enemyTurn2(decision){
 							//}else{
 								//player.health -= damage;//player.setHealth(currHealth-damage); //.takeDamage(damage); take damage doesn't work
 							}
-							updateBarText();
+							gameContainer.removeAllChildren();
 							var hudbar = getHudbarDisplay();
 							hudbar.setTransform(10, 10);
 							gameContainer.addChild(hudbar);
+							setupScene();
 							stage.update();
 							if (isDead){
 								msg.update({
