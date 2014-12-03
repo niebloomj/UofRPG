@@ -1,6 +1,7 @@
 function Randos(x, y) {
     this.x = x;
     this.y = y;
+    this.level = randomInt(1,5);
 
     this.lastDeltaX = 0;
     this.lastDeltaY = 0;
@@ -13,7 +14,7 @@ function Randos(x, y) {
     this.skinIndex = Math.floor((Math.random() * 6) + 1);
 }
 
-Randos.prototype = new Entity(this.x, this.y, 16, 48, 5);
+Randos.prototype = new Entity(this.x, this.y, 16, 48);
 
 
 // this calculates a vector based on a random angle and a constant magnitude
