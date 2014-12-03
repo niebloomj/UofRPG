@@ -59,7 +59,7 @@ Randos.prototype.tick = function(delta) {
         var indexOfRando = entities.indexOf(this);
         if (indexOfRando > -1) {
             entities.splice(indexOfRando, 1);
-            initCombat();
+            initCombat(this.level);
 
         }
         var audio = new Audio('..\/audio\/giveHurt.mp3');

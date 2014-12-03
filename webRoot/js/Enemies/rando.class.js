@@ -1,10 +1,11 @@
 //var Rando = function(){};
-function Rando() {
-    this.maxHealth = 100;
+function Rando(level) {
+    this.level = level;
+    this.maxHealth = 50 + level * 10;
     this.strength -= 10;
 };
 
-Rando.prototype = new Enemy("Rando", 1, 25, 20, 10, 5);
+Rando.prototype = new Enemy("Rando", this.level, this.maxHealth, this.strength, 10, 5);
 
 Rando.prototype.decide = function() {
     if (this.health / this.maxHealth > .75) {

@@ -14,7 +14,7 @@ var myRando;
 
 var randoHealth;
 
-function initCombat() {
+function initCombat(enemyLevel) {
     $('#storeModal').modal('hide');
 
     var combatSuccessful = false;
@@ -29,8 +29,8 @@ function initCombat() {
 
     setupScene();
 
-    myRando = new Rando();
-    randoHealth = 100;
+    myRando = new Rando(enemyLevel);
+    randoHealth = myRando.maxHealth;
 
     mainOption();
 
