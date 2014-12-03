@@ -5,7 +5,7 @@ var storeItems = [
     isBuyable: true,
     isPersistent: true,
     price: 100,
-    description: "Basic protection against the harsh winter",
+    description: "Basic protection against the cold",
     fileLarge: "img/sprites/letterman_jacket_64.png",
     fileSmall: "img/sprites/letterman_jacket_32.png",
     attributes: {
@@ -42,8 +42,8 @@ var storeItems = [
     isPersistent: false,
     price: 50,
     description: "Restores 40 health points",
-    fileLarge: "img/sprites/placeholder_64.png",
-    fileSmall: "img/sprites/placeholder_32.png",
+    fileLarge: "img/sprites/poptart_64.png",
+    fileSmall: "img/sprites/poptart_32.png",
     attributes: {
       maxHealth: 0,
       health: 40,
@@ -126,7 +126,7 @@ function updateStore() {
       buyStr = "Already Full";
       canBuy = false;
     }
-    buyStr += ' ($' + item.price + ')'
+    buyStr += ' ($' + item.price + ')';
 
     var disabledStr = canBuy ? "" : ' disabled="disabled"';
 
@@ -143,18 +143,25 @@ function updateStore() {
   itemContainer.html(itemsHtml);
 
   $('.store-modal-buy').click(function(){
-    var button = $(this);
-    var index = parseInt(button.attr('data-index'));
-    var item = storeItems[index];
-    player.addToInventory(item);
-    player.setMoney(player.money - item.price);
-    Messenger().post({
-        parentLocations: ['.theGame'],
-        message: "Item purchased!",
-        type: "success",
-        hideAfter: "3"
-    });
-    updateStore();
-    saveGame();
+    if (inCombat) {
+      Messenger().post({
+        message: "Can't shop while in combat!",
+        type: "error",
+        hideAfter: "5"
+      });
+    } else {
+      var button = $(this);
+      var index = parseInt(button.attr('data-index'));
+      var item = storeItems[index];
+      player.addToInventory(item);
+      player.setMoney(player.money - item.price);
+      Messenger().post({
+          message: "Item purchased!",
+          type: "success",
+          hideAfter: "3"
+      });
+      updateStore();
+      saveGame();
+    }
   });
 }
