@@ -19,7 +19,7 @@ function saveGame() {
                             object.set("Health", player.health);
                             object.set("Uros", player.money);
                             object.set("Inventory", player.inventory);
-                            object.set("Exeperience", player.experience);
+                            object.set("Experience", player.experience);
                             object.save();
                         }
                     });
@@ -34,7 +34,7 @@ function saveGame() {
                             object.set("Health", player.health);
                             object.set("Uros", player.money);
                             object.set("Inventory", player.inventory);
-                            object.set("Exeperience", player.experience);
+                            object.set("Experience", player.experience);
                             object.save();
                         }
                     });
