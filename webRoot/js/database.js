@@ -18,6 +18,7 @@ function saveGame() {
                             object.set("PlayerY", player.y);
                             object.set("Health", player.health);
                             object.set("Uros", player.money);
+                            object.set("Inventory", player.inventory);
                             object.save();
                         }
                     });
@@ -31,6 +32,7 @@ function saveGame() {
                             object.set("PlayerY", player.y);
                             object.set("Health", player.health);
                             object.set("Uros", player.money);
+                            object.set("Inventory", player.inventory);
                             object.save();
                         }
                     });
@@ -69,6 +71,9 @@ function loadSavedGame() {
                 }
                 if (object.get('Steps')) {
                     player.totalMoved = object.get('Steps');
+                }
+                if (object.get('Inventory')) {
+                	player.inventory = object.get('Inventory');
                 }
             } else {
                 console.log("New Game");
