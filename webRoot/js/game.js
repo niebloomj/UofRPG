@@ -44,7 +44,7 @@ function createGame() {
                 var index = firstgid + parseInt(key);
                 tiles[index] = tileObj;
             }
-        // case for "normal" tilesets with just one tile
+            // case for "normal" tilesets with just one tile
         } else {
             var tileObj = {
                 image: tileset.image,
@@ -58,11 +58,11 @@ function createGame() {
     // create the player
     player = new Player("PlaceholderUsername", mapData);
     $("#gameHeaderNavUsername").html(username);
-    
+
     initHudbar(); // preps hudbars to be drawn
     initMinimap(); // preps minimap to be drawn
 
-    
+
     loadSavedGame();
     resetItems();
     initStatsPopover();
@@ -82,29 +82,29 @@ function resetItems() {
             }
         });
     });
-	var mapData = mapDataJson;
+    var mapData = mapDataJson;
     for (var i = 0; i < 20; i++) {
-		do {
-			var xCo = getRandInt(0, 6400);
-			var yCo = getRandInt(0, 6400);
-			blob = new HealthBlobs(xCo, yCo);
-		}while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
+        do {
+            var xCo = getRandInt(0, 6400);
+            var yCo = getRandInt(0, 6400);
+            blob = new HealthBlobs(xCo, yCo);
+        } while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
         entities.push(blob);
     }
-    for (var i = 0; i < 100; i++) {		
-		do {
-			var xCo = getRandInt(0, 6400);
-			var yCo = getRandInt(0, 6400);
-			uro = new Uros(xCo, yCo);
-		}while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
-		entities.push(uro);
+    for (var i = 0; i < 100; i++) {
+        do {
+            var xCo = getRandInt(0, 6400);
+            var yCo = getRandInt(0, 6400);
+            uro = new Uros(xCo, yCo);
+        } while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
+        entities.push(uro);
     }
     for (var i = 0; i < 50; i++) {
-		do {
-			var xCo = getRandInt(0, 6400);
-			var yCo = getRandInt(0, 6400);
-			rando = new Randos(xCo, yCo);
-		}while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
+        do {
+            var xCo = getRandInt(0, 6400);
+            var yCo = getRandInt(0, 6400);
+            rando = new Randos(xCo, yCo);
+        } while (!isWhiteListed(mapData.layers[0].data[coordToTile(xCo) + coordToTile(yCo) * mapData.layers[0].width]));
         entities.push(rando);
     }
 }
@@ -124,10 +124,10 @@ function tick(event) {
                 for (var i = 0; i < entities.length; i++) {
                     var entity = entities[i];
                     entity.tick(event.delta);
-					
-					if (entity instanceof Randos){
-						//entity.move2();
-					}
+
+                    if (entity instanceof Randos) {
+                        //entity.move2();
+                    }
                 }
             });
             time++;

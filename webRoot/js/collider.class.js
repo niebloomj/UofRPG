@@ -43,8 +43,8 @@ function valueInRange(value, min, max) {
 }
 
 /*
-* Note: 1,1 Tile is 32,32 coord
-*/
-function coordToTile(val){
-	return Math.floor(val/32);
+ * Note: 1,1 Tile is 32,32 coord
+ */
+function coordToTile(val) {
+    return Math.floor(val / 32);
 }

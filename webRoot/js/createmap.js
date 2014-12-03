@@ -44,7 +44,7 @@ function tickMap(delta) {
             var tY = entity.y - (player.y - screenHeight * d);
             if (tX + entity.width > 0 && tX < stage.canvas.width && tY + entity.height > 0 && tY < stage.canvas.height) {
                 var display = entity.getDisplay();
-                display = display.setTransform(tX,tY);
+                display = display.setTransform(tX, tY);
                 gameContainer.addChild(display);
             }
         }
@@ -360,7 +360,7 @@ function getHudbarDisplay() {
 function updateBarText() {
     healthTxt.text = player.health;
     if (player.totalMoved % 500 == 0) {
-    	console.log("Updated Weather");
+        console.log("Updated Weather");
         jQuery(document).ready(function($) {
             $.ajax({
                 url: "http://api.openweathermap.org/data/2.5/find?q=Rochester&units=imperial",

@@ -75,10 +75,10 @@ function loadSavedGame() {
                     player.totalMoved = object.get('Steps');
                 }
                 if (object.get('Inventory')) {
-                	player.inventory = object.get('Inventory');
+                    player.inventory = object.get('Inventory');
                 }
                 if (object.get('Experience')) {
-                	player.experience = object.get('Experience');
+                    player.experience = object.get('Experience');
                 }
             } else {
                 console.log("New Game");

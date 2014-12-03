@@ -98,6 +98,20 @@ Player.prototype.stepCheck = function() {
                 }
             }
         }
+        //Adding some point to the cold by having a need to fight it.
+        if (player.totalMoved % 1000 == 0) {
+            if (player.isInInventory("jacket")) {
+                var index = player.inventory.indexOf("jacket");
+                if (index > -1) {
+                    player.inventory.splice(index, 1);
+                }
+                Messenger().post({
+                    message: "Someone stole your jacket :'(",
+                    type: "error",
+                    hideAfter: "3"
+                })
+            }
+        }
         saveGame();
     }
 }
@@ -257,12 +271,12 @@ Player.prototype.getDisplay = function() {
 };
 
 Player.prototype.die = function() {
-    player.money = Math.round((player.money * 9/10) / 10) * 10;
+    player.money = Math.round((player.money * 9 / 10) / 10) * 10;
     player.setMoney(player.money);
     console.log(player.money);
     player.setHealth(100); // just so it isn't game over
-	player.x = 60*32;
-	player.y = 63*32;
+    player.x = 60 * 32;
+    player.y = 63 * 32;
     saveGame();
     setTimeout(function() {
         goBack()
@@ -286,51 +300,51 @@ Player.prototype.setMaxHealth = function(newMaxHealth) {
 };
 
 Player.prototype.setHealth = function(newHealth) {
-	if (newHealth < 0){
-		this.health = 0;
-		Messenger().post({
-           message: "You Died!!",
-           type: "error",
-           hideAfter: "5"
+    if (newHealth < 0) {
+        this.health = 0;
+        Messenger().post({
+            message: "You Died!!",
+            type: "error",
+            hideAfter: "5"
         });
         //location.reload();
-	}else if (newHealth > this.maxHealth){
-		this.health = this.maxHealth;
-	}else{
-		this.health = newHealth;
-	}
+    } else if (newHealth > this.maxHealth) {
+        this.health = this.maxHealth;
+    } else {
+        this.health = newHealth;
+    }
 };
 
-Player.prototype.setExperience = function(newExp){
-	if ((experience + newExp) >= 100){
-		experience = 100;
-		msg = Messenger().post({
-        message: 'Congratulations you leveled up!  Pick a skill to upgrade.',
-        type: 'success',
-        hideAfter: false,
-        actions: {
-            strength: {
-                label: 'Strength',
-                hideAfter: false,
-                action: function() {
-					this.strength += 1;
-                    return msg.cancel();
+Player.prototype.setExperience = function(newExp) {
+    if ((experience + newExp) >= 100) {
+        experience = 100;
+        msg = Messenger().post({
+            message: 'Congratulations you leveled up!  Pick a skill to upgrade.',
+            type: 'success',
+            hideAfter: false,
+            actions: {
+                strength: {
+                    label: 'Strength',
+                    hideAfter: false,
+                    action: function() {
+                        this.strength += 1;
+                        return msg.cancel();
+                    }
+                },
+                defense: {
+                    label: 'Defense',
+                    hideAfter: false,
+                    action: function() {
+                        this.defense += 1;
+                        return msg.cancel();
+                    }
                 }
-            },
-			defense: {
-				label: 'Defense',
-				hideAfter: false,
-				action: function(){
-					this.defense += 1;
-					return msg.cancel();
-				}
-			}
-		}
-		});
-			
-	}else{
-		experience += newExp;
-	}
+            }
+        });
+
+    } else {
+        experience += newExp;
+    }
 }
 
 Player.prototype.setStrength = function(newStrength) {

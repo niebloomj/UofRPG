@@ -27,29 +27,29 @@ HealthBlobs.prototype.tick = function(delta) {
             if (player.health + 10 <= 100) {
                 player.health += 10;
                 Messenger().post({
-					parentLocations:['.theGame'],
+                    parentLocations: ['.theGame'],
                     message: "You got 10 health!",
                     type: "success", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
             } else if (player.health != 100) {
                 player.health = 100;
-				 Messenger().post({
-					parentLocations:['.theGame'],
+                Messenger().post({
+                    parentLocations: ['.theGame'],
                     message: "You got 10 health!",
                     type: "success", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
-            }else{
-				 Messenger().post({
+            } else {
+                Messenger().post({
                     message: "You already have full health!",
                     type: "info", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
-			}
+            }
         }
         var audio = new Audio('..\/audio\/gainHealth.mp3');
-        audio.volume=audio.volume*.2;
+        audio.volume = audio.volume * .2;
         audio.play();
     }
 };
