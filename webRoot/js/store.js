@@ -33,6 +33,23 @@ var storeItems = [{
         charisma: 0
     }
 }, {
+    id: "textbook",
+    displayName: "Textbook",
+    isBuyable: true,
+    isPersistent: true,
+    price: 1000,
+    description: "Bludgeon your way through life with overpriced literature",
+    fileLarge: "img/sprites/placeholder_64.png",
+    fileSmall: "img/sprites/placeholder_32.png",
+    attributes: {
+        maxHealth: 0,
+        health: 0,
+        strength: 10,
+        defense: 0,
+        intelligence: 20,
+        charisma: 0
+    }
+}, {
     id: "healthboost_small",
     displayName: "Oreos",
     isBuyable: true,
