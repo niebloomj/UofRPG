@@ -70,6 +70,24 @@ var storeItems = [
       intelligence: 0,
       charisma: 0
     }
+  },
+  {
+    id: "tuition",
+    displayName: "Tuition",
+    isBuyable: true,
+    isPersistent: true,
+    price: 60000,
+    description: "Pay off your annual student debt!",
+    fileLarge: "img/sprites/placeholder_64.png",
+    fileSmall: "img/sprites/placeholder_32.png",
+    attributes: {
+      maxHealth: 0,
+      health: 0,
+      strength: 0,
+      defense: 0,
+      intelligence: 0,
+      charisma: 0
+    }
   }
 ];
 

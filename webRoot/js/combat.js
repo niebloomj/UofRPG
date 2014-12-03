@@ -15,6 +15,8 @@ var myRando;
 var randoHealth;
 
 function initCombat() {
+    $('#storeModal').modal('hide');
+
     var combatSuccessful = false;
     inCombat = true;
     fightMusic.volume = fightMusic.volume * .6;
