@@ -101,8 +101,8 @@ function mainOption() {
 
 function secondaryOption(type) {
     var damage;
-    if (Math.floor((Math.random() * 3) + 1) == 1) {
-        damage = 0; // 1/3 chance you miss
+    if (Math.floor((Math.random() * 10) + 1) == 1) {
+        damage = 0; // 1/10 chance you miss
     } else {
         damage = Math.floor((Math.random() * 20) + 1);
     }
