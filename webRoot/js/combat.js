@@ -371,4 +371,5 @@ function goBack() {
     inCombat = false;
     backgroundMusic.play();
     fightMusic.pause();
+    saveGame();
 }
