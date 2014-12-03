@@ -9,8 +9,8 @@ var currentUser;
 var username = null;
 var benchmarkingMode = false;
 var debugMode = false;
-var backgroundMusic=new Audio('..\/audio\/BackgroundMusic.mp3');
-var fightMusic=new Audio('..\/audio\/FightMusic.mp3');
+var backgroundMusic = new Audio('..\/audio\/BackgroundMusic.mp3');
+var fightMusic = new Audio('..\/audio\/FightMusic.mp3');
 
 function init() {
 
@@ -105,8 +105,8 @@ function loadItUp() {
         function() {
             /* Optional - Executed each time a script has loaded (Use for Progress updates?) */
         },
-        function () {
-            console.log('%cAll scripts loaded!','color:#ffbc2e;');
+        function() {
+            console.log('%cAll scripts loaded!', 'color:#ffbc2e;');
             $(".paneLoading").addClass("hidden");
             $(".paneButtons").removeClass("hidden");
             init();
@@ -119,14 +119,16 @@ function loginSuccessful() {
     username = currentUser.getUsername();
     $("#loginContainer").addClass("hidden");
     $("#loginHeader").addClass("hidden");
-	$("body").addClass("inGame");
+    $("body").addClass("inGame");
     selectPlayer();
-    backgroundMusic.loop=true;
-    fightMusic.loop=true;
+    backgroundMusic.loop = true;
+    fightMusic.loop = true;
     backgroundMusic.play();
 }
 
 function selectPlayer() {
+    $('#characterModal').modal('show');
+    //     $(document).unbind('keydown', disableKeyboard);
 
     $("#btnSantiago").click(function() {
         $(".paneButtons").addClass("hidden");
@@ -172,12 +174,13 @@ function showLoginMessage(message, level) {
 
 
 // taken from http://stackoverflow.com/a/21817543
-function getScripts( scripts, onScript, onComplete )
-{
+function getScripts(scripts, onScript, onComplete) {
     this.async = true;
     this.cache = false;
     this.data = null;
-    this.complete = function () { $.scriptHandler.loaded(); };
+    this.complete = function() {
+        $.scriptHandler.loaded();
+    };
     this.scripts = scripts;
     this.onScript = onScript;
     this.onComplete = onComplete;
@@ -187,29 +190,29 @@ function getScripts( scripts, onScript, onComplete )
 
 getScripts.prototype.fetch = function() {
     $.scriptHandler = this;
-    var src = this.scripts[ this.progress ];
-    console.log('%cFetching %s','color:#ffbc2e;', src);
+    var src = this.scripts[this.progress];
+    console.log('%cFetching %s', 'color:#ffbc2e;', src);
 
     $.ajax({
-        crossDomain:true,
-        async:this.async,
-        cache:this.cache,
-        type:'GET',
+        crossDomain: true,
+        async: this.async,
+        cache: this.cache,
+        type: 'GET',
         url: src,
-        data:this.data,
+        data: this.data,
         statusCode: {
             200: this.complete
         },
-        dataType:'script'
+        dataType: 'script'
     });
 };
 
-getScripts.prototype.loaded = function () {
+getScripts.prototype.loaded = function() {
     this.progress++;
-    if( this.progress >= this.total ) {
-        if(this.onComplete) this.onComplete();
+    if (this.progress >= this.total) {
+        if (this.onComplete) this.onComplete();
     } else {
         this.fetch();
     };
-    if(this.onScript) this.onScript();
+    if (this.onScript) this.onScript();
 };
