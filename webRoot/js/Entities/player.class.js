@@ -6,9 +6,9 @@ function Player(name, map) {
     //Stats
     this.maxHealth = 100;
     this.health = 100;
-    this.strength = 10;
+    this.strength = 5;
     this.defense = 5;
-    this.intelligence = 10;
+    this.intelligence = 5;
     this.charisma = 5;
     this.experience = 0;
     this.money = 0;

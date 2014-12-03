@@ -75,7 +75,13 @@ function loadSavedGame() {
                     player.totalMoved = object.get('Steps');
                 }
                 if (object.get('Inventory')) {
-                    player.inventory = object.get('Inventory');
+                	player.inventory = object.get('Inventory');
+                	// var arr = object.get('Inventory')
+                	// console.log(arr);
+                 //    for (var i = 0; i < arr.length; i ++){
+                 //    	player.addToInventory(arr[i]);
+                 //    	console.log(arr[i]);
+                 //    }
                 }
                 if (object.get('Experience')) {
                     player.experience = object.get('Experience');

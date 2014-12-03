@@ -16,6 +16,23 @@ var storeItems = [{
         charisma: 0
     }
 }, {
+    id: "yardStick",
+    displayName: "Yard Stick",
+    isBuyable: true,
+    isPersistent: true,
+    price: 500,
+    description: "Wack people with an extra 5 strength",
+    fileLarge: "img/sprites/placeholder_64.png",
+    fileSmall: "img/sprites/placeholder_32.png",
+    attributes: {
+        maxHealth: 0,
+        health: 0,
+        strength: 5,
+        defense: 0,
+        intelligence: 0,
+        charisma: 0
+    }
+}, {
     id: "healthboost_small",
     displayName: "Oreos",
     isBuyable: true,
@@ -88,7 +105,6 @@ var storeItems = [{
 
 $('#storeModal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget);
-
     updateStore();
 });
 
