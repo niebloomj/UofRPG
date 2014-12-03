@@ -13,7 +13,7 @@ function Randos(x, y) {
     this.skinIndex = Math.floor((Math.random() * 6) + 1);
 }
 
-Randos.prototype = new Entity(this.x, this.y, 16, 48);
+Randos.prototype = new Entity(this.x, this.y, 16, 48, 5);
 
 
 // this calculates a vector based on a random angle and a constant magnitude

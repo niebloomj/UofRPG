@@ -47,6 +47,16 @@ function tickMap(delta) {
                 display = display.setTransform(tX, tY);
                 gameContainer.addChild(display);
             }
+            if (entity instanceof Randos) {
+                var randoLevelText = new createjs.Text("lvl " + entity.level, "8pt Arial", "white");
+                var randoLevelBox = new createjs.Shape();
+                randoLevelBox.graphics.beginFill("black").drawRoundRect(tX - 2, tY - 15, 26, 12, 3);
+                randoLevelText.textAlign = "left";
+                randoLevelText.x = tX;
+                randoLevelText.y = tY - 15;
+                gameContainer.addChild(randoLevelBox);
+                gameContainer.addChild(randoLevelText);
+            }
         }
     });
 

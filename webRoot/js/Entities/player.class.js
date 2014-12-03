@@ -4,6 +4,7 @@ function Player(name, map) {
     this.temp = 50;
 
     //Stats
+    this.level = 1;
     this.maxHealth = 100;
     this.health = 100;
     this.strength = 5;
@@ -318,6 +319,7 @@ Player.prototype.setHealth = function(newHealth) {
 Player.prototype.setExperience = function(newExp) {
     if ((experience + newExp) >= 100) {
         experience = 100;
+        this.level += 1;
         msg = Messenger().post({
             message: 'Congratulations you leveled up!  Pick a skill to upgrade.',
             type: 'success',
