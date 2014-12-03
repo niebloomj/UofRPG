@@ -76,7 +76,7 @@ var storeItems = [
     displayName: "Tuition",
     isBuyable: true,
     isPersistent: true,
-    price: 60000,
+    price: 70008,
     description: "Pay off your annual student debt!",
     fileLarge: "img/sprites/placeholder_64.png",
     fileSmall: "img/sprites/placeholder_32.png",
