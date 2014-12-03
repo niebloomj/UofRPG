@@ -10,7 +10,7 @@ function Player(name, map) {
     this.defense = 5;
     this.intelligence = 10;
     this.charisma = 5;
-    this.experience = 75;
+    this.experience = 0;
     this.money = 0;
 
     this.inventory = [];

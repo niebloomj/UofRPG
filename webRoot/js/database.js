@@ -19,6 +19,7 @@ function saveGame() {
                             object.set("Health", player.health);
                             object.set("Uros", player.money);
                             object.set("Inventory", player.inventory);
+                            object.set("Exeperience", player.experience);
                             object.save();
                         }
                     });
@@ -33,6 +34,7 @@ function saveGame() {
                             object.set("Health", player.health);
                             object.set("Uros", player.money);
                             object.set("Inventory", player.inventory);
+                            object.set("Exeperience", player.experience);
                             object.save();
                         }
                     });
@@ -74,6 +76,9 @@ function loadSavedGame() {
                 }
                 if (object.get('Inventory')) {
                 	player.inventory = object.get('Inventory');
+                }
+                if (object.get('Experience')) {
+                	player.experience = object.get('Experience');
                 }
             } else {
                 console.log("New Game");
