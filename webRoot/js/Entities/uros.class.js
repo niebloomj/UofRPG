@@ -40,7 +40,7 @@ Uros.prototype.tick = function(delta) {
             player.setMoney(player.money + 10);
             Messenger().post({
                 parentLocations: ['.theGame'],
-                message: "You got 25 URos!",
+                message: "You got 10 URos!",
                 type: "success",
                 hideAfter: "3"
             })
