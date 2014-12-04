@@ -2,7 +2,7 @@ var inCombat = false;
 var combatTicks = 0;
 var combatShape = new createjs.Shape();
 var combatEnemy = new createjs.Shape();
-var healthText = new createjs.Text("Rando Health: 100", "bold 36pt Arial", "black");
+var healthText;
 var combatBackground = new Image();
 combatBackground.src = 'img/CombatTest.png';
 var fightMusic = new Audio('..\/audio\/FightMusic.mp3');
@@ -27,10 +27,10 @@ function initCombat(enemyLevel) {
 
     gameContainer.removeAllChildren();
 
-    setupScene();
-
     myRando = new Rando(enemyLevel);
     randoHealth = myRando.maxHealth;
+
+    setupScene();
 
     mainOption();
 
@@ -43,6 +43,7 @@ function setupScene() {
     combatEnemy.graphics.beginBitmapFill(Enemy1, "no-repeat").drawRect(0, 0, 80, 240);
     combatEnemy.x = 480;
     combatEnemy.y = 180;
+    healthText = new createjs.Text("Rando Health: " + randoHealth.toString(), "bold 36pt Arial", "black");
     healthText.textAlign = "center";
     healthText.textBaseline = "middle";
     healthText.x = (screenWidth * 64 + 32) / 2;
