@@ -100,7 +100,8 @@ function loadItUp() {
             'js/collider.class.js',
             'js/Entities/healthblobs.class.js',
             'js/Enemies/enemy.class.js',
-            'js/Enemies/rando.class.js'
+            'js/Enemies/rando.class.js',
+			'js/particles.js'
         ],
         function() {
             /* Optional - Executed each time a script has loaded (Use for Progress updates?) */

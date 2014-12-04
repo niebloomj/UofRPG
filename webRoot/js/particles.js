@@ -1,20 +1,26 @@
-var canvas = document.getElementById("demoCanvas");
+var canvas = document.getElementById("overlayCanvas");
 var ctx = canvas.getContext("2d");
 
 //Canvas dimensions
-var W = 500; var H = 500;
+var W = 992; var H = 554;
 
 //Lets create an array of particles
 var particles = [];
-for(var i = 0; i < 50; i++)
-{
-	//This will add 50 particles to the array with random positions
-	particles.push(new create_particle());
+
+function startParticles(){
+	
+	for(var i = 0; i < 50; i++){
+		//This will add 50 particles to the array with random positions
+		particles.push(new create_particle());
+	}
+	
+	setInterval(draw, 33);
 }
 
 //Lets create a function which will help us to create multiple particles
 function create_particle()
 {
+console.log("WHAAAAAT");
 	//Random position on the canvas
 	this.x = Math.random()*W;
 	this.y = Math.random()*H;
@@ -38,13 +44,14 @@ var x = 100; var y = 100;
 //Lets animate the particle
 function draw()
 {
+
 	//Moving this BG paint code insde draw() will help remove the trail
 	//of the particle
 	//Lets paint the canvas black
 	//But the BG paint shouldn't blend with the previous frame
 	ctx.globalCompositeOperation = "source-over";
 	//Lets reduce the opacity of the BG paint to give the final touch
-	ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+	ctx.fillStyle = "rgba(0, 0, 0)";//, 0.3)";
 	ctx.fillRect(0, 0, W, H);
 	
 	//Lets blend the particle with the BG
@@ -79,5 +86,3 @@ function draw()
 		if(p.y > H+50) p.y = -50;
 	}
 }
-
-setInterval(draw, 33);

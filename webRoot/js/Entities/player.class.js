@@ -275,7 +275,7 @@ Player.prototype.die = function() {
     player.money = Math.round((player.money * 9 / 10) / 10) * 10;
     player.setMoney(player.money);
     console.log(player.money);
-    player.setHealth(100); // just so it isn't game over
+    player.setHealth(this.maxHealth); // just so it isn't game over
     player.x = 60 * 32;
     player.y = 63 * 32;
     saveGame();
@@ -323,6 +323,12 @@ Player.prototype.addExperience = function(newExp) {
         this.maxHealth += 10;
         this.strength += 3;
         this.defense += 2;
+		
+		gameContainer.removeAllChildren();
+		var message = new createjs.Text("Congratulations!  Level up!", "bold 36pt Arial", "white");
+		gameContainer.addChild(message);
+		stage.update();
+		startParticles();
         var msg = Messenger().post({
             message: 'Congratulations, you leveled up! Choose a skill to get a bonus upgrade in.',
             type: 'success',
@@ -343,7 +349,7 @@ Player.prototype.addExperience = function(newExp) {
                     hideAfter: false,
                     action: function() {
                         player.defense += 1;
-                        this.experience = 0;
+                        player.experience = 0;
                         stage.update();
                         return msg.cancel();
                     }
