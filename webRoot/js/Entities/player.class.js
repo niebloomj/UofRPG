@@ -329,8 +329,8 @@ Player.prototype.addExperience = function(newExp) {
                     label: 'Strength',
                     hideAfter: false,
                     action: function() {
-                        this.strength += 1;
-						this.experience = 0;
+                        player.strength += 1;
+						player.experience = 0;
 						stage.update();
                         return msg.cancel();
                     }
@@ -339,8 +339,8 @@ Player.prototype.addExperience = function(newExp) {
                     label: 'Defense',
                     hideAfter: false,
                     action: function() {
-                        this.defense += 1;
-						this.experience = 0;
+                        player.defense += 1;
+						player.experience = 0;
 						stage.update();
                         return msg.cancel();
                     }
