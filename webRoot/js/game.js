@@ -138,14 +138,6 @@ function tick(event) {
             tickMap(event.delta);
         }
 
-        if ((player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR) && !inCombat) {
-            combatTicks++;
-        }
-
-        if ((randomInt(500, 50000) < 100 + combatTicks && (player.isMoveU || player.isMoveD || player.isMoveL || player.isMoveR))) {
-            initCombat(randomInt(player.level, player.level + 2));
-            combatTicks = 0;
-        }
         if (!inCombat) {
             benchmark("benchmark", function() {
                 benchmarkTick();
