@@ -1,7 +1,10 @@
 function Randos(x, y) {
     this.x = x;
     this.y = y;
-    this.level = randomInt(1,5);
+    this.level = randomInt(player.level - 2 , player.level + 2);
+    if (this.level < 1) {
+        this.level = 1;
+    }
 
     this.lastDeltaX = 0;
     this.lastDeltaY = 0;

@@ -320,8 +320,11 @@ Player.prototype.addExperience = function(newExp) {
     if ((this.experience + newExp) >= 100) {
         this.experience = 100;
         this.level += 1;
+        this.maxHealth += 10;
+        this.strength += 3;
+        this.defense += 2;
         var msg = Messenger().post({
-            message: 'Congratulations you leveled up!  Pick a skill to upgrade.',
+            message: 'Congratulations, you leveled up! Choose a skill to get a bonus upgrade in.',
             type: 'success',
             hideAfter: false,
             actions: {
@@ -329,9 +332,9 @@ Player.prototype.addExperience = function(newExp) {
                     label: 'Strength',
                     hideAfter: false,
                     action: function() {
-                        player.strength += 1;
-						player.experience = 0;
-						stage.update();
+                        player.strength += 2;
+                        player.experience = 0;
+                        stage.update();
                         return msg.cancel();
                     }
                 },
@@ -340,8 +343,8 @@ Player.prototype.addExperience = function(newExp) {
                     hideAfter: false,
                     action: function() {
                         player.defense += 1;
-						player.experience = 0;
-						stage.update();
+                        this.experience = 0;
+                        stage.update();
                         return msg.cancel();
                     }
                 }
