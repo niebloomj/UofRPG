@@ -24,7 +24,7 @@ HealthBlobs.prototype.tick = function(delta) {
         var indexOfBlob = entities.indexOf(this);
         if (indexOfBlob > -1) {
             entities.splice(indexOfBlob, 1);
-            if (player.health + 10 <= 100) {
+            if (player.health + 10 <= player.maxHealth) {
                 player.health += 10;
                 Messenger().post({
                     parentLocations: ['.theGame'],
@@ -32,8 +32,8 @@ HealthBlobs.prototype.tick = function(delta) {
                     type: "success", // info error or success. Use error for negative, success positive, and info neutral
                     hideAfter: "3"
                 })
-            } else if (player.health != 100) {
-                player.health = 100;
+            } else if (player.health != player.maxHealth) {
+                player.health = player.maxHealth;
                 Messenger().post({
                     parentLocations: ['.theGame'],
                     message: "You got 10 health!",

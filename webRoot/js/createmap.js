@@ -346,19 +346,29 @@ function getHudbarDisplay() {
 
     var textX = hudbarIconSize + hudbarIconPadding + hudbarWidth + hudbarTextPadding;
 
+    var healthBack =  new createjs.Shape();
+    var tempBack =  new createjs.Shape();
+    var expBack =  new createjs.Shape();
+
     healthTxt = new createjs.Text("0", hudbarTextStyle, healthbarColorFill);
     healthTxt.x = textX;
     healthTxt.y = 0;
+    healthBack.graphics.beginFill("black").drawRect(textX - 3, 0, 100, 22);
+    hudbar.addChild(healthBack);
     hudbar.addChild(healthTxt);
 
     temperatureTxt = new createjs.Text("0˚", hudbarTextStyle, tempbarColorFill);
     temperatureTxt.x = textX;
     temperatureTxt.y = hudbarHeight + hudbarVerticalPadding;
+    tempBack.graphics.beginFill("black").drawRect(textX - 3, temperatureTxt.y, 100, 22);
+    hudbar.addChild(tempBack);
     hudbar.addChild(temperatureTxt);
 
     expTxt = new createjs.Text(expPct * 100 + " exp", hudbarTextStyle, expbarColorFill);
     expTxt.x = textX;
     expTxt.y = 2 * (hudbarHeight + hudbarVerticalPadding);
+    expBack.graphics.beginFill("black").drawRect(textX - 3, expTxt.y, 100, 22);
+    hudbar.addChild(expBack);
     hudbar.addChild(expTxt);
 
     updateBarText();
@@ -368,7 +378,7 @@ function getHudbarDisplay() {
 }
 
 function updateBarText() {
-    healthTxt.text = player.health;
+    healthTxt.text = player.health.toString() + " / " + player.maxHealth.toString();
     if (player.totalMoved % 500 == 0) {
         console.log("Updated Weather");
         jQuery(document).ready(function($) {
