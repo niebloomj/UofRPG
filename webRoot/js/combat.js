@@ -102,7 +102,7 @@ function mainOption() {
 
 function secondaryOption(type) {
     var damage;
-    if (Math.floor((Math.random() * 10) + 1) == 1) {
+    if (randomInt(0,100) < ((myRando.level - player.level) * 5 + 10)) {
         damage = 0; // 1/10 chance you miss
     } else {
         damage = Math.floor((Math.random() * player.strength + 5) + 1);
@@ -120,7 +120,7 @@ function secondaryOption(type) {
                         randoHealth -= damage;
                         if (randoHealth <= 0) {
                             goBack();
-                            var exp = Math.floor((Math.random() * 25) + 15);
+                            var exp = Math.floor(randomInt(30, 45) -  (7 * (player.level - myRando.level)));
                             player.addExperience(exp);
                             return msg.update({
                                 message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
@@ -150,7 +150,7 @@ function secondaryOption(type) {
                         randoHealth -= damage;
                         if (randoHealth <= 0) {
                             goBack();
-                            var exp = Math.floor((Math.random() * 25) + 15);
+                            var exp = Math.floor(randomInt(30, 50) - (10 * (player.level - myRando.level)));
                             player.addExperience(exp);
                             return msg.update({
                                 message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
