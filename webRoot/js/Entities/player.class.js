@@ -383,6 +383,23 @@ Player.prototype.addToInventory = function(item) {
     this.setCharisma(this.charisma + item.attributes.charisma);
 };
 
+Player.prototype.clearInventory = function() {
+    for (var i = 0; i < this.inventory.length; i++) {
+        var item = this.inventory[i];
+
+        this.inventory.splice(item);
+
+        this.setMaxHealth(this.maxHealth - item.attributes.maxHealth);
+        this.setHealth(this.health - item.attributes.health);
+        this.setStrength(this.strength - item.attributes.strength);
+        this.setDefense(this.defense - item.attributes.defense);
+        this.setIntelligence(this.intelligence - item.attributes.intelligence);
+        this.setCharisma(this.charisma - item.attributes.charisma);
+
+        inventory.shift();
+    }
+};
+
 Player.prototype.isInInventory = function(itemId) {
     for (var i = 0; i < this.inventory.length; i++) {
         if (this.inventory[i] == itemId) {

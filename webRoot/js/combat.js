@@ -104,7 +104,8 @@ function secondaryOption(type) {
     if (Math.floor((Math.random() * 10) + 1) == 1) {
         damage = 0; // 1/10 chance you miss
     } else {
-        damage = Math.floor((Math.random() * 20) + 1);
+        damage = Math.floor((Math.random() * player.strength) + 1);
+        //damage = Math.floor((Math.random() * 20) + 1);
     }
     if (type == "attack") {
         msg.update({
