@@ -258,7 +258,7 @@ var healthTxt;
 
 // TEMPERATURE SETTINGS
 var tempbarColorFill = "#5dd0e4"; // color of available temp
-var tempbarColorEmpty = "#fbfbfb"; // color of missing temp
+var tempbarColorEmpty = "#ff0000"; // color of missing temp
 var tempbarColorBorder = "#222"; // color of hudbar border
 var tempbarIconPath = "img/sprites/snowflake_24.png"; // square of size hudbarIconSize
 
@@ -280,7 +280,7 @@ var expTxt;
 function getHudbarDisplay() {
 
     var healthPct = player.health / player.maxHealth; // fraction representing player health
-    var tempPct = 1;
+    var tempPct = player.temp / 50;
     var expPct = player.experience / 100;
 
     // don't rebuild the image if nothing's changed
