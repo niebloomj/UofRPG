@@ -320,24 +320,28 @@ Player.prototype.addExperience = function(newExp) {
     if ((this.experience + newExp) >= 100) {
         this.experience = 100;
         this.level += 1;
-        msg.update({
+        var msg = Messenger().post({
             message: 'Congratulations you leveled up!  Pick a skill to upgrade.',
             type: 'success',
             hideAfter: false,
             actions: {
-                strength: {
+                strengthLev: {
                     label: 'Strength',
                     hideAfter: false,
                     action: function() {
                         this.strength += 1;
+						this.experience = 0;
+						stage.update();
                         return msg.cancel();
                     }
                 },
-                defense: {
+                defenseLev: {
                     label: 'Defense',
                     hideAfter: false,
                     action: function() {
                         this.defense += 1;
+						this.experience = 0;
+						stage.update();
                         return msg.cancel();
                     }
                 }
