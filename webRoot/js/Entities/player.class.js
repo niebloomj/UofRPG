@@ -341,6 +341,7 @@ Player.prototype.addExperience = function(newExp) {
                         player.strength += 2;
                         player.experience = 0;
                         stage.update();
+						stopParticles();
                         return msg.cancel();
                     }
                 },
@@ -351,6 +352,7 @@ Player.prototype.addExperience = function(newExp) {
                         player.defense += 1;
                         player.experience = 0;
                         stage.update();
+						stopParticles();
                         return msg.cancel();
                     }
                 }

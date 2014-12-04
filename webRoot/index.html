@@ -121,6 +121,15 @@
     color: #999 !important;
     background-color: transparent !important;
   }
+	
+	#canvas-container {
+   width: 100%;
+   text-align:center;
+	}
+
+	canvas {
+		 display: inline;
+	}
 
 
   /*
@@ -325,10 +334,10 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="theGame text-center hidden">
-					<canvas id="demoCanvas" width="992" height="544" style="z-index: 0;">
+					<canvas id="demoCanvas" width="992" height="544" style="position: absolute; left: 200px; top: 0; z-index: 0;">
             This game requires HTML5 canvas support, please switch to a modern browser.
           </canvas>
-					<canvas id="overlayCanvas" width="992" height="544" style="z-index: 1;">
+					<canvas id="overlayCanvas" width="992" height="544" style="position: absolute; left: 200px; top: 0; z-index: 1;">
             This game requires HTML5 canvas support, please switch to a modern browser.
           </canvas>
         </div>

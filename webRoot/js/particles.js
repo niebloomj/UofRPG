@@ -17,10 +17,13 @@ function startParticles(){
 	setInterval(draw, 33);
 }
 
+function stopParticles(){
+	clearInterval(33);
+}
+
 //Lets create a function which will help us to create multiple particles
 function create_particle()
 {
-console.log("WHAAAAAT");
 	//Random position on the canvas
 	this.x = Math.random()*W;
 	this.y = Math.random()*H;
@@ -51,7 +54,7 @@ function draw()
 	//But the BG paint shouldn't blend with the previous frame
 	ctx.globalCompositeOperation = "source-over";
 	//Lets reduce the opacity of the BG paint to give the final touch
-	ctx.fillStyle = "rgba(0, 0, 0)";//, 0.3)";
+	ctx.fillStyle = "rgba(0, 0, 0, 0.75)";//, 0.3)";
 	ctx.fillRect(0, 0, W, H);
 	
 	//Lets blend the particle with the BG
