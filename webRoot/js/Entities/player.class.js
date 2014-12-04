@@ -316,11 +316,11 @@ Player.prototype.setHealth = function(newHealth) {
     }
 };
 
-Player.prototype.setExperience = function(newExp) {
-    if ((experience + newExp) >= 100) {
-        experience = 100;
+Player.prototype.addExperience = function(newExp) {
+    if ((this.experience + newExp) >= 100) {
+        this.experience = 100;
         this.level += 1;
-        msg = Messenger().post({
+        msg.update({
             message: 'Congratulations you leveled up!  Pick a skill to upgrade.',
             type: 'success',
             hideAfter: false,
@@ -345,7 +345,7 @@ Player.prototype.setExperience = function(newExp) {
         });
 
     } else {
-        experience += newExp;
+        this.experience += newExp;
     }
 }
 

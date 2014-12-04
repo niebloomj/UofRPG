@@ -104,7 +104,7 @@ function secondaryOption(type) {
     if (Math.floor((Math.random() * 10) + 1) == 1) {
         damage = 0; // 1/10 chance you miss
     } else {
-        damage = Math.floor((Math.random() * player.strength) + 1);
+        damage = Math.floor((Math.random() * player.strength + 5) + 1);
         //damage = Math.floor((Math.random() * 20) + 1);
     }
     if (type == "attack") {
@@ -120,7 +120,7 @@ function secondaryOption(type) {
                         if (randoHealth <= 0) {
                             goBack();
                             var exp = Math.floor((Math.random() * 25) + 15);
-                            player.experience += exp;
+                            player.addExperience(exp);
                             return msg.update({
                                 message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
                                 type: 'success',
@@ -130,15 +130,16 @@ function secondaryOption(type) {
                         } else {
                             healthText.text = ("Rando Health: " + randoHealth);
                             stage.update();
-                        }
-                        if (damage == 0) {
-                            attack2("You missed! +0 damage");
-                        } else if (damage <= 5) {
-                            return attack2("Your fists are mighty. +" + damage + " damage");
-                        } else if (damage <= 13) {
-                            return attack2("You are a champion boxer. +" + damage + " damage");
-                        } else {
-                            return attack2("You are basically Mike Tyson. +" + damage + " damage");
+							
+							if (damage == 0) {
+								attack2("You missed! +0 damage");
+							} else if (damage <= 5) {
+								return attack2("Your fists are mighty. +" + damage + " damage");
+							} else if (damage <= 13) {
+								return attack2("You are a champion boxer. +" + damage + " damage");
+							} else {
+								return attack2("You are basically Mike Tyson. +" + damage + " damage");
+							}
                         }
                     }
                 },
@@ -149,7 +150,7 @@ function secondaryOption(type) {
                         if (randoHealth <= 0) {
                             goBack();
                             var exp = Math.floor((Math.random() * 25) + 15);
-                            player.experience += exp;
+                            player.addExperience(exp);
                             return msg.update({
                                 message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
                                 type: 'success',
@@ -159,15 +160,16 @@ function secondaryOption(type) {
                         } else {
                             healthText.text = ("Rando Health: " + randoHealth);
                             stage.update();
-                        }
-                        if (damage == 0) {
-                            attack2("You missed! +0 damage");
-                        } else if (damage <= 5) {
-                            return attack2("Your foot made a successful impact. +" + damage + " damage");
-                        } else if (damage <= 13) {
-                            return attack2("You are a karate master! +" + damage + " damage");
-                        } else {
-                            return attack2("You have the kick of a kangaroo! +" + damage + " damage");
+							
+							if (damage == 0) {
+								attack2("You missed! +0 damage");
+							} else if (damage <= 5) {
+								return attack2("Your foot made a successful impact. +" + damage + " damage");
+							} else if (damage <= 13) {
+								return attack2("You are a karate master! +" + damage + " damage");
+							} else {
+								return attack2("You have the kick of a kangaroo! +" + damage + " damage");
+							}
                         }
                     }
                 },

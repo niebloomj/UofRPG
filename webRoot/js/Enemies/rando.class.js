@@ -60,7 +60,7 @@ Rando.prototype.attack = function() {
     if (this.rng > 30) {
         this.roll();
         if (this.rng > 25) {
-            return ("attack " + this.strength);
+            return ("attack " + 10);
         } else {
             //Rando misses :(
             return "attack 0";
@@ -68,7 +68,7 @@ Rando.prototype.attack = function() {
     } else {
         this.roll();
         if (this.rng > 50) {
-            return ("attack " + (this.strength * 1.5));
+            return ("attack " + (10 * 1.5));
         } else {
             //Rando misses :(
             return "attack 0";
