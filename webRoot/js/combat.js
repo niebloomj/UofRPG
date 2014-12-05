@@ -1,5 +1,4 @@
 var inCombat = false;
-var enmyinit;
 var combatTicks = 0;
 var combatShape = new createjs.Shape();
 var combatEnemy = new createjs.Shape();
@@ -15,7 +14,7 @@ var myRando;
 
 var randoHealth;
 
-function initCombat(enemyLevel, enemyType) {
+function initCombat(enemyLevel) {
     $('#storeModal').modal('hide');
 
     var combatSuccessful = false;
@@ -28,21 +27,7 @@ function initCombat(enemyLevel, enemyType) {
 
     gameContainer.removeAllChildren();
 
-    if (enemyType == 1) {        //Enemy is Aaron
-        enmyinit = new Aaron(enemyLevel);
-    } else if (enemyType == 2) { //Enemy is Alex
-        enmyinit = new Alex(enemyLevel);
-    } else if (enemyType == 3) { //Enemy is Brad
-        enmyinit = new Brad(enemyLevel);
-    } else if (enemyType == 4) { //Enemy is Hayden 
-        enmyinit = new Hayden(enemyLevel);
-    } else if (enemyType == 5) { //Enemy is Jacob
-        enmyinit = new Jacob(enemyLevel);
-    } else if (enemyType == 6) { //Enemy is Naropa
-        enmyinit = new Naropa(enemyLevel);
-    }
-
-    myRando = enmyinit;
+    myRando = new Rando(enemyLevel);
     randoHealth = myRando.maxHealth;
 
     setupScene();
@@ -58,7 +43,7 @@ function setupScene() {
     combatEnemy.graphics.beginBitmapFill(Enemy1, "no-repeat").drawRect(0, 0, 80, 240);
     combatEnemy.x = 480;
     combatEnemy.y = 180;
-    healthText = new createjs.Text(myRando.name + "'s Health: " + randoHealth.toString(), "bold 36pt Arial", "black");
+    healthText = new createjs.Text("Rando Health: " + randoHealth.toString(), "bold 36pt Arial", "black");
     healthText.textAlign = "center";
     healthText.textBaseline = "middle";
     healthText.x = (screenWidth * 64 + 32) / 2;
@@ -74,7 +59,7 @@ function setupScene() {
 
 function mainOption() {
     msg = Messenger().post({
-        message: myRando.name + ' appeared! Choose an option.',
+        message: 'Some rando appeared! Choose an option.',
         type: 'info',
         hideAfter: false,
         actions: {
@@ -118,9 +103,10 @@ function mainOption() {
 function secondaryOption(type) {
     var damage;
     if (randomInt(0,100) < ((myRando.level - player.level) * 5 + 10)) {
-        damage = 0; // Chance to miss is based on your level relative to the enemy's (10% baseline + 5% per level the rando is higher than you (applies for negative level difference))
+        damage = 0; // 1/10 chance you miss
     } else {
         damage = Math.floor((Math.random() * player.strength + 5) + 1);
+        //damage = Math.floor((Math.random() * 20) + 1);
     }
     if (type == "attack") {
         msg.update({
@@ -137,7 +123,7 @@ function secondaryOption(type) {
                             var exp = Math.floor(randomInt(30, 45) -  (7 * (player.level - myRando.level)));
                             player.addExperience(exp);
                             return msg.update({
-                                message: 'You have defeated the all-mighty ' + myRando.name + ', bro!  Way to go!! +' + exp + ' experience.',
+                                message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
                                 type: 'success',
                                 hideAfter: 3,
                                 actions: false
@@ -164,10 +150,10 @@ function secondaryOption(type) {
                         randoHealth -= damage;
                         if (randoHealth <= 0) {
                             goBack();
-                            var exp = Math.floor(randomInt(30, 45) -  (7 * (player.level - myRando.level)));
+                            var exp = Math.floor(randomInt(30, 50) - (10 * (player.level - myRando.level)));
                             player.addExperience(exp);
                             return msg.update({
-                                message: 'You have defeated the all-mighty ' + myRando.name + ', bro!  Way to go!! +' + exp + ' experience.',
+                                message: 'You have defeated the all-mighty rando, bro!  Way to go!! +' + exp + ' experience.',
                                 type: 'success',
                                 hideAfter: 3,
                                 actions: false
@@ -220,7 +206,7 @@ function attack2(statement) {
 
 function enemyTurn() {
     msg.update({
-        message: myRando.name + " is contemplating his next move...",
+        message: "The rando is contemplating its next move...",
         type: 'info',
         hideAfter: false,
         actions: {
@@ -241,7 +227,7 @@ function enemyTurn2(decision) {
 
         if (damage == 0) {
             msg.update({
-                message: myRando.name + " just BARELY missed you!",
+                message: "The rando just BARELY missed you!",
                 type: 'success',
                 hideAfter: false,
                 actions: {
@@ -255,7 +241,7 @@ function enemyTurn2(decision) {
             });
         } else {
             msg.update({
-                message: myRando.name + " assaulted you! +" + damage + " damage.",
+                message: "The rando assaulted you! +" + damage + " damage.",
                 type: 'success',
                 hideAfter: false,
                 actions: {
@@ -303,7 +289,7 @@ function enemyTurn2(decision) {
         var healAmount = decision.substring(decision.indexOf(" "));
 
         msg.update({
-            message: myRando.name + " healed himself! +" + healAmount + " health.",
+            message: "The rando healed itself! +" + healAmount + " health.",
             type: 'success',
             hideAfter: false,
             actions: {
@@ -323,7 +309,7 @@ function enemyTurn2(decision) {
 
         if (damage == 0) {
             msg.update({
-                message: myRando.name + " just BARELY missed you!",
+                message: "The rando just BARELY missed you!",
                 type: 'success',
                 hideAfter: false,
                 actions: {
@@ -337,7 +323,7 @@ function enemyTurn2(decision) {
             });
         } else {
             msg.update({
-                message: myRando.name + " cast a magic spell on you! +" + damage + " damage.",
+                message: "The rando cast a magic spell on you! +" + damage + " damage.",
                 type: 'success',
                 hideAfter: false,
                 actions: {
