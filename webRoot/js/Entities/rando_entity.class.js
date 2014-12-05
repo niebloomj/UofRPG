@@ -5,7 +5,6 @@ function Randos(x, y) {
     if (this.level < 1) {
         this.level = 1;
     }
-
     this.lastDeltaX = 0;
     this.lastDeltaY = 0;
     this.lastAngle = Math.random() * (2 * Math.PI);
@@ -62,8 +61,7 @@ Randos.prototype.tick = function(delta) {
         var indexOfRando = entities.indexOf(this);
         if (indexOfRando > -1) {
             entities.splice(indexOfRando, 1);
-            initCombat(this.level);
-
+            initCombat(this.level, this.skinIndex);
         }
         var audio = new Audio('..\/audio\/giveHurt.mp3');
         audio.volume = audio.volume * .2;

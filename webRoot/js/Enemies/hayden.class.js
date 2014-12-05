@@ -1,14 +1,14 @@
-//var Rando = function(){};
-function Rando(level) {
+//var Hayden = function(){};
+function Hayden(level) {
     this.level = level;
     this.maxHealth = 50 + level * 10;
     this.strength = 10 + level * 3;
     this.defense = 5 + level;
 };
 
-Rando.prototype = new Enemy("Rando", this.level, this.maxHealth, this.strength, 10, this.defense);
+Hayden.prototype = new Enemy("Hayden", this.level, this.maxHealth, this.strength, 10, this.defense);
 
-Rando.prototype.decide = function() {
+Hayden.prototype.decide = function() {
     if (this.health / this.maxHealth > .75) {
         this.roll();
         //if (this.rng > 80) {
@@ -46,7 +46,7 @@ Rando.prototype.decide = function() {
     }
 };
 
-Rando.prototype.healSelf = function() {
+Hayden.prototype.healSelf = function() {
     if (Math.floor((Math.random() * 3) + 1) == 2) { // 1/3 chance of a "super heal"
         this.heal(10);
         return "heal 10";
@@ -56,14 +56,14 @@ Rando.prototype.healSelf = function() {
     }
 };
 
-Rando.prototype.attack = function() {
+Hayden.prototype.attack = function() {
     this.roll();
     if (this.rng > 30) {
         this.roll();
         if (this.rng > 25) {
             return ("attack " + 10);
         } else {
-            //Rando misses :(
+            //Hayden misses :(
             return "attack 0";
         }
     } else {
@@ -71,19 +71,19 @@ Rando.prototype.attack = function() {
         if (this.rng > 50) {
             return ("attack " + (10 * 1.5));
         } else {
-            //Rando misses :(
+            //Hayden misses :(
             return "attack 0";
         }
     }
 };
 
 // what?
-/*Rando.prototype.defend = function() {
+/*Hayden.prototype.defend = function() {
 	this.defense += this.defense / 2;
 	return "defend 0"; 
 };*/
 
-Rando.prototype.castspell = function() {
+Hayden.prototype.castspell = function() {
     this.roll();
     if (this.rng > 75) {
         return "spell 25";
@@ -94,6 +94,6 @@ Rando.prototype.castspell = function() {
 };
 
 var rng;
-Rando.prototype.roll = function() {
+Hayden.prototype.roll = function() {
     this.rng = Math.floor((Math.random() * 100) + 0);
 }
