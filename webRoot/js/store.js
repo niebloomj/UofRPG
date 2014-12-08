@@ -89,7 +89,7 @@ var storeItems = [{
     isBuyable: true,
     isPersistent: false,
     price: 100,
-    description: "Welcome to Hillside, bitch!",
+    description: "Welcome to Hillside",
     fileLarge: "img/sprites/fuckyou_64.png",
     fileSmall: "img/sprites/fuckyou_32.png",
     attributes: {
