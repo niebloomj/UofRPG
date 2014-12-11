@@ -1,34 +1,33 @@
-//var Alex = function(){};
+/*
+    STATS:
+    Health:     60% of standard
+    Strength:   160% of standard
+    Defense:    40% of standard
+*/
+
 function Alex(level) {
     this.level = level;
-    this.maxHealth = 50 + level * 10;
-    this.strength = 10 + level * 3;
-    this.defense = 5 + level;
+    this.maxHealth = Math.floor(stdBaseHealth * .6) + Math.floor(stdHealthGrowth * .6) * level;
+    this.strength = Math.floor(stdBaseStrength * 1.6) + Math.floor(stdStrengthGrowth * 1.6) * level;
+    this.defense = Math.floor(stdBaseDefense * .4) + Math.floor(stdDefenseGrowth * .4) * level;
 };
 
 Alex.prototype = new Enemy("Alex", this.level, this.maxHealth, this.strength, 10, this.defense);
 
 Alex.prototype.decide = function() {
     if (this.health / this.maxHealth > .75) {
-        this.roll();
-        //if (this.rng > 80) {
         return this.attack();
-        //} else {
-        //return this.defend();
-        //}
     } else if (this.health / this.maxHealth > .50) {
         this.roll();
-        //if (this.rng > 70) {
-        return this.attack();
-        //} else {
-        //return this.defend();
-        //}
+        if (this.rng > 80) {
+            return this.attack();
+        } else {
+            return this.healSelf();
+        }
     } else if (this.health / this.maxHealth > .25) {
         this.roll();
         if (this.rng > 60) {
             return this.attack();
-            //} else if (this.rng > 30) {
-            //return this.defend();
         } else {
             return this.healSelf();
         }
@@ -38,21 +37,9 @@ Alex.prototype.decide = function() {
             return this.castspell(); //Desperation attack!!
         } else if (this.rng > 30) {
             return this.attack();
-            //} else if (this.rng > 40) {
-            //return this.defend();
         } else {
             return this.healSelf();
         }
-    }
-};
-
-Alex.prototype.healSelf = function() {
-    if (Math.floor((Math.random() * 3) + 1) == 2) { // 1/3 chance of a "super heal"
-        this.heal(10);
-        return "heal 10";
-    } else {
-        this.heal(5);
-        return "heal 5";
     }
 };
 
@@ -77,12 +64,6 @@ Alex.prototype.attack = function() {
     }
 };
 
-// what?
-/*Alex.prototype.defend = function() {
-	this.defense += this.defense / 2;
-	return "defend 0"; 
-};*/
-
 Alex.prototype.castspell = function() {
     this.roll();
     if (this.rng > 75) {
@@ -92,8 +73,3 @@ Alex.prototype.castspell = function() {
         return "spell 0";
     }
 };
-
-var rng;
-Alex.prototype.roll = function() {
-    this.rng = Math.floor((Math.random() * 100) + 0);
-}

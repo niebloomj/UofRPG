@@ -143,7 +143,7 @@ function secondaryOption(type) {
                                 actions: false
                             });
                         } else {
-                            healthText.text = ("Rando Health: " + randoHealth);
+                            healthText.text = (myRando.name + "'s Health: " + randoHealth);
                             stage.update();
 							
 							if (damage == 0) {
@@ -173,7 +173,7 @@ function secondaryOption(type) {
                                 actions: false
                             });
                         } else {
-                            healthText.text = ("Rando Health: " + randoHealth);
+                            healthText.text = (myRando.name + "'s Health: " + randoHealth);
                             stage.update();
 							
 							if (damage == 0) {

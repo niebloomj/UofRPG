@@ -1,34 +1,33 @@
-//var Naropa = function(){};
+/*
+    STATS:
+    Health:     120% of standard
+    Strength:   80% of standard
+    Defense:    80% of standard
+*/
+
 function Naropa(level) {
     this.level = level;
-    this.maxHealth = 50 + level * 10;
-    this.strength = 10 + level * 3;
-    this.defense = 5 + level;
+    this.maxHealth = Math.floor(stdBaseHealth * 1.2) + Math.floor(stdHealthGrowth * 1.2) * level;
+    this.strength = Math.floor(stdBaseStrength * .8) + Math.floor(stdStrengthGrowth * .8) * level;
+    this.defense = Math.floor(stdBaseDefense * .8) + Math.floor(stdDefenseGrowth * .8) * level;
 };
 
 Naropa.prototype = new Enemy("Naropa", this.level, this.maxHealth, this.strength, 10, this.defense);
 
 Naropa.prototype.decide = function() {
     if (this.health / this.maxHealth > .75) {
-        this.roll();
-        //if (this.rng > 80) {
         return this.attack();
-        //} else {
-        //return this.defend();
-        //}
     } else if (this.health / this.maxHealth > .50) {
         this.roll();
-        //if (this.rng > 70) {
-        return this.attack();
-        //} else {
-        //return this.defend();
-        //}
+        if (this.rng > 80) {
+            return this.attack();
+        } else {
+            return this.healSelf();
+        }
     } else if (this.health / this.maxHealth > .25) {
         this.roll();
         if (this.rng > 60) {
             return this.attack();
-            //} else if (this.rng > 30) {
-            //return this.defend();
         } else {
             return this.healSelf();
         }
@@ -38,21 +37,9 @@ Naropa.prototype.decide = function() {
             return this.castspell(); //Desperation attack!!
         } else if (this.rng > 30) {
             return this.attack();
-            //} else if (this.rng > 40) {
-            //return this.defend();
         } else {
             return this.healSelf();
         }
-    }
-};
-
-Naropa.prototype.healSelf = function() {
-    if (Math.floor((Math.random() * 3) + 1) == 2) { // 1/3 chance of a "super heal"
-        this.heal(10);
-        return "heal 10";
-    } else {
-        this.heal(5);
-        return "heal 5";
     }
 };
 
@@ -77,12 +64,6 @@ Naropa.prototype.attack = function() {
     }
 };
 
-// what?
-/*Naropa.prototype.defend = function() {
-	this.defense += this.defense / 2;
-	return "defend 0"; 
-};*/
-
 Naropa.prototype.castspell = function() {
     this.roll();
     if (this.rng > 75) {
@@ -92,8 +73,3 @@ Naropa.prototype.castspell = function() {
         return "spell 0";
     }
 };
-
-var rng;
-Naropa.prototype.roll = function() {
-    this.rng = Math.floor((Math.random() * 100) + 0);
-}
