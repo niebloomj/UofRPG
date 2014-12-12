@@ -139,7 +139,7 @@ function secondaryOption(type) {
                         if (randoHealth <= 0) {
                             goBack();
                             var exp = Math.floor(randomInt(30, 45) -  (7 * (player.level - myRando.level)));
-                            var uroGain = Math.floor(randomInt(myRando.level * 10) + randomInt(5,25));
+                            var uroGain = Math.floor((randomInt(myRando.level*9, myRando.level*11) + randomInt(5,25)));
                             player.addExperience(exp);
                             player.setMoney(player.money + uroGain);
                             return msg.update({
