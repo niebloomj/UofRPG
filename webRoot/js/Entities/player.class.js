@@ -227,7 +227,7 @@ Player.prototype.handleCollision = function() {
 				if (coordToTile(player.y) == 116){
 					this.msgVisible = true;
 					var msg = Messenger().post({
-						message: 'Congratulations, you leveled up! Go to Georgian Athletic Center to upgrade strength, Rush Rhees to upgrade intelligence, or Susan B Anthony to upgrade defense.',
+						message: 'Congratulations, you leveled up strength! +2 strength',
 						type: 'success',
 						hideAfter: false,
 						actions: {
@@ -244,6 +244,31 @@ Player.prototype.handleCollision = function() {
 							}
 						}
 					});
+				}
+			}
+			if (player.experience >= 100){
+				if (coordToTile(player.x) == 79){
+					if (coordToTile(player.y) == 78){
+						this.msgVisible = true;
+						var msg = Messenger().post({
+							message: 'Congratulations, you leveled up intelligence! +2 intelligence',
+							type: 'success',
+							hideAfter: false,
+							actions: {
+								Continue: {
+									label: 'Continue.',
+									hideAfter: false,
+									action: function() {
+										player.intelligence += 2;
+										player.experience = 0;
+										stage.update();
+										this.msgVisible = false;
+										return msg.cancel();
+									}
+								}
+							}
+						});
+					}
 				}
 			}
 		}
