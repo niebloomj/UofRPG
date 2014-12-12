@@ -28,28 +28,13 @@ Enemy.prototype.heal = function(amt) {
 };
 
 Enemy.prototype.healSelf = function() {
-    if (Math.floor((Math.random() * 3) + 1) == 2) { // 1/3 chance of a "super heal"
+    this.roll();
+    if (this.rng > 33) { // 1/3 chance of a "super heal"
         this.heal(Math.floor(this.maxHealth * .2));
         return "heal " + (Math.floor(this.maxHealth * .2));
     } else {
         this.heal(Math.floor(this.maxHealth * .1));
         return "heal " + (Math.floor(this.maxHealth * .1));
-    }
-};
-
-Enemy.prototype.damage = function(amt) {
-    if (this.health - amt < 0) {
-        this.health = 0;
-    } else {
-        this.health -= amt;
-    }
-};
-
-Enemy.prototype.takeDamage = function(amt) {
-    if (amt - this.defense > 0) {
-        this.damage(amt - this.defense);
-    } else {
-        //Something about the enemy resisting the attack
     }
 };
 

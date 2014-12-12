@@ -135,9 +135,11 @@ function secondaryOption(type) {
                         if (randoHealth <= 0) {
                             goBack();
                             var exp = Math.floor(randomInt(30, 45) -  (7 * (player.level - myRando.level)));
+                            var uroGain = Math.floor(randomInt(myRando.level * 10) + randomInt(5,25));
                             player.addExperience(exp);
+                            player.setMoney(player.money + uroGain);
                             return msg.update({
-                                message: 'You have defeated the all-mighty ' + myRando.name + ', bro!  Way to go!! +' + exp + ' experience.',
+                                message: 'You have defeated the all-mighty ' + myRando.name + ', bro!  Way to go!! +' + exp + ' experience. +' + uroGain + ' uRos.',
                                 type: 'success',
                                 hideAfter: 3,
                                 actions: false
@@ -165,9 +167,11 @@ function secondaryOption(type) {
                         if (randoHealth <= 0) {
                             goBack();
                             var exp = Math.floor(randomInt(30, 45) -  (7 * (player.level - myRando.level)));
+                            var uroGain = Math.floor(randomInt(myRando.level * 10) + randomInt(5,25));
                             player.addExperience(exp);
+                            player.setMoney(player.money + uroGain);
                             return msg.update({
-                                message: 'You have defeated the all-mighty ' + myRando.name + ', bro!  Way to go!! +' + exp + ' experience.',
+                                message: 'You have defeated the all-mighty ' + myRando.name + ', bro!  Way to go!! +' + exp + ' experience. +' + uroGain + ' uRos.',
                                 type: 'success',
                                 hideAfter: 3,
                                 actions: false

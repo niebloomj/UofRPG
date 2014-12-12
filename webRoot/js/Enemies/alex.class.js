@@ -37,8 +37,6 @@ Alex.prototype.decide = function() {
             return this.castspell(); //Desperation attack!!
         } else if (this.rng > 30) {
             return this.attack();
-        } else {
-            return this.healSelf();
         }
     }
 };
