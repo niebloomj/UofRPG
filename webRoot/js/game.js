@@ -199,7 +199,6 @@ function initStatsPopover() {
             statsHtml += '<p class="nobr"><span class="label label-primary">STR</span> ' + player.strength + '</p>';
             statsHtml += '<p class="nobr"><span class="label label-primary">DEF</span> ' + player.defense + '</p>';
             statsHtml += '<p class="nobr"><span class="label label-primary">INT</span> ' + player.intelligence + '</p>';
-            statsHtml += '<p class="nobr"><span class="label label-primary">CHR</span> ' + player.charisma + '</p>';
             return statsHtml;
         },
         html: true,
