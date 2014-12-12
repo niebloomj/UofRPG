@@ -371,7 +371,7 @@ function getHudbarDisplay() {
     hudbar.addChild(expBack);
     hudbar.addChild(expTxt);
 
-    updateBarText();
+    // updateBarText();
 
     lastHudbar = hudbar;
     return hudbar;
