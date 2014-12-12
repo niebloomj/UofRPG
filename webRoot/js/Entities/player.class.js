@@ -99,20 +99,7 @@ Player.prototype.stepCheck = function() {
                 }
             }
         }
-        //Adding some point to the cold by having a need to fight it.
-        /*if (player.totalMoved % 1000 == 0) {
-            if (player.isInInventory("jacket")) {
-                var index = player.inventory.indexOf("jacket");
-                if (index > -1) {
-                    player.inventory.splice(index, 1);
-                }
-                Messenger().post({
-                    message: "Someone stole your jacket :'(",
-                    type: "error",
-                    hideAfter: "3"
-                })
-            }
-        }*/
+        
         saveGame();
     }
 }
