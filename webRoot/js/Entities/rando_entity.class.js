@@ -59,7 +59,7 @@ Randos.prototype.tick = function(delta) {
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
     if (isCollision) {
-		if (player.exp < 100){
+		if (player.experience < 100){
 			var indexOfRando = entities.indexOf(this);
 			if (indexOfRando > -1) {
 				entities.splice(indexOfRando, 1);
