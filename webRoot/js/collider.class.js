@@ -4,18 +4,15 @@ var x,
     localHeight;
 
 function Collider(x, y, width, height) {
-        this.x = x;
-        this.y = y;
-        this.localWidth = width;
-        this.localHeight = height;
-    }
+    this.x = x;
+    this.y = y;
+    this.localWidth = width;
+    this.localHeight = height;
+}
     /*
      * Note: assumes entity is 32 x 32 and provides return from collision with PLAYER. (can modify if needed for entity x entity collisions
      */
 Collider.prototype.contains = function(coll) {
-    //console.log("PlayerX: " + player.x + " This.x: " + this.x + " ThisGapX: " + thisGapX + " playerGapX: " + playerGapX);
-    //console.log("PlayerY: " + player.y + " This.y: " + this.y + " ThisGapY: " + thisGapY + " playerGapY: " + playerGapY);
-
     var xDist = player.x - this.x;
     var yDist = player.y - this.y;
     var distance = Math.sqrt(xDist * xDist + yDist * yDist);
@@ -25,8 +22,6 @@ Collider.prototype.contains = function(coll) {
     var thisGapX = (this.x + 32);
     var thisGapY = (this.y + (48 + 32 - 2));
 
-    //player.setBounds(player.x,player.y,16,48);
-    //this.setBounds(this.x, this.y, 32, 32);
     var A = player;
     var B = this;
 
@@ -42,9 +37,7 @@ function valueInRange(value, min, max) {
     return ((value >= min) && (value <= max));
 }
 
-/*
- * Note: 1,1 Tile is 32,32 coord
- */
+// Note: 1,1 Tile is 32,32 coord
 function coordToTile(val) {
     return Math.floor(val / 32);
 }
