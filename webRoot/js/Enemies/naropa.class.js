@@ -48,7 +48,7 @@ Naropa.prototype.attack = function() {
     if (this.rng > 30) {
         this.roll();
         if (this.rng > 25) {
-            return ("attack " + 10);
+            return ("attack " + this.strength);
         } else {
             //Naropa misses :(
             return "attack 0";
@@ -56,7 +56,7 @@ Naropa.prototype.attack = function() {
     } else {
         this.roll();
         if (this.rng > 50) {
-            return ("attack " + (10 * 1.5));
+            return ("attack " + (this.strength * 1.5));
         } else {
             //Naropa misses :(
             return "attack 0";
@@ -67,7 +67,7 @@ Naropa.prototype.attack = function() {
 Naropa.prototype.castspell = function() {
     this.roll();
     if (this.rng > 75) {
-        return "spell 25";
+        return "spell " + (this.strength);
     } else {
         //rando's spell fails
         return "spell 0";

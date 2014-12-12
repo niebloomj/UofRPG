@@ -1,15 +1,15 @@
 /*
     STATS:
-    Health:     100% of standard
-    Strength:   100% of standard
-    Defense:    100% of standard
+    Health:     80% of standard
+    Strength:   160% of standard
+    Defense:    20% of standard
 */
 
 function Jacob(level) {
     this.level = level;
-    this.maxHealth = Math.floor(stdBaseHealth * 1) + Math.floor(stdHealthGrowth * 1) * level;
-    this.strength = Math.floor(stdBaseStrength * 1) + Math.floor(stdStrengthGrowth * 1) * level;
-    this.defense = Math.floor(stdBaseDefense * 1) + Math.floor(stdDefenseGrowth * 1) * level;
+    this.maxHealth = Math.floor(stdBaseHealth * .8) + Math.floor(stdHealthGrowth * .8) * level;
+    this.strength = Math.floor(stdBaseStrength * 1.6) + Math.floor(stdStrengthGrowth * 1.6) * level;
+    this.defense = Math.floor(stdBaseDefense * .2) + Math.floor(stdDefenseGrowth * .2) * level;
 };
 
 Jacob.prototype = new Enemy("Jacob", this.level, this.maxHealth, this.strength, 10, this.defense);
@@ -48,7 +48,7 @@ Jacob.prototype.attack = function() {
     if (this.rng > 30) {
         this.roll();
         if (this.rng > 25) {
-            return ("attack " + 10);
+            return ("attack " + this.strength);
         } else {
             //Jacob misses :(
             return "attack 0";
@@ -56,7 +56,7 @@ Jacob.prototype.attack = function() {
     } else {
         this.roll();
         if (this.rng > 50) {
-            return ("attack " + (10 * 1.5));
+            return ("attack " + (this.strength * 1.5));
         } else {
             //Jacob misses :(
             return "attack 0";
@@ -66,8 +66,8 @@ Jacob.prototype.attack = function() {
 
 Jacob.prototype.castspell = function() {
     this.roll();
-    if (this.rng > 75) {
-        return "spell 25";
+    if (this.rng > 30) {
+        return "spell " + (Math.floor(this.strength * 2.5));
     } else {
         //rando's spell fails
         return "spell 0";

@@ -1,15 +1,15 @@
 /*
     STATS:
-    Health:     100% of standard
-    Strength:   100% of standard
-    Defense:    100% of standard
+    Health:     160% of standard
+    Strength:   60% of standard
+    Defense:    140% of standard
 */
 
 function Hayden(level) {
     this.level = level;
-    this.maxHealth = Math.floor(stdBaseHealth * 1) + Math.floor(stdHealthGrowth * 1) * level;
-    this.strength = Math.floor(stdBaseStrength * 1) + Math.floor(stdStrengthGrowth * 1) * level;
-    this.defense = Math.floor(stdBaseDefense * 1) + Math.floor(stdDefenseGrowth * 1) * level;
+    this.maxHealth = Math.floor(stdBaseHealth * 1.6) + Math.floor(stdHealthGrowth * 1.6) * level;
+    this.strength = Math.floor(stdBaseStrength * .6) + Math.floor(stdStrengthGrowth * .6) * level;
+    this.defense = Math.floor(stdBaseDefense * 1.4) + Math.floor(stdDefenseGrowth * 1.4) * level;
 };
 
 Hayden.prototype = new Enemy("Hayden", this.level, this.maxHealth, this.strength, 10, this.defense);
@@ -48,7 +48,7 @@ Hayden.prototype.attack = function() {
     if (this.rng > 30) {
         this.roll();
         if (this.rng > 25) {
-            return ("attack " + 10);
+            return ("attack " + this.strength);
         } else {
             //Hayden misses :(
             return "attack 0";
@@ -56,7 +56,7 @@ Hayden.prototype.attack = function() {
     } else {
         this.roll();
         if (this.rng > 50) {
-            return ("attack " + (10 * 1.5));
+            return ("attack " + (this.strength * 1.5));
         } else {
             //Hayden misses :(
             return "attack 0";
@@ -67,7 +67,7 @@ Hayden.prototype.attack = function() {
 Hayden.prototype.castspell = function() {
     this.roll();
     if (this.rng > 75) {
-        return "spell 25";
+        return "spell " + (this.strength * 2);
     } else {
         //rando's spell fails
         return "spell 0";

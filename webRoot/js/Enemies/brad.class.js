@@ -1,15 +1,15 @@
 /*
     STATS:
-    Health:     100% of standard
-    Strength:   100% of standard
-    Defense:    100% of standard
+    Health:     120% of standard
+    Strength:   110% of standard
+    Defense:    80% of standard
 */
 
 function Brad(level) {
     this.level = level;
-    this.maxHealth = Math.floor(stdBaseHealth * 1) + Math.floor(stdHealthGrowth * 1) * level;
-    this.strength = Math.floor(stdBaseStrength * 1) + Math.floor(stdStrengthGrowth * 1) * level;
-    this.defense = Math.floor(stdBaseDefense * 1) + Math.floor(stdDefenseGrowth * 1) * level;
+    this.maxHealth = Math.floor(stdBaseHealth * 1.2) + Math.floor(stdHealthGrowth * 1.2) * level;
+    this.strength = Math.floor(stdBaseStrength * 1.1) + Math.floor(stdStrengthGrowth * 1.1) * level;
+    this.defense = Math.floor(stdBaseDefense * .8) + Math.floor(stdDefenseGrowth * .8) * level;
 };
 
 Brad.prototype = new Enemy("Brad", this.level, this.maxHealth, this.strength, 10, this.defense);
@@ -48,7 +48,7 @@ Brad.prototype.attack = function() {
     if (this.rng > 30) {
         this.roll();
         if (this.rng > 25) {
-            return ("attack " + 10);
+            return ("attack " + this.strength);
         } else {
             //Brad misses :(
             return "attack 0";
@@ -56,7 +56,7 @@ Brad.prototype.attack = function() {
     } else {
         this.roll();
         if (this.rng > 50) {
-            return ("attack " + (10 * 1.5));
+            return ("attack " + (this.strength * 1.5));
         } else {
             //Brad misses :(
             return "attack 0";
@@ -67,7 +67,7 @@ Brad.prototype.attack = function() {
 Brad.prototype.castspell = function() {
     this.roll();
     if (this.rng > 75) {
-        return "spell 25";
+        return "spell " + (this.strength * 2);
     } else {
         //rando's spell fails
         return "spell 0";

@@ -15,18 +15,18 @@ function Alex(level) {
 Alex.prototype = new Enemy("Alex", this.level, this.maxHealth, this.strength, 10, this.defense);
 
 Alex.prototype.decide = function() {
-    if (this.health / this.maxHealth > .75) {
+    if (player.health / player.maxHealth > .75) {
         return this.attack();
-    } else if (this.health / this.maxHealth > .50) {
+    } else if (player.health / player.maxHealth > .50) {
         this.roll();
-        if (this.rng > 80) {
+        if (this.rng > 90) {
             return this.attack();
         } else {
             return this.healSelf();
         }
-    } else if (this.health / this.maxHealth > .25) {
+    } else if (player.health / player.maxHealth > .25) {
         this.roll();
-        if (this.rng > 60) {
+        if (this.rng > 75) {
             return this.attack();
         } else {
             return this.healSelf();
@@ -48,15 +48,15 @@ Alex.prototype.attack = function() {
     if (this.rng > 30) {
         this.roll();
         if (this.rng > 25) {
-            return ("attack " + 10);
+            return ("attack " + this.strength);
         } else {
             //Alex misses :(
             return "attack 0";
         }
     } else {
         this.roll();
-        if (this.rng > 50) {
-            return ("attack " + (10 * 1.5));
+        if (this.rng > 25) {
+            return ("attack " + (this.strength * 1.5));
         } else {
             //Alex misses :(
             return "attack 0";
@@ -66,8 +66,8 @@ Alex.prototype.attack = function() {
 
 Alex.prototype.castspell = function() {
     this.roll();
-    if (this.rng > 75) {
-        return "spell 25";
+    if (this.rng > 50) {
+        return "spell " + (this.strength * 2);
     } else {
         //rando's spell fails
         return "spell 0";

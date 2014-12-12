@@ -30,10 +30,10 @@ Enemy.prototype.heal = function(amt) {
 Enemy.prototype.healSelf = function() {
     if (Math.floor((Math.random() * 3) + 1) == 2) { // 1/3 chance of a "super heal"
         this.heal(Math.floor(this.maxHealth * .2));
-        return "heal 10";
+        return "heal " + (Math.floor(this.maxHealth * .2));
     } else {
         this.heal(Math.floor(this.maxHealth * .1));
-        return "heal 5";
+        return "heal " + (Math.floor(this.maxHealth * .1));
     }
 };
 
