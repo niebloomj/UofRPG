@@ -105,8 +105,7 @@ function loadItUp() {
             'js/Enemies/brad.class.js',
             'js/Enemies/hayden.class.js',
             'js/Enemies/jacob.class.js',
-            'js/Enemies/naropa.class.js',
-			'js/particles.js'
+            'js/Enemies/naropa.class.js'
         ],
         function() {
             /* Optional - Executed each time a script has loaded (Use for Progress updates?) */

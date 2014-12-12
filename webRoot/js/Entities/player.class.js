@@ -315,7 +315,7 @@ Player.prototype.addExperience = function(newExp) {
 		var message = new createjs.Text("Congratulations!  Level up!", "bold 36pt Arial", "white");
 		gameContainer.addChild(message);
 		stage.update();
-		startParticles();
+
         var msg = Messenger().post({
             message: 'Congratulations, you leveled up! Choose a skill to get a bonus upgrade in.',
             type: 'success',
@@ -328,7 +328,6 @@ Player.prototype.addExperience = function(newExp) {
                         player.strength += 2;
                         player.experience = 0;
                         stage.update();
-						stopParticles();
                         return msg.cancel();
                     }
                 },
@@ -339,7 +338,6 @@ Player.prototype.addExperience = function(newExp) {
                         player.defense += 1;
                         player.experience = 0;
                         stage.update();
-						stopParticles();
                         return msg.cancel();
                     }
                 }
