@@ -13,9 +13,7 @@ var backgroundMusic = new Audio('..\/audio\/BackgroundMusic.mp3');
 var fightMusic = new Audio('..\/audio\/FightMusic.mp3');
 
 function init() {
-
-    initDatabase();
-
+    
     stage = new createjs.Stage("demoCanvas");
     startContainer = new createjs.Container();
     menuContainer = new createjs.Container();

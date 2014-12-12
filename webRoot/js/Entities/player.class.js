@@ -99,8 +99,6 @@ Player.prototype.stepCheck = function() {
                 }
             }
         }
-        
-        saveGame();
     }
 }
 

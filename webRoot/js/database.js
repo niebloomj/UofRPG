@@ -1,5 +1,6 @@
 var lastSave = 0;
 var playerStatsObj = false;
+var saveInterval = false;
 
 function initDatabase(callback) {
 	if (playerStatsObj) return;
@@ -25,6 +26,7 @@ function initDatabase(callback) {
 		error: function(object, error) {
 			dblog("Failed to init database!");
 			dblog(error);
+			showLoginMessage("Failed to initialize database! Error: "+error.message, "danger");
 		}
 	});
 }
@@ -56,11 +58,20 @@ function saveGame() {
 		playerStatsObj.save(null, {
 			success: function(obj) {
 				dblog("Saved!");
+                Messenger().post({
+                    message: "Game saved!",
+                    type: "info",
+                    hideAfter: "3"
+                })
 			},
 			error: function(obj, error) {
 				dblog("Save failed!");
 				dblog(error);
-				showLoginMessage("Failed to save game! Error: "+error.message, "danger");
+                Messenger().post({
+                    message: "Failed to save game!",
+                    type: "error",
+                    hideAfter: "3"
+                })
 			}
 		});
 	}
@@ -98,4 +109,8 @@ function loadSavedGame() {
 		player.experience = playerStatsObj.get('Experience');
 	}
 	dblog("Game loaded!");
+
+	if (!saveInterval) {
+		saveInterval = setInterval(saveGame, 1000 * 60 * 5);
+	}
 }
