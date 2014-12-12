@@ -14,6 +14,7 @@ function Randos(x, y) {
     this.timeBetweenVectorChangeVariance = 30;
     this.countVector = -1;
     this.skinIndex = Math.floor((Math.random() * 6) + 1);
+	this.msgVisible = false;
 }
 
 Randos.prototype = new Entity(this.x, this.y, 16, 48);
@@ -58,14 +59,35 @@ Randos.prototype.tick = function(delta) {
     var isCollision = (new Collider(this.x, this.y, this.width, this.height).contains(player.x, player.y, player.width, player.height));
 
     if (isCollision) {
-        var indexOfRando = entities.indexOf(this);
-        if (indexOfRando > -1) {
-            entities.splice(indexOfRando, 1);
-            initCombat(this.level, this.skinIndex);
-        }
-        var audio = new Audio('..\/audio\/giveHurt.mp3');
-        audio.volume = audio.volume * .2;
-        audio.play();
+		if (player.exp < 100){
+			var indexOfRando = entities.indexOf(this);
+			if (indexOfRando > -1) {
+				entities.splice(indexOfRando, 1);
+				initCombat(this.level, this.skinIndex);
+			}
+			var audio = new Audio('..\/audio\/giveHurt.mp3');
+			audio.volume = audio.volume * .2;
+			audio.play();
+		}else{
+			if (!this.msgVisible){
+				this.msgVisible = true;
+				var msg = Messenger().post({
+				message: 'You already have 100 exp! Go to Georgian Athletic Center to upgrade strength, Rush Rhees to upgrade intelligence, or Susan B Anthony to upgrade defense.',
+				type: 'info',
+				hideAfter: false,
+				actions: {
+					Continue: {
+						label: 'Continue.',
+						hideAfter: false,
+						action: function() {
+								msgVisible = false;
+								return msg.cancel();
+							}
+						}
+					}
+				});
+			}
+		}
     }
 };
 

@@ -152,7 +152,7 @@ Player.prototype.handleCollision = function() {
     // 48 and 49
     try {
         var v1 = layerData.data[botLeftIndex];
-        //console.log("Val: " + v1);
+        // console.log("Val: " + v1);
         if (!isWhiteListed(v1)) { //(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botLeftCollision = true;
         }
@@ -223,7 +223,7 @@ Player.prototype.handleCollision = function() {
 }
 
 function isWhiteListed(num) {
-    var list = [3, 4, 7, 9, 10, 11, 12, 14, 42, 43, 45, 48, 44, 46, 47, 49, 50, 51, 52, 58, 59, 62, 66, 67, 68, 69, 70, 71, 72, 82, 83, 85, 86, 88, 89];
+    var list = [3, 4, 7, 9, 10, 11, 12, 14, 42, 43, 45, 48, 44, 46, 47, 49, 50, 51, 52, 58, 59, 60, 61, 62, 66, 67, 68, 69, 70, 71, 72, 82, 83, 85, 86, 88, 89];
 
     for (var i = 0; i < list.length; i++) {
         if (list[i] == num) {
@@ -316,27 +316,14 @@ Player.prototype.addExperience = function(newExp) {
 		stage.update();
 
         var msg = Messenger().post({
-            message: 'Congratulations, you leveled up! Choose a skill to get a bonus upgrade in.',
+            message: 'Congratulations, you leveled up! Go to Georgian Athletic Center to upgrade strength, Rush Rhees to upgrade intelligence, or Susan B Anthony to upgrade defense.',
             type: 'success',
             hideAfter: false,
             actions: {
-                strengthLev: {
-                    label: 'Strength',
+                Continue: {
+                    label: 'Continue.',
                     hideAfter: false,
                     action: function() {
-                        player.strength += 2;
-                        player.experience = 0;
-                        stage.update();
-                        return msg.cancel();
-                    }
-                },
-                defenseLev: {
-                    label: 'Defense',
-                    hideAfter: false,
-                    action: function() {
-                        player.defense += 1;
-                        player.experience = 0;
-                        stage.update();
                         return msg.cancel();
                     }
                 }
