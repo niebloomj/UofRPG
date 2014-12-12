@@ -11,35 +11,28 @@ function saveGame() {
 			success: function(results) {
 				if (results.length == 1) {
 					var object = results[0];
-					object.save(null, {
-						success: function(object) {
-							object.set("Steps", player.totalMoved);
-							object.set("PlayerX", player.x);
-							object.set("PlayerY", player.y);
-							object.set("Health", player.health);
-							object.set("Uros", player.money);
-							object.set("Inventory", player.inventory);
-							object.set("Experience", player.experience);
-							object.set("Level", player.level);
-							object.save();
-						}
-					});
+					object.set("Steps", player.totalMoved);
+					object.set("PlayerX", player.x);
+					object.set("PlayerY", player.y);
+					object.set("Health", player.health);
+					object.set("Uros", player.money);
+					object.set("Inventory", player.inventory);
+					object.set("Experience", player.experience);
+					object.set("Level", player.level);
+					object.save();
 				} else if (results.length == 0) {
 					var statTable = new PlayerStatsTable()
 					statTable.set("Username", username);
-					statTable.save(null, {
-						success: function(statTable) {
-							object.set("Steps", player.totalMoved);
-							object.set("PlayerX", player.x);
-							object.set("PlayerY", player.y);
-							object.set("Health", player.health);
-							object.set("Uros", player.money);
-							object.set("Inventory", player.inventory);
-							object.set("Experience", player.experience);
-							object.set("Level", player.level);
-							object.save();
-						}
-					});
+
+					statTable.set("Steps", player.totalMoved);
+					statTable.set("PlayerX", player.x);
+					statTable.set("PlayerY", player.y);
+					statTable.set("Health", player.health);
+					statTable.set("Uros", player.money);
+					statTable.set("Inventory", player.inventory);
+					statTable.set("Experience", player.experience);
+					statTable.set("Level", player.level);
+					statTable.save();
 				} else {
 					//Well this is actually a HUGE PROBLEM if we reach this else
 					alert("ERROR ERROR ERROR!!!");
