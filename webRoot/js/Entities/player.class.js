@@ -224,10 +224,9 @@ Player.prototype.handleCollision = function() {
 	if (!this.msgVisible){
 		if (player.experience >= 100){
 			if (coordToTile(player.x) == 93){
-				this.msgVisible = true;
 				if (coordToTile(player.y) == 116){
-					console.log("On tile.");
-					 var msg = Messenger().post({
+					this.msgVisible = true;
+					var msg = Messenger().post({
 						message: 'Congratulations, you leveled up! Go to Georgian Athletic Center to upgrade strength, Rush Rhees to upgrade intelligence, or Susan B Anthony to upgrade defense.',
 						type: 'success',
 						hideAfter: false,
@@ -239,6 +238,7 @@ Player.prototype.handleCollision = function() {
 									player.strength += 2;
 									player.experience = 0;
 									stage.update();
+									this.msgVisible = false;
 									return msg.cancel();
 								}
 							}
