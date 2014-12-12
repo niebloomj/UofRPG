@@ -100,7 +100,7 @@ Player.prototype.stepCheck = function() {
             }
         }
         //Adding some point to the cold by having a need to fight it.
-        if (player.totalMoved % 1000 == 0) {
+        /*if (player.totalMoved % 1000 == 0) {
             if (player.isInInventory("jacket")) {
                 var index = player.inventory.indexOf("jacket");
                 if (index > -1) {
@@ -112,7 +112,7 @@ Player.prototype.stepCheck = function() {
                     hideAfter: "3"
                 })
             }
-        }
+        }*/
         saveGame();
     }
 }
@@ -166,7 +166,7 @@ Player.prototype.handleCollision = function() {
     // 48 and 49
     try {
         var v1 = layerData.data[botLeftIndex];
-        // console.log("Val: " + v1);
+        //console.log("Val: " + v1);
         if (!isWhiteListed(v1)) { //(layerData.data[botLeftIndex].properties[0] == "solid")){// - 1) == 1) {
             botLeftCollision = true;
         }
@@ -237,7 +237,7 @@ Player.prototype.handleCollision = function() {
 }
 
 function isWhiteListed(num) {
-    var list = [3, 4, 7, 9, 10, 12, 14, 42, 43, 45, 48, 44, 46, 47, 49, 50, 51, 52, 58, 59, 66, 67, 68, 69, 82, 83, 85];
+    var list = [3, 4, 7, 9, 10, 11, 12, 14, 42, 43, 45, 48, 44, 46, 47, 49, 50, 51, 52, 58, 59, 62, 66, 67, 68, 69, 70, 71, 72, 82, 83, 85, 86, 88, 89];
 
     for (var i = 0; i < list.length; i++) {
         if (list[i] == num) {
