@@ -221,55 +221,74 @@ Player.prototype.handleCollision = function() {
         rightCollision = false;
     }
 	
-	if (!this.msgVisible){
-		if (player.experience >= 100){
-			if (coordToTile(player.x) == 93){
-				if (coordToTile(player.y) == 116){
-					this.msgVisible = true;
-					var msg = Messenger().post({
-						message: 'Congratulations, you leveled up strength! +2 strength',
-						type: 'success',
-						hideAfter: false,
-						actions: {
-							Continue: {
-								label: 'Continue.',
-								hideAfter: false,
-								action: function() {
-									player.strength += 2;
-									player.experience = 0;
-									stage.update();
-									this.msgVisible = false;
-									return msg.cancel();
-								}
+	if (!this.msgVisible && player.experience >= 100){
+		if (coordToTile(player.x) == 93){
+			if (coordToTile(player.y) == 116){
+				this.msgVisible = true;
+				var msg = Messenger().post({
+					message: 'Congratulations, you leveled up strength! +2 strength',
+					type: 'success',
+					hideAfter: false,
+					actions: {
+						Continue: {
+							label: 'Continue.',
+							hideAfter: false,
+							action: function() {
+								player.strength += 2;
+								player.experience = 0;
+								stage.update();
+								this.msgVisible = false;
+								return msg.cancel();
 							}
 						}
-					});
-				}
-			}
-			if (player.experience >= 100){
-				if (coordToTile(player.x) == 79){
-					if (coordToTile(player.y) == 78){
-						this.msgVisible = true;
-						var msg = Messenger().post({
-							message: 'Congratulations, you leveled up intelligence! +2 intelligence',
-							type: 'success',
-							hideAfter: false,
-							actions: {
-								Continue: {
-									label: 'Continue.',
-									hideAfter: false,
-									action: function() {
-										player.intelligence += 2;
-										player.experience = 0;
-										stage.update();
-										this.msgVisible = false;
-										return msg.cancel();
-									}
-								}
-							}
-						});
 					}
-				}
+				});
+			}
+		}
+		if (coordToTile(player.x) == 79){
+			if (coordToTile(player.y) == 78){
+				this.msgVisible = true;
+				var msg = Messenger().post({
+					message: 'Congratulations, you leveled up intelligence! +2 intelligence',
+					type: 'success',
+					hideAfter: false,
+					actions: {
+						Continue: {
+							label: 'Continue.',
+							hideAfter: false,
+							action: function() {
+								player.intelligence += 2;
+								player.experience = 0;
+								stage.update();
+								this.msgVisible = false;
+								return msg.cancel();
+							}
+						}
+					}
+				});
+			}
+		}
+		if (coordToTile(player.x) == 221){
+			if (coordToTile(player.y) == 70){
+				this.msgVisible = true;
+				var msg = Messenger().post({
+					message: 'Congratulations, you leveled up defense! +2 defense',
+					type: 'success',
+					hideAfter: false,
+					actions: {
+						Continue: {
+							label: 'Continue.',
+							hideAfter: false,
+							action: function() {
+								player.defense += 2;
+								player.experience = 0;
+								stage.update();
+								this.msgVisible = false;
+								return msg.cancel();
+							}
+						}
+					}
+				});
 			}
 		}
 	}
