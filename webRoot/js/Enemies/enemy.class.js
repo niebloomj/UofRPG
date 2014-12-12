@@ -9,7 +9,7 @@ function Enemy(name, level, maxHealth, strength, intelligence, defense) {
     this.name = name;
     this.level = level;
     this.maxHealth = maxHealth;
-    this.currHealth = maxHealth;
+    this.health = maxHealth;
     this.strength = strength;
     this.intelligence = intelligence;
     this.defense = defense;

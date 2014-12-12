@@ -100,12 +100,13 @@ function loadItUp() {
             'js/collider.class.js',
             'js/Entities/healthblobs.class.js',
             'js/Enemies/enemy.class.js',
-            'js/Enemies/aaron.class.js',
-            'js/Enemies/alex.class.js',
-            'js/Enemies/brad.class.js',
-            'js/Enemies/hayden.class.js',
-            'js/Enemies/jacob.class.js',
-            'js/Enemies/naropa.class.js'
+            'js/Enemies/ai_enemy.class.js'
+            // 'js/Enemies/aaron.class.js',
+            // 'js/Enemies/alex.class.js',
+            // 'js/Enemies/brad.class.js',
+            // 'js/Enemies/hayden.class.js',
+            // 'js/Enemies/jacob.class.js',
+            // 'js/Enemies/naropa.class.js'
         ],
         function() {
             /* Optional - Executed each time a script has loaded (Use for Progress updates?) */

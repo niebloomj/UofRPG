@@ -28,21 +28,25 @@ function initCombat(enemyLevel, enemyType) {
 
     gameContainer.removeAllChildren();
 
-    if (enemyType == 1) {        //Enemy is Aaron
-        enmyinit = new Aaron(enemyLevel);
-    } else if (enemyType == 2) { //Enemy is Alex
-        enmyinit = new Alex(enemyLevel);
-    } else if (enemyType == 3) { //Enemy is Brad
-        enmyinit = new Brad(enemyLevel);
-    } else if (enemyType == 4) { //Enemy is Hayden 
-        enmyinit = new Hayden(enemyLevel);
-    } else if (enemyType == 5) { //Enemy is Jacob
-        enmyinit = new Jacob(enemyLevel);
-    } else if (enemyType == 6) { //Enemy is Naropa
-        enmyinit = new Naropa(enemyLevel);
-    }
 
-    myRando = enmyinit;
+
+    // if (enemyType == 1) {        //Enemy is Aaron
+    //     enmyinit = new Aaron(enemyLevel);
+    // } else if (enemyType == 2) { //Enemy is Alex
+    //     enmyinit = new Alex(enemyLevel);
+    // } else if (enemyType == 3) { //Enemy is Brad
+    //     enmyinit = new Brad(enemyLevel);
+    // } else if (enemyType == 4) { //Enemy is Hayden 
+    //     enmyinit = new Hayden(enemyLevel);
+    // } else if (enemyType == 5) { //Enemy is Jacob
+    //     enmyinit = new Jacob(enemyLevel);
+    // } else if (enemyType == 6) { //Enemy is Naropa
+    //     enmyinit = new Naropa(enemyLevel);
+    // }
+
+    // myRando = enmyinit;
+    myRando = new AiEnemy(RANDO_PRESETS[enemyType-1], enemyLevel);
+
     randoHealth = myRando.maxHealth;
 
     setupScene();
