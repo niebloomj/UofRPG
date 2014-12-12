@@ -10,7 +10,6 @@ function Player(name, map) {
     this.strength = 5;
     this.defense = 5;
     this.intelligence = 5;
-    this.charisma = 5;
     this.experience = 0;
     this.money = 0;
 
@@ -357,10 +356,6 @@ Player.prototype.setDefense = function(newDefense) {
     this.defense = newDefense;
 };
 
-Player.prototype.setCharisma = function(newCharisma) {
-    this.charisma = newCharisma;
-};
-
 Player.prototype.setIntelligence = function(newIntelligence) {
     this.intelligence = newIntelligence;
 };
@@ -380,7 +375,6 @@ Player.prototype.addToInventory = function(item) {
     this.setStrength(this.strength + item.attributes.strength);
     this.setDefense(this.defense + item.attributes.defense);
     this.setIntelligence(this.intelligence + item.attributes.intelligence);
-    this.setCharisma(this.charisma + item.attributes.charisma);
 };
 
 Player.prototype.clearInventory = function() {
@@ -394,7 +388,6 @@ Player.prototype.clearInventory = function() {
         this.setStrength(this.strength - item.attributes.strength);
         this.setDefense(this.defense - item.attributes.defense);
         this.setIntelligence(this.intelligence - item.attributes.intelligence);
-        this.setCharisma(this.charisma - item.attributes.charisma);
 
         inventory.shift();
     }
