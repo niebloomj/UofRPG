@@ -122,7 +122,6 @@ Player.prototype.tick = function(delta) {
 }
 
 Player.prototype.handleCollision = function() {
-
     var d = this.map.tilewidth;
     var layerData = this.map.layers[0];
 
@@ -220,6 +219,28 @@ Player.prototype.handleCollision = function() {
         leftCollision = false;
         rightCollision = false;
     }
+	
+	if (coordToTile(player.x) == 93){
+		if (coordToTile(player.y == 116)){
+			var msg = Messenger().post({
+				message: 'You leveled up strength! + 2 strength',
+				type: 'success',
+				hideAfter: false,
+				actions: {
+					Continue: {
+						label: 'Continue.',
+						hideAfter: false,
+						action: function() {
+								player.strength += 2;
+								player.experience = 0;
+								stage.update();
+								return msg.cancel();
+							}
+						}
+					}
+				});
+		}
+	}
 }
 
 function isWhiteListed(num) {
