@@ -371,7 +371,7 @@ function getHudbarDisplay() {
     hudbar.addChild(expBack);
     hudbar.addChild(expTxt);
 
-    // updateBarText();
+    updateBarText();
 
     lastHudbar = hudbar;
     return hudbar;
@@ -379,18 +379,18 @@ function getHudbarDisplay() {
 
 function updateBarText() {
     healthTxt.text = player.health.toString() + " / " + player.maxHealth.toString();
-    if (player.totalMoved % 500 == 0) {
-        console.log("Updated Weather");
-        jQuery(document).ready(function($) {
-            $.ajax({
-                url: "http://api.openweathermap.org/data/2.5/find?q=Rochester&units=imperial",
-                dataType: "json",
-                success: function(json) {
-                    player.temp = json.list[3].main.temp;
-                }
-            });
-        });
-    }
+    // if (player.totalMoved % 500 == 0) {
+    //     console.log("Updated Weather");
+    //     jQuery(document).ready(function($) {
+    //         $.ajax({
+    //             url: "http://api.openweathermap.org/data/2.5/find?q=Rochester&units=imperial",
+    //             dataType: "json",
+    //             success: function(json) {
+    //                 player.temp = json.list[3].main.temp;
+    //             }
+    //         });
+    //     });
+    // }
     temperatureTxt.text = player.temp + "˚";
     expTxt = player.experience;
 }
