@@ -220,25 +220,27 @@ Player.prototype.handleCollision = function() {
         rightCollision = false;
     }
 	
-	if (coordToTile(player.x) == 93){
-		if (coordToTile(player.y == 116)){
-			var msg = Messenger().post({
-				message: 'You leveled up strength! + 2 strength',
-				type: 'success',
-				hideAfter: false,
-				actions: {
-					Continue: {
-						label: 'Continue.',
-						hideAfter: false,
-						action: function() {
-								player.strength += 2;
-								player.experience = 0;
-								stage.update();
-								return msg.cancel();
+	if (player.experience >= 100){
+		if (coordToTile(player.x) == 93){
+			if (coordToTile(player.y == 116)){
+				var msg = Messenger().post({
+					message: 'You leveled up strength! + 2 strength',
+					type: 'success',
+					hideAfter: false,
+					actions: {
+						Continue: {
+							label: 'Continue.',
+							hideAfter: false,
+							action: function() {
+									player.strength += 2;
+									player.experience = 0;
+									stage.update();
+									return msg.cancel();
+								}
 							}
 						}
-					}
-				});
+					});
+			}
 		}
 	}
 }
