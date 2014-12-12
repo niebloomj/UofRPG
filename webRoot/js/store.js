@@ -22,8 +22,8 @@ var storeItems = [{
     isPersistent: true,
     price: 500,
     description: "Wack people with an extra 5 strength",
-    fileLarge: "img/sprites/placeholder_64.png",
-    fileSmall: "img/sprites/placeholder_32.png",
+    fileLarge: "img/sprites/YardStick_64.png",
+    fileSmall: "img/sprites/YardStick_32.png",
     attributes: {
         maxHealth: 0,
         health: 0,
@@ -39,8 +39,8 @@ var storeItems = [{
     isPersistent: true,
     price: 1000,
     description: "Bludgeon your way through life with overpriced literature",
-    fileLarge: "img/sprites/placeholder_64.png",
-    fileSmall: "img/sprites/placeholder_32.png",
+    fileLarge: "img/sprites/Textbook_64.png",
+    fileSmall: "img/sprites/Textbook_32.png",
     attributes: {
         maxHealth: 0,
         health: 0,
@@ -107,8 +107,8 @@ var storeItems = [{
     isPersistent: true,
     price: 70008,
     description: "Pay off your annual student debt!",
-    fileLarge: "img/sprites/placeholder_64.png",
-    fileSmall: "img/sprites/placeholder_32.png",
+    fileLarge: "img/sprites/Tuition_64.png",
+    fileSmall: "img/sprites/Tuition_32.png",
     attributes: {
         maxHealth: 0,
         health: 0,

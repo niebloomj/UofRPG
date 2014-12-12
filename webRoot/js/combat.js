@@ -191,7 +191,7 @@ function secondaryOption(type) {
 							}
                         }
                     }
-                },
+                }
                 sing: {
                     label: 'Sing!',
                     action: function() {
