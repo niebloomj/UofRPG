@@ -41,6 +41,7 @@ function Player(name, map) {
         "img/sprites/player_jacob.png",
         "img/sprites/player_santiagoSouth.png"
     ];
+	this.msgVisible = false;
 }
 
 // defines a human-controlled entity
@@ -220,18 +221,21 @@ Player.prototype.handleCollision = function() {
         rightCollision = false;
     }
 	
-	if (player.experience >= 100){
-		if (coordToTile(player.x) == 93){
-			if (coordToTile(player.y == 116)){
-				var msg = Messenger().post({
-					message: 'You leveled up strength! + 2 strength',
-					type: 'success',
-					hideAfter: false,
-					actions: {
-						Continue: {
-							label: 'Continue.',
-							hideAfter: false,
-							action: function() {
+	if (!this.msgVisible){
+		if (player.experience >= 100){
+			if (coordToTile(player.x) == 93){
+				this.msgVisible = true;
+				if (coordToTile(player.y) == 116){
+					console.log("On tile.");
+					 var msg = Messenger().post({
+						message: 'Congratulations, you leveled up! Go to Georgian Athletic Center to upgrade strength, Rush Rhees to upgrade intelligence, or Susan B Anthony to upgrade defense.',
+						type: 'success',
+						hideAfter: false,
+						actions: {
+							Continue: {
+								label: 'Continue.',
+								hideAfter: false,
+								action: function() {
 									player.strength += 2;
 									player.experience = 0;
 									stage.update();
@@ -240,6 +244,7 @@ Player.prototype.handleCollision = function() {
 							}
 						}
 					});
+				}
 			}
 		}
 	}
@@ -352,7 +357,7 @@ Player.prototype.addExperience = function(newExp) {
                 }
             }
         });
-
+		
     } else {
         this.experience += newExp;
     }
