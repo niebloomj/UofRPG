@@ -152,7 +152,6 @@ function getMinimapDisplay() {
         );
         return minimapBitmap;
     //}
-    return null;
 }
 
 
@@ -218,10 +217,27 @@ function renderMinimap() {
  * Color given as an array [r, g, b, a]
  */
 function getMinimapColor(tid) {
-    if (typeof minimapColors[tid] !== 'undefined') {
-        return minimapColors[tid];
-    }
+	try{
+		if (!isWhiteListed2(tid+1)){
+			return minimapColors[1];
+		}else{
+			return minimapColors[0];
+		}
+	}catch (err){
+	
+	}
     return [0, 0, 0, 255];
+}
+
+function isWhiteListed2(num) {
+    var list = [3, 4, 7, 9, 10, 11, 12, 14, 42, 43, 45, 48, 44, 46, 47, 49, 50, 51, 52, 58, 59, 60, 61, 62, 66, 67, 68, 69, 70, 71, 72, 82, 83, 85, 86, 88, 89, 91, 92, 93];
+
+    for (var i = 0; i < list.length; i++) {
+        if (list[i] == num) {
+            return true;
+        }
+    }
+    return false;
 }
 
 // HUDBAR SETTINGS
