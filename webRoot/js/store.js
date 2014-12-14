@@ -84,23 +84,6 @@ var storeItems = [{
         charisma: 0
     }
 }, {
-    id: "wastemoney",
-    displayName: "Throw away $100",
-    isBuyable: true,
-    isPersistent: false,
-    price: 100,
-    description: "Welcome to Hillside",
-    fileLarge: "img/sprites/fuckyou_64.png",
-    fileSmall: "img/sprites/fuckyou_32.png",
-    attributes: {
-        maxHealth: 0,
-        health: 0,
-        strength: 0,
-        defense: 0,
-        intelligence: 0,
-        charisma: 0
-    }
-}, {
     id: "tuition",
     displayName: "Tuition",
     isBuyable: true,
