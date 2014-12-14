@@ -61,11 +61,11 @@ function tickMap(delta) {
     });
 
     benchmark("d:minimap", function() {
-        if (isMinimapReady) {
+        //if (isMinimapReady) {
             var minimap = getMinimapDisplay();
             minimap.setTransform(stage.canvas.width - minimap.getBounds().width - 10, 10);
             gameContainer.addChild(minimap);
-        }
+        //}
     });
 
     var hudbar = getHudbarDisplay();
@@ -135,7 +135,7 @@ var minimapBitmap;
  * pixel drawing technique based on http://community.createjs.com/discussions/easeljs/1291-bitmap-pixel-manipulation
  */
 function getMinimapDisplay() {
-    if (isMinimapReady) {
+    //if (isMinimapReady) {
         var layerData = mapData.layers[0];
         var miniD = minimapTileSize;
 
@@ -151,12 +151,12 @@ function getMinimapDisplay() {
             minimapHeightPx
         );
         return minimapBitmap;
-    }
+    //}
     return null;
 }
 
 
-var isMinimapReady;
+//var isMinimapReady;
 
 function initMinimap() {
     /*var num_threads = 2;
@@ -166,7 +166,8 @@ function initMinimap() {
         console.log("Loading map async.");
     });
     task();*/
-    //renderMinimap();
+	//isMinimapReady = true;
+    renderMinimap();
 }
 
 
@@ -209,7 +210,7 @@ function renderMinimap() {
         }
     }
     minimapBitmap = new createjs.Bitmap(canvas);
-    isMinimapReady = true;
+    //isMinimapReady = true;
 }
 
 /**
