@@ -1,383 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>University of Rochester Playing Game: Year 1</title>
-  <script src="lib/jquery.min.js"></script>
-  <script src="lib/bootstrap.min.js"></script>
-  <script src="lib/parse-1.3.0.min.js"></script>
-  <script src="lib/easeljs-0.7.0.min.js"></script>
-  <script src="lib/soundjs-0.5.2.min.js"></script>
-  <script src="lib/ripples.min.js"></script>
-  <script src="lib/material.min.js"></script>
-  <script src="lib/messenger.min.js"></script>
-  <script src="lib/messenger-theme-flat.js"></script>
-  <script src="js/init.js"></script>
-  <script>
-  window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-      e.preventDefault();
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>University of Rochester Playing Game: Year 1</title>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/parse-1.3.0.min.js"></script>
+    <script src="lib/easeljs-0.7.0.min.js"></script>
+    <script src="lib/soundjs-0.5.2.min.js"></script>
+    <script src="lib/ripples.min.js"></script>
+    <script src="lib/material.min.js"></script>
+    <script src="lib/messenger.min.js"></script>
+    <script src="lib/messenger-theme-flat.js"></script>
+    <script src="js/init.js"></script>
+    <script>
+    window.addEventListener("keydown", function(e) {
+      // space and arrow keys
+      if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+      }
+    }, false);
+    </script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/material-wfont.min.css" rel="stylesheet">
+    <link href="css/ripples.min.css" rel="stylesheet">
+    <link href="css/messenger.css" rel="stylesheet">
+    <link href="css/messenger-theme-flat.css" rel="stylesheet">
+    <style type="text/css">
+    .nobr {
+      white-space: nowrap;
     }
-  }, false);
-  </script>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/material-wfont.min.css" rel="stylesheet">
-  <link href="css/ripples.min.css" rel="stylesheet">
-  <link href="css/messenger.css" rel="stylesheet">
-  <link href="css/messenger-theme-flat.css" rel="stylesheet">
-  <style type="text/css">
-  .nobr { white-space:nowrap; }
-
-  /* Non-responsive overrides
+    /* Non-responsive overrides
    *
    * Utilitze the following CSS to disable the responsive-ness of the container,
    * grid system, and navbar.
    */
-
-  /* Reset the container */
-  .container {
-    width: 1170px !important;
-    max-width: none !important;
-  }
-
-  .container .navbar-header,
-  .container .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-
-  /* Always float the navbar header */
-  .navbar-header {
-    float: left;
-  }
-
-  /* Undo the collapsing navbar */
-  .navbar-collapse {
-    display: block !important;
-    height: auto !important;
-    padding-bottom: 0;
-    overflow: visible !important;
-  }
-
-  .navbar-toggle {
-    display: none;
-  }
-  .navbar-collapse {
-    border-top: 0;
-  }
-
-  .navbar-brand {
-    margin-left: -15px;
-  }
-
-  /* Always apply the floated nav */
-  .navbar-nav {
-    float: left;
-    margin: 0;
-  }
-  .navbar-nav > li {
-    float: left;
-  }
-  .navbar-nav > li > a {
-    padding: 15px;
-  }
-
-  /* Redeclare since we override the float above */
-  .navbar-nav.navbar-right {
-    float: right;
-  }
-
-  /* Undo custom dropdowns */
-  .navbar .navbar-nav .open .dropdown-menu {
-    position: absolute;
-    float: left;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-width: 0 1px 1px;
-    border-radius: 0 0 4px 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  }
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #333;
-  }
-  .navbar .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar .navbar-nav .open .dropdown-menu > li > a:focus,
-  .navbar .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
-  .navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #fff !important;
-    background-color: #428bca !important;
-  }
-  .navbar .navbar-nav .open .dropdown-menu > .disabled > a,
-  .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
-  .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-    color: #999 !important;
-    background-color: transparent !important;
-  }
-	
-	#canvas-container {
-   width: 100%;
-   text-align:center;
-	}
-
-	canvas {
-		 display: inline;
-	}
-
-
-  /*
+    /* Reset the container */
+    
+    .container {
+      width: 1170px !important;
+      max-width: none !important;
+    }
+    .container .navbar-header,
+    .container .navbar-collapse {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    /* Always float the navbar header */
+    
+    .navbar-header {
+      float: left;
+    }
+    /* Undo the collapsing navbar */
+    
+    .navbar-collapse {
+      display: block !important;
+      height: auto !important;
+      padding-bottom: 0;
+      overflow: visible !important;
+    }
+    .navbar-toggle {
+      display: none;
+    }
+    .navbar-collapse {
+      border-top: 0;
+    }
+    .navbar-brand {
+      margin-left: -15px;
+    }
+    /* Always apply the floated nav */
+    
+    .navbar-nav {
+      float: left;
+      margin: 0;
+    }
+    .navbar-nav > li {
+      float: left;
+    }
+    .navbar-nav > li > a {
+      padding: 15px;
+    }
+    /* Redeclare since we override the float above */
+    
+    .navbar-nav.navbar-right {
+      float: right;
+    }
+    /* Undo custom dropdowns */
+    
+    .navbar .navbar-nav .open .dropdown-menu {
+      position: absolute;
+      float: left;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0, 0, 0, .15);
+      border-width: 0 1px 1px;
+      border-radius: 0 0 4px 4px;
+      -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #333;
+    }
+    .navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar .navbar-nav .open .dropdown-menu > li > a:focus,
+    .navbar .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+      color: #fff !important;
+      background-color: #428bca !important;
+    }
+    .navbar .navbar-nav .open .dropdown-menu > .disabled > a,
+    .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+    .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+      color: #999 !important;
+      background-color: transparent !important;
+    }
+    #canvas-container {
+      width: 100%;
+      text-align: center;
+    }
+    canvas {
+      display: inline;
+    }
+    /*
    * UofRPG stuffz
    *
    */
-  .jumbotron.jumbotron-biglogo {
-    margin-top: 5px;
-    background-color: #00467f;
-  }
-  #loginContainer .paneButtons button {
-    font-size: 42px;
-    margin-bottom: 24px;
-  }
-  #loginContainer .form-group .placeHolder {
-    font-size: 18px;
-    top: -5px;
-    color: #222;
-  }
-  #loginContainer .form-group {
-    margin-bottom: 40px;
-  }
-  #debugBox {
-    position: fixed;
-    top: 4px;
-    left: 4px;
-    background-color: black;
-    border: 2px solid red;
-    color: red;
-    font-size: 14px;
-    font-family: monospace;
-    padding: 5px;
-    z-index: 1000;
-  }
-  #gameHeaderNav {
-    margin-top: 10px;
-    max-width: 992px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #mastfoot,
-  #mastfoot a {
-    color: white;
-  }
-  .stickBottomLeft {
-    position: absolute;
-    left: 16px;
-    bottom: 8px;
-  }
-  .stickBottomRight {
-    position: absolute;
-    right: 16px;
-    bottom: 8px;
-  }
-  #gameHeaderNav .navbar-text.navbar-right {
-    margin-right: 5px;
-  }
-
-
-  #storeModal {
-    color: black;
-  }
-  .store-modal-title {
-    text-align: center;
-  }
-  .store-modal-image {
-    text-align: center;
-    /*width: 100%;
+    
+    .jumbotron.jumbotron-biglogo {
+      margin-top: 5px;
+      background-color: #00467f;
+    }
+    #loginContainer .paneButtons button {
+      font-size: 42px;
+      margin-bottom: 24px;
+    }
+    #loginContainer .form-group .placeHolder {
+      font-size: 18px;
+      top: -5px;
+      color: #222;
+    }
+    #loginContainer .form-group {
+      margin-bottom: 40px;
+    }
+    #debugBox {
+      position: fixed;
+      top: 4px;
+      left: 4px;
+      background-color: black;
+      border: 2px solid red;
+      color: red;
+      font-size: 14px;
+      font-family: monospace;
+      padding: 5px;
+      z-index: 1000;
+    }
+    #gameHeaderNav {
+      margin-top: 10px;
+      max-width: 992px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #mastfoot,
+    #mastfoot a {
+      color: white;
+    }
+    .stickBottomLeft {
+      position: absolute;
+      left: 16px;
+      bottom: 8px;
+    }
+    .stickBottomRight {
+      position: absolute;
+      right: 16px;
+      bottom: 8px;
+    }
+    #gameHeaderNav .navbar-text.navbar-right {
+      margin-right: 5px;
+    }
+    #storeModal {
+      color: black;
+    }
+    .store-modal-title {
+      text-align: center;
+    }
+    .store-modal-image {
+      text-align: center;
+      /*width: 100%;
     height: 86px;
     background: #bbb;*/
-  }
-  /*.store-modal-image img {
+    }
+    /*.store-modal-image img {
     vertical-align: middle;
   }*/
-  </style>
-  <!--[if lt IE 9]>
+    </style>
+    <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-</head>
+  </head>
 
-<body onLoad="loadItUp();" class="inverse">
-  <div class="hidden" id="debugBox"></div>
-  <div class="container-fluid">
+  <body onLoad="loadItUp();" class="inverse">
+    <div class="hidden" id="debugBox"></div>
+    <div class="container-fluid">
 
-    <canvas id="canvas" style="position : absolute; top : 0px; left : 0px;"></canvas>
-    <script type="text/javascript" src="http://sheepeuh.com/rain/dat.gui.js"></script>
-    <div style="position : absolute; bottom : 0px; left : 0px; margin : 20px; padding : 5px; background-color:#ce3635;">
-      <a href="http://sheepeuh.com" style="color: white; text-decoration : none; font-family: 'Lato', sans-serif; text-shadow: 1px 1px 1px black;">Me</a>
-    </div>
+      <canvas id="canvas" style="position : absolute; top : 0px; left : 0px;"></canvas>
+      <!--<script type="text/javascript" src="http://sheepeuh.com/rain/dat.gui.js"></script>
+      <div style="position : absolute; bottom : 0px; left : 0px; margin : 20px; padding : 5px; background-color:#ce3635;">
+        <a href="http://sheepeuh.com" style="color: white; text-decoration : none; font-family: 'Lato', sans-serif; text-shadow: 1px 1px 1px black;">Me</a>
+      </div>-->
 
-    <div class="modal fade" id="storeModal" tabindex="-1" role="dialog" aria-labelledby="storeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title" id="storeModalLabel">Hillside Market <small>Balance: <span class="walletAmount"></span></small></h4>
-          </div>
-          <div class="modal-body">
-            <div class="store-modal-items"></div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <div class="modal fade" id="storeModal" tabindex="-1" role="dialog" aria-labelledby="storeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+              </button>
+              <h4 class="modal-title" id="storeModalLabel">Hillside Market <small>Balance: <span class="walletAmount"></span></small></h4>
+            </div>
+            <div class="modal-body">
+              <div class="store-modal-items"></div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <header id="loginHeader" class="text-center col-xs-8 col-xs-offset-2">
-        <div class="jumbotron jumbotron-biglogo">
-          <img src="img/logo_header.png">
-          <span class="sr-only">UofRPG: Year 1</span>
-        </div>
-      </header>
-    </div>
-
-    <div id="gameHeader" class="hidden">
-      <nav id="gameHeaderNav" class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-              <img src="img/logo_header.png" height="24">
-            </a>
+      <div class="row">
+        <header id="loginHeader" class="text-center col-xs-8 col-xs-offset-2">
+          <div class="jumbotron jumbotron-biglogo">
+            <img src="img/logo_header.png">
+            <span class="sr-only">UofRPG: Year 1</span>
           </div>
+        </header>
+      </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a>
-                  <span class="statsPopover">
+      <div id="gameHeader" class="hidden">
+        <nav id="gameHeaderNav" class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">
+                <img src="img/logo_header.png" height="24">
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a>
+                    <span class="statsPopover">
                     <span class="glyphicon glyphicon-user"></span>
                     <span id="gameHeaderNavUsername"></span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <i class="fa fa-money"></i>
-                  <span class="walletAmount"></span>
-                </a>
-              </li>
-              <li>
-                <a href="#" data-toggle="modal" data-target="#storeModal">
-                  <i class="fa fa-shopping-cart"></i> Store
-                </a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-cogs"></i>
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#" onclick="saveGame();">Save game</a>
-                  </li>
-                  <li><a href="logout.html">Log out</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-money"></i>
+                    <span class="walletAmount"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#storeModal">
+                    <i class="fa fa-shopping-cart"></i> Store
+                  </a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-cogs"></i>
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" onclick="saveGame();">Save game</a>
+                    </li>
+                    <li><a href="logout.html">Log out</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
           </div>
-          <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-      </nav>
+          <!-- /.container-fluid -->
+        </nav>
 
-      <div class="text-center">
-        <strong>Controls: arrow keys to move, shift to sprint</strong>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="theGame text-center hidden">
-					<canvas id="demoCanvas" width="992" height="544">
-            This game requires HTML5 canvas support, please switch to a modern browser.
-          </canvas>
+        <div class="text-center">
+          <strong>Controls: arrow keys to move, shift to sprint</strong>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div id="loginContainer" class="col-sm-offset-4 col-sm-4">
-        <div id="loginContainerAlert" class="alert hidden" role="alert">
-          <button type="button" class="close" id="loginContainerAlertCloseBtn">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <span id="loginContainerAlertContent"></span>
-        </div>
-        <div class="paneLoading">
-          <h1 class="text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</h1>
-        </div>
-        <div class="paneButtons hidden">
-          <button id="btnLogin" class="btn btn-lg btn-block btn-material-deeporange">Login</button>
-          <button id="btnRegister" class="btn btn-lg btn-block btn-material-deeporange">Register</button>
-        </div>
-        <div class="paneLogin hidden">
-          <div class="form-group">
-            <label for="formLoginUsername">Username</label>
-            <input type="text" class="form-control input-lg" id="formLoginUsername" placeholder="Username">
-          </div>
-          <div class="form-group">
-            <label for="formLoginPassword">Password</label>
-            <input type="password" class="form-control input-lg" id="formLoginPassword" placeholder="Password">
-          </div>
-          <button type="button" id="formLoginSubmit" data-loading-text="Loading..." class="btn btn-lg btn-material-deeporange">
-            Submit
-          </button>
-        </div>
-        <div class="paneRegister hidden">
-          <div class="form-group">
-            <label for="formRegisterUsername">Username</label>
-            <input type="text" class="form-control input-lg" id="formRegisterUsername" placeholder="Username">
-          </div>
-          <div class="form-group">
-            <label for="formRegisterPassword">Password</label>
-            <input type="password" class="form-control input-lg" id="formRegisterPassword" placeholder="Password">
-          </div>
-          <button type="button" id="formRegisterSubmit" data-loading-text="Loading..." class="btn btn-lg btn-material-deeporange">
-            Submit
-          </button>
-        </div>
-      </div>
-    </div>
-    <div id="gameDom">
-    </div>
-
-    <footer id="mastfoot">
-      <div class="stickBottomLeft">
-        <a href="proposal.pdf" target="_blank" class="btn btn-primary btn-lg">Proposal</a>
       </div>
 
-      <div class="stickBottomRight">
-        <div class="text-right">Copyright &copy; 2014</div>
-        <a href="credits.html" target="_blank" class="btn btn-primary btn-lg">Credits</a>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="theGame text-center hidden">
+            <canvas id="demoCanvas" width="992" height="544">
+              This game requires HTML5 canvas support, please switch to a modern browser.
+            </canvas>
+          </div>
+        </div>
       </div>
-    </footer>
-  </div>
-</body>
+      <div class="row">
+        <div id="loginContainer" class="col-sm-offset-4 col-sm-4">
+          <div id="loginContainerAlert" class="alert hidden" role="alert">
+            <button type="button" class="close" id="loginContainerAlertCloseBtn">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <span id="loginContainerAlertContent"></span>
+          </div>
+          <div class="paneLoading">
+            <h1 class="text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</h1>
+          </div>
+          <div class="paneButtons hidden">
+            <button id="btnLogin" class="btn btn-lg btn-block btn-material-deeporange">Login</button>
+            <button id="btnRegister" class="btn btn-lg btn-block btn-material-deeporange">Register</button>
+          </div>
+          <div class="paneLogin hidden">
+            <div class="form-group">
+              <label for="formLoginUsername">Username</label>
+              <input type="text" class="form-control input-lg" id="formLoginUsername" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="formLoginPassword">Password</label>
+              <input type="password" class="form-control input-lg" id="formLoginPassword" placeholder="Password">
+            </div>
+            <button type="button" id="formLoginSubmit" data-loading-text="Loading..." class="btn btn-lg btn-material-deeporange">
+              Submit
+            </button>
+          </div>
+          <div class="paneRegister hidden">
+            <div class="form-group">
+              <label for="formRegisterUsername">Username</label>
+              <input type="text" class="form-control input-lg" id="formRegisterUsername" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="formRegisterPassword">Password</label>
+              <input type="password" class="form-control input-lg" id="formRegisterPassword" placeholder="Password">
+            </div>
+            <button type="button" id="formRegisterSubmit" data-loading-text="Loading..." class="btn btn-lg btn-material-deeporange">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="gameDom">
+      </div>
+      <footer id="mastfoot">
+        <div class="stickBottomLeft">
+          <div class="stickBottomLeft">
+            <a href="proposal.pdf" target="_blank" class="btn btn-primary btn-lg">Proposal</a>
+            <a href="finalPresentation.pdf" target="_blank" class="btn btn-primary btn-lg">Final Presentation</a>
+          </div>
+        </div>
+        <div class="stickBottomRight">
+          <div class="text-right">Copyright &copy; 2014</div>
+          <a href="credits.html" target="_blank" class="btn btn-primary btn-lg">Credits</a>
+        </div>
+      </footer>
+    </div>
+  </body>
 
 </html>
